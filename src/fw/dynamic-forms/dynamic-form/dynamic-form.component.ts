@@ -11,46 +11,46 @@ import { FieldDefinition } from '../field-definition';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnChanges, OnInit {
- 
+
   @Input() vm: any;
   @Input() vmDefinition: Array<FieldDefinition>;
   @Input() operation: string;
   @Input() errorMessage: string;
   @Output() update: EventEmitter<any> = new EventEmitter();
   @Output() create: EventEmitter<any> = new EventEmitter();
-  
+
   form: FormGroup;
   status: string;
   submitted = false;
   vmCopy: any;
-  
+
   constructor(private router: Router,
-              private route: ActivatedRoute,
-              private location: Location) { }
-  
+    private route: ActivatedRoute,
+    private location: Location) { }
+
   clearForm() {
     let group = {};
     this.vmCopy = Object.assign({}, this.vm);
     this.vmDefinition.forEach(field => {
       group[field.key] = field.required ? new FormControl(this.vmCopy[field.key], Validators.required)
-                                              : new FormControl(this.vmCopy[field.key]);
+        : new FormControl(this.vmCopy[field.key]);
     });
     this.form = new FormGroup(group);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-     if (changes['errorMessage'].currentValue && this.status === 'waiting') {
-       this.status = "";
-     }
+    if (changes['errorMessage'].currentValue && this.status === 'waiting') {
+      this.status = "";
+    }
   }
 
   ngOnInit() {
     this.clearForm();
-    
+
     this.route.params.subscribe(params => {
       this.operation = params['operation'];
       this.clearForm();
-     });
+    });
   }
 
   onBack() {
@@ -71,7 +71,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   onEdit() {
-    this.router.navigate(['../', 'edit'], { relativeTo: this.route});
+    this.router.navigate(['../', 'edit'], { relativeTo: this.route });
   }
 
   onSave() {
@@ -80,5 +80,10 @@ export class DynamicFormComponent implements OnChanges, OnInit {
       this.status = 'waiting';
       this.update.emit(this.form.value);
     }
+  }
+
+  //hakk in progress.
+  onSubmit() {
+    console.log('Submit.');
   }
 }

@@ -10,8 +10,8 @@ import { ScreenService } from '../services/screen.service';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private menuService: MenuService,
-              private screenService: ScreenService) { }
+  constructor(public menuService: MenuService,
+              public screenService: ScreenService) { }
 
   ngOnInit() {
   }

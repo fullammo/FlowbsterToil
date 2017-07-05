@@ -33,7 +33,7 @@ export class MenuItemComponent implements OnInit {
   popupTop = 34;
 
   constructor(private router:Router, 
-              private menuService: MenuService,
+              public menuService: MenuService,
               private el: ElementRef,
               private renderer: Renderer) {
   }

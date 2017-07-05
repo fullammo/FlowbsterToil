@@ -10,7 +10,7 @@ import { UserApi } from '../users/user-api';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(private frameworkConfigService: FrameworkConfigService,
+  constructor(public frameworkConfigService: FrameworkConfigService,
               private userApi: UserApi) { }
 
   ngOnInit() {
