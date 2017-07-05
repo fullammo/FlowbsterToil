@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Country } from '../../view-models/Country';
+import { Country } from '../../view-models/country';
 
 @Component({
   selector: 'app-country-panel',
