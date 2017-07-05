@@ -1,8 +1,6 @@
 #.travis.yml
 os:
   - linux
-services:
-  - docker
 language: node_js
 node_js:
   - "6.9"
@@ -30,12 +28,11 @@ before_script:
   - npm install -g firebase-tools
   - npm install -g @angular/cli
 
-script:
-  - ng test --watch=false
-  - ng e2e
+script: ng test --watch=false && ng e2e && ng build --prod
+  # - ng e2e
 
-after_script:
-  - ng build --prod
+# after_script:
+#   - ng build --prod
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
