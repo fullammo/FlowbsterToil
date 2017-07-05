@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AppDataService } from '../services/app-data.service';
-import { Country } from '../view-models/Country';
+import { Country } from '../view-models/country';
 
 @Component({
   selector: 'app-country-list',
