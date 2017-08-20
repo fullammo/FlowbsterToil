@@ -4,6 +4,8 @@ import { InputPort } from "app/editor/models/inputPort";
 import { FlowbsterNode } from "app/editor/models/flowbsterNode";
 import { Workflow } from "app/editor/models/workflow";
 
+import 'app/editor/models/customArrayFeatures';
+
 import * as joint from 'jointjs';
 import * as _ from 'lodash';
 
@@ -406,15 +408,15 @@ export class JointService {
         }
       }),
       validateConnection: this.isConnectionValid,
-      validateMagnet: function (cellView, magnet) {
-        var links = self.getLinks();
-        for (var i = 0; i < links.length; i++) {
-          if (((cellView.model.id == links[i].get('source').id) && (magnet.getAttribute('port') == links[i].get('source').port)) ||
-            ((cellView.model.id == links[i].get('target').id) && (magnet.getAttribute('port') == links[i].get('target').port)))
-            return false;
-        }
-        return true;
-      },
+      // validateMagnet: function (cellView, magnet) {
+      //   var links = self.getLinks();
+      //   for (var i = 0; i < links.length; i++) {
+      //     if (((cellView.model.id == links[i].get('source').id) && (magnet.getAttribute('port') == links[i].get('source').port)) ||
+      //       ((cellView.model.id == links[i].get('target').id) && (magnet.getAttribute('port') == links[i].get('target').port)))
+      //       return false;
+      //   }
+      //   return true;
+      // },
       snapLinks: { radius: 75 },
       markAvailable: true
     });
