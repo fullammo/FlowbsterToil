@@ -24,7 +24,7 @@ export class PaperComponent implements OnInit {
   sliderValue = 100;
   minSliderValue = 1;
 
-  constructor(private jointSVC: JointService) { }
+  constructor(public jointSVC: JointService) { }
 
   // initialize domElement to a paper and enlist on events.
   ngOnInit() {

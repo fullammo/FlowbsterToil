@@ -2,7 +2,7 @@
 <div id="paper" class="paper drawing-area">
 </div>
 
-<p>{{jointSVC.newNode |json}}</p>
+<p>{{jointSVC.actualNode |json}}</p>
 
 <p-growl [(value)]="msgs" sticky="sticky"></p-growl>
 
@@ -14,11 +14,11 @@
   </toil-editor-node-properties>
 </p-dialog>
 
-<p-dialog header="Input Properties" [(visible)]="inputModalVisible" modal="true" [width]="modalWidth">
+<p-dialog header="Input Properties" [(visible)]="inputModalVisible" modal="true">
   <toil-editor-input-properties (onSubmitDialog)="inputDialogChanged($event)" [InputProps]="jointSVC.actualPort"></toil-editor-input-properties>
 </p-dialog>
 
-<p-dialog header="Output Properties" [(visible)]="outputModalVisible" modal="true" [width]="modalWidth">
+<p-dialog header="Output Properties" [(visible)]="outputModalVisible" modal="true">
   <toil-editor-output-properties (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualPort"></toil-editor-output-properties>
 </p-dialog>
 

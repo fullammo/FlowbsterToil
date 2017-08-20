@@ -49,8 +49,8 @@
 
 
     <div class="ui-grid-row">
-      <button *ngIf="isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate(userform.value)" [disabled]="!userform.valid"></button>
-      <button pButton type="submit" label="Create Node" (click)="onCreate(userform.value)" [disabled]="!userform.valid"></button>
+      <button *ngIf="isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate()" [disabled]="!userform.valid"></button>
+      <button pButton type="submit" label="Create Node" (click)="onCreate()" [disabled]="!userform.valid"></button>
     </div>
 
   </div>

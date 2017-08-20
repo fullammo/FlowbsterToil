@@ -20,7 +20,7 @@ export class ToolbarComponent implements OnInit {
 
   uploadedFiles: any[] = [];
 
-  constructor(private descriptorSVC: DescriptorService, private jointSVC: JointService) { }
+  constructor(private descriptorSVC: DescriptorService, public jointSVC: JointService) { }
 
   ngOnInit() {
     this.editClicked = false;
