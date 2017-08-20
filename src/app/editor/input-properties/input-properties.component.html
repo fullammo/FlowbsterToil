@@ -1,0 +1,40 @@
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+
+<form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)" #f="ngForm">
+  <!-- {{InputProps | json}} -->
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="inputProps.name">
+        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+          Input name is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <md-checkbox [formControl]="userform.controls['isCollector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.isCollector">Collector port</md-checkbox>
+      <!-- <md-input-container>
+        <input mdInput type="text" placeholder="isCollector" [formControl]="userform.controls['isCollector']" [(ngModel)]="inputProps.isCollector">
+        <md-error *ngIf="!userform.controls['isCollector'].valid&&userform.controls['isCollector'].dirty">
+          Name is <strong>required</strong>
+        </md-error>
+      </md-input-container> -->
+    </div>
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="text" placeholder="storagePattern" [formControl]="userform.controls['storagePattern']" [(ngModel)]="inputProps.storagePattern">
+        <md-error *ngIf="!userform.controls['storagePattern'].valid&&userform.controls['storagePattern'].dirty">
+          Name is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>
+    </div>
+
+  </div>
+</form>

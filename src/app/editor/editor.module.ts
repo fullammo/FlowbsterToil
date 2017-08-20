@@ -10,19 +10,20 @@ import {
 import { MdInputModule, MdErrorDirective, MdCheckboxModule, MdSelectModule, MdSliderModule } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
-// import { ToolbarComponent } from './toolbar/toolbar.component';
-// import { WorkflowPropertiesComponent } from './workflow-properties/workflow-properties.component';
-// import { PaperComponent } from './paper/paper.component';
-// import { JointService } from 'app/shared/joint.service';
-// import { DescriptorService } from 'app/shared/descriptor.service';
-// import { JSYamlService } from 'app/shared/jsyaml.service';
+import { PaperComponent } from './paper/paper.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { WorkflowPropertiesComponent } from './workflow-properties/workflow-properties.component';
+import { JointService } from "app/editor/shared/joint.service";
+import { DescriptorService } from "app/editor/shared/descriptor.service";
+import { KeysPipe } from './shared/keys.pipe';
 // import { NodePropertiesComponent } from './node-properties/node-properties.component';
 // import { InputPropertiesComponent } from './input-properties/input-properties.component';
 // import { OutputPropertiesComponent } from './output-properties/output-properties.component';
-// import { KeysPipe } from './shared/keys.pipe';
 
 import 'hammerjs';
-
+import { InputPropertiesComponent } from './input-properties/input-properties.component';
+import { OutputPropertiesComponent } from './output-properties/output-properties.component';
+import { NodePropertiesComponent } from './node-properties/node-properties.component';
 
 @NgModule({
   imports: [
@@ -46,16 +47,22 @@ import 'hammerjs';
   ],
   declarations: [
     EditorComponent,
-    // ToolbarComponent,
-    // WorkflowPropertiesComponent,
-    // PaperComponent,
+    ToolbarComponent,
+    WorkflowPropertiesComponent,
+    PaperComponent,
     // NodePropertiesComponent,
     // InputPropertiesComponent,
     // OutputPropertiesComponent,
-    // KeysPipe,
-    EditorComponent
+    EditorComponent,
+    PaperComponent,
+    ToolbarComponent,
+    WorkflowPropertiesComponent,
+    KeysPipe,
+    InputPropertiesComponent,
+    OutputPropertiesComponent,
+    NodePropertiesComponent
   ],
-  // providers: [JointService, DescriptorService],
+  providers: [JointService, DescriptorService],
   exports: [EditorComponent]
 })
 export class EditorModule { }

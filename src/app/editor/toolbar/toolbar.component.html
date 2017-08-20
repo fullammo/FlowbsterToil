@@ -1,0 +1,11 @@
+<p-menu [model]="items">
+</p-menu>
+
+<p-fileUpload mode="basic" customUpload="true" accept=".json" maxFileSize="1000000" (uploadHandler)="myUploader($event)" #fileupload chooseLabel="Upload Graph"></p-fileUpload>
+<button pButton type="button" label="Clear Upload" (click)="fileupload.clear()">
+
+<p-growl [(value)]="msgs" sticky="sticky"></p-growl>
+
+<p-dialog header="Workflow Properties" [(visible)]="editClicked" modal="true">
+    <toil-editor-workflow-properties (onSubmitDialog)="workflowDialogChange($event)" [WorkflowProps]="jointSVC.workflow"></toil-editor-workflow-properties>
+</p-dialog>
