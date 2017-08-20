@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FwModule } from '../fw/fw.module';
+import { EditorModule } from "app/editor/editor.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { appRoutes } from './app.routing';
@@ -19,9 +20,11 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AppDataService } from './services/app-data.service';
 import { CountryPanelComponent } from './panels/country-panel/country-panel.component';
 import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
-import { EditorComponent } from './editor/editor.component';
 import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,6 @@ import { AuthFileComponent } from './auth-file/auth-file.component';
     AuthenticatedUserComponent,
     CountryPanelComponent,
     ImagePanelComponent,
-    EditorComponent,
     NodeDefComponent,
     AuthFileComponent
   ],
@@ -43,7 +45,9 @@ import { AuthFileComponent } from './auth-file/auth-file.component';
     FormsModule,
     HttpModule,
     FwModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FlexLayoutModule,
+    EditorModule
   ],
   providers: [
     UserService,

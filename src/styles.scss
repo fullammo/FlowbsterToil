@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     font-family: 'Open Sans', sans-serif;
+}
+
+.available-magnet {
+    fill: yellow;
+}
+
+/* element styling */
+.available-cell rect {
+    stroke-dasharray: 5, 2;
+}
+
+/*check angular material 2 issue number 2942.*/
+.cdk-overlay-container {
+z-index:1127;
 }

@@ -1,0 +1,69 @@
+<form [formGroup]="userform" (ngSubmit)="onSubmit()">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="text" placeholder="Infrastructure ID" [formControl]="userform.controls['infraid']" [(ngModel)]="workflowProps.infraid">
+        <md-error *ngIf="!userform.controls['infraid'].valid&&userform.controls['infraid'].dirty">
+          Infra ID is  <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="text" placeholder="User ID" [formControl]="userform.controls['userid']" [(ngModel)]="workflowProps.userid">
+        <md-error *ngIf="!userform.controls['userid'].valid&&userform.controls['userid'].dirty">
+          User ID is <strong>required</strong>
+        </md-error>
+        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="text" placeholder="Infrastructure Name" [formControl]="userform.controls['infraname']" [(ngModel)]="workflowProps.infraname">
+        <md-error *ngIf="!userform.controls['infraname'].valid&&userform.controls['infraname'].dirty">
+          Infra name is <strong>required</strong>
+        </md-error>
+        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="text" placeholder="Collector IP" [formControl]="userform.controls['collectorip']" [(ngModel)]="workflowProps.collectorip">
+        <md-error *ngIf="!userform.controls['collectorip'].valid&&userform.controls['collectorip'].dirty">
+          Collector IP is  <strong>required</strong>
+        </md-error>
+        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="number" placeholder="Collector port" [formControl]="userform.controls['collectorport']" [(ngModel)]="workflowProps.collectorport">
+        <md-error *ngIf="!userform.controls['collectorport'].valid&&userform.controls['collectorport'].dirty">
+          Collector port is  <strong>required</strong>
+        </md-error>
+        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <md-input-container>
+        <input mdInput type="number" placeholder="Receiver port" [formControl]="userform.controls['receiverport']" [(ngModel)]="workflowProps.receiverport">
+        <md-error *ngIf="!userform.controls['receiverport'].valid&&userform.controls['receiverport'].dirty">
+          Receiver port is  <strong>required</strong>
+        </md-error>
+        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
+      </md-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>
+    </div>
+
+
+  </div>
+</form>

@@ -1,6 +1,6 @@
 import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
-import { EditorComponent } from './editor/editor.component';
+import { EditorComponent } from './editor/editor/editor.component';
 import { Routes } from '@angular/router';
 
 import { AuthenticatedUserComponent } from './authenticated-user/authenticated-user.component';
