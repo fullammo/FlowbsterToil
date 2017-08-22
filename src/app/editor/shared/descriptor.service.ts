@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { OccopusDescriptor } from "app/editor/models/occopusDescriptor";
-import { JointService } from "app/editor/shared/joint.service";
-import { Workflow } from "app/editor/models/workflow";
-import { OutPutDescriptor } from "app/editor/models/outputDescriptor";
-import { NodeDescriptor } from "app/editor/models/nodeDescriptor";
-import { InputDescriptor } from "app/editor/models/inputDescriptor";
+import { OccopusDescriptor } from 'app/editor/models/occopusDescriptor';
+import { JointService } from 'app/editor/shared/joint.service';
+import { Workflow } from 'app/editor/models/workflow';
+import { OutPutDescriptor } from 'app/editor/models/outputDescriptor';
+import { NodeDescriptor } from 'app/editor/models/nodeDescriptor';
+import { InputDescriptor } from 'app/editor/models/inputDescriptor';
 
 import * as jsyaml from 'js-yaml';
 
@@ -49,7 +49,7 @@ export class DescriptorService {
 
       console.log(this.occopusDescriptor);
 
-      let yamlstring = this.finalizeDescriptor();
+      const yamlstring = this.finalizeDescriptor();
       console.log(yamlstring);
       return yamlstring;
     }
@@ -84,10 +84,10 @@ export class DescriptorService {
 
   // changes the names to be variables in proper yaml format and returns the valid YAML string.
   finalizeDescriptor(): string {
-    let names = [];
-    let subNames = [];
+    const names = [];
+    const subNames = [];
     let index = 0;
-    for (let node of this.occopusDescriptor.nodes) {
+    for (const node of this.occopusDescriptor.nodes) {
       names[index] = node.name;
       subNames[index++] = 'name: ' + node.name;
     }
@@ -95,30 +95,30 @@ export class DescriptorService {
     let halfwayYaml = jsyaml.dump(this.occopusDescriptor, { lineWidth: -1, noCompatMode: true });
 
     for (let iii = 0; iii < names.length; iii++) {
-      let firstPart = halfwayYaml.slice(0, halfwayYaml.indexOf(subNames[iii]));
+      const firstPart = halfwayYaml.slice(0, halfwayYaml.indexOf(subNames[iii]));
       halfwayYaml = firstPart + '&' + names[iii] + '\n    ' + halfwayYaml.slice(halfwayYaml.indexOf(subNames[iii]));
     }
 
     // replace single quotes globally to whitespace and " to single quotation marks
-    let doneYaml = halfwayYaml.replace(/'/g, ' ').replace(/"/g, '\'').replace(/\\/g, '\"');
+    const doneYaml = halfwayYaml.replace(/'/g, ' ').replace(/"/g, '\'').replace(/\\/g, '\"');
     return doneYaml;
   }
 
   // corrects the outputs by the given dependencies and creates an array from the node dependency chain.
   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array<string> {
-    let dependencies = {};
-    let dependencySet = new Set<string>();
-    let links = this.jointSVC.getLinks();
+    const dependencies = {};
+    const dependencySet = new Set<string>();
+    const links = this.jointSVC.getLinks();
 
-    for (let link of links) {
-      let sourceCellName = link.getSourceElement().attr('.label/text');
-      let targetCellName = link.getTargetElement().attr('.label/text');
+    for (const link of links) {
+      const sourceCellName = link.getSourceElement().attr('.label/text');
+      const targetCellName = link.getTargetElement().attr('.label/text');
 
       this.correctOutputTargetNode(link, sourceCellName, targetCellName); // could be somewhere else or outside.
       dependencySet.add(sourceCellName);
 
-      if (dependencies[sourceCellName] == undefined) {
+      if (dependencies[sourceCellName] === undefined) {
         dependencies[sourceCellName] = new Set();
       }
 
@@ -130,10 +130,10 @@ export class DescriptorService {
 
   // iterates over the sourceNodes and pairs them up with their targets.
   createFinalDependencies(dependencies: object, dependencySet: Set<string>): Array<string> {
-    let finaldeps = new Array<string>();
-    for (let sourceName of Array.from(dependencySet)) {
-      let depset = dependencies[sourceName];
-      for (let dep of Array.from(depset)) {
+    const finaldeps = new Array<string>();
+    for (const sourceName of Array.from(dependencySet)) {
+      const depset = dependencies[sourceName];
+      for (const dep of Array.from(depset)) {
         finaldeps.push('connection: [ *' + sourceName + ', *' + dep + ' ]');
       }
     }
@@ -143,8 +143,8 @@ export class DescriptorService {
   // delete displayName for those nodes which doesnt have a link
   // and delete the targetIP targetPort if not specified
   correctOutputsWithoutLink(): void {
-    for (let node of this.occopusDescriptor.nodes) {
-      for (let outport of node.variables.flowbster.app.out) {
+    for (const node of this.occopusDescriptor.nodes) {
+      for (const outport of node.variables.flowbster.app.out) {
         if (outport.displayName) {
           delete outport.displayName
         }
@@ -160,17 +160,17 @@ export class DescriptorService {
   // HINT : this is not needed if we get a proper linking event. (too hard)
   correctOutputTargetNode(link: joint.dia.Link, sourceCellName: string, targetCellName: string): void {
 
-    let node: NodeDescriptor = this.occopusDescriptor.nodes.find(node => node.name === sourceCellName);
-    let outputDescriptors: OutPutDescriptor[] = node.variables.flowbster.app.out;
+    const node: NodeDescriptor = this.occopusDescriptor.nodes.find(nodeEl => nodeEl.name === sourceCellName);
+    const outputDescriptors: OutPutDescriptor[] = node.variables.flowbster.app.out;
     console.log(outputDescriptors);
 
     if (outputDescriptors) {
       for (let iii = 0; iii < outputDescriptors.length; iii++) {
 
-        let outputDescriptor = outputDescriptors[iii];
-        let sourcePortName = link.get('source').port;
+        const outputDescriptor = outputDescriptors[iii];
+        const sourcePortName = link.get('source').port;
 
-        if (outputDescriptor.displayName != sourcePortName) {
+        if (outputDescriptor.displayName !== sourcePortName) {
           continue;
         }
 
@@ -178,7 +178,7 @@ export class DescriptorService {
         delete outputDescriptor.targetport;
         delete outputDescriptor.displayName;
 
-        let targetPortName = link.get('target').port;
+        const targetPortName = link.get('target').port;
         outputDescriptor.targetname = targetPortName;
 
         outputDescriptor.targetnode = targetCellName;
@@ -188,15 +188,15 @@ export class DescriptorService {
 
   // gets every piece of the joint Nodes into a node description
   createDescriptorNodes(): NodeDescriptor[] {
-    let cells: joint.dia.Cell[] = this.jointSVC.getCells();
-    let nodeDescriptors: NodeDescriptor[] = [];
+    const cells: joint.dia.Cell[] = this.jointSVC.getCells();
+    const nodeDescriptors: NodeDescriptor[] = [];
 
     if (cells) {
-      for (let cell of cells) {
-        if (cell.get('type') == 'link') {
+      for (const cell of cells) {
+        if (cell.get('type') === 'link') {
           continue;
         }
-        let nodeDescriptor: NodeDescriptor = this.createNodeDescriptor(cell);
+        const nodeDescriptor: NodeDescriptor = this.createNodeDescriptor(cell);
         nodeDescriptors.push(nodeDescriptor);
       }
     } else {
@@ -208,16 +208,16 @@ export class DescriptorService {
 
   // iterates through the parameter cells inputs and initializes an InputDescriptor Array.
   createInputs(cell: joint.dia.Cell): InputDescriptor[] {
-    let inportNames = cell.get('inPorts');
-    let inportDescriptors: InputDescriptor[] = [];
+    const inportNames = cell.get('inPorts');
+    const inportDescriptors: InputDescriptor[] = [];
 
     if (inportNames.length) {
 
-      let inportProperties = cell.get('inPortsProps');
+      const inportProperties = cell.get('inPortsProps');
 
       console.log(JSON.stringify(inportProperties));
 
-      for (let inportName of inportNames) {
+      for (const inportName of inportNames) {
         inportDescriptors.push(this.createInput(inportName, inportProperties));
       }
     }
@@ -228,9 +228,9 @@ export class DescriptorService {
   // from the input name and the inputs properties initializes an InputDescriptor object.
   createInput(inportName: string, inportProperties: any): InputDescriptor {
 
-    let inport: InputDescriptor = { name: inportName };
+    const inport: InputDescriptor = { name: inportName };
 
-    let hasProperties = inportProperties[inportName]['isCollector']; // change this with the InputPort
+    const hasProperties = inportProperties[inportName]['isCollector']; // change this with the InputPort
 
     if (hasProperties) {
       inport.collector = hasProperties;
@@ -245,13 +245,13 @@ export class DescriptorService {
   // from the output name and the output properties initializes an Outputdescriptor object.
   createOutput(outportName: string, outportProperties: any): OutPutDescriptor {
 
-    let actualProperties = outportProperties[outportName];
+    const actualProperties = outportProperties[outportName];
     // console.log('MEEEEEEE');
     // console.log(actualProperties);
 
 
     if (!this.jointSVC.isEmpty(actualProperties)) {
-      let outport: OutPutDescriptor = {
+      const outport: OutPutDescriptor = {
         name: actualProperties['fileName'],
         displayName: actualProperties['name'],
         targetip: actualProperties['targetIp'] === undefined ? this.jointSVC.workflow.collectorip : actualProperties['targetIp'],
@@ -261,7 +261,7 @@ export class DescriptorService {
 
       if (actualProperties.isGenerator) {
         outport.filter = '\\' + actualProperties['filterExpression'] + '\\'; // "" needed
-        let distribution = actualProperties['distribution'];
+        const distribution = actualProperties['distribution'];
         if (distribution) {
           outport.distribution = distribution;
         }
@@ -278,19 +278,19 @@ export class DescriptorService {
   // iterates through the parameter cells outputs and initializes an OutPutDescriptor Array.
   createOutputs(cell: joint.dia.Cell): OutPutDescriptor[] {
 
-    let outportNames = cell.get('outPorts');
+    const outportNames = cell.get('outPorts');
     // console.log('outportNames: ' + outportNames);
-    let outportDescriptors: OutPutDescriptor[] = [];
+    const outportDescriptors: OutPutDescriptor[] = [];
 
     if (outportNames.length) {
 
-      let outportProperties = cell.get('outPortsProps');
+      const outportProperties = cell.get('outPortsProps');
 
       // console.log('outportProps: ');
       // console.log(JSON.stringify(outportProperties));
 
-      for (let outportName of outportNames) {
-        let output = this.createOutput(outportName, outportProperties);
+      for (const outportName of outportNames) {
+        const output = this.createOutput(outportName, outportProperties);
         if (output) {
           outportDescriptors.push(output);
         }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { OutputPort } from "app/editor/models/outputPort";
-import { InputPort } from "app/editor/models/inputPort";
-import { FlowbsterNode } from "app/editor/models/flowbsterNode";
-import { Workflow } from "app/editor/models/workflow";
+import { OutputPort } from 'app/editor/models/outputPort';
+import { InputPort } from 'app/editor/models/inputPort';
+import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
+import { Workflow } from 'app/editor/models/workflow';
 
 import 'app/editor/models/customArrayFeatures';
 
@@ -55,13 +55,14 @@ export class JointService {
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
-  // BEHAVIOUR(ok): If you want to create from a given node a new one then its going to be placed where the last you clicked on the blank paper.
+  // BEHAVIOUR(ok): If you want to create from a given node a new one then its going to be placed where you clicked on the blank paper.
   // HINT: could listen on every event and set the placement property. (wont bother the blank click).
 
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
   // BEHAVIOUR: somehow i can link to some inputs and some error occurs and im not sure what happens.
+  // HINT: if the input ports are not passive.
 
   // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
   // HINT: CUSTOM VALIDATOR for the node's name so that they cant match with the nodes, therefore we need to check it backwards.
@@ -84,7 +85,7 @@ export class JointService {
   // REFACTOR: Maybe rename JointService to GraphService and get a JointService for the helper and other operations.
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
 
-  // TODO: Get it into the actual site, and get this component with a button shortcut at the initial page to edit the editor alone. 
+  // TODO: Get it into the actual site, and get this component with a button shortcut at the initial page to edit the editor alone.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
   // TODO: Testing
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
@@ -107,7 +108,7 @@ export class JointService {
     };
   }
 
-  //associates the workflow properties to the graph.
+  // associates the workflow properties to the graph.
   updateWorkflowProperties(newWorkflow: Workflow) {
     this.workflow = newWorkflow;
     this.graph.set('infra_id', newWorkflow.infraid);
@@ -408,15 +409,16 @@ export class JointService {
         }
       }),
       validateConnection: this.isConnectionValid,
-      // validateMagnet: function (cellView, magnet) {
-      //   var links = self.getLinks();
-      //   for (var i = 0; i < links.length; i++) {
-      //     if (((cellView.model.id == links[i].get('source').id) && (magnet.getAttribute('port') == links[i].get('source').port)) ||
-      //       ((cellView.model.id == links[i].get('target').id) && (magnet.getAttribute('port') == links[i].get('target').port)))
-      //       return false;
-      //   }
-      //   return true;
-      // },
+      validateMagnet: function (cellView, magnet) {
+        const links = self.getLinks();
+        for (let i = 0; i < links.length; i++) {
+          if (((cellView.model.id === links[i].get('source').id) && (magnet.getAttribute('port') === links[i].get('source').port)) ||
+            ((cellView.model.id === links[i].get('target').id) && (magnet.getAttribute('port') === links[i].get('target').port))) {
+            return false;
+          }
+        }
+        return magnet.getAttribute('magnet') !== 'passive';
+      },
       snapLinks: { radius: 75 },
       markAvailable: true
     });

@@ -13,17 +13,14 @@ import { EditorComponent } from './editor/editor.component';
 import { PaperComponent } from './paper/paper.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WorkflowPropertiesComponent } from './workflow-properties/workflow-properties.component';
-import { JointService } from "app/editor/shared/joint.service";
-import { DescriptorService } from "app/editor/shared/descriptor.service";
+import { JointService } from 'app/editor/shared/joint.service';
+import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { KeysPipe } from './shared/keys.pipe';
-// import { NodePropertiesComponent } from './node-properties/node-properties.component';
-// import { InputPropertiesComponent } from './input-properties/input-properties.component';
-// import { OutputPropertiesComponent } from './output-properties/output-properties.component';
-
-import 'hammerjs';
 import { InputPropertiesComponent } from './input-properties/input-properties.component';
 import { OutputPropertiesComponent } from './output-properties/output-properties.component';
 import { NodePropertiesComponent } from './node-properties/node-properties.component';
+
+import 'hammerjs';
 
 @NgModule({
   imports: [
