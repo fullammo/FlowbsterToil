@@ -36,13 +36,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    const valamiLeiro = {
-      egy: 'egy',
-      ketto: 'ketto',
-      harom: 'harom'
-    }
-
-    console.log(jsyaml.dump(valamiLeiro))
   }
 }

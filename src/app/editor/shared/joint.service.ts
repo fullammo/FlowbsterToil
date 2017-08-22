@@ -44,10 +44,12 @@ export class JointService {
   // BONUS: Multiple linking support.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
 
-  // BEHAVIOUR : cannot read input property of undefined for inports because they are not passive somehow.
-
   // BEHAVIOUR(ok): if you connect an output with an input and it has no previous value then the connection will be deleted.
   // i think this only happened because of clicking.
+
+  // BEHAVIOUR(ok): click upload somewhat gets the nativeElement cry.
+  // HINT: Wait for PrimeNG-s new release. its going to work. there is already a fix for this.
+  // check primefaces github issue @3664
 
   // BEHAVIOUR(ok): If there is a port which hasnt got any properties its going to be delisted from the yaml description.
   // (not sure if it is present in inputs); i think this is the exact behaviour we want.
@@ -61,9 +63,6 @@ export class JointService {
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
-  // BEHAVIOUR: somehow i can link to some inputs and some error occurs and im not sure what happens.
-  // HINT: if the input ports are not passive.
-
   // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
   // HINT: CUSTOM VALIDATOR for the node's name so that they cant match with the nodes, therefore we need to check it backwards.
 
@@ -72,7 +71,7 @@ export class JointService {
   // HINT: CUSTOM VALIDATOR for port display names. to something not outPortsX
 
   // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
-  // HINT : CUSTOM VALIDATOR for updating or creating another node.
+  // HINT : CUSTOM VALIDATOR matching the node with other nodes name.
 
   // BEHAVIOUR: if you enter a name like inPorts x,y and it is the next in the line. it is going to hide one Port.
   // HINT: CUSTOM VALIDATOR you cannot enter names like that.
@@ -80,7 +79,7 @@ export class JointService {
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
 
-  // REFACTOR: downloadGraph and some functions could be placed in a UtilityService.
+  // REFACTOR: downloadGraph and some functions could be placed in a Utility file.
   // REFACTOR: stringlike attributes should be placed in a configuration file like (.label/text, inPortProps) in constants.
   // REFACTOR: Maybe rename JointService to GraphService and get a JointService for the helper and other operations.
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
@@ -95,6 +94,11 @@ export class JointService {
     this.actualNode = this.initNode();
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
+  }
+
+  getNodeNames(): string[] {
+    console.log(this.graph.getElements().map(element => element.attr('.label/text')));
+    return this.graph.getElements().map(element => element.attr('.label/text'));
   }
 
   initWorkflow(): Workflow {
