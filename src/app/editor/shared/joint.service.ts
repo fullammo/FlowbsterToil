@@ -73,7 +73,7 @@ export class JointService {
   // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
   // HINT : CUSTOM VALIDATOR matching the node with other nodes name.
 
-  // BEHAVIOUR: if you enter a name like inPorts x,y and it is the next in the line. it is going to hide one Port.
+  // BEHAVIOUR: if you enter a name like in/outPorts x,y and it is the next it is going to be overwritten.
   // HINT: CUSTOM VALIDATOR you cannot enter names like that.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
