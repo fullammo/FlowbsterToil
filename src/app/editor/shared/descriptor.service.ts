@@ -84,6 +84,7 @@ export class DescriptorService {
 
   // changes the names to be variables in proper yaml format and returns the valid YAML string.
   finalizeDescriptor(): string {
+
     const names = [];
     const subNames = [];
     let index = 0;

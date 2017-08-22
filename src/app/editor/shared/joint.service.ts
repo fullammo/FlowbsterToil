@@ -43,6 +43,8 @@ export class JointService {
   // BONUS: Clear paper function would be awesome.
   // BONUS: Multiple linking support.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
+  // BONUS: Proper cloning added.
+  // BONUS: New colors.
 
   // BEHAVIOUR(ok): if you connect an output with an input and it has no previous value then the connection will be deleted.
   // i think this only happened because of clicking.
@@ -63,18 +65,13 @@ export class JointService {
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
-  // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
-  // HINT: CUSTOM VALIDATOR for the node's name so that they cant match with the nodes, therefore we need to check it backwards.
+  // BEHAVIOUR: The node cloning doesnt work properly it only adds a new node without in and outports.
 
-  // BEHAVIOUR: If i renamed a port and after that i have a before existed name to a port,
-  // then its going to be lost in the nether, gotta inicialize it again.
-  // HINT: CUSTOM VALIDATOR for port display names. to something not outPortsX
+  // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
+  // HINT: save infrastructure name as lowkey and node names as uppercase.
 
   // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
   // HINT : CUSTOM VALIDATOR matching the node with other nodes name.
-
-  // BEHAVIOUR: if you enter a name like in/outPorts x,y and it is the next it is going to be overwritten.
-  // HINT: CUSTOM VALIDATOR you cannot enter names like that.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
@@ -385,7 +382,7 @@ export class JointService {
         }
       },
       attrs: {
-        '.label': { text: flowbsterNode.name },
+        '.label': { text: flowbsterNode.name},
         '.exename': { text: flowbsterNode.execname },
         '.args': { text: flowbsterNode.args },
         '.exetgz': { text: flowbsterNode.execurl },
