@@ -81,8 +81,8 @@ export class JointService {
   // REFACTOR: Maybe rename JointService to GraphService and get a JointService for the helper and other operations.
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
 
-  // TODO: Get it into the actual site, and get this component with a button shortcut at the initial page to edit the editor alone.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
+  // TODO: Get the site ready with firebase backend.
   // TODO: Testing
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
 
@@ -382,7 +382,7 @@ export class JointService {
         }
       },
       attrs: {
-        '.label': { text: flowbsterNode.name},
+        '.label': { text: flowbsterNode.name },
         '.exename': { text: flowbsterNode.execname },
         '.args': { text: flowbsterNode.args },
         '.exetgz': { text: flowbsterNode.execurl },
