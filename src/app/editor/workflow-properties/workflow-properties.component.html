@@ -22,7 +22,7 @@
 
     <div class="ui-grid-row">
       <md-input-container>
-        <input mdInput type="text" toilLowerCaseText placeholder="Infrastructure Name" [formControl]="userform.controls['infraname']" [(ngModel)]="workflowProps.infraname">
+        <input mdInput type="text" toilLowerCase placeholder="Infrastructure Name" [formControl]="userform.controls['infraname']" [(ngModel)]="workflowProps.infraname">
         <md-error *ngIf="!userform.controls['infraname'].valid&&userform.controls['infraname'].dirty">
           Infra name is <strong>required</strong>
         </md-error>

@@ -1,15 +1,17 @@
-import { Directive, HostListener, ElementRef } from '@angular/core';
+import { Directive, HostListener, EventEmitter, Output } from '@angular/core';
 
 @Directive({
-  selector: '[toilLowerCaseText]'
+  selector: '[ngModel][toilLowerCase]'
 })
 export class LowerCaseTextDirective {
 
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+
   @HostListener('input', ['$event']) onInput(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    this.ref.nativeElement.value = input.value.toLowerCase();
+    this.ngModelChange.emit(input.value.toLowerCase());
   }
 
-  constructor(private ref: ElementRef) { }
+  constructor() { }
 
 }

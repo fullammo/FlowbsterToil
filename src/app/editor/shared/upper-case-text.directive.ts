@@ -1,15 +1,17 @@
-import { Directive, HostListener, ElementRef } from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Directive({
-  selector: '[toilUpperCaseText]'
+  selector: '[ngModel][toilUppercase]'
 })
 export class UpperCaseTextDirective {
 
-  @HostListener('input', ['$event']) onInput(event: KeyboardEvent) {
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+
+  @HostListener('input', ['$event']) onInputChange(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    this.ref.nativeElement.value = input.value.toUpperCase();
+    this.ngModelChange.emit(input.value.toUpperCase());
   }
 
-  constructor(private ref: ElementRef) { }
+  constructor() { }
 
 }
