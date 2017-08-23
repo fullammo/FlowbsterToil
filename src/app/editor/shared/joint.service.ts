@@ -68,13 +68,9 @@ export class JointService {
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
-  // TODO: We need to have Id's for such operations on in/out and nodes, to change their name as well.
+  // TODO: We need to have Id's for such operations on in/out , to change their name as well.
 
-  // BEHAVIOUR: The node cloning doesnt work properly it only adds a new node without in and outports.
-  // HINT: get them ready with in and outpors and properties, get everything ready with a slider.
-
-  // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
-  // HINT : CUSTOM VALIDATOR matching the node with other nodes name. You can get a slider which disables the name change.
+  // BEHAVIOUR: you can enter an already given node's name. thats gotta be restricted with custom validator with observables.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
