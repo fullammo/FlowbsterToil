@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
-import { FlowbsterNode } from "app/editor/models/flowbsterNode";
+import { FlowbsterNode } from 'app/editor/models/flowbsterNode'
 
 @Component({
   selector: 'toil-editor-node-properties',
@@ -17,6 +17,7 @@ export class NodePropertiesComponent implements OnInit {
 
   @Output() onUpdateDialog = new EventEmitter<FlowbsterNode>();
   @Output() onCreateDialog = new EventEmitter<FlowbsterNode>();
+  @Output() onCloneDialog = new EventEmitter<FlowbsterNode>();
   @Output() NodePropsChange = new EventEmitter<FlowbsterNode>(); // not neccessary
 
   @ViewChild('f') myNgForm; // check issue#4190 on Angular material2 github site.
@@ -58,6 +59,11 @@ export class NodePropertiesComponent implements OnInit {
 
   onUpdate() {
     this.onUpdateDialog.emit(this.userform.value);
+    this.myNgForm.resetForm();
+  }
+
+  onClone() {
+    this.onCloneDialog.emit(this.userform.value);
     this.myNgForm.resetForm();
   }
 }

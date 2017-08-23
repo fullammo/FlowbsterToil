@@ -44,6 +44,11 @@ export class PaperComponent implements OnInit {
     this.tryNodeCreation(newNode);
   }
 
+  nodeCloneDialogChanged(newNode: FlowbsterNode) {
+    this.nodeModalVisible = false;
+    this.tryNodeCloning(newNode);
+  }
+
   nodeUpdateDialogChanged(updatedNode: FlowbsterNode) {
     this.nodeModalVisible = false;
     this.tryNodeUpdate(updatedNode);
@@ -72,6 +77,14 @@ export class PaperComponent implements OnInit {
       this.sendStickyMessage(false, `Node '${updatedNode.name}' was a failure`);
     }
 
+  }
+
+  private tryNodeCloning(clonedNode: FlowbsterNode) {
+    if (this.jointSVC.cloneNode(clonedNode)) {
+      this.sendStickyMessage(true, `Node '${clonedNode.name}' cloned!`);
+    } else {
+      this.sendStickyMessage(false, `Node '${clonedNode.name}' was a failure`);
+    }
   }
 
   // tries to update an output with jointService on the paper and emits some messages
