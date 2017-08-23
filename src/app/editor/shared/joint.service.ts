@@ -217,15 +217,20 @@ export class JointService {
     return false;
   }
 
-  // here we violate our rule for duplicate nodeName
+  // WARNING: here we violate our rule for duplicate nodeName
   cloneNode(flowbsterNode: FlowbsterNode): boolean {
+
+    this.unhighlightCellView(this.selectedCellView);
 
     const existingNodeElement = this.getFlowbsterNodeElement(flowbsterNode.name);
 
     if (existingNodeElement) {
+
       const clonedElement =
         (existingNodeElement.clone() as joint.dia.Element).translate(20, 0).attr('.label/text', flowbsterNode.name + 'CLONE');
+
       this.graph.addCell(clonedElement);
+      this.highlightCellView(this.selectedCellView);
       return true;
     }
     return false;
