@@ -66,12 +66,13 @@ export class JointService {
   // HINT : could make the trick with the display name on the inports too.
 
   // BEHAVIOUR: The node cloning doesnt work properly it only adds a new node without in and outports.
+  // HINT: get them ready with in and outpors and properties, get everything ready with a slider.
 
   // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
   // HINT: save infrastructure name as lowkey and node names as uppercase.
 
   // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
-  // HINT : CUSTOM VALIDATOR matching the node with other nodes name.
+  // HINT : CUSTOM VALIDATOR matching the node with other nodes name. You can get a slider which disables the name change.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
@@ -388,6 +389,7 @@ export class JointService {
         '.exetgz': { text: flowbsterNode.execurl },
         '.scaling': { min: flowbsterNode.scalingmin, max: flowbsterNode.scalingmax },
         rect: { fill: 'green' },
+        text: { fill: '#f4f4f4'}
       }
     });
   }
