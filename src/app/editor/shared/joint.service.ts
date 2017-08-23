@@ -44,7 +44,7 @@ export class JointService {
   // BONUS: Multiple linking support.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
   // BONUS: Proper cloning added.
-  // BONUS: New colors.
+  // BONUS: new logic needed for input and output savings.
 
   // BEHAVIOUR(ok): if you connect an output with an input and it has no previous value then the connection will be deleted.
   // i think this only happened because of clicking.
@@ -65,11 +65,13 @@ export class JointService {
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
+  // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
+  // HINT: save infrastructure name as lowkey and node names as uppercase. (the last charachter is not uppercased :D)
+
+  // TODO: We need to have Id's for such operations on in/out and nodes, to change their name as well.
+
   // BEHAVIOUR: The node cloning doesnt work properly it only adds a new node without in and outports.
   // HINT: get them ready with in and outpors and properties, get everything ready with a slider.
-
-  // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
-  // HINT: save infrastructure name as lowkey and node names as uppercase.
 
   // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
   // HINT : CUSTOM VALIDATOR matching the node with other nodes name. You can get a slider which disables the name change.

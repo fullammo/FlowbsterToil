@@ -19,8 +19,10 @@ import { KeysPipe } from './shared/keys.pipe';
 import { InputPropertiesComponent } from './input-properties/input-properties.component';
 import { OutputPropertiesComponent } from './output-properties/output-properties.component';
 import { NodePropertiesComponent } from './node-properties/node-properties.component';
+import { LowerCaseTextDirective } from './shared/lower-case-text.directive';
 
 import 'hammerjs';
+import { UpperCaseTextDirective } from './shared/upper-case-text.directive';
 
 @NgModule({
   imports: [
@@ -54,7 +56,9 @@ import 'hammerjs';
     KeysPipe,
     InputPropertiesComponent,
     OutputPropertiesComponent,
-    NodePropertiesComponent
+    NodePropertiesComponent,
+    LowerCaseTextDirective,
+    UpperCaseTextDirective
   ],
   providers: [JointService, DescriptorService],
   exports: [EditorComponent]
