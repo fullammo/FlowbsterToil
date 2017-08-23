@@ -46,6 +46,9 @@ export class JointService {
   // BONUS: Proper cloning added.
   // BONUS: new logic needed for input and output savings.
 
+  // REFACTOR: Split this service up into 2 pieces. the meta parts (graphs,dictionaries with id's,the paper).
+  // REFACTOR: The Second part is going to care about the actual movements.
+
   // BEHAVIOUR(ok): if you connect an output with an input and it has no previous value then the connection will be deleted.
   // i think this only happened because of clicking.
 
@@ -64,9 +67,6 @@ export class JointService {
 
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
-
-  // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
-  // HINT: save infrastructure name as lowkey and node names as uppercase. (the last charachter is not uppercased :D)
 
   // TODO: We need to have Id's for such operations on in/out and nodes, to change their name as well.
 
@@ -209,9 +209,12 @@ export class JointService {
 
   // create a new flowbster node with unique name on the paper. Informs the user if it was done.
   createNode(flowbsterNode: FlowbsterNode): boolean {
+
     const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
+
     if (!existingNodeElement && this.actualNodePlacement.x && this.actualNodePlacement.y) {
-      const rect = this.initNodeRect(flowbsterNode);
+
+      const rect = this.initNodeModel(flowbsterNode, this.actualNodePlacement.x, this.actualNodePlacement.y);
       this.graph.addCell(rect);
       return true;
     }
@@ -221,11 +224,9 @@ export class JointService {
   // updates the selectedNodes model.
   updateNode(flowbsterNode: FlowbsterNode): boolean {
 
-    const isCellViewMatchingUpdatedNode = this.selectedCellView.model.attr('.label/text') === flowbsterNode.name;
     const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
 
-    if (existingNodeElement && isCellViewMatchingUpdatedNode) {
-
+    if (!existingNodeElement) {
       this.selectedCellView.model.attr('.label/text', flowbsterNode.name);
       this.selectedCellView.model.attr('.exename/text', flowbsterNode.execname);
       this.selectedCellView.model.attr('.args/text', flowbsterNode.args);
@@ -357,9 +358,9 @@ export class JointService {
   }
 
   // initializes the rect on the paper from the flowbsternode attributes and the positions.
-  initNodeRect(flowbsterNode: FlowbsterNode): joint.shapes.devs.Model {
+  initNodeModel(flowbsterNode: FlowbsterNode, x: number, y: number): joint.shapes.devs.Model {
     return new joint.shapes.devs.Model({
-      position: { x: this.actualNodePlacement.x, y: this.actualNodePlacement.y },
+      position: { x, y },
       size: { width: 100, height: 100 },
       inPorts: [],
       outPorts: [],
@@ -391,7 +392,7 @@ export class JointService {
         '.exetgz': { text: flowbsterNode.execurl },
         '.scaling': { min: flowbsterNode.scalingmin, max: flowbsterNode.scalingmax },
         rect: { fill: 'green' },
-        text: { fill: '#f4f4f4'}
+        text: { fill: '#f4f4f4' }
       }
     });
   }
@@ -460,10 +461,16 @@ export class JointService {
   }
 
   // ensures we are listening on all events from the paper
-  logAllEvents() {
+  logAllEventsOnPaper() {
     this.paper.on('all', function (event, cell) {
       console.log(arguments);
     });
+  }
+
+  logAllEventsOnGraph() {
+    this.graph.on('all', function (event, cell) {
+      console.log(arguments);
+    })
   }
 
   // its going to subscribe for the blank click event
@@ -477,6 +484,13 @@ export class JointService {
       listener[modalTriggerAttribute] = true;
       self.isExistingNode = false;
       self.actualNode = self.initNode();
+    });
+  }
+
+  listenOnGraphCellAdd() {
+    this.graph.on('add', function (cell: joint.dia.Cell) {
+
+      console.log(cell);
     });
   }
 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSliderChange } from "@angular/material/material";
+import { MdSliderChange } from '@angular/material/material';
 
-import { InputPort } from "app/editor/models/inputPort";
-import { FlowbsterNode } from "app/editor/models/flowbsterNode";
-import { OutputPort } from "app/editor/models/outputPort";
-import { JointService } from "app/editor/shared/joint.service";
+import { InputPort } from 'app/editor/models/inputPort';
+import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
+import { OutputPort } from 'app/editor/models/outputPort';
+import { JointService } from 'app/editor/shared/joint.service';
 
-import { Message } from "primeng/components/common/message";
+import { Message } from 'primeng/components/common/message';
 
 @Component({
   selector: 'toil-editor-paper',
@@ -32,6 +32,7 @@ export class PaperComponent implements OnInit {
     this.jointSVC.initPaper(paperElement);
     this.jointSVC.listenOnBlankClick(this, 'nodeModalVisible');
     // this.jointSVC.logAllEvents();
+    this.jointSVC.listenOnGraphCellAdd();
     this.jointSVC.listenOnPointerUp(this, 'inputModalVisible', 'outputModalVisible');
     this.jointSVC.listenOnCellClick();
     this.jointSVC.listenOnCellDoubleClick(this, 'nodeModalVisible');
