@@ -62,13 +62,17 @@ export class JointService {
 
   // BEHAVIOUR: The update dialog will restrict the node's name to be different then it was before.
   // HINT: change the validators in the meantime to exclude that one.
+  // TODO: Change the error messages on such occasions.
 
   // BEHAVIOUR: Workflow name is lowcase and node names are uppercase, when its not bringin any suggestions in yellow.
-  // HINT: We can now delete the directives we dont need them anymore if we can use custom validation on nodes and workflow prop.
-  // HINT: Or also map the suggestions.
+  // HINT: We can now delete the directives we dont need them anymore if we can use custom validation on nodes and workflow name.
+  // HINT: Or also map the suggestions. (Lower debounce time would be nice to not overload :D)
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
+
+  // BEHAVIOUR: The yellow marker when you used a suggestion at the inputfield wont reset.
+  // HINT: Google it :D
 
   // BEHAVIOUR: if you connect an output with an input and it has no previous value then the connection will be deleted.
   // HINT: We gotta change the Ports model not the properties.
@@ -81,6 +85,7 @@ export class JointService {
   // REFACTOR: The Second part is going to care about the actual movements.
 
   // TODO: We need to have Id's for such operations on in/out , to change their name as well.
+  // TODO: Mulitple linking support and convert it to yaml.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
   // TODO: Get the site ready with firebase backend.
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
