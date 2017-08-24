@@ -37,15 +37,10 @@ export class JointService {
   // BONUS: it would be nice to revert a change.
   // BONUS: confirm dialog for confirming the deletion of a given node.
   // BONUS: emit information to the main page. maybe if we want more sticky message
-  // BONUS: with PrimeNG Upload we can upload more things at once, maybe create template of them.
-  // BONUS: separate the basic jointjs items into another service.
+  // BONUS: with PrimeNG Upload we can upload more things at once, maybe create a template "NODE" of them.
   // BONUS: rename everything to match the descriptors.
-  // BONUS: Fix to wrap every method around jointJS
   // BONUS: Clear paper function would be awesome.
-  // BONUS: Multiple linking support.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
-  // BONUS: Proper cloning added.
-  // BONUS: new logic needed for input and output savings.
 
   // BEHAVIOUR(ok): click upload somewhat gets the nativeElement undefined.
   // HINT: Wait for PrimeNG-s new release. its going to work. there is already a fix for this.
@@ -57,10 +52,7 @@ export class JointService {
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
-  // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
-  // HINT : could make the trick with the display name on the inports too.
-
-  // BEHAVIOUR: The update dialog will restrict the node's name to be different then it was before.
+  // BEHAVIOUR: The "update" dialog will restrict the node's name to be different then it was before.
   // HINT: change the validators in the meantime to exclude that one.
   // TODO: Change the error messages on such occasions.
 
@@ -81,13 +73,11 @@ export class JointService {
   // REFACTOR: stringlike attributes should be placed in a configuration file like (.label/text, inPortProps) in constants.
   // REFACTOR: Maybe rename JointService to GraphService and get a JointService for the helper and other operations.
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
-  // REFACTOR: Split this service up into 2 pieces. the meta parts (graphs,dictionaries with id's,the paper).
-  // REFACTOR: The Second part is going to care about the actual movements.
 
   // TODO: We need to have Id's for such operations on in/out , to change their name as well.
+  // TODO: Get the site ready with firebase backend.
   // TODO: Mulitple linking support and convert it to yaml.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
-  // TODO: Get the site ready with firebase backend.
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
   // TODO: Testing
 
