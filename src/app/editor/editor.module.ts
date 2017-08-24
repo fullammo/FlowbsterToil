@@ -20,9 +20,10 @@ import { InputPropertiesComponent } from './input-properties/input-properties.co
 import { OutputPropertiesComponent } from './output-properties/output-properties.component';
 import { NodePropertiesComponent } from './node-properties/node-properties.component';
 import { LowerCaseTextDirective } from './shared/lower-case-text.directive';
+import { UpperCaseTextDirective } from './shared/upper-case-text.directive';
 
 import 'hammerjs';
-import { UpperCaseTextDirective } from './shared/upper-case-text.directive';
+
 
 @NgModule({
   imports: [

@@ -1,15 +1,27 @@
-import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { JointService } from 'app/editor/shared/joint.service';
+import { Observable } from 'rxjs/Observable';
+import { AbstractControl } from '@angular/forms';
 
-export function forbiddenNameValidator(forbiddenNames: string[]): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } => {
-    const forbidden = forbiddenNames.includes(control.value);
-    return forbidden ? { 'forbiddenName': { value: control.value } } : null;
-  };
-}
-
-export function forbiddenRegexpValidator(nameRe: RegExp): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} => {
-    const forbidden = nameRe.test(control.value);
-    return forbidden ? {'forbiddenName': {value: control.value}} : null;
-  };
+export class NodeValidator {
+  static isUnique(jointSVC: JointService) {
+    return (control: AbstractControl) => {
+      return new Observable((obs: any) => {
+        control
+          .valueChanges
+          .debounceTime(500)
+          .filter(value => {
+            if (value) {
+              return value.length > 0;
+            }
+          })
+          .distinctUntilChanged()
+          .flatMap(nodeName => jointSVC.isUniqueNodeName(nodeName))
+          .subscribe(result => {
+            result === false ?
+              obs.next({ nodeNameExist: true }) : obs.next(null);
+            obs.complete();
+          });
+      });
+    };
+  }
 }

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { OutputPort } from 'app/editor/models/outputPort';
 import { InputPort } from 'app/editor/models/inputPort';
@@ -59,8 +60,12 @@ export class JointService {
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
-  // BEHAVIOUR: you can enter an already given node's name. thats gotta be restricted with custom validator with observables.
-  // HINT: try to pass an observable from jointService to the component and that validator can subscribe to changes.
+  // BEHAVIOUR: The update dialog will restrict the node's name to be different then it was before.
+  // HINT: change the validators in the meantime to exclude that one.
+
+  // BEHAVIOUR: Workflow name is lowcase and node names are uppercase, when its not bringin any suggestions in yellow.
+  // HINT: We can now delete the directives we dont need them anymore if we can use custom validation on nodes and workflow prop.
+  // HINT: Or also map the suggestions.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
@@ -86,6 +91,19 @@ export class JointService {
     this.actualNode = this.initNode();
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
+  }
+
+  // returns an observable with the information if the nodeName is unique
+  isUniqueNodeName(nodeName: string) {
+    return new Observable(observer => {
+      console.log('validate');
+      const element = this.getFlowbsterNodeElement(nodeName);
+      if (element) {
+        observer.next(false);
+      } else {
+        observer.next(true);
+      }
+    });
   }
 
   getNodeNames(): string[] {

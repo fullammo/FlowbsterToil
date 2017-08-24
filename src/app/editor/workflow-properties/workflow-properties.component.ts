@@ -3,7 +3,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 import { Workflow } from 'app/editor/models/workflow';
-import { forbiddenNameValidator } from 'app/editor/shared/customValidators';
 
 @Component({
   selector: 'toil-editor-workflow-properties',
@@ -39,13 +38,6 @@ export class WorkflowPropertiesComponent implements OnInit {
       'collectorport': new FormControl('', Validators.required),
       'receiverport': new FormControl('', Validators.required)
     });
-
-    // this.userform.get('infraname').valueChanges.subscribe(
-    //   (infraname: string) => {
-    //     this.userform.get('infraname').setValidators([Validators.required, forbiddenNameValidator(this.jointSVC.getNodeNames())]);
-    //     this.userform.get('infraname').updateValueAndValidity();
-    //   }
-    // );
   }
 
   onSubmit() {

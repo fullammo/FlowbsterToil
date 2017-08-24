@@ -1,3 +1,5 @@
+import { JointService } from './../shared/joint.service';
+import { NodeValidator } from './../shared/customValidators';
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
@@ -22,8 +24,6 @@ export class NodePropertiesComponent implements OnInit {
 
   @ViewChild('f') myNgForm; // check issue#4190 on Angular material2 github site.
 
-
-
   @Input()
   get NodeProps() {
     return this.nodeProps;
@@ -34,7 +34,7 @@ export class NodePropertiesComponent implements OnInit {
     this.NodePropsChange.emit(this.nodeProps);
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private jointSVC: JointService) { }
 
   ngOnInit() {
     this.userform = this.initForm();
@@ -42,7 +42,7 @@ export class NodePropertiesComponent implements OnInit {
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required), // TODO: custom validator for node match
+      'name': new FormControl('', Validators.required, NodeValidator.isUnique(this.jointSVC)), // TODO: custom validator for node match
       'execname': new FormControl('', Validators.required),
       'args': new FormControl(''),
       'execurl': new FormControl('', Validators.required),
