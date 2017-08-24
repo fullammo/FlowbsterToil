@@ -66,5 +66,13 @@ export class NodePropertiesComponent implements OnInit {
     this.onCloneDialog.emit(this.userform.value);
     this.myNgForm.resetForm();
   }
+
+  // hasonlóra van szükség a isExistingNode-al egyetemben, de nem biztos hogy ez rendjén való.
+  // this.userform.get('infraname').valueChanges.subscribe(
+  //   (infraname: string) => {
+  //     this.userform.get('infraname').setValidators([Validators.required, forbiddenNameValidator(this.jointSVC.getNodeNames())]);
+  //     this.userform.get('infraname').updateValueAndValidity();
+  //   }
+  // );
 }
 
