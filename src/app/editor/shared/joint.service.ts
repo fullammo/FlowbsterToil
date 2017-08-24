@@ -46,13 +46,7 @@ export class JointService {
   // BONUS: Proper cloning added.
   // BONUS: new logic needed for input and output savings.
 
-  // REFACTOR: Split this service up into 2 pieces. the meta parts (graphs,dictionaries with id's,the paper).
-  // REFACTOR: The Second part is going to care about the actual movements.
-
-  // BEHAVIOUR(ok): if you connect an output with an input and it has no previous value then the connection will be deleted.
-  // i think this only happened because of clicking.
-
-  // BEHAVIOUR(ok): click upload somewhat gets the nativeElement cry.
+  // BEHAVIOUR(ok): click upload somewhat gets the nativeElement undefined.
   // HINT: Wait for PrimeNG-s new release. its going to work. there is already a fix for this.
   // check primefaces github issue @3664
 
@@ -62,28 +56,30 @@ export class JointService {
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
-  // BEHAVIOUR(ok): If you want to create from a given node a new one then its going to be placed where you clicked on the blank paper.
-  // HINT: could listen on every event and set the placement property. (wont bother the blank click).
-
   // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
   // HINT : could make the trick with the display name on the inports too.
 
-  // TODO: We need to have Id's for such operations on in/out , to change their name as well.
-
   // BEHAVIOUR: you can enter an already given node's name. thats gotta be restricted with custom validator with observables.
+  // HINT: try to pass an observable from jointService to the component and that validator can subscribe to changes.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
+
+  // BEHAVIOUR: if you connect an output with an input and it has no previous value then the connection will be deleted.
+  // HINT: We gotta change the Ports model not the properties.
 
   // REFACTOR: downloadGraph and some functions could be placed in a Utility file.
   // REFACTOR: stringlike attributes should be placed in a configuration file like (.label/text, inPortProps) in constants.
   // REFACTOR: Maybe rename JointService to GraphService and get a JointService for the helper and other operations.
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
+  // REFACTOR: Split this service up into 2 pieces. the meta parts (graphs,dictionaries with id's,the paper).
+  // REFACTOR: The Second part is going to care about the actual movements.
 
+  // TODO: We need to have Id's for such operations on in/out , to change their name as well.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
   // TODO: Get the site ready with firebase backend.
-  // TODO: Testing
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
+  // TODO: Testing
 
   // neccessary to initialize these actual elements before any association happens
   constructor() {
