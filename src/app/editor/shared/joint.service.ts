@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { OutputPort } from 'app/editor/models/outputPort';
@@ -27,7 +28,7 @@ export class JointService {
 
   actualPort: InputPort | OutputPort;
 
-  isExistingNode: boolean;
+  isExistingNodeSubject: Subject<boolean>;
 
   self = this;
 
@@ -47,13 +48,13 @@ export class JointService {
   // check primefaces github issue @3664
 
   // BEHAVIOUR(ok): If there is a port which hasnt got any properties its going to be delisted from the yaml description.
-  // (not sure if it is present in inputs); i think this is the exact behaviour we want.
+  // i think this is the exact behaviour we want.
 
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
   // BEHAVIOUR: The "update" dialog will restrict the node's name to be different then it was before.
-  // HINT: change the validators in the meantime to exclude that one.
+  // HINT: change the validators in the meantime to exclude that one. We could use a !!!Subject!!! to do this.
   // TODO: Change the error messages on such occasions.
 
   // BEHAVIOUR: Workflow name is lowcase and node names are uppercase, when its not bringin any suggestions in yellow.
@@ -63,11 +64,8 @@ export class JointService {
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
 
-  // BEHAVIOUR: The yellow marker when you used a suggestion at the inputfield wont reset.
-  // HINT: Google it :D
-
-  // BEHAVIOUR: if you connect an output with an input and it has no previous value then the connection will be deleted.
-  // HINT: We gotta change the Ports model not the properties.
+  // BEHAVIOUR(optional): The yellow marker when you used a suggestion at the inputfield wont reset.
+  // HINT: Google it :D http://labs.enonic.com/articles/remove-forced-yellow-input-background-in-chrome
 
   // REFACTOR: downloadGraph and some functions could be placed in a Utility file.
   // REFACTOR: stringlike attributes should be placed in a configuration file like (.label/text, inPortProps) in constants.
@@ -86,6 +84,7 @@ export class JointService {
     this.actualNode = this.initNode();
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
+    this.isExistingNodeSubject = new Subject();
   }
 
   // returns an observable with the information if the nodeName is unique
@@ -506,7 +505,7 @@ export class JointService {
     this.paper.on('blank:pointerclick', function (event, x, y) {
       self.initPlacement(x, y);
       listener[modalTriggerAttribute] = true;
-      self.isExistingNode = false;
+      self.isExistingNodeSubject.next(false);
       self.actualNode = self.initNode();
     });
   }
@@ -639,7 +638,7 @@ export class JointService {
         scalingmax: +self.getSelectedJobsProperty('max', true)
       };
       listener[modalTriggerAttribute] = true;
-      self.isExistingNode = true;
+      self.isExistingNodeSubject.next(true);
       console.log(self.actualNode);
     });
   }

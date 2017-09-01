@@ -15,7 +15,8 @@ export class NodePropertiesComponent implements OnInit {
   userform: FormGroup;
   nodeProps: FlowbsterNode;
 
-  @Input() isExistingNode: boolean;
+  isExistingNode: boolean;
+  // @Input() isExistingNode: boolean;
 
   @Output() onUpdateDialog = new EventEmitter<FlowbsterNode>();
   @Output() onCreateDialog = new EventEmitter<FlowbsterNode>();
@@ -38,6 +39,12 @@ export class NodePropertiesComponent implements OnInit {
 
   ngOnInit() {
     this.userform = this.initForm();
+
+    this.jointSVC.isExistingNodeSubject.subscribe(
+      next => this.isExistingNode = next,
+      err => console.log(err),
+      () => console.log('Completed')
+    );
   }
 
   initForm() {
