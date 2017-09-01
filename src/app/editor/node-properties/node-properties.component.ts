@@ -66,13 +66,13 @@ export class NodePropertiesComponent implements OnInit {
   }
 
   private setNewNodeValidators() {
-    this.nameControl.setAsyncValidators(NodeValidator.isUnique(this.jointSVC));
+    this.nameControl.setAsyncValidators(NodeValidator.isNodeUnique(this.jointSVC));
     this.nameControl.updateValueAndValidity();
   }
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required, NodeValidator.isUnique(this.jointSVC)), // TODO: custom validator for node match
+      'name': new FormControl('', Validators.required, NodeValidator.isNodeUnique(this.jointSVC)), // TODO: custom validator for node match
       'execname': new FormControl('', Validators.required),
       'args': new FormControl(''),
       'execurl': new FormControl('', Validators.required),

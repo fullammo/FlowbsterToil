@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { AbstractControl } from '@angular/forms';
 
 export class NodeValidator {
-  static isUnique(jointSVC: JointService) {
+  static isNodeUnique(jointSVC: JointService) {
     return (control: AbstractControl) => {
       return new Observable((obs: any) => {
         control
@@ -14,7 +14,28 @@ export class NodeValidator {
             }
           })
           .distinctUntilChanged()
-          .flatMap(nodeName => jointSVC.isUniqueNodeName(nodeName))
+          .flatMap(nodeName => jointSVC.isNodeNameUniqueObservable(nodeName))
+          .subscribe(result => {
+            result === false ?
+              obs.next({ nodeNameExist: true }) : obs.next(null);
+            obs.complete();
+          });
+      });
+    };
+  }
+
+  static isWorkflowUnique(jointSVC: JointService) {
+    return (control: AbstractControl) => {
+      return new Observable((obs: any) => {
+        control
+          .valueChanges
+          .filter(value => {
+            if (value) {
+              return value.length > 0;
+            }
+          })
+          .distinctUntilChanged()
+          .flatMap(nodeName => jointSVC.isWorkflowNameUniqueObservable(nodeName))
           .subscribe(result => {
             result === false ?
               obs.next({ nodeNameExist: true }) : obs.next(null);
@@ -35,7 +56,7 @@ export class NodeValidator {
             }
           })
           .distinctUntilChanged()
-          .flatMap(nodeName => jointSVC.isUpdateUniqueNodeName(nodeName))
+          .flatMap(nodeName => jointSVC.isUpdateNodeNameUniqueObservable(nodeName))
           .subscribe(result => {
             result === false ?
               obs.next({ nodeNameExist: true }) : obs.next(null);

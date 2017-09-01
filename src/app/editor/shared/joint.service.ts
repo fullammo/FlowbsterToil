@@ -54,14 +54,13 @@ export class JointService {
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
-  // BEHAVIOUR: The "update" dialog will restrict the node's name to be different then it was before.
-  // TODO: Change the error messages on such occasions.
+  // TODO: Change the error messages on Custom Validation.
 
   // BEHAVIOUR: The "update dialog" will not clone the existing node if the name is changed in the meantime. can generate same names.
 
   // BEHAVIOUR: Workflow name is lowcase and node names are uppercase, when its not bringin any suggestions in yellow.
   // HINT: We can now delete the directives we dont need them anymore if we can use custom validation on nodes and workflow name.
-  // HINT: Or also map the suggestions. (Lower debounce time would be nice to not overload :D)
+  // HINT: Or also map the suggestions.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
@@ -90,9 +89,9 @@ export class JointService {
   }
 
   // returns an observable with the information of the updated node
-  isUpdateUniqueNodeName(nodeName: string) {
+  isUpdateNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
     return new Observable(observer => {
-      console.log('validate other way');
+      console.log('validate against updated nodes and workflowName');
       const element = this.getFlowbsterNodeElement(nodeName);
       if (element) {
         if (element.id === this.selectedCellView.model.id) {
@@ -100,18 +99,37 @@ export class JointService {
         } else {
           observer.next(false);
         }
+      } else if (this.isWorkflowName(nodeName)) {
+        observer.next(false);
       } else {
         observer.next(true);
       }
     });
   }
 
+  private isWorkflowName(name: string): boolean {
+    return this.graph.get('wf_name') === name;
+  }
+
   // returns an observable with the information if the nodeName is unique
-  isUniqueNodeName(nodeName: string) {
+  isNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
 
     return new Observable(observer => {
-      console.log('validate');
+      console.log('validate against nodes and workflowName');
       const element = this.getFlowbsterNodeElement(nodeName);
+      if (element || this.isWorkflowName(nodeName)) {
+        observer.next(false);
+      } else {
+        observer.next(true);
+      }
+    });
+  }
+
+  //
+  isWorkflowNameUniqueObservable(workflowName: string): Observable<boolean> {
+    return new Observable(observer => {
+      console.log('validate against nodes');
+      const element = this.getFlowbsterNodeElement(workflowName);
       if (element) {
         observer.next(false);
       } else {
