@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
@@ -54,8 +55,9 @@ export class JointService {
   // i think this is an OK behaviour.
 
   // BEHAVIOUR: The "update" dialog will restrict the node's name to be different then it was before.
-  // HINT: change the validators in the meantime to exclude that one. We could use a !!!Subject!!! to do this.
   // TODO: Change the error messages on such occasions.
+
+  // BEHAVIOUR: The "update dialog" will not clone the existing node if the name is changed in the meantime. can generate same names.
 
   // BEHAVIOUR: Workflow name is lowcase and node names are uppercase, when its not bringin any suggestions in yellow.
   // HINT: We can now delete the directives we dont need them anymore if we can use custom validation on nodes and workflow name.
@@ -87,8 +89,26 @@ export class JointService {
     this.isExistingNodeSubject = new Subject();
   }
 
+  // returns an observable with the information of the updated node
+  isUpdateUniqueNodeName(nodeName: string) {
+    return new Observable(observer => {
+      console.log('validate other way');
+      const element = this.getFlowbsterNodeElement(nodeName);
+      if (element) {
+        if (element.id === this.selectedCellView.model.id) {
+          observer.next(true);
+        } else {
+          observer.next(false);
+        }
+      } else {
+        observer.next(true);
+      }
+    });
+  }
+
   // returns an observable with the information if the nodeName is unique
   isUniqueNodeName(nodeName: string) {
+
     return new Observable(observer => {
       console.log('validate');
       const element = this.getFlowbsterNodeElement(nodeName);
@@ -247,20 +267,20 @@ export class JointService {
   // updates the selectedNodes model.
   updateNode(flowbsterNode: FlowbsterNode): boolean {
 
-    const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
+    // const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
 
-    if (!existingNodeElement) {
-      this.selectedCellView.model.attr('.label/text', flowbsterNode.name);
-      this.selectedCellView.model.attr('.exename/text', flowbsterNode.execname);
-      this.selectedCellView.model.attr('.args/text', flowbsterNode.args);
-      this.selectedCellView.model.attr('.exetgz/text', flowbsterNode.execurl);
-      this.selectedCellView.model.attr('.scaling/min', flowbsterNode.scalingmin);
-      this.selectedCellView.model.attr('.scaling/max', flowbsterNode.scalingmax);
+    // if (!existingNodeElement) {
+    this.selectedCellView.model.attr('.label/text', flowbsterNode.name);
+    this.selectedCellView.model.attr('.exename/text', flowbsterNode.execname);
+    this.selectedCellView.model.attr('.args/text', flowbsterNode.args);
+    this.selectedCellView.model.attr('.exetgz/text', flowbsterNode.execurl);
+    this.selectedCellView.model.attr('.scaling/min', flowbsterNode.scalingmin);
+    this.selectedCellView.model.attr('.scaling/max', flowbsterNode.scalingmax);
 
-      return true;
-    }
+    return true;
+    // }
 
-    return false;
+    // return false;
   }
 
   // if there is a selected Node then its going to be removed.

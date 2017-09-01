@@ -8,7 +8,6 @@ export class NodeValidator {
       return new Observable((obs: any) => {
         control
           .valueChanges
-          .debounceTime(500)
           .filter(value => {
             if (value) {
               return value.length > 0;
@@ -16,6 +15,27 @@ export class NodeValidator {
           })
           .distinctUntilChanged()
           .flatMap(nodeName => jointSVC.isUniqueNodeName(nodeName))
+          .subscribe(result => {
+            result === false ?
+              obs.next({ nodeNameExist: true }) : obs.next(null);
+            obs.complete();
+          });
+      });
+    };
+  }
+
+  static isUpdateUnique(jointSVC: JointService) {
+    return (control: AbstractControl) => {
+      return new Observable((obs: any) => {
+        control
+          .valueChanges
+          .filter(value => {
+            if (value) {
+              return value.length > 0;
+            }
+          })
+          .distinctUntilChanged()
+          .flatMap(nodeName => jointSVC.isUpdateUniqueNodeName(nodeName))
           .subscribe(result => {
             result === false ?
               obs.next({ nodeNameExist: true }) : obs.next(null);

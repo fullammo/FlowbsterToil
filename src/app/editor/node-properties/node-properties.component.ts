@@ -1,7 +1,7 @@
 import { JointService } from './../shared/joint.service';
 import { NodeValidator } from './../shared/customValidators';
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
 import { FlowbsterNode } from 'app/editor/models/flowbsterNode'
 
@@ -35,16 +35,39 @@ export class NodePropertiesComponent implements OnInit {
     this.NodePropsChange.emit(this.nodeProps);
   }
 
+  private nameControl: AbstractControl
+
   constructor(private fb: FormBuilder, private jointSVC: JointService) { }
 
   ngOnInit() {
     this.userform = this.initForm();
+    this.nameControl = this.userform.controls['name'];
+    this.subscribeToNodeChanges();
+  }
 
+  private subscribeToNodeChanges() {
     this.jointSVC.isExistingNodeSubject.subscribe(
-      next => this.isExistingNode = next,
-      err => console.log(err),
-      () => console.log('Completed')
+      isExistingNode => {
+        if (isExistingNode) {
+          this.setExistingNodeValidators();
+        } else {
+          this.setNewNodeValidators();
+        }
+        this.isExistingNode = isExistingNode
+      }
     );
+  }
+
+  private setExistingNodeValidators() {
+    console.log('doing the job');
+    // ide egy olyan validator kell ami kiszűri azokat a neveket, amik az adott node nevén kívül nem használhatóak.
+    this.nameControl.setAsyncValidators(NodeValidator.isUpdateUnique(this.jointSVC));
+    this.nameControl.updateValueAndValidity();
+  }
+
+  private setNewNodeValidators() {
+    this.nameControl.setAsyncValidators(NodeValidator.isUnique(this.jointSVC));
+    this.nameControl.updateValueAndValidity();
   }
 
   initForm() {
