@@ -49,7 +49,7 @@ export class NodePropertiesComponent implements OnInit {
     this.jointSVC.isExistingNodeSubject.subscribe(
       isExistingNode => {
         if (isExistingNode) {
-          this.setExistingNodeValidators();
+         this.setExistingNodeValidators();
         } else {
           this.setNewNodeValidators();
         }
@@ -60,19 +60,20 @@ export class NodePropertiesComponent implements OnInit {
 
   private setExistingNodeValidators() {
     console.log('doing the job');
-    // ide egy olyan validator kell ami kiszűri azokat a neveket, amik az adott node nevén kívül nem használhatóak.
-    this.nameControl.setAsyncValidators(NodeValidator.isUpdateUnique(this.jointSVC));
+    this.nameControl.clearAsyncValidators();
+    this.nameControl.setAsyncValidators([NodeValidator.isUpdateUnique(this.jointSVC)]);
     this.nameControl.updateValueAndValidity();
   }
 
   private setNewNodeValidators() {
-    this.nameControl.setAsyncValidators(NodeValidator.isNodeUnique(this.jointSVC));
+    this.nameControl.clearAsyncValidators();
+    this.nameControl.setAsyncValidators([NodeValidator.isNodeUnique(this.jointSVC)]);
     this.nameControl.updateValueAndValidity();
   }
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required, NodeValidator.isNodeUnique(this.jointSVC)), // TODO: custom validator for node match
+      'name': new FormControl('', Validators.required), // TODO: custom validator for node match
       'execname': new FormControl('', Validators.required),
       'args': new FormControl(''),
       'execurl': new FormControl('', Validators.required),

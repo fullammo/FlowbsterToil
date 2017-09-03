@@ -34,7 +34,7 @@ export class WorkflowPropertiesComponent implements OnInit {
     this.userform = this.fb.group({
       'infraid': new FormControl('', Validators.required),
       'userid': new FormControl('', Validators.required),
-      'infraname': new FormControl('', [Validators.required, NodeValidator.isWorkflowUnique(this.jointSVC)]),
+      'infraname': new FormControl('', Validators.required, NodeValidator.isWorkflowUnique(this.jointSVC)),
       'collectorip': new FormControl('', Validators.required),
       'collectorport': new FormControl('', Validators.required),
       'receiverport': new FormControl('', Validators.required)

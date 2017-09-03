@@ -44,6 +44,8 @@ export class JointService {
   // BONUS: Clear paper function would be awesome.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
 
+  // BEHAVIOUR: My custom validators are going to subscribe everytime you click on them. cant really make it unsubscribe
+
   // BEHAVIOUR(ok): click upload somewhat gets the nativeElement undefined.
   // HINT: Wait for PrimeNG-s new release. its going to work. there is already a fix for this.
   // check primefaces github issue @3664

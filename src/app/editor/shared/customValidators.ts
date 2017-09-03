@@ -13,6 +13,7 @@ export class NodeValidator {
               return value.length > 0;
             }
           })
+          .debounceTime(500)
           .distinctUntilChanged()
           .flatMap(nodeName => jointSVC.isNodeNameUniqueObservable(nodeName))
           .subscribe(result => {
@@ -34,6 +35,7 @@ export class NodeValidator {
               return value.length > 0;
             }
           })
+          .debounceTime(500)
           .distinctUntilChanged()
           .flatMap(nodeName => jointSVC.isWorkflowNameUniqueObservable(nodeName))
           .subscribe(result => {
