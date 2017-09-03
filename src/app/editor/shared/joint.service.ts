@@ -44,8 +44,6 @@ export class JointService {
   // BONUS: Clear paper function would be awesome.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
 
-  // BEHAVIOUR: My custom validators are going to subscribe everytime you click on them. cant really make it unsubscribe
-
   // BEHAVIOUR(ok): click upload somewhat gets the nativeElement undefined.
   // HINT: Wait for PrimeNG-s new release. its going to work. there is already a fix for this.
   // check primefaces github issue @3664
@@ -56,19 +54,14 @@ export class JointService {
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
+  // BEHAVIOUR: My custom validators are going to subscribe everytime you click on them. cant really make it unsubscribe
+
   // TODO: Change the error messages on Custom Validation.
 
   // BEHAVIOUR: The "update dialog" will not clone the existing node if the name is changed in the meantime. can generate same names.
 
-  // BEHAVIOUR: Workflow name is lowcase and node names are uppercase, when its not bringin any suggestions in yellow.
-  // HINT: We can now delete the directives we dont need them anymore if we can use custom validation on nodes and workflow name.
-  // HINT: Or also map the suggestions.
-
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
-
-  // BEHAVIOUR(optional): The yellow marker when you used a suggestion at the inputfield wont reset.
-  // HINT: Google it :D http://labs.enonic.com/articles/remove-forced-yellow-input-background-in-chrome
 
   // REFACTOR: downloadGraph and some functions could be placed in a Utility file.
   // REFACTOR: stringlike attributes should be placed in a configuration file like (.label/text, inPortProps) in constants.

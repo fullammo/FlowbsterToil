@@ -73,7 +73,7 @@ export class NodePropertiesComponent implements OnInit {
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required), // TODO: custom validator for node match
+      'name': new FormControl('', Validators.required),
       'execname': new FormControl('', Validators.required),
       'args': new FormControl(''),
       'execurl': new FormControl('', Validators.required),
