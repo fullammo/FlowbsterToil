@@ -54,9 +54,7 @@ export class JointService {
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
-  // BEHAVIOUR: My custom validators are going to subscribe everytime you click on them. cant really make it unsubscribe
-
-  // TODO: Change the error messages on Custom Validation.
+  // BEHAVIOUR: My custom validators are going to subscribe everytime you click on them. cant really make it unsubscribe.
 
   // BEHAVIOUR: The "update dialog" will not clone the existing node if the name is changed in the meantime. can generate same names.
 
@@ -429,14 +427,14 @@ export class JointService {
               '.port-body': {
                 fill: '#16A085',
                 magnet: 'passive'
-              }
+              } // here we could enter the inPortProps attributes
             }
           },
           'out': {
             attrs: {
               '.port-body': {
                 fill: '#E74C3C'
-              }
+              } // here we could enter the outPortProps attributes
             }
           }
         }
@@ -486,10 +484,6 @@ export class JointService {
     });
   }
 
-  // private isLinkingValid(cellView, magnet): boolean {
-
-  // }
-
   // checks wether the actual link is unique and going from an input to an output.
   private isConnectionValid(cellViewS, magnetS, cellViewT, magnetT, end, linkView): boolean {
     if (magnetS && magnetS.getAttribute('port-group') === 'in') {
@@ -501,9 +495,6 @@ export class JointService {
 
     return magnetT && magnetT.getAttribute('port-group') === 'in';
   }
-
-  // checks wether there is any given link to the target Port.
-
 
   // checks if the flowbsterNodes name is unique and returns the actual element.
   getFlowbsterNodeElement(name: string): joint.dia.Element {

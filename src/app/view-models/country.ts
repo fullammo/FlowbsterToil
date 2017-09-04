@@ -1,6 +1,6 @@
 
 export interface Country {
-    id : number;
-    name : string;
-    epiIndex : number;
+  id: number;
+  name: string;
+  epiIndex: number;
 }

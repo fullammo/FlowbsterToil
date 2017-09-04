@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Message } from "primeng/components/common/message";
-import { MenuItem } from "primeng/components/common/menuitem";
+import { Message } from 'primeng/components/common/message';
+import { MenuItem } from 'primeng/components/common/menuitem';
 
-import { DescriptorService } from "app/editor/shared/descriptor.service";
-import { JointService } from "app/editor/shared/joint.service";
-import { Workflow } from "app/editor/models/workflow";
+import { DescriptorService } from 'app/editor/shared/descriptor.service';
+import { JointService } from 'app/editor/shared/joint.service';
+import { Workflow } from 'app/editor/models/workflow';
 
 @Component({
   selector: 'toil-editor-toolbar',
@@ -101,7 +101,6 @@ export class ToolbarComponent implements OnInit {
           },
           {
             label: 'Download Graph', icon: 'fa-download', command: (event) => {
-              // let bindedElement = $('downloadGraph'); // port out;
               this.jointSVC.downloadGraph('graph.json', 'application/json');
             }
           }
