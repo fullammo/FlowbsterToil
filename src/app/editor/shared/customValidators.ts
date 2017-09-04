@@ -40,7 +40,7 @@ export class NodeValidator {
           .flatMap(nodeName => jointSVC.isWorkflowNameUniqueObservable(nodeName))
           .subscribe(result => {
             result === false ?
-              obs.next({ nodeNameExist: true }) : obs.next(null);
+              obs.next({ workflowNameExist: true }) : obs.next(null);
             obs.complete();
           });
       });
