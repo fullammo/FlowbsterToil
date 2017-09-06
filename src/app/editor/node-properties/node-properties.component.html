@@ -5,10 +5,13 @@
 
     <div class="ui-grid-row">
       <md-input-container>
-        <input mdInput type="text" placeholder="Name" [formControl]="userform.controls['name']" [(ngModel)]="nodeProps.name">
-        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+        <input mdInput type="text"  placeholder="Name" [formControl]="userform.controls['name']" [(ngModel)]="nodeProps.name">
+        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty && !userform.controls['name'].hasError('nodeNameExist')">
           Name is <strong>required</strong>
         </md-error>
+        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty&&userform.controls['name'].hasError('nodeNameExist')">
+          Entered name is already <strong>taken</strong>
+          </md-error>
       </md-input-container>
     </div>
 
@@ -18,6 +21,7 @@
         <md-error *ngIf="!userform.controls['execname'].valid&&userform.controls['execname'].dirty">
           Executable name is <strong>required</strong>
         </md-error>
+
         <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
       </md-input-container>
     </div>
@@ -50,7 +54,8 @@
 
     <div class="ui-grid-row">
       <button *ngIf="isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate()" [disabled]="!userform.valid"></button>
-      <button pButton type="submit" label="Create Node" (click)="onCreate()" [disabled]="!userform.valid"></button>
+      <button *ngIf="isExistingNode" pButton type="submit" label="Clone Node" (click)="onClone()" [disabled]="!userform.valid"></button>
+      <button *ngIf="!isExistingNode" pButton type="submit" label="Create Node" (click)="onCreate()" [disabled]="!userform.valid"></button>
     </div>
 
   </div>

@@ -1,5 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { ActivatedRoute, Params, Router} from '@angular/router';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { AppDataService } from '../services/app-data.service';
 import { Country } from '../view-models/country';
@@ -21,7 +21,8 @@ export class CountryDetailComponent implements OnInit {
       label: 'Id',
       required: true
     },
-    { key: 'name',
+    {
+      key: 'name',
       type: 'string',
       isId: false,
       label: 'Country Name',
@@ -39,8 +40,8 @@ export class CountryDetailComponent implements OnInit {
   operation: string;
 
   constructor(private route: ActivatedRoute,
-              private router: Router, 
-              private dataService: AppDataService) { }
+    private router: Router,
+    private dataService: AppDataService) { }
 
   createCountry(country: Country) {
     country.id = 0;
@@ -48,18 +49,19 @@ export class CountryDetailComponent implements OnInit {
     this.dataService.createCountry(country).subscribe(
       c => this.router.navigate(['/authenticated/country-maint']),
       err => this.errorMessage = 'Error creating country'
-      );
+    );
   }
 
   ngOnInit() {
     this.operation = this.route.snapshot.params['operation'];
 
     if (this.operation === 'create') {
-      this.country = { id: 0, name: "", epiIndex: null };
-    }
-    else
+      this.country = { id: 0, name: '', epiIndex: null };
+    } else {
       this.dataService.getCountry(this.route.snapshot.params['id'])
         .subscribe((country: Country) => this.country = country);
+    }
+
   }
 
   updateCountry(country: Country) {
@@ -67,7 +69,7 @@ export class CountryDetailComponent implements OnInit {
     this.dataService.updateCountry(country).subscribe(
       c => this.router.navigate(['/authenticated/country-maint']),
       err => this.errorMessage = 'Error updating country'
-      );
+    );
   }
 
 }

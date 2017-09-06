@@ -1,3 +1,6 @@
+import { element } from 'protractor';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { OutputPort } from 'app/editor/models/outputPort';
 import { InputPort } from 'app/editor/models/inputPort';
@@ -26,7 +29,7 @@ export class JointService {
 
   actualPort: InputPort | OutputPort;
 
-  isExistingNode: boolean;
+  isExistingNodeSubject: Subject<boolean>;
 
   self = this;
 
@@ -36,65 +39,101 @@ export class JointService {
   // BONUS: it would be nice to revert a change.
   // BONUS: confirm dialog for confirming the deletion of a given node.
   // BONUS: emit information to the main page. maybe if we want more sticky message
-  // BONUS: with PrimeNG Upload we can upload more things at once, maybe create template of them.
-  // BONUS: separate the basic jointjs items into another service.
+  // BONUS: with PrimeNG Upload we can upload more things at once, maybe create a template "NODE" of them.
   // BONUS: rename everything to match the descriptors.
-  // BONUS: Fix to wrap every method around jointJS
   // BONUS: Clear paper function would be awesome.
-  // BONUS: Multiple linking support.
   // BONUS: if we put a tick in the checkboxes the connected content is getting up.
 
-  // BEHAVIOUR : cannot read input property of undefined for inports because they are not passive somehow.
-
-  // BEHAVIOUR(ok): if you connect an output with an input and it has no previous value then the connection will be deleted.
-  // i think this only happened because of clicking.
+  // BEHAVIOUR(ok): click upload somewhat gets the nativeElement undefined.
+  // HINT: Wait for PrimeNG-s new release. its going to work. there is already a fix for this.
+  // check primefaces github issue @3664
 
   // BEHAVIOUR(ok): If there is a port which hasnt got any properties its going to be delisted from the yaml description.
-  // (not sure if it is present in inputs); i think this is the exact behaviour we want.
+  // i think this is the exact behaviour we want.
 
   // BEHAVIOUR(ok): if Collector checkbox is disabled and something was entered then its gonna be irrelevant and deleted.
   // i think this is an OK behaviour.
 
-  // BEHAVIOUR(ok): If you want to create from a given node a new one then its going to be placed where you clicked on the blank paper.
-  // HINT: could listen on every event and set the placement property. (wont bother the blank click).
+  // BEHAVIOUR: My custom validators are going to subscribe everytime you click on them. cant really make it unsubscribe.
 
-  // BEHAVIOUR(curious): There is no logic for multiple linking at the moment. Inports cant have the same name with this logic.
-  // HINT : could make the trick with the display name on the inports too.
-
-  // BEHAVIOUR: somehow i can link to some inputs and some error occurs and im not sure what happens.
-  // HINT: if the input ports are not passive.
-
-  // BEHAVIOUR: If the infra_name matches any nodes name then its going to generate a false yaml description.
-  // HINT: CUSTOM VALIDATOR for the node's name so that they cant match with the nodes, therefore we need to check it backwards.
-
-  // BEHAVIOUR: If i renamed a port and after that i have a before existed name to a port,
-  // then its going to be lost in the nether, gotta inicialize it again.
-  // HINT: CUSTOM VALIDATOR for port display names. to something not outPortsX
-
-  // BEHAVIOUR: you can enter other name when you want to update a nodes property. it only warns you afterwards.
-  // HINT : CUSTOM VALIDATOR for updating or creating another node.
-
-  // BEHAVIOUR: if you enter a name like inPorts x,y and it is the next in the line. it is going to hide one Port.
-  // HINT: CUSTOM VALIDATOR you cannot enter names like that.
+  // BEHAVIOUR: The "update dialog" will not clone the existing node if the name is changed in the meantime. can generate same names.
 
   // BEHAVIOUR: if you click out of the modal without submission, you wont have the visual things (the form) reset.
   // HINT: change this with md modal. or find a way to get to the canceling event.
 
-  // REFACTOR: downloadGraph and some functions could be placed in a UtilityService.
+  // REFACTOR: downloadGraph and some functions could be placed in a Utility file.
   // REFACTOR: stringlike attributes should be placed in a configuration file like (.label/text, inPortProps) in constants.
   // REFACTOR: Maybe rename JointService to GraphService and get a JointService for the helper and other operations.
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
 
-  // TODO: Get it into the actual site, and get this component with a button shortcut at the initial page to edit the editor alone.
+  // TODO: We need to have Id's for such operations on in/out , to change their name as well.
+  // TODO: Get the site ready with firebase backend.
+  // TODO: Mulitple linking support and convert it to yaml.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
-  // TODO: Testing
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
+  // TODO: Testing
 
   // neccessary to initialize these actual elements before any association happens
   constructor() {
     this.actualNode = this.initNode();
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
+    this.isExistingNodeSubject = new Subject();
+  }
+
+  // returns an observable with the information of the updated node
+  isUpdateNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
+    return new Observable(observer => {
+      console.log('validate against updated nodes and workflowName');
+      const element = this.getFlowbsterNodeElement(nodeName);
+      if (element) {
+        if (element.id === this.selectedCellView.model.id) {
+          observer.next(true);
+        } else {
+          observer.next(false);
+        }
+      } else if (this.isWorkflowName(nodeName)) {
+        observer.next(false);
+      } else {
+        observer.next(true);
+      }
+    });
+  }
+
+  private isWorkflowName(name: string): boolean {
+    return this.graph.get('wf_name') === name;
+  }
+
+  // returns an observable with the information if the nodeName is unique
+  isNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
+
+    return new Observable(observer => {
+      console.log('validate against nodes and workflowName');
+      const element = this.getFlowbsterNodeElement(nodeName);
+      if (element || this.isWorkflowName(nodeName)) {
+        observer.next(false);
+      } else {
+        observer.next(true);
+      }
+    });
+  }
+
+  //
+  isWorkflowNameUniqueObservable(workflowName: string): Observable<boolean> {
+    return new Observable(observer => {
+      console.log('validate against nodes');
+      const element = this.getFlowbsterNodeElement(workflowName);
+      if (element) {
+        observer.next(false);
+      } else {
+        observer.next(true);
+      }
+    });
+  }
+
+  getNodeNames(): string[] {
+    console.log(this.graph.getElements().map(element => element.attr('.label/text')));
+    return this.graph.getElements().map(element => element.attr('.label/text'));
   }
 
   initWorkflow(): Workflow {
@@ -205,10 +244,32 @@ export class JointService {
 
   // create a new flowbster node with unique name on the paper. Informs the user if it was done.
   createNode(flowbsterNode: FlowbsterNode): boolean {
+
     const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
+
     if (!existingNodeElement && this.actualNodePlacement.x && this.actualNodePlacement.y) {
-      const rect = this.initNodeRect(flowbsterNode);
+
+      const rect = this.initNodeModel(flowbsterNode, this.actualNodePlacement.x, this.actualNodePlacement.y);
       this.graph.addCell(rect);
+      return true;
+    }
+    return false;
+  }
+
+  // WARNING: here we violate our rule for duplicate nodeName
+  cloneNode(flowbsterNode: FlowbsterNode): boolean {
+
+    this.unhighlightCellView(this.selectedCellView);
+
+    const existingNodeElement = this.getFlowbsterNodeElement(flowbsterNode.name);
+
+    if (existingNodeElement) {
+
+      const clonedElement =
+        (existingNodeElement.clone() as joint.dia.Element).translate(20, 0).attr('.label/text', flowbsterNode.name + 'CLONE');
+
+      this.graph.addCell(clonedElement);
+      this.highlightCellView(this.selectedCellView);
       return true;
     }
     return false;
@@ -217,22 +278,20 @@ export class JointService {
   // updates the selectedNodes model.
   updateNode(flowbsterNode: FlowbsterNode): boolean {
 
-    const isCellViewMatchingUpdatedNode = this.selectedCellView.model.attr('.label/text') === flowbsterNode.name;
-    const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
+    // const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
 
-    if (existingNodeElement && isCellViewMatchingUpdatedNode) {
+    // if (!existingNodeElement) {
+    this.selectedCellView.model.attr('.label/text', flowbsterNode.name);
+    this.selectedCellView.model.attr('.exename/text', flowbsterNode.execname);
+    this.selectedCellView.model.attr('.args/text', flowbsterNode.args);
+    this.selectedCellView.model.attr('.exetgz/text', flowbsterNode.execurl);
+    this.selectedCellView.model.attr('.scaling/min', flowbsterNode.scalingmin);
+    this.selectedCellView.model.attr('.scaling/max', flowbsterNode.scalingmax);
 
-      this.selectedCellView.model.attr('.label/text', flowbsterNode.name);
-      this.selectedCellView.model.attr('.exename/text', flowbsterNode.execname);
-      this.selectedCellView.model.attr('.args/text', flowbsterNode.args);
-      this.selectedCellView.model.attr('.exetgz/text', flowbsterNode.execurl);
-      this.selectedCellView.model.attr('.scaling/min', flowbsterNode.scalingmin);
-      this.selectedCellView.model.attr('.scaling/max', flowbsterNode.scalingmax);
+    return true;
+    // }
 
-      return true;
-    }
-
-    return false;
+    // return false;
   }
 
   // if there is a selected Node then its going to be removed.
@@ -353,9 +412,9 @@ export class JointService {
   }
 
   // initializes the rect on the paper from the flowbsternode attributes and the positions.
-  initNodeRect(flowbsterNode: FlowbsterNode): joint.shapes.devs.Model {
+  initNodeModel(flowbsterNode: FlowbsterNode, x: number, y: number): joint.shapes.devs.Model {
     return new joint.shapes.devs.Model({
-      position: { x: this.actualNodePlacement.x, y: this.actualNodePlacement.y },
+      position: { x, y },
       size: { width: 100, height: 100 },
       inPorts: [],
       outPorts: [],
@@ -368,14 +427,14 @@ export class JointService {
               '.port-body': {
                 fill: '#16A085',
                 magnet: 'passive'
-              }
+              } // here we could enter the inPortProps attributes
             }
           },
           'out': {
             attrs: {
               '.port-body': {
                 fill: '#E74C3C'
-              }
+              } // here we could enter the outPortProps attributes
             }
           }
         }
@@ -387,6 +446,7 @@ export class JointService {
         '.exetgz': { text: flowbsterNode.execurl },
         '.scaling': { min: flowbsterNode.scalingmin, max: flowbsterNode.scalingmax },
         rect: { fill: 'green' },
+        text: { fill: '#f4f4f4' }
       }
     });
   }
@@ -424,10 +484,6 @@ export class JointService {
     });
   }
 
-  // private isLinkingValid(cellView, magnet): boolean {
-
-  // }
-
   // checks wether the actual link is unique and going from an input to an output.
   private isConnectionValid(cellViewS, magnetS, cellViewT, magnetT, end, linkView): boolean {
     if (magnetS && magnetS.getAttribute('port-group') === 'in') {
@@ -439,9 +495,6 @@ export class JointService {
 
     return magnetT && magnetT.getAttribute('port-group') === 'in';
   }
-
-  // checks wether there is any given link to the target Port.
-
 
   // checks if the flowbsterNodes name is unique and returns the actual element.
   getFlowbsterNodeElement(name: string): joint.dia.Element {
@@ -455,10 +508,16 @@ export class JointService {
   }
 
   // ensures we are listening on all events from the paper
-  logAllEvents() {
+  logAllEventsOnPaper() {
     this.paper.on('all', function (event, cell) {
       console.log(arguments);
     });
+  }
+
+  logAllEventsOnGraph() {
+    this.graph.on('all', function (event, cell) {
+      console.log(arguments);
+    })
   }
 
   // its going to subscribe for the blank click event
@@ -470,8 +529,15 @@ export class JointService {
     this.paper.on('blank:pointerclick', function (event, x, y) {
       self.initPlacement(x, y);
       listener[modalTriggerAttribute] = true;
-      self.isExistingNode = false;
+      self.isExistingNodeSubject.next(false);
       self.actualNode = self.initNode();
+    });
+  }
+
+  listenOnGraphCellAdd() {
+    this.graph.on('add', function (cell: joint.dia.Cell) {
+
+      console.log(cell);
     });
   }
 
@@ -596,7 +662,7 @@ export class JointService {
         scalingmax: +self.getSelectedJobsProperty('max', true)
       };
       listener[modalTriggerAttribute] = true;
-      self.isExistingNode = true;
+      self.isExistingNodeSubject.next(true);
       console.log(self.actualNode);
     });
   }

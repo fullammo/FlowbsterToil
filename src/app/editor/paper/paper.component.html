@@ -7,10 +7,12 @@
 <p-growl [(value)]="msgs" sticky="sticky"></p-growl>
 
 <p-dialog header="Node Properties" [(visible)]="nodeModalVisible" modal="true">
-  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)" 
-                       (onUpdateDialog)="nodeUpdateDialogChanged($event)" 
-                       [NodeProps]="jointSVC.actualNode" 
-                       [isExistingNode]="jointSVC.isExistingNode">
+  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)"
+                       (onUpdateDialog)="nodeUpdateDialogChanged($event)"
+                       (onCloneDialog) ="nodeCloneDialogChanged($event)"
+                       [NodeProps]="jointSVC.actualNode"
+                      >
+                      <!-- [isExistingNode]="jointSVC.isExistingNode" -->
   </toil-editor-node-properties>
 </p-dialog>
 

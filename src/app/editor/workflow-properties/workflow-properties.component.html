@@ -5,7 +5,7 @@
       <md-input-container>
         <input mdInput type="text" placeholder="Infrastructure ID" [formControl]="userform.controls['infraid']" [(ngModel)]="workflowProps.infraid">
         <md-error *ngIf="!userform.controls['infraid'].valid&&userform.controls['infraid'].dirty">
-          Infra ID is  <strong>required</strong>
+          Infra ID is <strong>required</strong>
         </md-error>
       </md-input-container>
     </div>
@@ -23,8 +23,11 @@
     <div class="ui-grid-row">
       <md-input-container>
         <input mdInput type="text" placeholder="Infrastructure Name" [formControl]="userform.controls['infraname']" [(ngModel)]="workflowProps.infraname">
-        <md-error *ngIf="!userform.controls['infraname'].valid&&userform.controls['infraname'].dirty">
+        <md-error *ngIf="!userform.controls['infraname'].valid&&userform.controls['infraname'].dirty&&!userform.controls['infraname'].hasError('workflowNameExist')">
           Infra name is <strong>required</strong>
+        </md-error>
+        <md-error *ngIf="!userform.controls['infraname'].valid&&userform.controls['infraname'].dirty&&userform.controls['infraname'].hasError('workflowNameExist')">
+          Node name is already <strong>taken</strong>
         </md-error>
         <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
       </md-input-container>
@@ -34,7 +37,7 @@
       <md-input-container>
         <input mdInput type="text" placeholder="Collector IP" [formControl]="userform.controls['collectorip']" [(ngModel)]="workflowProps.collectorip">
         <md-error *ngIf="!userform.controls['collectorip'].valid&&userform.controls['collectorip'].dirty">
-          Collector IP is  <strong>required</strong>
+          Collector IP is <strong>required</strong>
         </md-error>
         <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
       </md-input-container>
@@ -44,7 +47,7 @@
       <md-input-container>
         <input mdInput type="number" placeholder="Collector port" [formControl]="userform.controls['collectorport']" [(ngModel)]="workflowProps.collectorport">
         <md-error *ngIf="!userform.controls['collectorport'].valid&&userform.controls['collectorport'].dirty">
-          Collector port is  <strong>required</strong>
+          Collector port is <strong>required</strong>
         </md-error>
         <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
       </md-input-container>
@@ -54,7 +57,7 @@
       <md-input-container>
         <input mdInput type="number" placeholder="Receiver port" [formControl]="userform.controls['receiverport']" [(ngModel)]="workflowProps.receiverport">
         <md-error *ngIf="!userform.controls['receiverport'].valid&&userform.controls['receiverport'].dirty">
-          Receiver port is  <strong>required</strong>
+          Receiver port is <strong>required</strong>
         </md-error>
         <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
       </md-input-container>

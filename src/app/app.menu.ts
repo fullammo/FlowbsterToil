@@ -38,15 +38,15 @@ export let initialMenuItems: Array<MenuItem> = [
         route: null,
         submenu: [
             {
-                text: 'Workflow',
+                text: 'Country',
                 icon: 'glyphicon-th-list',
                 route: 'authenticated/country-maint',
                 submenu: null
             },
             {
-                text: 'Settings',
+                text: 'Workflow',
                 icon: 'glyphicon-cog',
-                route: 'authenticated/settings',
+                route: 'authenticated/workflow',
                 submenu: null
             },
             {

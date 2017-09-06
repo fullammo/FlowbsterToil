@@ -6,9 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FwModule } from '../fw/fw.module';
-import { EditorModule } from "app/editor/editor.module";
+import { EditorModule } from 'app/editor/editor.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SettingsComponent } from './settings/settings.component';
 import { appRoutes } from './app.routing';
 import { CountryDetailComponent } from './country-detail/country-detail.component';
 import { CountryListComponent } from './country-list/country-list.component';
@@ -24,13 +23,13 @@ import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    SettingsComponent,
     CountryDetailComponent,
     CountryListComponent,
     CountryMaintComponent,
@@ -38,7 +37,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CountryPanelComponent,
     ImagePanelComponent,
     NodeDefComponent,
-    AuthFileComponent
+    AuthFileComponent,
+    WorkflowMaintComponent
   ],
   imports: [
     BrowserModule,

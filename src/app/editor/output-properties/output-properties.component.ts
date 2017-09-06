@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
-import { OutputPort } from "app/editor/models/outputPort";
-import { DistributionType } from "app/editor/models/distributionType";
+import { OutputPort } from 'app/editor/models/outputPort';
+import { DistributionType } from 'app/editor/models/distributionType';
 
 @Component({
   selector: 'toil-editor-output-properties',
@@ -39,7 +39,7 @@ export class OutputPropertiesComponent implements OnInit {
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required), // TODO: custom validator for node match
+      'name': new FormControl('', [Validators.required,Validators.pattern(/^(?!.*outPorts\d)/)]), // TODO: custom validator for node match
       'fileName': new FormControl('', Validators.required),
       'targetName': new FormControl(''),
       'targetIp': new FormControl(''),

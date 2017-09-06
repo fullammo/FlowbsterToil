@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSliderChange } from "@angular/material/material";
+import { MdSliderChange } from '@angular/material/material';
 
-import { InputPort } from "app/editor/models/inputPort";
-import { FlowbsterNode } from "app/editor/models/flowbsterNode";
-import { OutputPort } from "app/editor/models/outputPort";
-import { JointService } from "app/editor/shared/joint.service";
+import { InputPort } from 'app/editor/models/inputPort';
+import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
+import { OutputPort } from 'app/editor/models/outputPort';
+import { JointService } from 'app/editor/shared/joint.service';
 
-import { Message } from "primeng/components/common/message";
+import { Message } from 'primeng/components/common/message';
 
 @Component({
   selector: 'toil-editor-paper',
@@ -32,6 +32,7 @@ export class PaperComponent implements OnInit {
     this.jointSVC.initPaper(paperElement);
     this.jointSVC.listenOnBlankClick(this, 'nodeModalVisible');
     // this.jointSVC.logAllEvents();
+    this.jointSVC.listenOnGraphCellAdd();
     this.jointSVC.listenOnPointerUp(this, 'inputModalVisible', 'outputModalVisible');
     this.jointSVC.listenOnCellClick();
     this.jointSVC.listenOnCellDoubleClick(this, 'nodeModalVisible');
@@ -41,6 +42,11 @@ export class PaperComponent implements OnInit {
   nodeCreateDialogChanged(newNode: FlowbsterNode) {
     this.nodeModalVisible = false;
     this.tryNodeCreation(newNode);
+  }
+
+  nodeCloneDialogChanged(newNode: FlowbsterNode) {
+    this.nodeModalVisible = false;
+    this.tryNodeCloning(newNode);
   }
 
   nodeUpdateDialogChanged(updatedNode: FlowbsterNode) {
@@ -71,6 +77,14 @@ export class PaperComponent implements OnInit {
       this.sendStickyMessage(false, `Node '${updatedNode.name}' was a failure`);
     }
 
+  }
+
+  private tryNodeCloning(clonedNode: FlowbsterNode) {
+    if (this.jointSVC.cloneNode(clonedNode)) {
+      this.sendStickyMessage(true, `Node '${clonedNode.name}' cloned!`);
+    } else {
+      this.sendStickyMessage(false, `Node '${clonedNode.name}' was a failure`);
+    }
   }
 
   // tries to update an output with jointService on the paper and emits some messages

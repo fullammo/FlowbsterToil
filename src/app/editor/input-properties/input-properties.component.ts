@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { InputPort } from "app/editor/models/inputPort";
+import { InputPort } from 'app/editor/models/inputPort';
 
 @Component({
   selector: 'toil-editor-input-properties',
@@ -35,7 +35,7 @@ export class InputPropertiesComponent implements OnInit {
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required), // TODO: custom validator for input port match
+    'name': new FormControl('', [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]),
       'isCollector': new FormControl(''),
       'storagePattern': new FormControl({ value: '', disabled: true }),
     });
