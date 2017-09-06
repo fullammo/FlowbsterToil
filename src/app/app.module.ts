@@ -23,7 +23,7 @@ import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { WorkflowComponent } from './workflow/workflow.component';
+import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
     ImagePanelComponent,
     NodeDefComponent,
     AuthFileComponent,
-    WorkflowComponent
+    WorkflowMaintComponent
   ],
   imports: [
     BrowserModule,
