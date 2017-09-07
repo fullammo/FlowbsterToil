@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { DataSource } from '@angular/cdk/collections';
+import { MdSort } from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+
 import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
-import { Observable } from 'rxjs/Observable';
-import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'toil-workflow-maint',
@@ -14,17 +15,16 @@ import { DataSource } from '@angular/cdk/collections';
 })
 export class WorkflowMaintComponent implements OnInit {
 
-  workflowEntries: WorkflowEntry[] = [];
-  displayedColumns = ['description', 'name', 'descriptor', 'graph'];
+  displayedColumns = ['name', 'description', 'descriptor', 'graph'];
   dataSource: WorkflowDataSource;
 
-  constructor(private workflowEntrySVC: WorkflowEntryService, private router: Router) {
-    workflowEntrySVC.getWorkflowEntries().subscribe((data) => this.workflowEntries = data);
+  @ViewChild(MdSort) sort: MdSort;
 
+  constructor(public workflowEntrySVC: WorkflowEntryService, private router: Router) {
   }
 
   ngOnInit() {
-    this.dataSource = new WorkflowDataSource(this.workflowEntrySVC);
+    this.dataSource = new WorkflowDataSource(this.workflowEntrySVC, this.sort);
   }
 
   createEntry() {
@@ -35,13 +35,42 @@ export class WorkflowMaintComponent implements OnInit {
 
 export class WorkflowDataSource extends DataSource<any> {
 
-  constructor(private workflowEntrySVC: WorkflowEntryService) {
+  constructor(private workflowEntrySVC: WorkflowEntryService, private sort: MdSort) {
     super();
   }
 
   connect(): Observable<WorkflowEntry[]> {
-    return this.workflowEntrySVC.getWorkflowEntries();
+    const displayDataChanges = [
+      this.workflowEntrySVC.dataChange,
+      this.sort.mdSortChange
+    ];
+
+    return Observable.merge(...displayDataChanges).map(() => {
+      return this.getSortedData();
+    });
   }
 
   disconnect() { }
+
+  getSortedData(): WorkflowEntry[] {
+    const data = this.workflowEntrySVC.dataChange.value;
+
+    if (!this.sort.active || this.sort.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this.sort.active) {
+        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this.sort.direction === 'asc' ? 1 : -1);
+    });
+  }
 }
