@@ -52,7 +52,7 @@
     </ng-container> -->
 
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row.name)"> </md-row>
 
 </md-table>
-<md-paginator #paginator [length]="workflowEntrySVC.data.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5,10,25,10]"></md-paginator>
+<md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5,10,25,10]"></md-paginator>
