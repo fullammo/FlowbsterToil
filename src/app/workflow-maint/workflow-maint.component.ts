@@ -14,7 +14,7 @@ import { DataSource } from '@angular/cdk/collections';
 })
 export class WorkflowMaintComponent implements OnInit {
 
-  workflowEntries: WorkflowEntry[];
+  workflowEntries: WorkflowEntry[] = [];
   displayedColumns = ['description', 'name', 'descriptor', 'graph'];
   dataSource: WorkflowDataSource;
 

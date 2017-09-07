@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdTableModule } from '@angular/material';
+import { MdTableModule, MdPaginatorModule } from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -59,7 +59,8 @@ import { WorkflowEntryService } from 'app/services/workflow-entry.service';
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
     EditorModule,
-    MdTableModule
+    MdTableModule,
+    MdPaginatorModule
   ],
   providers: [
     UserService,
