@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Router } from '@angular/router';
+
+import { FirebaseListObservable } from 'angularfire2/database';
+import { WorkflowEntry } from 'app/view-models/workflowEntry';
+import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+import { Observable } from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'toil-workflow-maint',
@@ -8,13 +14,34 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class WorkflowMaintComponent implements OnInit {
 
-  workflowEntries: FirebaseListObservable<any[]>;
+  workflowEntries: WorkflowEntry[];
+  displayedColumns = ['description', 'name', 'descriptor', 'graph'];
+  dataSource: WorkflowDataSource;
 
-  constructor(db: AngularFireDatabase) {
-    this.workflowEntries = db.list('/items');
+  constructor(private workflowEntrySVC: WorkflowEntryService, private router: Router) {
+    workflowEntrySVC.getWorkflowEntries().subscribe((data) => this.workflowEntries = data);
+
   }
 
   ngOnInit() {
+    this.dataSource = new WorkflowDataSource(this.workflowEntrySVC);
   }
 
+  createEntry() {
+    this.router.navigate(['/authenticated/workflow-detail', 0, 'create']);
+  }
+
+}
+
+export class WorkflowDataSource extends DataSource<any> {
+
+  constructor(private workflowEntrySVC: WorkflowEntryService) {
+    super();
+  }
+
+  connect(): Observable<WorkflowEntry[]> {
+    return this.workflowEntrySVC.getWorkflowEntries();
+  }
+
+  disconnect() { }
 }

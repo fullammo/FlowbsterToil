@@ -1,10 +1,39 @@
-<p>
-  workflow-maint works!
-</p>
+<h3>Workflow Maintenance</h3>
+<button class="btn btn-primary" (click)="createEntry()">Add New Workflow Entry</button>
+
+<md-table #table [dataSource]="dataSource">
+
+  <ng-container mdColumnDef="name">
+    <md-header-cell *mdHeaderCellDef>Name</md-header-cell>
+    <md-cell *mdCellDef="let entry"> {{entry.name}}</md-cell>
+  </ng-container>
+
+  <ng-container mdColumnDef="description">
+    <md-header-cell *mdHeaderCellDef> Description </md-header-cell>
+    <md-cell *mdCellDef="let entry"> {{entry.description}} </md-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container mdColumnDef="descriptor">
+    <md-header-cell *mdHeaderCellDef> Descriptor </md-header-cell>
+    <md-cell *mdCellDef="let entry"> {{entry.descriptor}} </md-cell>
+  </ng-container>
+
+  <!-- Color Column -->
+  <ng-container mdColumnDef="graph">
+    <md-header-cell *mdHeaderCellDef> Graph </md-header-cell>
+    <md-cell *mdCellDef="let entry"> {{entry.graph}} </md-cell>
+  </ng-container>
+
+  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+
+</md-table>
+
 
 
 <ul>
-  <li class="text" *ngFor="let entry of workflowEntries | async">
-    {{entry.$value}}
+  <li class="text" *ngFor="let entry of workflowEntries">
+    {{entry | json}}
   </li>
 </ul>

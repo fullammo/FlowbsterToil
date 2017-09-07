@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MdTableModule } from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -28,6 +29,8 @@ import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
 import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
 import { environment } from 'environments/environment';
+import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
+import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 
 
 @NgModule({
@@ -42,7 +45,8 @@ import { environment } from 'environments/environment';
     ImagePanelComponent,
     NodeDefComponent,
     AuthFileComponent,
-    WorkflowMaintComponent
+    WorkflowMaintComponent,
+    WorkflowDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -54,13 +58,15 @@ import { environment } from 'environments/environment';
     FwModule,
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
-    EditorModule
+    EditorModule,
+    MdTableModule
   ],
   providers: [
     UserService,
     { provide: UserApi, useExisting: UserService },
     AuthGuard,
-    AppDataService
+    AppDataService,
+    WorkflowEntryService
   ],
   bootstrap: [AppComponent]
 })
