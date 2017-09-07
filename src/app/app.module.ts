@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { FwModule } from '../fw/fw.module';
@@ -21,9 +26,8 @@ import { CountryPanelComponent } from './panels/country-panel/country-panel.comp
 import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
 import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
-
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
+import { environment } from 'environments/environment';
 
 
 @NgModule({
@@ -42,6 +46,9 @@ import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.componen
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     FormsModule,
     HttpModule,
     FwModule,

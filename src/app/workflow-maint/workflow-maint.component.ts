@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'toil-workflow-maint',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkflowMaintComponent implements OnInit {
 
-  constructor() { }
+  workflowEntries: FirebaseListObservable<any[]>;
+
+  constructor(db: AngularFireDatabase) {
+    this.workflowEntries = db.list('/items');
+  }
 
   ngOnInit() {
   }

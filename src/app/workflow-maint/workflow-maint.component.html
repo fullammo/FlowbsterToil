@@ -1,3 +1,10 @@
 <p>
   workflow-maint works!
 </p>
+
+
+<ul>
+  <li class="text" *ngFor="let entry of workflowEntries | async">
+    {{entry.$value}}
+  </li>
+</ul>
