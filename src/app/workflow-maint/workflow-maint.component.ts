@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataSource } from '@angular/cdk/collections';
-import { MdSort } from '@angular/material';
+import { MdSort, MdPaginator, SelectionModel } from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
@@ -16,16 +16,49 @@ import { WorkflowDataSource } from 'app/workflow-maint/workflowDataSource';
 })
 export class WorkflowMaintComponent implements OnInit {
 
-  displayedColumns = ['name', 'description', 'descriptor', 'graph'];
-  dataSource: WorkflowDataSource;
+  displayedColumns = ['select', 'name', 'description', 'descriptor', 'graph'];
+  dataSource: WorkflowDataSource | null;
+  selection = new SelectionModel<string>(true, []);
 
+  @ViewChild(MdPaginator) paginator: MdPaginator;
   @ViewChild(MdSort) sort: MdSort;
+  @ViewChild('filter') filter: ElementRef;
 
   constructor(public workflowEntrySVC: WorkflowEntryService, private router: Router) {
   }
 
   ngOnInit() {
-    this.dataSource = new WorkflowDataSource(this.workflowEntrySVC, this.sort);
+    this.dataSource = new WorkflowDataSource(this.workflowEntrySVC, this.paginator, this.sort);
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) { return; }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+  }
+
+  isAllSelected(): boolean {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length === this.dataSource.renderedEntries.length;
+    } else {
+      return this.selection.selected.length === this.workflowEntrySVC.data.length;
+    }
+  }
+
+  masterToggle() {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedEntries.forEach(data => this.selection.select(data.name));
+    } else {
+      this.workflowEntrySVC.data.forEach(data => this.selection.select(data.name));
+    }
   }
 
   createEntry() {

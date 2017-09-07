@@ -1,7 +1,25 @@
 <h3>Workflow Maintenance</h3>
 <button class="btn btn-primary" (click)="createEntry()">Add New Workflow Entry</button>
 
+<div>
+  <md-input-container floatPlaceholder="never">
+    <input mdInput #filter placeholder="Filter workflows">
+  </md-input-container>
+</div>
+
 <md-table #table [dataSource]="dataSource" mdSort>
+
+  <!-- Checkbox Column -->
+  <ng-container mdColumnDef="select">
+    <md-header-cell *mdHeaderCellDef>
+      <md-checkbox (change)="$event ? masterToggle() : null" [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </md-checkbox>
+    </md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <md-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.name) : null" [checked]="selection.isSelected(row.name)">
+      </md-checkbox>
+    </md-cell>
+  </ng-container>
 
   <!-- Name Column -->
   <ng-container mdColumnDef="name">
