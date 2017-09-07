@@ -31,7 +31,6 @@ export class PaperComponent implements OnInit {
     const paperElement = $('#paper');
     this.jointSVC.initPaper(paperElement);
     this.jointSVC.listenOnBlankClick(this, 'nodeModalVisible');
-    // this.jointSVC.logAllEvents();
     this.jointSVC.listenOnGraphCellAdd();
     this.jointSVC.listenOnPointerUp(this, 'inputModalVisible', 'outputModalVisible');
     this.jointSVC.listenOnCellClick();
