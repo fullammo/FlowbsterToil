@@ -1,5 +1,11 @@
 <h3>Workflow Maintenance</h3>
 <button md-raised-button color="primary" (click)="createEntry()">Add New Workflow Entry</button>
+<button md-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
+<button md-raised-button color="primary" (click)="buildInfrastructure()">Construct Infrastructure</button>
+<button md-raised-button color="primary" (click)="destroyInfrastructure()">Deconstruct Infrastructure</button>
+<button md-raised-button color="primary" (click)="startWorfklow()">Run Workflow</button>
+<button md-raised-button color="primary" (click)="stopWorkflow()">Stop Workflow</button>
+
 
 <div>
   <md-input-container floatPlaceholder="never">
@@ -16,7 +22,7 @@
       </md-checkbox>
     </md-header-cell>
     <md-cell *mdCellDef="let row">
-      <md-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.name) : null" [checked]="selection.isSelected(row.name)">
+      <md-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.$key) : null" [checked]="selection.isSelected(row.$key)">
       </md-checkbox>
     </md-cell>
   </ng-container>

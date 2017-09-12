@@ -55,13 +55,34 @@ export class WorkflowMaintComponent implements OnInit {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else if (this.filter.nativeElement.value) {
-      this.dataSource.renderedEntries.forEach(data => this.selection.select(data.name));
+      this.dataSource.renderedEntries.forEach(data => this.selection.select(data.$key));
     } else {
-      this.workflowEntrySVC.data.forEach(data => this.selection.select(data.name));
+      this.workflowEntrySVC.data.forEach(data => this.selection.select(data.$key));
     }
   }
 
-  createEntry() {
+  buildInfrastructure(): void {
+
+  }
+
+  destroyInfrastructure(): void {
+
+  }
+
+  startWorfklow(): void {
+
+  }
+
+  stopWorkflow(): void {
+
+  }
+
+  deleteWorkflow(): void {
+    this.selection.selected.forEach(key => this.workflowEntrySVC.deleteEntry(key));
+    this.selection.clear();
+  }
+
+  createEntry(): void {
     this.router.navigate(['/authenticated/workflow-detail', 0, 'create']);
   }
 }

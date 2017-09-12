@@ -7,17 +7,20 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class WorkflowEntryService {
 
   dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<WorkflowEntry[]>([]);
+  entries: FirebaseListObservable<WorkflowEntry[]>;
 
   get data(): WorkflowEntry[] { return this.dataChange.value; }
 
   constructor(private db: AngularFireDatabase) {
-    this.db.list('entries').subscribe(workflowEntries => {
+    this.entries = this.db.list('entries');
+    this.entries.subscribe(workflowEntries => {
       this.dataChange.next(workflowEntries);
     });
   }
 
-  // BONUS: Descriptor could be a little preview window when you hover over and it shows the yaml formatted string.only inspection
-  // BONUS: GraphPreview and EditGraph feature.
+  deleteEntry(key: string) {
+    this.entries.remove(key);
+  }
 
   // The master checkbox behaves funny.
   // BEHAVIOUR: When entering words from another page the mastercheckbox is going to be indetermined.
