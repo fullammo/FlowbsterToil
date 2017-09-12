@@ -222,6 +222,10 @@ export class JointService {
     return this.graph.toJSON();
   }
 
+  getGraphJSONString(): string {
+    return JSON.stringify(this.graph.toJSON());
+  }
+
   // return the graphs cells.
   getCells(): joint.dia.Cell[] {
     return this.graph.getCells();

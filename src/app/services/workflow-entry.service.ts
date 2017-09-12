@@ -22,6 +22,12 @@ export class WorkflowEntryService {
     this.entries.remove(key);
   }
 
+  saveEntry(entry: WorkflowEntry) {
+    this.entries.push(entry);
+  }
+
+  // BEHAVIOR: 2 entries are getting added to the firebase database.
+
   // The master checkbox behaves funny.
   // BEHAVIOUR: When entering words from another page the mastercheckbox is going to be indetermined.
 

@@ -42,14 +42,15 @@ export class WorkflowDetailComponent implements OnInit {
     return {
       name: this.userform.controls['name'].value,
       description: this.userform.controls['description'].value,
-      graph: this.jointSVC.getGraphJSON(),
-      descriptor: this.descriptorSVC.getYamlDescriptor()
+      graph: this.jointSVC.getGraphJSONString(),
+      descriptor: this.descriptorSVC.getYamlDescriptor(),
     };
   }
 
   onSubmit() {
     const entry = this.createEntry();
     console.log(entry);
+    this.workflowEntrySVC.saveEntry(entry);
   }
 
 }
