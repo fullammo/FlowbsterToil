@@ -16,7 +16,7 @@ import { WorkflowDataSource } from 'app/workflow-maint/workflowDataSource';
 })
 export class WorkflowMaintComponent implements OnInit {
 
-  displayedColumns = ['select', 'name', 'description', 'descriptor', 'graph'];
+  displayedColumns = ['select', 'name', 'description', 'descriptor', 'graph', 'edit'];
   dataSource: WorkflowDataSource | null;
   selection = new SelectionModel<string>(true, []);
 
@@ -75,6 +75,10 @@ export class WorkflowMaintComponent implements OnInit {
 
   stopWorkflow(): void {
 
+  }
+
+  editEntry(key: string): void {
+    console.log(key);
   }
 
   deleteWorkflow(): void {

@@ -31,6 +31,7 @@ import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.componen
 import { environment } from 'environments/environment';
 import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+import { OccoService } from 'app/services/occo.service';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { WorkflowEntryService } from 'app/services/workflow-entry.service';
     { provide: UserApi, useExisting: UserService },
     AuthGuard,
     AppDataService,
-    WorkflowEntryService
+    WorkflowEntryService,
+    OccoService
   ],
   bootstrap: [AppComponent]
 })

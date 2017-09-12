@@ -20,6 +20,7 @@
     <md-header-cell *mdHeaderCellDef>
       <md-checkbox (change)="$event ? masterToggle() : null" [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
       </md-checkbox>
+
     </md-header-cell>
     <md-cell *mdCellDef="let row">
       <md-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.$key) : null" [checked]="selection.isSelected(row.$key)">
@@ -57,8 +58,17 @@
       <md-cell *mdCellDef="let entry"> {{entry.date}} </md-cell>
     </ng-container> -->
 
+  <ng-container mdColumnDef="edit">
+    <md-header-cell *mdHeaderCellDef> </md-header-cell>
+    <md-cell *mdCellDef="let entry">
+      <button md-raised-button color="primary" (click)="editEntry(entry.$key)">Edit</button>
+    </md-cell>
+  </ng-container>
+
+
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row.name)"> </md-row>
+  <md-row *mdRowDef="let row; columns: displayedColumns;"> </md-row>
+  <!-- <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row.$key)"> </md-row> -->
 
 </md-table>
-<md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5,10,25,10]"></md-paginator>
+<md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5,10,25]"></md-paginator>
