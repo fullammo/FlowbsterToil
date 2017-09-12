@@ -43,13 +43,13 @@
   <!-- Descriptor Column -->
   <ng-container mdColumnDef="descriptor">
     <md-header-cell *mdHeaderCellDef> Descriptor </md-header-cell>
-    <md-cell *mdCellDef="let entry"> {{entry.descriptor}} </md-cell>
+    <md-cell *mdCellDef="let entry"> Descriptor </md-cell>
   </ng-container>
 
   <!-- Graph Column -->
   <ng-container mdColumnDef="graph">
     <md-header-cell *mdHeaderCellDef> Graph </md-header-cell>
-    <md-cell *mdCellDef="let entry"> {{entry.graph}} </md-cell>
+    <md-cell *mdCellDef="let entry"> Graph </md-cell>
   </ng-container>
 
   <!-- Date Column
@@ -71,4 +71,4 @@
   <!-- <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row.$key)"> </md-row> -->
 
 </md-table>
-<md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5,10,25]"></md-paginator>
+<md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,25]"></md-paginator>
