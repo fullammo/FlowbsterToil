@@ -31,6 +31,8 @@ export class JointService {
 
   isExistingNodeSubject: Subject<boolean>;
 
+  isWorkflowInitialized: Subject<boolean>
+
   self = this;
 
   // BONUS:  message events from proper linking and port creations and updates, and even nodes.
@@ -79,6 +81,7 @@ export class JointService {
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
     this.isExistingNodeSubject = new Subject();
+    this.isWorkflowInitialized = new Subject();
   }
 
   // returns an observable with the information of the updated node
@@ -156,6 +159,7 @@ export class JointService {
     this.graph.set('coll_ip', newWorkflow.collectorip);
     this.graph.set('coll_port', newWorkflow.collectorport);
     this.graph.set('recv_port', newWorkflow.receiverport);
+    this.isWorkflowInitialized.next(true);
   }
 
   // creates a link and attaches it to the DOM and downloads graph json content, after that immidietaly removes it from the DOM

@@ -1,3 +1,31 @@
 <p>
   workflow-detail works!
 </p>
+
+<form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">
+
+  <md-form-field>
+    <input required mdInput placeholder="Workflow Name" [formControl]="userform.controls['name']">
+    <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+      Workflow name is <strong>required</strong>
+    </md-error>
+  </md-form-field>
+
+  <md-form-field>
+    <textarea required mdInput placeholder="Write description here" [formControl]="userform.controls['description']"></textarea>
+    <md-error *ngIf="!userform.controls['description'].valid&&userform.controls['description'].dirty">
+      A desrciption is <strong>required</strong>
+    </md-error>
+  </md-form-field>
+
+
+  <div mdTooltip="Before creating an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(userform.valid && isGraphValid)" md-raised-button (click)="onSubmit()">Create Workflow Entry</button>
+  </div>
+
+  <toil-editor></toil-editor>
+</form>
+
+
+
+<button (click)="status()">Click me</button>
