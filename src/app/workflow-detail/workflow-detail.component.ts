@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JointService } from 'app/editor/shared/joint.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+import { WorkflowEntry } from "app/view-models/workflowEntry";
 
 @Component({
   selector: 'toil-workflow-detail',
@@ -37,12 +38,18 @@ export class WorkflowDetailComponent implements OnInit {
     });
   }
 
-  status() {
-    console.log(this.jointSVC);
+  private createEntry(): WorkflowEntry {
+    return {
+      name: this.userform.controls['name'].value,
+      description: this.userform.controls['description'].value,
+      graph: this.jointSVC.getGraphJSON(),
+      descriptor: this.descriptorSVC.getYamlDescriptor()
+    };
   }
 
   onSubmit() {
-
+    const entry = this.createEntry();
+    console.log(entry);
   }
 
 }
