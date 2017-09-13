@@ -52,6 +52,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
 
   // subscribing to the URL changes and changes by changing values.
   // gotta call a subject to initialize the upload.
+  // change at createeeeeeee.
   private initComponent() {
     this.route.paramMap.subscribe(params => {
       console.log('called', params);
