@@ -26,15 +26,19 @@ export class WorkflowEntryService {
     this.entries.push(entry);
   }
 
-  getEntry(id: string): WorkflowEntry {
-    let newEntry: WorkflowEntry = { name: '', description: '', descriptor: '', graph: '' };
-    this.dataChange.value.forEach(entry => {
-      if (entry.$key === id) {
-        newEntry = entry;
-      }
-    });
-    console.log(newEntry);
-    return newEntry;
+  getEntry(id: string) {
+    // let newEntry: WorkflowEntry = { name: '', description: '', descriptor: '', graph: '' };
+
+    return this.entries;
+
+    // this.dataChange.value.forEach(entry => {
+    //   console.log(entry.$key);
+    //   if (entry.$key === id) {
+    //     newEntry = entry;
+    //   }
+    // });
+    // console.log(newEntry);
+    // return newEntry;
   }
 
   updateEntry(entry: WorkflowEntry) {
