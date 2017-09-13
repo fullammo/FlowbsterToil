@@ -17,8 +17,14 @@
   </md-form-field>
 
 
-  <div mdTooltip="Before creating an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
+
+
+  <div *ngIf="operation === 'create'" mdTooltip="Before creating an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
     <button type="submit" color="primary" [disabled]="!(userform.valid && isGraphValid)" md-raised-button>Create Workflow Entry</button>
+  </div>
+
+  <div *ngIf="operation !== 'create'" mdTooltip="Before creating an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(userform.valid)" md-raised-button>Update Workflow Entry</button>
   </div>
 
   <toil-editor></toil-editor>

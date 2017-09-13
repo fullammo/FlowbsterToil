@@ -33,7 +33,12 @@ export class WorkflowEntryService {
         newEntry = entry;
       }
     });
+    console.log(newEntry);
     return newEntry;
+  }
+
+  updateEntry(entry: WorkflowEntry) {
+    this.entries.update(entry.$key, entry);
   }
 
   // BEHAVIOR: 2 entries are getting added to the firebase database.

@@ -217,13 +217,16 @@ export class JointService {
     cellView.model.attr('rect/stroke-width', '5px');
   }
 
-  // returns the graph in json format.
   getGraphJSON(): string {
-    return this.graph.toJSON();
-  }
+    let graphJSON = JSON.stringify(this.graph.toJSON());
 
-  getGraphJSONString(): string {
-    return JSON.stringify(this.graph.toJSON());
+    if (this.selectedCellView) {
+      this.unhighlightCellView(this.selectedCellView);
+      graphJSON = JSON.stringify(this.graph.toJSON());
+      this.highlightCellView(this.selectedCellView);
+    }
+
+    return graphJSON;
   }
 
   // return the graphs cells.
@@ -234,13 +237,6 @@ export class JointService {
   // reutrns the associated links to the graph.
   getLinks(): joint.dia.Link[] {
     return this.graph.getLinks();
-  }
-
-  // not really works :D
-  editGraph(graphJson: string, domElement: JQuery): void {
-    this.initPaper(domElement);
-    this.graph.fromJSON(graphJson);
-    this.workflow = this.getWorkflowAttributes();
   }
 
   // initializes a graph from a given JSON formatted Graph.
