@@ -236,6 +236,13 @@ export class JointService {
     return this.graph.getLinks();
   }
 
+  // not really works :D
+  editGraph(graphJson: string, domElement: JQuery): void {
+    this.initPaper(domElement);
+    this.graph.fromJSON(graphJson);
+    this.workflow = this.getWorkflowAttributes();
+  }
+
   // initializes a graph from a given JSON formatted Graph.
   uploadGraph(graphJson: string): void {
     this.graph.fromJSON(graphJson);

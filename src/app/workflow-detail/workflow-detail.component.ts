@@ -42,24 +42,18 @@ export class WorkflowDetailComponent implements OnInit {
   }
 
   private initComponent() {
-    this.operation = this.route.snapshot.params['operation'];
     this.entry = this.workflowEntrySVC.getEntry(this.route.snapshot.params['id']);
-    console.log(this.operation);
-    console.log(this.entry);
-  }
-
-  private createEntry(): WorkflowEntry {
-    return {
-      name: this.userform.controls['name'].value,
-      description: this.userform.controls['description'].value,
-      graph: this.jointSVC.getGraphJSONString(),
-      descriptor: this.descriptorSVC.getYamlDescriptor(),
-    };
+    this.operation = this.route.snapshot.params['operation'];
+    if (this.operation === 'edit') {
+      this.jointSVC.editGraph(JSON.parse(this.entry.graph), jQuery('#paper'));
+      console.log('done with it');
+    }
   }
 
   onSubmit() {
-    const entry = this.createEntry();
-    this.workflowEntrySVC.saveEntry(entry);
+    this.entry.descriptor = this.descriptorSVC.getYamlDescriptor();
+    this.entry.graph = this.jointSVC.getGraphJSONString();
+    this.workflowEntrySVC.saveEntry(this.entry);
     this.router.navigate(['/authenticated/workflow-maint']);
   }
 

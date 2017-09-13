@@ -1,18 +1,16 @@
-<p>
-  workflow-detail works!
-</p>
+{{entry | json}}
 
 <form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">
 
   <md-form-field>
-    <input required mdInput placeholder="Workflow Name" [formControl]="userform.controls['name']">
+    <input required mdInput placeholder="Workflow Name" [formControl]="userform.controls['name']" [(ngModel)]="entry.name">
     <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
       Workflow name is <strong>required</strong>
     </md-error>
   </md-form-field>
 
   <md-form-field>
-    <textarea required mdInput placeholder="Write description here" [formControl]="userform.controls['description']"></textarea>
+    <textarea required mdInput placeholder="Write description here" [formControl]="userform.controls['description']" [(ngModel)]="entry.description"></textarea>
     <md-error *ngIf="!userform.controls['description'].valid&&userform.controls['description'].dirty">
       A desrciption is <strong>required</strong>
     </md-error>
