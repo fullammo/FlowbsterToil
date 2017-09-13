@@ -1,6 +1,6 @@
+import { WorkflowEntry } from './../view-models/workflowEntry';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
@@ -24,6 +24,16 @@ export class WorkflowEntryService {
 
   saveEntry(entry: WorkflowEntry) {
     this.entries.push(entry);
+  }
+
+  getEntry(id: string): WorkflowEntry {
+    let newEntry: WorkflowEntry = { name: '', description: '', descriptor: '', graph: '' };
+    this.dataChange.value.forEach(entry => {
+      if (entry.$key === id) {
+        newEntry = entry;
+      }
+    });
+    return newEntry;
   }
 
   // BEHAVIOR: 2 entries are getting added to the firebase database.

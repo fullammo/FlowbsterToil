@@ -78,7 +78,7 @@ export class WorkflowMaintComponent implements OnInit {
   }
 
   editEntry(key: string): void {
-    console.log(key);
+    this.router.navigate(['/authenticated/workflow-detail', key, 'edit']);
   }
 
   deleteWorkflow(): void {

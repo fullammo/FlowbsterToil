@@ -1,11 +1,11 @@
+import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { JointService } from 'app/editor/shared/joint.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
-import { WorkflowEntry } from "app/view-models/workflowEntry";
 
 @Component({
   selector: 'toil-workflow-detail',
@@ -14,19 +14,22 @@ import { WorkflowEntry } from "app/view-models/workflowEntry";
 })
 export class WorkflowDetailComponent implements OnInit {
 
+  operation: string;
   isGraphValid = false;
+  entry: WorkflowEntry;
   userform: FormGroup;
 
   constructor(private jointSVC: JointService,
     private descriptorSVC: DescriptorService,
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private workflowEntrySVC: WorkflowEntryService) { }
 
   ngOnInit() {
+    this.initComponent();
     this.jointSVC.isWorkflowInitialized.subscribe(isGraphValid => {
       this.isGraphValid = isGraphValid;
-      console.log(isGraphValid);
     });
     this.userform = this.initForm();
   }
@@ -36,6 +39,13 @@ export class WorkflowDetailComponent implements OnInit {
       'name': new FormControl('', Validators.required),
       'description': new FormControl('', Validators.required),
     });
+  }
+
+  private initComponent() {
+    this.operation = this.route.snapshot.params['operation'];
+    this.entry = this.workflowEntrySVC.getEntry(this.route.snapshot.params['id']);
+    console.log(this.operation);
+    console.log(this.entry);
   }
 
   private createEntry(): WorkflowEntry {
@@ -49,8 +59,8 @@ export class WorkflowDetailComponent implements OnInit {
 
   onSubmit() {
     const entry = this.createEntry();
-    console.log(entry);
     this.workflowEntrySVC.saveEntry(entry);
+    this.router.navigate(['/authenticated/workflow-maint']);
   }
 
 }
