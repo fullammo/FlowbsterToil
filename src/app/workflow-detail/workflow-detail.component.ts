@@ -52,6 +52,10 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
     this.operation = this.route.snapshot.params['operation'];
   }
 
+  onBack() {
+    this.router.navigate(['/authenticated/workflow-maint']);
+  }
+
   onSubmit() {
     this.entry.descriptor = this.descriptorSVC.getYamlDescriptor();
     this.entry.graph = this.jointSVC.getGraphJSON();

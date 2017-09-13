@@ -1,5 +1,4 @@
-{{entry | json}}
-
+<button md-raised-button color="primary" (click)="onBack()">Back</button>
 <form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">
 
   <md-form-field>
@@ -15,9 +14,6 @@
       A desrciption is <strong>required</strong>
     </md-error>
   </md-form-field>
-
-
-
 
   <div *ngIf="operation === 'create'" mdTooltip="Before creating an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
     <button type="submit" color="primary" [disabled]="!(userform.valid && isGraphValid)" md-raised-button>Create Workflow Entry</button>

@@ -134,6 +134,10 @@ export class JointService {
     });
   }
 
+  clearGraph(): void {
+    this.graph.clear();
+  }
+
   getNodeNames(): string[] {
     console.log(this.graph.getElements().map(element => element.attr('.label/text')));
     return this.graph.getElements().map(element => element.attr('.label/text'));
