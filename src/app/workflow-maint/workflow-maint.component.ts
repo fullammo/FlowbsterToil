@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { WorkflowDataSource } from 'app/workflow-maint/workflowDataSource';
+import { OccoService } from 'app/services/occo.service';
+import { DescriptorService } from 'app/editor/shared/descriptor.service';
 
 @Component({
   selector: 'toil-workflow-maint',
@@ -25,7 +27,8 @@ export class WorkflowMaintComponent implements OnInit {
   @ViewChild(MdSort) sort: MdSort;
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(public workflowEntrySVC: WorkflowEntryService, private router: Router) {
+  constructor(public workflowEntrySVC: WorkflowEntryService,
+     private router: Router, private occoSVC: OccoService) {
   }
 
   ngOnInit() {
@@ -63,7 +66,14 @@ export class WorkflowMaintComponent implements OnInit {
   }
 
   buildWorkflow(): void {
-
+    const entryy = this.workflowEntrySVC.data.find(entry => {
+      const selected = this.selection.selected.find(key => {
+        return key === entry.$key;
+      });
+      return selected !== undefined;
+    });
+    console.log(entryy);
+    this.occoSVC.buildWorkflow(entryy.descriptor);
   }
 
   destroyWorkflow(): void {
