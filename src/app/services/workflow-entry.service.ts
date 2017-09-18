@@ -44,11 +44,4 @@ export class WorkflowEntryService {
   updateEntry(entry: WorkflowEntry) {
     this.entries.update(entry.$key, entry);
   }
-
-  // BEHAVIOR: 2 entries are getting added to the firebase database.
-
-  // The master checkbox behaves funny.
-  // BEHAVIOUR: When entering words from another page the mastercheckbox is going to be indetermined.
-
-  // BEHAVIOR: The Length is bound to something thats changing only when the database changes.
 }

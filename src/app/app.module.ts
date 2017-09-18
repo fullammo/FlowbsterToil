@@ -1,10 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdTableModule, MdPaginatorModule, MdSortModule, MdInputModule, MdCheckboxModule, MdButtonModule, MdTooltipModule } from '@angular/material';
+import {
+  MdTableModule,
+  MdPaginatorModule,
+  MdSortModule, MdInputModule,
+  MdCheckboxModule,
+  MdButtonModule,
+  MdTooltipModule
+} from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -51,6 +59,7 @@ import { OccoService } from 'app/services/occo.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

@@ -59,6 +59,17 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
       this.operation = params.get('operation');
       if (this.operation === 'edit') {
         this.workflowEntrySVC.getEntry(params.get('id')).subscribe(entries => {
+
+          const foundElement = entries.find(entry => {
+            return entry.$key === params.get('id');
+          });
+
+          // Route resolver would be nice here.
+
+          if (!foundElement) {
+            this.router.navigate(['/authenticated/workflow-maint']);
+          }
+
           entries.forEach(entry => {
             if (entry.$key === params.get('id')) {
               console.log(entry);
@@ -66,7 +77,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
               this.jointSVC.uploadGraph(JSON.parse(entry.graph));
               console.log(this.jointSVC.workflow);
             }
-          })
+          });
         })
       }
     });
