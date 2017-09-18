@@ -1,3 +1,4 @@
+
 import { element } from 'protractor';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -6,6 +7,7 @@ import { OutputPort } from 'app/editor/models/outputPort';
 import { InputPort } from 'app/editor/models/inputPort';
 import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
 import { Workflow } from 'app/editor/models/workflow';
+import { DescriptorService } from 'app/editor/shared/descriptor.service';
 
 import 'app/editor/models/customArrayFeatures';
 

@@ -64,6 +64,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
               console.log(entry);
               this.entry = entry;
               this.jointSVC.uploadGraph(JSON.parse(entry.graph));
+              console.log(this.jointSVC.workflow);
             }
           })
         })
