@@ -63,6 +63,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
             if (entry.$key === params.get('id')) {
               console.log(entry);
               this.entry = entry;
+              this.jointSVC.uploadGraph(JSON.parse(entry.graph));
             }
           })
         })

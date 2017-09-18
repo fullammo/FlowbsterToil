@@ -1,10 +1,12 @@
 <h3>Workflow Maintenance</h3>
-<button md-raised-button color="primary" (click)="createEntry()">Add New Workflow Entry</button>
+<button md-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button>
 <button md-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
-<button md-raised-button color="primary" (click)="buildInfrastructure()">Construct Infrastructure</button>
-<button md-raised-button color="primary" (click)="destroyInfrastructure()">Deconstruct Infrastructure</button>
-<button md-raised-button color="primary" (click)="startWorfklow()">Run Workflow</button>
-<button md-raised-button color="primary" (click)="stopWorkflow()">Stop Workflow</button>
+<button md-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button>
+<button md-raised-button color="primary" (click)="destroyWorkflow()">Destroy Workflow</button>
+<button md-raised-button color="primary" (click)="startProcessing()">Start Processing</button>
+<button md-raised-button color="primary" (click)="stopProcessing()">Stop Processing</button>
+<button md-raised-button color="primary" (click)="copyEntries()">Copy Entries</button>
+
 
 
 <div>
@@ -40,17 +42,17 @@
     <md-cell *mdCellDef="let entry"> {{entry.description}} </md-cell>
   </ng-container>
 
-  <!-- Descriptor Column -->
+  <!-- Descriptor Column
   <ng-container mdColumnDef="descriptor">
     <md-header-cell *mdHeaderCellDef> Descriptor </md-header-cell>
     <md-cell *mdCellDef="let entry"> Descriptor </md-cell>
-  </ng-container>
+  </ng-container> -->
 
-  <!-- Graph Column -->
+  <!-- Graph Column
   <ng-container mdColumnDef="graph">
     <md-header-cell *mdHeaderCellDef> Graph </md-header-cell>
     <md-cell *mdCellDef="let entry"> Graph </md-cell>
-  </ng-container>
+  </ng-container> -->
 
   <!-- Date Column
   <ng-container mdColumnDef="date">
