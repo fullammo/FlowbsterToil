@@ -37,15 +37,18 @@ export class WorkflowEntryService {
     // we need to make an observable from the firebaseObservable to  WorkflowEntry[] Observable and filter it to
     // match the given id.
 
-    let newEntry = this.initEntry();
-    // we dont have dataChange value in this moment of time if we want to get it immidietally.
-    // i have to play with Routing more.
-    this.dataChange.value.forEach(entry => {
-      if (entry.$key === id) {
-        newEntry = entry;
-      }
-    });
-    return Observable.of(newEntry);
+    return this.db.object(`/entries/${id}`);
+
+
+    // let newEntry = this.initEntry();
+    // // we dont have dataChange value in this moment of time if we want to get it immidietally.
+    // // i have to play with Routing more.
+    // this.dataChange.value.forEach(entry => {
+    //   if (entry.$key === id) {
+    //     newEntry = entry;
+    //   }
+    // });
+    // return Observable.of(newEntry);
   }
 
   updateEntry(entry: WorkflowEntry) {

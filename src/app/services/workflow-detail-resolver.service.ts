@@ -19,12 +19,14 @@ export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
     console.log('resolving');
 
     return this.workflowEntrySVC.getEntry(id).take(1).map(entry => {
-      console.log(entry);
-      if (entry) {
+      console.log(entry.$exists());
+      // állítsunk a $valuen
+      if (entry.$exists()) {
         return entry;
       } else {
         if (operation === 'create' && id === '0') {
-          this.router.navigate(['/authenticated/workflow-detail/0/create']);
+          // this.router.navigate(['/authenticated/workflow-detail/0/create']);
+          return this.workflowEntrySVC.initEntry();
         } else {
           this.router.navigate(['/authenticated/workflow-maint']);
         }
