@@ -19,7 +19,7 @@ export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
     console.log('resolving');
 
     return this.workflowEntrySVC.getEntry(id).take(1).map(entry => {
-
+      console.log(entry);
       if (entry) {
         return entry;
       } else {
@@ -30,7 +30,7 @@ export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
         }
         return null;
       }
-    })
+    });
   }
 
 }
