@@ -15,14 +15,16 @@ export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
 
     const operation = route.paramMap.get('operation');
     const id = route.paramMap.get('id');
+
     console.log('resolving');
 
     return this.workflowEntrySVC.getEntry(id).take(1).map(entry => {
+
       if (entry) {
         return entry;
       } else {
         if (operation === 'create' && id === '0') {
-          this.router.navigate(['authenticated/workflow-detail/0/create']);
+          this.router.navigate(['/authenticated/workflow-detail/0/create']);
         } else {
           this.router.navigate(['/authenticated/workflow-maint']);
         }

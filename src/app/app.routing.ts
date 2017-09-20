@@ -1,3 +1,4 @@
+import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { Routes } from '@angular/router';
 
 import { AuthenticatedUserComponent } from './authenticated-user/authenticated-user.component';
@@ -28,7 +29,7 @@ export const appRoutes: Routes = [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'country-list/:count', component: CountryListComponent },
           { path: 'country-detail/:id/:operation', component: CountryDetailComponent },
-          { path: 'workflow-detail/:id/:operation', component: WorkflowDetailComponent },
+          { path: 'workflow-detail/:id/:operation', component: WorkflowDetailComponent, resolve: { detail: WorkflowDetailResolver } },
           { path: 'country-maint', component: CountryMaintComponent },
           { path: 'workflow-maint', component: WorkflowMaintComponent },
           { path: 'editor', component: EditorComponent },

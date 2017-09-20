@@ -33,7 +33,9 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
       this.isGraphValid = isGraphValid;
     });
     this.userform = this.initForm();
-    this.initComponent();
+    this.operation = this.route.params['operation'];
+    // this.entry = this.route.data; // ezt kéne még ütni.
+    // this.initComponent();
   }
 
   ngAfterViewInit() {
