@@ -15,9 +15,6 @@ export class OccoService {
     const header = new HttpHeaders();
     console.log(yamldescriptor);
     header.append('Content-Type', 'application/x-yaml');
-    header.append('Access-Control-Allow-Headers', 'Content-Type');
-    header.append('Access-Control-Allow-Methods', 'POST');
-    header.append('Access-Control-Allow-Origin', '*');
 
     return this.http.post(this.url, yamldescriptor, { headers: header }).subscribe(
       (res) => {

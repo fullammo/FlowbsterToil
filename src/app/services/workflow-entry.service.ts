@@ -26,8 +26,11 @@ export class WorkflowEntryService {
     this.entries.push(entry);
   }
 
+  initEntry(): WorkflowEntry {
+    return { name: '', description: '', descriptor: '', graph: '' };
+  }
+
   getEntry(id: string) {
-    // let newEntry: WorkflowEntry = { name: '', description: '', descriptor: '', graph: '' };
 
     return this.entries;
 
