@@ -8,7 +8,7 @@ export class OccoService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://192.168.154.27:5000/infrastructures/'; // provide a URL that has an occopus running on it.
+    this.url = 'http://192.168.248.129:5000/infrastructures/'; // provide a URL that has an occopus running on it.
   }
 
   buildWorkflow(yamldescriptor: string) {

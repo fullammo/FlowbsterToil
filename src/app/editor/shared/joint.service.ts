@@ -192,8 +192,8 @@ export class JointService {
   private getWorkflowAttributes(): Workflow {
     return {
       infraid: this.graph.get('infra_id'),
-      infraname: this.graph.get('user_id'),
-      userid: this.graph.get('wf_name'),
+      infraname: this.graph.get('wf_name'),
+      userid: this.graph.get('user_id'),
       collectorip: this.graph.get('coll_ip'),
       collectorport: this.graph.get('coll_port'),
       receiverport: this.graph.get('recv_port')

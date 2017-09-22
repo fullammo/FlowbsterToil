@@ -30,6 +30,7 @@ export class ToolbarComponent implements OnInit {
   workflowDialogChange(newWorkflow: Workflow) {
     this.editClicked = false;
     this.jointSVC.updateWorkflowProperties(newWorkflow);
+    this.descriptorSVC.updateDescriptorProperties(newWorkflow);
     this.msgs.push({ severity: 'success', summary: 'Success', detail: 'Workflow properties updated!' });
     // deploy to some outside method to let them call with your own details.
   }

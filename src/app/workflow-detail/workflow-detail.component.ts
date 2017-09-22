@@ -64,46 +64,11 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
     });
   }
 
-
-  // subscribing to the URL changes and changes by changing values.
-  // gotta call a subject to initialize the upload.
-  // change at createeeeeeee.
-  // private initComponent() {
-  //   this.route.paramMap.subscribe(params => {
-  //     console.log('called', params);
-  //     this.operation = params.get('operation');
-  //     if (this.operation === 'edit') {
-  //       this.workflowEntrySVC.getEntry(params.get('id')).subscribe(entries => {
-
-  //         const foundElement = entries.find(entry => {
-  //           return entry.$key === params.get('id');
-  //         });
-
-  //         // Route resolver would be nice here.
-
-  //         if (!foundElement) {
-  //           this.router.navigate(['/authenticated/workflow-maint']);
-  //         }
-
-  //         entries.forEach(entry => {
-  //           if (entry.$key === params.get('id')) {
-  //             console.log(entry);
-  //             this.entry = entry;
-  //             this.jointSVC.uploadGraph(JSON.parse(entry.graph));
-  //             console.log(this.jointSVC.workflow);
-  //           }
-  //         });
-  //       })
-  //     }
-  //   });
-  //   // this.entry = this.workflowEntrySVC.getEntry(this.route.snapshot.params['id']);
-  //   // this.operation = this.route.snapshot.params['operation'];
-  // }
-
   onBack() {
     this.router.navigate(['/authenticated/workflow-maint']);
   }
 
+  // somethings not right here.
   onSubmit() {
     this.entry.descriptor = this.descriptorSVC.getYamlDescriptor();
     this.entry.graph = this.jointSVC.getGraphJSON();
