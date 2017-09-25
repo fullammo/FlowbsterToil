@@ -12,6 +12,9 @@ import { FlowbsterNode } from 'app/editor/models/flowbsterNode'
 })
 export class NodePropertiesComponent implements OnInit {
 
+  @Input()
+  readOnly: boolean;
+
   userform: FormGroup;
   nodeProps: FlowbsterNode;
 
@@ -49,7 +52,7 @@ export class NodePropertiesComponent implements OnInit {
     this.jointSVC.isExistingNodeSubject.subscribe(
       isExistingNode => {
         if (isExistingNode) {
-         this.setExistingNodeValidators();
+          this.setExistingNodeValidators();
         } else {
           this.setNewNodeValidators();
         }

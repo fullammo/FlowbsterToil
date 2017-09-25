@@ -69,8 +69,10 @@
 
 
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *mdRowDef="let row; columns: displayedColumns;"> </md-row>
-  <!-- <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row.$key)"> </md-row> -->
+  <!-- <md-row *mdRowDef="let row; columns: displayedColumns;"> </md-row> -->
+  <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="onEntryClick(row.$key)"> </md-row>
 
 </md-table>
 <md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,25]"></md-paginator>
+
+<toil-editor [readOnly]="true"></toil-editor>

@@ -9,6 +9,9 @@ import { InputPort } from 'app/editor/models/inputPort';
 })
 export class InputPropertiesComponent implements OnInit {
 
+  @Input()
+  readOnly: boolean;
+
   userform: FormGroup;
   inputProps: InputPort;
 
@@ -35,7 +38,7 @@ export class InputPropertiesComponent implements OnInit {
 
   initForm() {
     return this.fb.group({
-    'name': new FormControl('', [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]),
+      'name': new FormControl('', [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]),
       'isCollector': new FormControl(''),
       'storagePattern': new FormControl({ value: '', disabled: true }),
     });

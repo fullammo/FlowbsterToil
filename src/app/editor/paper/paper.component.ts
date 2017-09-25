@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MdSliderChange } from '@angular/material/material';
 
 import { InputPort } from 'app/editor/models/inputPort';
@@ -14,6 +14,9 @@ import { Message } from 'primeng/components/common/message';
   styleUrls: ['./paper.component.scss']
 })
 export class PaperComponent implements OnInit {
+
+  @Input()
+  readOnly: boolean;
 
   msgs: Message[] = [];
 

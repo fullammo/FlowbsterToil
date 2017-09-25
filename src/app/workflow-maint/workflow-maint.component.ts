@@ -1,7 +1,8 @@
+import { JointService } from 'app/editor/shared/joint.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataSource, SelectionModel } from '@angular/cdk/collections';
-import { MdSort, MdPaginator} from '@angular/material';
+import { MdSort, MdPaginator } from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
@@ -28,7 +29,9 @@ export class WorkflowMaintComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(public workflowEntrySVC: WorkflowEntryService,
-    private router: Router, private occoSVC: OccoService) {
+    private router: Router,
+    private occoSVC: OccoService,
+    private jointSVC: JointService) {
   }
 
   ngOnInit() {
@@ -50,6 +53,16 @@ export class WorkflowMaintComponent implements OnInit {
       return this.selection.selected.length === this.dataSource.renderedEntries.length;
     } else {
       return this.selection.selected.length === this.workflowEntrySVC.data.length;
+    }
+  }
+
+  onEntryClick(id: string) {
+    const entryy = this.workflowEntrySVC.data.find(entry => {
+      return entry.$key === id;
+    });
+
+    if (entryy) {
+      this.jointSVC.uploadGraph(JSON.parse(entryy.graph));
     }
   }
 

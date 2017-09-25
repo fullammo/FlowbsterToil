@@ -11,6 +11,9 @@ import { DistributionType } from 'app/editor/models/distributionType';
 })
 export class OutputPropertiesComponent implements OnInit {
 
+  @Input()
+  readOnly: boolean;
+
   userform: FormGroup;
   outputProps: OutputPort;
 
@@ -39,7 +42,7 @@ export class OutputPropertiesComponent implements OnInit {
 
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', [Validators.required,Validators.pattern(/^(?!.*outPorts\d)/)]), // TODO: custom validator for node match
+      'name': new FormControl('', [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]), // TODO: custom validator for node match
       'fileName': new FormControl('', Validators.required),
       'targetName': new FormControl(''),
       'targetIp': new FormControl(''),
