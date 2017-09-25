@@ -28,7 +28,7 @@ export class WorkflowMaintComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(public workflowEntrySVC: WorkflowEntryService,
-     private router: Router, private occoSVC: OccoService) {
+    private router: Router, private occoSVC: OccoService) {
   }
 
   ngOnInit() {
@@ -89,7 +89,21 @@ export class WorkflowMaintComponent implements OnInit {
   }
 
   copyEntries(): void {
+    const copyEntries = this.workflowEntrySVC.data.filter(entry => {
+      const selected = this.selection.selected.find(key => {
+        return key === entry.$key;
+      });
+      return selected !== undefined;
+    });
 
+    if (copyEntries.length !== 0) {
+      copyEntries.forEach(entry => {
+        const cleanedEntry = this.workflowEntrySVC.cloneEntry(entry);
+        this.workflowEntrySVC.saveEntry(cleanedEntry);
+      });
+    } else {
+      console.log('No entries specified'); // could put up a toast message.
+    }
   }
 
   editEntry(key: string): void {

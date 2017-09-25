@@ -29,6 +29,15 @@ export class WorkflowEntryService {
     this.entries.push(entry);
   }
 
+  cloneEntry(entry: WorkflowEntry): WorkflowEntry {
+    return {
+      name: entry.name + ' clone',
+      description: entry.description,
+      descriptor: entry.descriptor,
+      graph: entry.graph
+    };
+  }
+
   initEntry() {
     return { name: '', description: '', descriptor: '', graph: '' };
   }
