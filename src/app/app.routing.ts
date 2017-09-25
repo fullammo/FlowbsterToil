@@ -1,3 +1,4 @@
+import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
 import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { Routes } from '@angular/router';
 
@@ -29,7 +30,10 @@ export const appRoutes: Routes = [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'country-list/:count', component: CountryListComponent },
           { path: 'country-detail/:id/:operation', component: CountryDetailComponent },
-          { path: 'workflow-detail/:id/:operation', component: WorkflowDetailComponent, resolve: { detail: WorkflowDetailResolver } },
+          {
+            path: 'workflow-detail/:id/:operation', component: WorkflowDetailComponent,
+            resolve: { detail: WorkflowDetailResolver }, canDeactivate: [WorkflowDetailDeactivateGuard]
+          },
           { path: 'country-maint', component: CountryMaintComponent },
           { path: 'workflow-maint', component: WorkflowMaintComponent },
           { path: 'editor', component: EditorComponent },

@@ -1,4 +1,5 @@
 <button md-raised-button color="primary" (click)="onBack()">Back</button>
+ {{entry.name | json }} {{starterEntry.name | json}}
 <form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">
 
   <md-form-field>

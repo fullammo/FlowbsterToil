@@ -1,4 +1,5 @@
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
+import { WorkflowEntry } from './../view-models/workflowEntry';
+import { DialogService } from './../services/dialog.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -17,6 +18,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
   operation: string;
   isGraphValid = false;
   entry: WorkflowEntry;
+  starterEntry;
   userform: FormGroup;
 
   constructor(private jointSVC: JointService,
@@ -24,7 +26,8 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private workflowEntrySVC: WorkflowEntryService) {
+    public workflowEntrySVC: WorkflowEntryService,
+    public dialogSVC: DialogService) {
     this.entry = { name: '', description: '', descriptor: '', graph: '' };
   }
 
@@ -40,6 +43,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
   private subscribeToEntryChanges() {
     this.route.data.subscribe((data: { detail: WorkflowEntry }) => {
       this.entry = data.detail;
+      this.starterEntry = this.workflowEntrySVC.initEntry(data.detail); // lawl
       console.log(this.entry);
     });
   }

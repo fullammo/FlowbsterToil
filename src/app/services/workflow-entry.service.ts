@@ -1,6 +1,6 @@
+import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { Workflow } from './../editor/models/workflow';
 import { Observable } from 'rxjs/Observable';
-import { WorkflowEntry } from './../view-models/workflowEntry';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -38,7 +38,15 @@ export class WorkflowEntryService {
     };
   }
 
-  initEntry() {
+  initEntry(entry?: WorkflowEntry) {
+    if (entry) {
+      return {
+        name: entry.name,
+        description: entry.description,
+        descriptor: entry.descriptor,
+        graph: entry.graph
+      };
+    }
     return { name: '', description: '', descriptor: '', graph: '' };
   }
 

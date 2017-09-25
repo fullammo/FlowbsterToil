@@ -1,3 +1,5 @@
+import { DialogService } from './services/dialog.service';
+import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
 import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -86,7 +88,9 @@ import { OccoService } from 'app/services/occo.service';
     AppDataService,
     WorkflowEntryService,
     OccoService,
-    WorkflowDetailResolver
+    WorkflowDetailResolver,
+    WorkflowDetailDeactivateGuard,
+    DialogService
   ],
   bootstrap: [AppComponent]
 })
