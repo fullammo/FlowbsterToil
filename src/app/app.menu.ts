@@ -46,7 +46,7 @@ export let initialMenuItems: Array<MenuItem> = [
             {
                 text: 'Workflow',
                 icon: 'glyphicon-cog',
-                route: 'authenticated/workflow',
+                route: 'authenticated/workflow-maint',
                 submenu: null
             },
             {

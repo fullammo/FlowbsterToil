@@ -1,0 +1,28 @@
+<button md-raised-button color="primary" (click)="onBack()">Back</button>
+ {{entry.name | json }} {{starterEntry.name | json}}
+<form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">
+
+  <md-form-field>
+    <input required mdInput placeholder="Workflow Name" [formControl]="userform.controls['name']" [(ngModel)]="entry.name">
+    <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+      Workflow name is <strong>required</strong>
+    </md-error>
+  </md-form-field>
+
+  <md-form-field>
+    <textarea required mdInput placeholder="Write description here" [formControl]="userform.controls['description']" [(ngModel)]="entry.description"></textarea>
+    <md-error *ngIf="!userform.controls['description'].valid&&userform.controls['description'].dirty">
+      A desrciption is <strong>required</strong>
+    </md-error>
+  </md-form-field>
+
+  <div *ngIf="operation === 'create'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(userform.valid && isGraphValid)" md-raised-button>Save Workflow Entry</button>
+  </div>
+
+  <div *ngIf="operation !== 'create'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(userform.valid)" md-raised-button>Update Workflow Entry</button>
+  </div>
+
+  <toil-editor></toil-editor>
+</form>

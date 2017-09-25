@@ -16,7 +16,7 @@ export class CountryListComponent implements OnInit {
   countries: Array<Country>;
 
   constructor(private dataService: AppDataService,
-              private route: ActivatedRoute) { 
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -32,11 +32,11 @@ export class CountryListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.count = params['count'];
       this.updateList();
-     });
+    });
   }
 
   updateList() {
-    this.countries = this.count>0?this.allCountries.slice(0, this.count): this.allCountries;
+    this.countries = this.count > 0 ? this.allCountries.slice(0, this.count) : this.allCountries;
   }
 }
 

@@ -1,3 +1,5 @@
+import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
+import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { Routes } from '@angular/router';
 
 import { AuthenticatedUserComponent } from './authenticated-user/authenticated-user.component';
@@ -13,6 +15,7 @@ import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
 import { EditorComponent } from './editor/editor/editor.component';
 import { WorkflowMaintComponent } from 'app/workflow-maint/workflow-maint.component';
+import { WorkflowDetailComponent } from 'app/workflow-detail/workflow-detail.component';
 
 export const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },
@@ -27,6 +30,10 @@ export const appRoutes: Routes = [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'country-list/:count', component: CountryListComponent },
           { path: 'country-detail/:id/:operation', component: CountryDetailComponent },
+          {
+            path: 'workflow-detail/:id/:operation', component: WorkflowDetailComponent,
+            resolve: { detail: WorkflowDetailResolver }, canDeactivate: [WorkflowDetailDeactivateGuard]
+          },
           { path: 'country-maint', component: CountryMaintComponent },
           { path: 'workflow-maint', component: WorkflowMaintComponent },
           { path: 'editor', component: EditorComponent },

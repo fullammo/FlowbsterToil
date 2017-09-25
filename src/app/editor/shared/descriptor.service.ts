@@ -19,7 +19,7 @@ export class DescriptorService {
   updateDescriptorProperties(newWorkflow: Workflow) {
     this.occopusDescriptor.user_id = newWorkflow.userid;
     this.occopusDescriptor.infra_name = newWorkflow.infraname;
-    this.occopusDescriptor.infra_id = newWorkflow.infraid;
+    // this.occopusDescriptor.infra_id = newWorkflow.infraid;
     this.occopusDescriptor.variables.flowbster_global.collector_ip = '&collectorip ' + newWorkflow.collectorip;
     this.occopusDescriptor.variables.flowbster_global.collector_port = '&collectorport ' + newWorkflow.collectorport;
     this.occopusDescriptor.variables.flowbster_global.receiver_port = '&receiverport ' + newWorkflow.receiverport;
@@ -29,7 +29,7 @@ export class DescriptorService {
   initOccopusDescriptor(): OccopusDescriptor {
     return {
       user_id: '',
-      infra_id: null,
+      // infra_id: null,
       infra_name: '',
       variables: {
         flowbster_global: {

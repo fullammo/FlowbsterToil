@@ -7,7 +7,7 @@ import {
   MenuModule, DialogModule, GrowlModule, DropdownModule, PanelModule, InputTextModule, ButtonModule, FileUploadModule, TabViewModule,
   CodeHighlighterModule
 } from 'primeng/primeng';
-import { MdInputModule, MdErrorDirective, MdCheckboxModule, MdSelectModule, MdSliderModule } from '@angular/material';
+import { MdInputModule, MdCheckboxModule, MdSelectModule, MdSliderModule } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
 import { PaperComponent } from './paper/paper.component';

@@ -29,8 +29,8 @@ export class ToolbarComponent implements OnInit {
 
   workflowDialogChange(newWorkflow: Workflow) {
     this.editClicked = false;
-    this.descriptorSVC.updateDescriptorProperties(newWorkflow);
     this.jointSVC.updateWorkflowProperties(newWorkflow);
+    this.descriptorSVC.updateDescriptorProperties(newWorkflow);
     this.msgs.push({ severity: 'success', summary: 'Success', detail: 'Workflow properties updated!' });
     // deploy to some outside method to let them call with your own details.
   }
@@ -96,6 +96,7 @@ export class ToolbarComponent implements OnInit {
         items: [
           {
             label: 'Download Descriptor', icon: 'fa-download', command: (event) => {
+              this.descriptorSVC.updateDescriptorProperties(this.jointSVC.workflow);
               this.descriptorSVC.downloadYamlDescriptor('occopus.yaml', 'application/x-yaml');
             }
           },

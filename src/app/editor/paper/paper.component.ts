@@ -28,10 +28,10 @@ export class PaperComponent implements OnInit {
 
   // initialize domElement to a paper and enlist on events.
   ngOnInit() {
+    this.jointSVC.clearGraph();
     const paperElement = $('#paper');
     this.jointSVC.initPaper(paperElement);
     this.jointSVC.listenOnBlankClick(this, 'nodeModalVisible');
-    // this.jointSVC.logAllEvents();
     this.jointSVC.listenOnGraphCellAdd();
     this.jointSVC.listenOnPointerUp(this, 'inputModalVisible', 'outputModalVisible');
     this.jointSVC.listenOnCellClick();

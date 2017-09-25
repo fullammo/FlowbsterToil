@@ -1,3 +1,76 @@
-<p>
-  workflow-maint works!
-</p>
+<h3>Workflow Maintenance</h3>
+<button md-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button>
+<button md-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
+<button md-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button>
+<button md-raised-button color="primary" (click)="destroyWorkflow()">Destroy Workflow</button>
+<button md-raised-button color="primary" (click)="startProcessing()">Start Processing</button>
+<button md-raised-button color="primary" (click)="stopProcessing()">Stop Processing</button>
+<button md-raised-button color="primary" (click)="copyEntries()">Copy Entries</button>
+
+
+
+<div>
+  <md-input-container floatPlaceholder="never">
+    <input mdInput #filter placeholder="Filter workflows">
+  </md-input-container>
+</div>
+
+<md-table #table [dataSource]="dataSource" mdSort>
+
+  <!-- Checkbox Column -->
+  <ng-container mdColumnDef="select">
+    <md-header-cell *mdHeaderCellDef>
+      <md-checkbox (change)="$event ? masterToggle() : null" [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </md-checkbox>
+
+    </md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <md-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.$key) : null" [checked]="selection.isSelected(row.$key)">
+      </md-checkbox>
+    </md-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container mdColumnDef="name">
+    <md-header-cell *mdHeaderCellDef md-sort-header>Name</md-header-cell>
+    <md-cell *mdCellDef="let entry"> {{entry.name}}</md-cell>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container mdColumnDef="description">
+    <md-header-cell *mdHeaderCellDef> Description </md-header-cell>
+    <md-cell *mdCellDef="let entry"> {{entry.description}} </md-cell>
+  </ng-container>
+
+  <!-- Descriptor Column
+  <ng-container mdColumnDef="descriptor">
+    <md-header-cell *mdHeaderCellDef> Descriptor </md-header-cell>
+    <md-cell *mdCellDef="let entry"> Descriptor </md-cell>
+  </ng-container> -->
+
+  <!-- Graph Column
+  <ng-container mdColumnDef="graph">
+    <md-header-cell *mdHeaderCellDef> Graph </md-header-cell>
+    <md-cell *mdCellDef="let entry"> Graph </md-cell>
+  </ng-container> -->
+
+  <!-- Date Column
+  <ng-container mdColumnDef="date">
+      <md-header-cell *mdHeaderCellDef> Date </md-header-cell>
+      <md-cell *mdCellDef="let entry"> {{entry.date}} </md-cell>
+    </ng-container> -->
+
+  <ng-container mdColumnDef="edit">
+    <md-header-cell *mdHeaderCellDef> </md-header-cell>
+    <md-cell *mdCellDef="let entry">
+      <button md-raised-button color="primary" (click)="editEntry(entry.$key)">Edit</button>
+    </md-cell>
+  </ng-container>
+
+
+  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row *mdRowDef="let row; columns: displayedColumns;"> </md-row>
+  <!-- <md-row *mdRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row.$key)"> </md-row> -->
+
+</md-table>
+<md-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,25]"></md-paginator>

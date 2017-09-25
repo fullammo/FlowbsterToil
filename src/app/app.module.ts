@@ -1,8 +1,25 @@
+import { DialogService } from './services/dialog.service';
+import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
+import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {
+  MdTableModule,
+  MdPaginatorModule,
+  MdSortModule, MdInputModule,
+  MdCheckboxModule,
+  MdButtonModule,
+  MdTooltipModule
+} from '@angular/material';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { FwModule } from '../fw/fw.module';
@@ -21,9 +38,11 @@ import { CountryPanelComponent } from './panels/country-panel/country-panel.comp
 import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
 import { NodeDefComponent } from './node-def/node-def.component';
 import { AuthFileComponent } from './auth-file/auth-file.component';
-
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
+import { environment } from 'environments/environment';
+import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
+import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+import { OccoService } from 'app/services/occo.service';
 
 
 @NgModule({
@@ -38,22 +57,40 @@ import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.componen
     ImagePanelComponent,
     NodeDefComponent,
     AuthFileComponent,
-    WorkflowMaintComponent
+    WorkflowMaintComponent,
+    WorkflowDetailComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     FormsModule,
     HttpModule,
     FwModule,
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
-    EditorModule
+    EditorModule,
+    MdTableModule,
+    MdPaginatorModule,
+    MdSortModule,
+    MdInputModule,
+    MdCheckboxModule,
+    MdButtonModule,
+    MdTooltipModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,
     { provide: UserApi, useExisting: UserService },
     AuthGuard,
-    AppDataService
+    AppDataService,
+    WorkflowEntryService,
+    OccoService,
+    WorkflowDetailResolver,
+    WorkflowDetailDeactivateGuard,
+    DialogService
   ],
   bootstrap: [AppComponent]
 })

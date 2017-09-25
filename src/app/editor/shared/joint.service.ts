@@ -1,3 +1,4 @@
+
 import { element } from 'protractor';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -6,6 +7,7 @@ import { OutputPort } from 'app/editor/models/outputPort';
 import { InputPort } from 'app/editor/models/inputPort';
 import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
 import { Workflow } from 'app/editor/models/workflow';
+import { DescriptorService } from 'app/editor/shared/descriptor.service';
 
 import 'app/editor/models/customArrayFeatures';
 
@@ -30,6 +32,8 @@ export class JointService {
   actualPort: InputPort | OutputPort;
 
   isExistingNodeSubject: Subject<boolean>;
+
+  isWorkflowInitialized: Subject<boolean>
 
   self = this;
 
@@ -79,6 +83,7 @@ export class JointService {
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
     this.isExistingNodeSubject = new Subject();
+    this.isWorkflowInitialized = new Subject();
   }
 
   // returns an observable with the information of the updated node
@@ -131,6 +136,10 @@ export class JointService {
     });
   }
 
+  clearGraph(): void {
+    this.graph.clear();
+  }
+
   getNodeNames(): string[] {
     console.log(this.graph.getElements().map(element => element.attr('.label/text')));
     return this.graph.getElements().map(element => element.attr('.label/text'));
@@ -156,6 +165,7 @@ export class JointService {
     this.graph.set('coll_ip', newWorkflow.collectorip);
     this.graph.set('coll_port', newWorkflow.collectorport);
     this.graph.set('recv_port', newWorkflow.receiverport);
+    this.isWorkflowInitialized.next(true);
   }
 
   // creates a link and attaches it to the DOM and downloads graph json content, after that immidietaly removes it from the DOM
@@ -182,8 +192,8 @@ export class JointService {
   private getWorkflowAttributes(): Workflow {
     return {
       infraid: this.graph.get('infra_id'),
-      infraname: this.graph.get('user_id'),
-      userid: this.graph.get('wf_name'),
+      infraname: this.graph.get('wf_name'),
+      userid: this.graph.get('user_id'),
       collectorip: this.graph.get('coll_ip'),
       collectorport: this.graph.get('coll_port'),
       receiverport: this.graph.get('recv_port')
@@ -213,9 +223,16 @@ export class JointService {
     cellView.model.attr('rect/stroke-width', '5px');
   }
 
-  // returns the graph in json format.
   getGraphJSON(): string {
-    return this.graph.toJSON();
+    let graphJSON = JSON.stringify(this.graph.toJSON());
+
+    if (this.selectedCellView) {
+      this.unhighlightCellView(this.selectedCellView);
+      graphJSON = JSON.stringify(this.graph.toJSON());
+      this.highlightCellView(this.selectedCellView);
+    }
+
+    return graphJSON;
   }
 
   // return the graphs cells.
