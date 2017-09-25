@@ -22,7 +22,7 @@ export class WorkflowDataSource extends DataSource<any> {
   connect(): Observable<WorkflowEntry[]> {
     const displayDataChanges = [
       this.workflowEntrySVC.dataChange,
-      this.sort.mdSortChange,
+      this.sort._matSortChange,
       this.filterChange,
       this.paginator.page
     ];

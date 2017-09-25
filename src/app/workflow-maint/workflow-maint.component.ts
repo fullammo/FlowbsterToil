@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataSource } from '@angular/cdk/collections';
-import { MdSort, MdPaginator, SelectionModel } from '@angular/material';
+import { DataSource, SelectionModel } from '@angular/cdk/collections';
+import { MdSort, MdPaginator} from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
