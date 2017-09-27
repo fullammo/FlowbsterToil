@@ -253,7 +253,9 @@ export class JointService {
 
   // initializes a graph from a given JSON formatted Graph.
   uploadGraph(graphJson: string): void {
+    this.stopListeningOnGraphChange();
     this.graph.fromJSON(graphJson);
+    this.listenOnGraphChange();
     this.workflow = this.getWorkflowAttributes();
   }
 
@@ -566,12 +568,19 @@ export class JointService {
     });
   }
 
-  listenOnGraphCellAdd() {
-    this.graph.on('add', function (cell: joint.dia.Cell) {
+  listenOnGraphChange() {
+    const self = this;
 
-      console.log(cell);
+    this.graph.on('change', function (cell: joint.dia.Cell) {
+      console.log(this);
+      self.emitWorkflowChange();
     });
   }
+
+  stopListeningOnGraphChange() {
+    this.graph.off('change');
+  }
+
 
 
   // listens on the pointerup event and fires up the proper modal of i/o ports.

@@ -23,13 +23,12 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
   isGraphValid = false;
   isGraphEdited = false;
 
-  constructor(public jointSVC: JointService,
+  constructor(private jointSVC: JointService,
     private descriptorSVC: DescriptorService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    public workflowEntrySVC: WorkflowEntryService,
-    public dialogSVC: DialogService) {
+    private workflowEntrySVC: WorkflowEntryService) {
     this.entry = { name: '', description: '', descriptor: '', graph: '' };
   }
 
@@ -89,7 +88,6 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     this.router.navigate(['/authenticated/workflow-maint']);
   }
 
-  // somethings not right here.
   onSubmit() {
     this.entry.descriptor = this.descriptorSVC.getYamlDescriptor();
     this.entry.graph = this.jointSVC.getGraphJSON();
