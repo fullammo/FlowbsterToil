@@ -41,13 +41,16 @@ export class OutputPropertiesComponent implements OnInit {
   }
 
   initForm() {
+    const formState = { value: '', disabled: this.readOnly };
+
     return this.fb.group({
-      'name': new FormControl('', [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]), // TODO: custom validator for node match
-      'fileName': new FormControl('', Validators.required),
-      'targetName': new FormControl(''),
-      'targetIp': new FormControl(''),
-      'targetPort': new FormControl(''),
-      'isGenerator': new FormControl(''),
+      // TODO : better pattern is needed
+      'name': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]),
+      'fileName': new FormControl(formState, Validators.required),
+      'targetName': new FormControl(formState),
+      'targetIp': new FormControl(formState),
+      'targetPort': new FormControl(formState),
+      'isGenerator': new FormControl(formState),
       'filterExpression': new FormControl({ value: '', disabled: true }),
       'distributionType': new FormControl({ value: '', disabled: true })
     });

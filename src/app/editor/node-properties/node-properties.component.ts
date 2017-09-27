@@ -75,13 +75,16 @@ export class NodePropertiesComponent implements OnInit {
   }
 
   initForm() {
+    const formState = { value: '', disabled: this.readOnly };
+    const numberFormState = { value: '1', disabled: this.readOnly };
+
     return this.fb.group({
-      'name': new FormControl('', Validators.required),
-      'execname': new FormControl('', Validators.required),
-      'args': new FormControl(''),
-      'execurl': new FormControl('', Validators.required),
-      'scalingmin': new FormControl('1', [Validators.min(1), Validators.required]), // TODO:custom validator for  whole number
-      'scalingmax': new FormControl('1', [Validators.min(1), Validators.required]) // TODO: custom validator for whole number
+      'name': new FormControl(formState, Validators.required),
+      'execname': new FormControl(formState, Validators.required),
+      'args': new FormControl(formState),
+      'execurl': new FormControl(formState, Validators.required),
+      'scalingmin': new FormControl(numberFormState, [Validators.min(1), Validators.required]), // TODO:custom validator for  whole number
+      'scalingmax': new FormControl(numberFormState, [Validators.min(1), Validators.required]) // TODO: custom validator for whole number
     });
   }
 

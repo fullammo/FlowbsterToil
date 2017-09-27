@@ -5,7 +5,7 @@
 
     <div class="ui-grid-row">
       <md-input-container>
-        <input mdInput type="text"  placeholder="Name" [formControl]="userform.controls['name']" [(ngModel)]="nodeProps.name">
+        <input mdInput type="text" placeholder="Name" [formControl]="userform.controls['name']" [(ngModel)]="nodeProps.name">
         <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty && !userform.controls['name'].hasError('nodeNameExist')">
           Name is <strong>required</strong>
         </md-error>
@@ -53,8 +53,8 @@
 
 
     <div class="ui-grid-row">
-      <button *ngIf="isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate()" [disabled]="!userform.valid"></button>
-      <button *ngIf="isExistingNode" pButton type="submit" label="Clone Node" (click)="onClone()" [disabled]="!userform.valid"></button>
+      <button *ngIf=" !readOnly && isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate()" [disabled]="!userform.valid"></button>
+      <button *ngIf=" !readOnly && isExistingNode" pButton type="submit" label="Clone Node" (click)="onClone()" [disabled]="!userform.valid"></button>
       <button *ngIf="!isExistingNode" pButton type="submit" label="Create Node" (click)="onCreate()" [disabled]="!userform.valid"></button>
     </div>
 

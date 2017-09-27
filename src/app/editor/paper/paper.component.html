@@ -1,4 +1,5 @@
 <md-slider (input)="onSliderChanged($event)" [min]="minSliderValue" [value]="sliderValue"></md-slider>
+<div *ngIf="readOnly">{{ jointSVC.workflow | json}}</div>
 <div id="paper" class="paper drawing-area">
 </div>
 
@@ -7,13 +8,9 @@
 <p-growl [(value)]="msgs" sticky="sticky"></p-growl>
 
 <p-dialog header="Node Properties" [(visible)]="nodeModalVisible" modal="true">
-  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)"
-                       (onUpdateDialog)="nodeUpdateDialogChanged($event)"
-                       (onCloneDialog) ="nodeCloneDialogChanged($event)"
-                       [NodeProps]="jointSVC.actualNode"
-                       [readOnly]="readOnly"
-                      >
-                      <!-- [isExistingNode]="jointSVC.isExistingNode" -->
+  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)" (onUpdateDialog)="nodeUpdateDialogChanged($event)"
+    (onCloneDialog)="nodeCloneDialogChanged($event)" [NodeProps]="jointSVC.actualNode" [readOnly]="readOnly">
+    <!-- [isExistingNode]="jointSVC.isExistingNode" -->
   </toil-editor-node-properties>
 </p-dialog>
 
@@ -24,5 +21,3 @@
 <p-dialog header="Output Properties" [(visible)]="outputModalVisible" modal="true">
   <toil-editor-output-properties [readOnly]="readOnly" (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualPort"></toil-editor-output-properties>
 </p-dialog>
-
-
