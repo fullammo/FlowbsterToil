@@ -18,3 +18,9 @@ body {
 .cdk-overlay-container {
 z-index:1127;
 }
+
+.readOnlyEditor .link-tools .tool-remove {
+  display: none
+}
+
+

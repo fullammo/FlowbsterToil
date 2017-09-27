@@ -1,6 +1,6 @@
 <md-slider (input)="onSliderChanged($event)" [min]="minSliderValue" [value]="sliderValue"></md-slider>
 <div *ngIf="readOnly">{{ jointSVC.workflow | json}}</div>
-<div id="paper" class="paper drawing-area">
+<div id="paper" class="paper drawing-area" [ngClass]="{'readOnlyEditor': readOnly}">
 </div>
 
 <!-- <p>{{jointSVC.actualNode |json}}</p> -->
