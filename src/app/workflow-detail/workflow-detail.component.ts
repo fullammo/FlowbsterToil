@@ -1,6 +1,6 @@
-import { WorkflowEntry } from './../view-models/workflowEntry';
+import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { DialogService } from './../services/dialog.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -13,15 +13,17 @@ import { WorkflowEntryService } from 'app/services/workflow-entry.service';
   templateUrl: './workflow-detail.component.html',
   styleUrls: ['./workflow-detail.component.scss']
 })
-export class WorkflowDetailComponent implements OnInit, AfterViewInit {
+export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   operation: string;
-  isGraphValid = false;
   entry: WorkflowEntry;
-  starterEntry;
+  starterEntry: WorkflowEntry;
   userform: FormGroup;
 
-  constructor(private jointSVC: JointService,
+  isGraphValid = false;
+  isGraphEdited = false;
+
+  constructor(public jointSVC: JointService,
     private descriptorSVC: DescriptorService,
     private fb: FormBuilder,
     private router: Router,
@@ -31,13 +33,28 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
     this.entry = { name: '', description: '', descriptor: '', graph: '' };
   }
 
+  ngOnDestroy() {
+
+  }
+
   ngOnInit() {
-    this.jointSVC.isWorkflowInitialized.subscribe(isGraphValid => {
-      this.isGraphValid = isGraphValid;
-    });
+    this.subscribeToEditorEditionChanges();
+    this.subscribeToGraphValidationChanges();
     this.userform = this.initForm();
     this.subscribeToOperationChanges();
     this.subscribeToEntryChanges();
+  }
+
+  private subscribeToGraphValidationChanges() {
+    this.jointSVC.isWorkflowInitialized.subscribe(isGraphValid => {
+      this.isGraphValid = isGraphValid;
+    });
+  }
+
+  private subscribeToEditorEditionChanges() {
+    this.jointSVC.workflowChange.subscribe(() => {
+      this.isGraphEdited = true;
+    });
   }
 
   private subscribeToEntryChanges() {

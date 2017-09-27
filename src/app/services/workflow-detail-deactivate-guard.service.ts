@@ -1,4 +1,5 @@
-import { WorkflowEntryService } from './workflow-entry.service';
+import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+import { JointService } from './../editor/shared/joint.service';
 import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { DialogService } from './dialog.service';
 import { WorkflowDetailComponent } from 'app/workflow-detail/workflow-detail.component';
@@ -14,10 +15,18 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate<WorkflowDeta
     state: RouterStateSnapshot): Observable<boolean> | boolean {
 
     console.log('Deactivating...');
-    if (this.isEquivalent(component.starterEntry, component.workflowEntrySVC.initEntry(component.entry))) {
+
+    const cleanEntry = this.workflowEntrySVC.initEntry(component.entry);
+    const isPropertiesEdited = this.isEquivalent(component.starterEntry, cleanEntry);
+    this.jointSVC.reinitializeWorkflow();
+
+    if (isPropertiesEdited && !component.isGraphEdited) {
       return true;
     }
-    return component.dialogSVC.confirm('Discard changes?');
+
+    const confirmObservable = this.dialogSVC.confirm('Discard Changes?');
+
+    return confirmObservable;
   }
 
   private isEquivalent(a: WorkflowEntry, b: WorkflowEntry): boolean {
@@ -38,6 +47,8 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate<WorkflowDeta
     return true;
   }
 
-  constructor() { }
+  constructor(private dialogSVC: DialogService, private jointSVC: JointService, private workflowEntrySVC: WorkflowEntryService) {
+
+  }
 
 }

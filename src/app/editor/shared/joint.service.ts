@@ -32,7 +32,7 @@ export class JointService {
   actualPort: InputPort | OutputPort;
 
   isExistingNodeSubject: Subject<boolean>;
-
+  workflowChange: Subject<void>;
   isWorkflowInitialized: Subject<boolean>
 
   self = this;
@@ -84,6 +84,7 @@ export class JointService {
     this.workflow = this.initWorkflow();
     this.isExistingNodeSubject = new Subject();
     this.isWorkflowInitialized = new Subject();
+    this.workflowChange = new Subject<void>();
   }
 
   // returns an observable with the information of the updated node
@@ -145,6 +146,10 @@ export class JointService {
     return this.graph.getElements().map(element => element.attr('.label/text'));
   }
 
+  reinitializeWorkflow() {
+    this.workflow = this.initWorkflow();
+  }
+
   initWorkflow(): Workflow {
     return {
       infraid: null,
@@ -166,6 +171,7 @@ export class JointService {
     this.graph.set('coll_port', newWorkflow.collectorport);
     this.graph.set('recv_port', newWorkflow.receiverport);
     this.isWorkflowInitialized.next(true);
+    this.emitWorkflowChange();
   }
 
   // creates a link and attaches it to the DOM and downloads graph json content, after that immidietaly removes it from the DOM
@@ -268,6 +274,7 @@ export class JointService {
 
       const rect = this.initNodeModel(flowbsterNode, this.actualNodePlacement.x, this.actualNodePlacement.y);
       this.graph.addCell(rect);
+      this.emitWorkflowChange();
       return true;
     }
     return false;
@@ -287,6 +294,7 @@ export class JointService {
 
       this.graph.addCell(clonedElement);
       this.highlightCellView(this.selectedCellView);
+      this.emitWorkflowChange();
       return true;
     }
     return false;
@@ -304,7 +312,7 @@ export class JointService {
     this.selectedCellView.model.attr('.exetgz/text', flowbsterNode.execurl);
     this.selectedCellView.model.attr('.scaling/min', flowbsterNode.scalingmin);
     this.selectedCellView.model.attr('.scaling/max', flowbsterNode.scalingmax);
-
+    this.emitWorkflowChange();
     return true;
     // }
 
@@ -316,6 +324,7 @@ export class JointService {
     if (this.selectedCellView) {
       this.selectedCellView.model.remove();
       this.selectedCellView = null;
+      this.emitWorkflowChange();
     } else {
       console.log('no selected node present to remove');
     }
@@ -340,7 +349,7 @@ export class JointService {
 
     portProps[newName] = portAttributes;
     this.selectedCellView.model.set(modelAttribute, portProps);
-
+    this.emitWorkflowChange();
     return true;
   }
 
@@ -397,9 +406,14 @@ export class JointService {
       this.selectedCellView.model.set(type, ports);
       this.selectedCellView.model.trigger('change:' + type);
       this.graph.trigger('change');
+      this.emitWorkflowChange();
     } else {
       console.log('select a cell first'); // we need better error handling
     }
+  }
+
+  private emitWorkflowChange(): void {
+    this.workflowChange.next();
   }
 
   // deletes the selected port.
@@ -410,6 +424,7 @@ export class JointService {
       ports.remove(this.selectedPortName); // remove functiont valahogy ideeröltetni. és egy error handling az elejére.
       this.selectedCellView.model.set(portType, ports);
       this.selectedCellView.model.trigger('change:' + portType);
+      this.emitWorkflowChange();
     } else {
       console.log('select a port first'); // we need better error handling.
     }
