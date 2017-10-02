@@ -253,7 +253,7 @@ export class JointService {
 
   // initializes a graph from a given JSON formatted Graph.
   uploadGraph(graphJson: string): void {
-    this.stopListeningOnGraphChange();
+    this.stopListeningOnGraphChange(); // when you upload you are getting an extra warning.
     this.graph.fromJSON(graphJson);
     this.listenOnGraphChange();
     this.workflow = this.getWorkflowAttributes();
