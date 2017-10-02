@@ -33,14 +33,14 @@ export class PaperComponent implements OnInit {
   ngOnInit() {
     this.jointSVC.clearGraph();
     const paperElement = $('#paper');
-    this.jointSVC.initPaper(paperElement);
+    this.jointSVC.initPaper(paperElement, this.readOnly);
 
     if (!this.readOnly) {
       this.jointSVC.listenOnBlankClick(this, 'nodeModalVisible');
     }
     this.jointSVC.listenOnGraphChange();
-    this.jointSVC.listenOnPointerUp(this, 'inputModalVisible', 'outputModalVisible');
-    this.jointSVC.listenOnCellClick();
+    this.jointSVC.listenOnPointerUp(this, 'inputModalVisible', 'outputModalVisible', this.readOnly);
+    this.jointSVC.listenOnCellClick(this.readOnly);
     this.jointSVC.listenOnCellDoubleClick(this, 'nodeModalVisible');
   }
 

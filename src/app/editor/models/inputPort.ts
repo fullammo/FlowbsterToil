@@ -1,5 +1,5 @@
  /**
-  * A type interface for flowbster Node's Input port {@link FlowbsterNode}
+  * A type interface for flowbster Node's Input port of a {@link FlowbsterNode}
   */
 export interface InputPort {
 

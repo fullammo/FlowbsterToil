@@ -486,7 +486,7 @@ export class JointService {
   }
 
   // from the given DOM element we initialize the papers default attributes.
-  initPaper(domElement: JQuery): void {
+  initPaper(domElement: JQuery, readOnly: boolean): void {
     const self = this;
 
     this.paper = new joint.dia.Paper({
@@ -496,7 +496,7 @@ export class JointService {
       gridSize: 5,
       model: this.graph,
       linkPinning: false,
-      interactive: true,
+      interactive: !readOnly,
       defaultLink: new joint.dia.Link({
         attrs: {
           '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
@@ -584,7 +584,7 @@ export class JointService {
 
 
   // listens on the pointerup event and fires up the proper modal of i/o ports.
-  listenOnPointerUp(listener: any, inputAttributeName: string, outputAttributeName: string): void {
+  listenOnPointerUp(listener: any, inputAttributeName: string, outputAttributeName: string, readOnly: boolean): void {
     const self = this;
 
     this.paper.on('cell:pointerup', function (cellView, event, x, y) {
@@ -596,7 +596,7 @@ export class JointService {
 
         if ('out' === self.selectedPortType) {
           if (cellView.sourceView) {
-            self.selectCellView(cellView.sourceView); // if the source view exists we need to select that cellview.
+            self.selectCellView(cellView.sourceView, readOnly); // if the source view exists we need to select that cellview.
           }
           self.setPort(cellView, 'outPortsProps');
           listener[outputAttributeName] = true; // trigger output modal.
@@ -683,10 +683,10 @@ export class JointService {
   }
 
   // listens on the pointerclick event and selects the actual cell
-  listenOnCellClick(): void {
+  listenOnCellClick(readOnly: boolean): void {
     const self = this;
     this.paper.on('cell:pointerclick', function (cellView, event, x, y) {
-      self.selectCellView(cellView);
+      self.selectCellView(cellView, readOnly);
     });
   }
 
@@ -709,14 +709,16 @@ export class JointService {
   }
 
   // if there is a new cell its going to highlight it.
-  private selectCellView(cellView: joint.dia.CellView): void {
+  private selectCellView(cellView: joint.dia.CellView, readOnly: boolean): void {
     if (cellView !== this.selectedCellView) {
-      if (this.selectedCellView != null) {
+      if (this.selectedCellView != null && !readOnly) {
         this.unhighlightCellView(this.selectedCellView);
       }
       if (cellView.model !== undefined) {
         this.selectedCellView = cellView;
-        this.highlightCellView(this.selectedCellView);
+        if (!readOnly) {
+          this.highlightCellView(this.selectedCellView);
+        }
       }
     }
   }
