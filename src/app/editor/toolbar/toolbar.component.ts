@@ -7,6 +7,13 @@ import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { JointService } from 'app/editor/shared/joint.service';
 import { Workflow } from 'app/editor/models/workflow';
 
+/**
+ * Displays the toolbar for the {@link EditorComponent}.
+ * To interact with the graph more precisely.
+ *
+ * @example
+ * <toil-editor-toolbar></toil-editor-toolbar>
+ */
 @Component({
   selector: 'toil-editor-toolbar',
   templateUrl: './toolbar.component.html',
@@ -14,19 +21,47 @@ import { Workflow } from 'app/editor/models/workflow';
 })
 export class ToolbarComponent implements OnInit {
 
+  /**
+   * The array to hold Toastr messages.
+   */
   msgs: Message[] = [];
+
+  /**
+   * Special items for the Menu bar.
+   */
   items: MenuItem[];
+
+  /**
+   * A switch which indicates wether the {@link WorkflowPropertiesComponent} should be
+   * displayed or not.
+   */
   editClicked: boolean;
 
+  /**
+   * An array to hold the uploaded files.
+   */
   uploadedFiles: any[] = [];
 
+  /**
+   * Provide the dependency injection of services.
+   * @param jointSVC Maintain graph related actions and serve data to the WorkflowProperties Modal.
+   */
   constructor(private descriptorSVC: DescriptorService, public jointSVC: JointService) { }
 
+  /**
+   * Sets the modal click indicator and initializes
+   * the menu's items.
+   */
   ngOnInit() {
     this.editClicked = false;
     this.items = this.createToolBarItems();
   }
 
+  /**
+   * When the modal has changed the services attributes are getting updated
+   * and Toastr message is pushed to the screen.
+   * @param newWorkflow The workflows attributes that were granted from the modal.
+   */
   workflowDialogChange(newWorkflow: Workflow) {
     this.editClicked = false;
     this.jointSVC.updateWorkflowProperties(newWorkflow);
@@ -35,6 +70,10 @@ export class ToolbarComponent implements OnInit {
     // deploy to some outside method to let them call with your own details.
   }
 
+
+  /**
+   * Reads the JSON file and uploads the represented graph into the paper.
+   */
   myUploader(event) {
     const file = event.files[0];
     const reader = new FileReader();
@@ -50,6 +89,9 @@ export class ToolbarComponent implements OnInit {
     reader.readAsText(file); // confirm dialog before this.
   }
 
+  /**
+   * Initializes the basic Menu's Items with proper clicking commands.
+   */
   createToolBarItems(): MenuItem[] {
     return [
       {

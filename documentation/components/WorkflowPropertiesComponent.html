@@ -828,6 +828,14 @@
     <code>src/app/editor/workflow-properties/workflow-properties.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Modal form component for the Flowbster Workflow&#39;s Main Attributes.
+It emits submit data and waiting for initial Workflow property values.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -837,6 +845,14 @@
                 <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">&lt;toil-editor-workflow-properties (onSubmitDialog)=&quot;workflowDialogChange($event)&quot; [(WorkflowProps)]=&quot;workflow&quot;&gt;</code></pre>
+                </div>
+    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -889,7 +905,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#userform">userform</a>
+                                 <a href="#workflowForm">workflowForm</a>
                             </li>
                             <li>
                                  <a href="#workflowProps">workflowProps</a>
@@ -960,12 +976,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:56</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>We inject the needed services.</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1015,11 +1033,14 @@
                             <code>WorkflowProps</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Returns the workflowProps property.
+Sets the inner workflowProps property.</p>
+</div>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:46</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1036,13 +1057,15 @@
                             <code>onSubmitDialog</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Emits data outside of the component with the submitted workflow data.</p>
+</div>
                             <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:35</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1055,13 +1078,15 @@
                             <code>WorkflowPropsChange</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Emits data outside of the component of the inner workflow&#39;s attributes.</p>
+</div>
                             <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
 
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:40</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1092,12 +1117,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:66</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initializes the workflow form with proper validators.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1124,12 +1151,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:80</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>When the submit button is clicked, we emit the workflowforms data.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1150,13 +1179,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="userform"></a>
-                            <span class="name"><b> userform</b><a href="#userform"><span class="fa fa-link"></span></a></span>
+                            <a name="workflowForm"></a>
+                            <span class="name"><b> workflowForm</b><a href="#workflowForm"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>userform:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
+                            <code>workflowForm:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
     </code>
                         </td>
                     </tr>
@@ -1168,10 +1197,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:25</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The FormGroup to hold the user&#39;s input</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1197,10 +1232,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/editor/workflow-properties/workflow-properties.component.ts:30</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Holder of the incoming workflow properties.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1216,6 +1257,13 @@ import { Validators, FormControl, FormGroup, FormBuilder } from &#x27;@angular/f
 
 import { Workflow } from &#x27;app/editor/models/workflow&#x27;;
 
+
+/**
+ * Modal form component for the Flowbster Workflow&#x27;s Main Attributes.
+ * It emits submit data and waiting for initial Workflow property values.
+ * @example
+ * &lt;toil-editor-workflow-properties (onSubmitDialog)&#x3D;&quot;workflowDialogChange($event)&quot; [(WorkflowProps)]&#x3D;&quot;workflow&quot;&gt;
+ */
 @Component({
   selector: &#x27;toil-editor-workflow-properties&#x27;,
   templateUrl: &#x27;./workflow-properties.component.html&#x27;,
@@ -1223,26 +1271,52 @@ import { Workflow } from &#x27;app/editor/models/workflow&#x27;;
 })
 export class WorkflowPropertiesComponent implements OnInit {
 
-  userform: FormGroup;
+  /**
+   * The FormGroup to hold the user&#x27;s input
+   */
+  workflowForm: FormGroup;
+
+  /**
+   * Holder of the incoming workflow properties.
+   */
   workflowProps: Workflow;
 
+  /**
+   * Emits data outside of the component with the submitted workflow data.
+   */
   @Output() onSubmitDialog &#x3D; new EventEmitter&lt;Workflow&gt;();
+
+  /**
+   * Emits data outside of the component of the inner workflow&#x27;s attributes.
+   */
   @Output() WorkflowPropsChange &#x3D; new EventEmitter&lt;Workflow&gt;(); // not neccessary
 
+  /**
+   * Returns the workflowProps property.
+   */
   @Input()
   get WorkflowProps() {
     return this.workflowProps;
   }
 
+  /**
+   * Sets the inner workflowProps property.
+   */
   set WorkflowProps(val: Workflow) {
     this.workflowProps &#x3D; val;
     this.WorkflowPropsChange.emit(this.workflowProps);
   }
 
+  /**
+   * We inject the needed services.
+   */
   constructor(private fb: FormBuilder, private jointSVC: JointService) { }
 
+  /**
+   * Initializes the workflow form with proper validators.
+   */
   ngOnInit() {
-    this.userform &#x3D; this.fb.group({
+    this.workflowForm &#x3D; this.fb.group({
       &#x27;infraid&#x27;: new FormControl(&#x27;&#x27;, Validators.required),
       &#x27;userid&#x27;: new FormControl(&#x27;&#x27;, Validators.required),
       &#x27;infraname&#x27;: new FormControl(&#x27;&#x27;, Validators.required, NodeValidator.isWorkflowUnique(this.jointSVC)),
@@ -1252,8 +1326,11 @@ export class WorkflowPropertiesComponent implements OnInit {
     });
   }
 
+  /**
+   * When the submit button is clicked, we emit the workflowforms data.
+   */
   onSubmit() {
-    this.onSubmitDialog.emit(this.userform.value);
+    this.onSubmitDialog.emit(this.workflowForm.value);
   }
 
 }
@@ -1262,13 +1339,13 @@ export class WorkflowPropertiesComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;userform&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;workflowForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
   &lt;div class&#x3D;&quot;ui-grid ui-grid-responsive ui-grid-pad ui-fluid&quot; style&#x3D;&quot;margin: 10px 0px&quot;&gt;
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
       &lt;md-input-container&gt;
-        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Infrastructure ID&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;infraid&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.infraid&quot;&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;infraid&#x27;].valid&amp;&amp;userform.controls[&#x27;infraid&#x27;].dirty&quot;&gt;
+        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Infrastructure ID&quot; [formControl]&#x3D;&quot;workflowForm.controls[&#x27;infraid&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.infraid&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;infraid&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;infraid&#x27;].dirty&quot;&gt;
           Infra ID is &lt;strong&gt;required&lt;/strong&gt;
         &lt;/md-error&gt;
       &lt;/md-input-container&gt;
@@ -1276,8 +1353,8 @@ export class WorkflowPropertiesComponent implements OnInit {
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
       &lt;md-input-container&gt;
-        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;User ID&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;userid&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.userid&quot;&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;userid&#x27;].valid&amp;&amp;userform.controls[&#x27;userid&#x27;].dirty&quot;&gt;
+        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;User ID&quot; [formControl]&#x3D;&quot;workflowForm.controls[&#x27;userid&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.userid&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;userid&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;userid&#x27;].dirty&quot;&gt;
           User ID is &lt;strong&gt;required&lt;/strong&gt;
         &lt;/md-error&gt;
         &lt;!-- &lt;md-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/md-hint&gt; --&gt;
@@ -1286,11 +1363,11 @@ export class WorkflowPropertiesComponent implements OnInit {
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
       &lt;md-input-container&gt;
-        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Infrastructure Name&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;infraname&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.infraname&quot;&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;infraname&#x27;].valid&amp;&amp;userform.controls[&#x27;infraname&#x27;].dirty&amp;&amp;!userform.controls[&#x27;infraname&#x27;].hasError(&#x27;workflowNameExist&#x27;)&quot;&gt;
+        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Infrastructure Name&quot; [formControl]&#x3D;&quot;workflowForm.controls[&#x27;infraname&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.infraname&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;infraname&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;infraname&#x27;].dirty&amp;&amp;!workflowForm.controls[&#x27;infraname&#x27;].hasError(&#x27;workflowNameExist&#x27;)&quot;&gt;
           Infra name is &lt;strong&gt;required&lt;/strong&gt;
         &lt;/md-error&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;infraname&#x27;].valid&amp;&amp;userform.controls[&#x27;infraname&#x27;].dirty&amp;&amp;userform.controls[&#x27;infraname&#x27;].hasError(&#x27;workflowNameExist&#x27;)&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;infraname&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;infraname&#x27;].dirty&amp;&amp;workflowForm.controls[&#x27;infraname&#x27;].hasError(&#x27;workflowNameExist&#x27;)&quot;&gt;
           Node name is already &lt;strong&gt;taken&lt;/strong&gt;
         &lt;/md-error&gt;
         &lt;!-- &lt;md-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/md-hint&gt; --&gt;
@@ -1299,8 +1376,8 @@ export class WorkflowPropertiesComponent implements OnInit {
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
       &lt;md-input-container&gt;
-        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Collector IP&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;collectorip&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.collectorip&quot;&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;collectorip&#x27;].valid&amp;&amp;userform.controls[&#x27;collectorip&#x27;].dirty&quot;&gt;
+        &lt;input mdInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Collector IP&quot; [formControl]&#x3D;&quot;workflowForm.controls[&#x27;collectorip&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.collectorip&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;collectorip&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;collectorip&#x27;].dirty&quot;&gt;
           Collector IP is &lt;strong&gt;required&lt;/strong&gt;
         &lt;/md-error&gt;
         &lt;!-- &lt;md-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/md-hint&gt; --&gt;
@@ -1309,8 +1386,8 @@ export class WorkflowPropertiesComponent implements OnInit {
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
       &lt;md-input-container&gt;
-        &lt;input mdInput type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;Collector port&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;collectorport&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.collectorport&quot;&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;collectorport&#x27;].valid&amp;&amp;userform.controls[&#x27;collectorport&#x27;].dirty&quot;&gt;
+        &lt;input mdInput type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;Collector port&quot; [formControl]&#x3D;&quot;workflowForm.controls[&#x27;collectorport&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.collectorport&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;collectorport&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;collectorport&#x27;].dirty&quot;&gt;
           Collector port is &lt;strong&gt;required&lt;/strong&gt;
         &lt;/md-error&gt;
         &lt;!-- &lt;md-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/md-hint&gt; --&gt;
@@ -1319,8 +1396,8 @@ export class WorkflowPropertiesComponent implements OnInit {
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
       &lt;md-input-container&gt;
-        &lt;input mdInput type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;Receiver port&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;receiverport&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.receiverport&quot;&gt;
-        &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;receiverport&#x27;].valid&amp;&amp;userform.controls[&#x27;receiverport&#x27;].dirty&quot;&gt;
+        &lt;input mdInput type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;Receiver port&quot; [formControl]&#x3D;&quot;workflowForm.controls[&#x27;receiverport&#x27;]&quot; [(ngModel)]&#x3D;&quot;workflowProps.receiverport&quot;&gt;
+        &lt;md-error *ngIf&#x3D;&quot;!workflowForm.controls[&#x27;receiverport&#x27;].valid&amp;&amp;workflowForm.controls[&#x27;receiverport&#x27;].dirty&quot;&gt;
           Receiver port is &lt;strong&gt;required&lt;/strong&gt;
         &lt;/md-error&gt;
         &lt;!-- &lt;md-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/md-hint&gt; --&gt;
@@ -1328,7 +1405,7 @@ export class WorkflowPropertiesComponent implements OnInit {
     &lt;/div&gt;
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
-      &lt;button pButton type&#x3D;&quot;submit&quot; label&#x3D;&quot;Submit&quot; [disabled]&#x3D;&quot;!userform.valid&quot;&gt;&lt;/button&gt;
+      &lt;button pButton type&#x3D;&quot;submit&quot; label&#x3D;&quot;Submit&quot; [disabled]&#x3D;&quot;!workflowForm.valid&quot;&gt;&lt;/button&gt;
     &lt;/div&gt;
 
 
@@ -1360,9 +1437,9 @@ export class WorkflowPropertiesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="userform" (ngSubmit)="onSubmit()">  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="Infrastructure ID" [formControl]="userform.controls[\'infraid\']" [(ngModel)]="workflowProps.infraid">        <md-error *ngIf="!userform.controls[\'infraid\'].valid&&userform.controls[\'infraid\'].dirty">          Infra ID is <strong>required</strong>        </md-error>      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="User ID" [formControl]="userform.controls[\'userid\']" [(ngModel)]="workflowProps.userid">        <md-error *ngIf="!userform.controls[\'userid\'].valid&&userform.controls[\'userid\'].dirty">          User ID is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="Infrastructure Name" [formControl]="userform.controls[\'infraname\']" [(ngModel)]="workflowProps.infraname">        <md-error *ngIf="!userform.controls[\'infraname\'].valid&&userform.controls[\'infraname\'].dirty&&!userform.controls[\'infraname\'].hasError(\'workflowNameExist\')">          Infra name is <strong>required</strong>        </md-error>        <md-error *ngIf="!userform.controls[\'infraname\'].valid&&userform.controls[\'infraname\'].dirty&&userform.controls[\'infraname\'].hasError(\'workflowNameExist\')">          Node name is already <strong>taken</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="Collector IP" [formControl]="userform.controls[\'collectorip\']" [(ngModel)]="workflowProps.collectorip">        <md-error *ngIf="!userform.controls[\'collectorip\'].valid&&userform.controls[\'collectorip\'].dirty">          Collector IP is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="number" placeholder="Collector port" [formControl]="userform.controls[\'collectorport\']" [(ngModel)]="workflowProps.collectorport">        <md-error *ngIf="!userform.controls[\'collectorport\'].valid&&userform.controls[\'collectorport\'].dirty">          Collector port is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="number" placeholder="Receiver port" [formControl]="userform.controls[\'receiverport\']" [(ngModel)]="workflowProps.receiverport">        <md-error *ngIf="!userform.controls[\'receiverport\'].valid&&userform.controls[\'receiverport\'].dirty">          Receiver port is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>    </div>  </div></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="workflowForm" (ngSubmit)="onSubmit()">  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="Infrastructure ID" [formControl]="workflowForm.controls[\'infraid\']" [(ngModel)]="workflowProps.infraid">        <md-error *ngIf="!workflowForm.controls[\'infraid\'].valid&&workflowForm.controls[\'infraid\'].dirty">          Infra ID is <strong>required</strong>        </md-error>      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="User ID" [formControl]="workflowForm.controls[\'userid\']" [(ngModel)]="workflowProps.userid">        <md-error *ngIf="!workflowForm.controls[\'userid\'].valid&&workflowForm.controls[\'userid\'].dirty">          User ID is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="Infrastructure Name" [formControl]="workflowForm.controls[\'infraname\']" [(ngModel)]="workflowProps.infraname">        <md-error *ngIf="!workflowForm.controls[\'infraname\'].valid&&workflowForm.controls[\'infraname\'].dirty&&!workflowForm.controls[\'infraname\'].hasError(\'workflowNameExist\')">          Infra name is <strong>required</strong>        </md-error>        <md-error *ngIf="!workflowForm.controls[\'infraname\'].valid&&workflowForm.controls[\'infraname\'].dirty&&workflowForm.controls[\'infraname\'].hasError(\'workflowNameExist\')">          Node name is already <strong>taken</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="text" placeholder="Collector IP" [formControl]="workflowForm.controls[\'collectorip\']" [(ngModel)]="workflowProps.collectorip">        <md-error *ngIf="!workflowForm.controls[\'collectorip\'].valid&&workflowForm.controls[\'collectorip\'].dirty">          Collector IP is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="number" placeholder="Collector port" [formControl]="workflowForm.controls[\'collectorport\']" [(ngModel)]="workflowProps.collectorport">        <md-error *ngIf="!workflowForm.controls[\'collectorport\'].valid&&workflowForm.controls[\'collectorport\'].dirty">          Collector port is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <md-input-container>        <input mdInput type="number" placeholder="Receiver port" [formControl]="workflowForm.controls[\'receiverport\']" [(ngModel)]="workflowProps.receiverport">        <md-error *ngIf="!workflowForm.controls[\'receiverport\'].valid&&workflowForm.controls[\'receiverport\'].dirty">          Receiver port is <strong>required</strong>        </md-error>        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->      </md-input-container>    </div>    <div class="ui-grid-row">      <button pButton type="submit" label="Submit" [disabled]="!workflowForm.valid"></button>    </div>  </div></form></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthFileComponent', 'selector': 'auth-file'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'CountryDetailComponent', 'selector': 'app-country-detail'},{'name': 'CountryListComponent', 'selector': 'app-country-list'},{'name': 'CountryMaintComponent', 'selector': 'app-country-maint'},{'name': 'CountryPanelComponent', 'selector': 'app-country-panel'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'ImagePanelComponent', 'selector': 'app-image-panel'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodeDefComponent', 'selector': 'node-def'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
-    var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUppercase]'}];
+    var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
     var ACTUAL_COMPONENT = {'name': 'WorkflowPropertiesComponent'};
 </script>
 <script src="../js/tree.js"></script>

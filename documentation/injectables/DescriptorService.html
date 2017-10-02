@@ -825,6 +825,14 @@
             <code>src/app/editor/shared/descriptor.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A service to create a fully understandable YAML formatted description to Occopus.
+This service uses <a href="../injectables/JointService.html">JointService</a> to get the paper&#39;s model data to generate the YAML string.</p>
+
+            </p>
 
 
             <section>
@@ -919,12 +927,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:22</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>We inject the needed services and initialize a basic descriptor.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -977,12 +987,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:146</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:183</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Deletes the display name for those nodes which doesnt have a link and also deletes the targetIP and targetPort if its not specified</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1009,12 +1021,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:162</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:203</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Corrects the attributes of those outputs which have links attached to another node.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1034,7 +1048,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The link to be investigated.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>sourceCellName</td>
@@ -1043,7 +1058,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The Source cells name.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>targetCellName</td>
@@ -1052,7 +1068,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The Target cells name.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1087,17 +1104,25 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:191</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:236</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Gets every cell which is not a link from the papers model into a collection of node Descriptors.</p>
+            </div>
             
+                                        <div>
+                                        </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code>[]</code>
             
                                         </div>
+                                            <div class="io-description">
+                                                <p>A collection of YAML formatted node descriptors.</p>
+            
+                                            </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -1119,12 +1144,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:133</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:169</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Iterates over the sourceNodes and pairs them up with their targets.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1145,7 +1172,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>An object of every dependency sets.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>dependencySet</td>
@@ -1154,7 +1182,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Dependency pairs</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1189,12 +1218,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:230</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:285</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>From the input name and its properties initializes a YAML formatted InputDescriptor entity.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1215,7 +1246,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The name of the input port.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>inportProperties</td>
@@ -1224,7 +1256,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The properties of that input.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1236,7 +1269,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>An Occopus capable formatted InputDescriptor</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1259,12 +1293,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:211</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:261</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Iterates through the parameter cells inputs and initializes an InputDescriptor Array.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1284,7 +1320,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The actual Node&#39;s cell.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1296,7 +1333,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>A collection of YAML formatted InputDescriptors</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1319,12 +1357,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="330" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:330</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="397" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:397</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes a valid YAML formatted NodeDescriptor object.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1344,7 +1384,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The Actual node&#39;s cell.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1379,12 +1420,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:247</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:308</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>From the name and properties initializes a YAML formatted OutputDescriptor object.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1405,7 +1448,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The output port&#39;s name.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>outportProperties</td>
@@ -1414,7 +1458,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The output port&#39;s properties.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1426,7 +1471,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>An Occopus capable formatted OutputDescriptor</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1449,12 +1495,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:280</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:345</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Iterates through the paramater cells outputs and formats and initializes an OutPutDescriptor Array.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1474,7 +1522,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The actual Node&#39;s cell.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1486,7 +1535,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>A collection of Occopus capable YAML formatted OutputDescriptors.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1509,12 +1559,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:61</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:85</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Download the Yaml Description (could be placed in a utility service).</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1535,7 +1587,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The name with the extension how the Descriptor is going to be saved.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>mimeType</td>
@@ -1544,7 +1597,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The given mimeType neccessary for the linking.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1579,17 +1633,25 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:86</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:115</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Changes the names to be variables in proper yaml format.</p>
+            </div>
             
+                                        <div>
+                                        </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
             
                                         </div>
+                                            <div class="io-description">
+                                                <p>The valid Yaml string represantation from the Occopus Descriptor.</p>
+            
+                                            </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -1611,12 +1673,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:45</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:63</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Creates a YAML-formatted string from the actual papers data model as occopusDescriptor.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -1643,12 +1707,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:110</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:141</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="../interfaces/Array.html" target="_self" >Array&lt;string&gt;</a></code>
@@ -1675,12 +1741,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:29</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:45</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initialize a clean Occopus Descriptor.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="../interfaces/OccopusDescriptor.html" target="_self" >OccopusDescriptor</a></code>
@@ -1707,12 +1775,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:19</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:33</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Sets the occopus descriptors neccessary properties.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1733,7 +1803,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Workflow form data.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1768,12 +1839,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:80</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:106</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Updates the Occopus Descriptors nodes and dependencies.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1812,10 +1885,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/editor/shared/descriptor.service.ts:22</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Holder of descriptor data.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1834,14 +1913,28 @@ import { InputDescriptor } from &#x27;app/editor/models/inputDescriptor&#x27;;
 
 import * as jsyaml from &#x27;js-yaml&#x27;;
 
+
+/**
+ * A service to create a fully understandable YAML formatted description to Occopus.
+ * This service uses {@link JointService} to get the paper&#x27;s model data to generate the YAML string.
+ */
 @Injectable()
 export class DescriptorService {
 
+  /**
+   * Holder of descriptor data.
+   */
   occopusDescriptor: OccopusDescriptor;
 
+  /**
+   * We inject the needed services and initialize a basic descriptor.
+   */
   constructor(private jointSVC: JointService) { this.occopusDescriptor &#x3D; this.initOccopusDescriptor() }
 
-  // sets the workflowProperties and the occopus descriptors neccessary properties.
+  /**
+   * Sets the occopus descriptors neccessary properties.
+   * @param newWorkflow Workflow form data.
+   */
   updateDescriptorProperties(newWorkflow: Workflow) {
     this.occopusDescriptor.user_id &#x3D; newWorkflow.userid;
     this.occopusDescriptor.infra_name &#x3D; newWorkflow.infraname;
@@ -1851,7 +1944,9 @@ export class DescriptorService {
     this.occopusDescriptor.variables.flowbster_global.receiver_port &#x3D; &#x27;&amp;receiverport &#x27; + newWorkflow.receiverport;
   }
 
-  // initialize a clean Occopus Descriptor.
+  /**
+   * Initialize a clean Occopus Descriptor.
+   */
   initOccopusDescriptor(): OccopusDescriptor {
     return {
       user_id: &#x27;&#x27;,
@@ -1867,7 +1962,9 @@ export class DescriptorService {
     }
   }
 
-  // creates a YAML-formatted string from the actual papers graph as occopusDescriptor.
+  /**
+   * Creates a YAML-formatted string from the actual papers data model as occopusDescriptor.
+   */
   getYamlDescriptor(): string {
 
     if (this.jointSVC.workflow) {
@@ -1882,6 +1979,12 @@ export class DescriptorService {
 
     return null;
   }
+
+  /**
+   * Download the Yaml Description (could be placed in a utility service).
+   * @param fileName The name with the extension how the Descriptor is going to be saved.
+   * @param mimeType The given mimeType neccessary for the linking.
+   */
 
   // downloads the yaml descriptor (utilityService)
   downloadYamlDescriptor(fileName: string, mimeType: string): void {
@@ -1902,13 +2005,18 @@ export class DescriptorService {
 
   }
 
-  // sets the occo descriptors nodes and dependencies.
+  /**
+   * Updates the Occopus Descriptors nodes and dependencies.
+   */
   updateOccopusDescriptor() {
     this.occopusDescriptor.nodes &#x3D; this.createDescriptorNodes();
     this.occopusDescriptor.dependencies &#x3D; this.handleDependencies();
   }
 
-  // changes the names to be variables in proper yaml format and returns the valid YAML string.
+  /**
+   * Changes the names to be variables in proper yaml format.
+   * @returns The valid Yaml string represantation from the Occopus Descriptor.
+   */
   finalizeDescriptor(): string {
 
     const names &#x3D; [];
@@ -1931,8 +2039,10 @@ export class DescriptorService {
     return doneYaml;
   }
 
-  // corrects the outputs by the given dependencies and creates an array from the node dependency chain.
-  // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
+  /**
+   * Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.
+   */
+   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array&lt;string&gt; {
     const dependencies &#x3D; {};
     const dependencySet &#x3D; new Set&lt;string&gt;();
@@ -1956,6 +2066,11 @@ export class DescriptorService {
   }
 
   // iterates over the sourceNodes and pairs them up with their targets.
+  /**
+   * Iterates over the sourceNodes and pairs them up with their targets.
+   * @param dependencies An object of every dependency sets.
+   * @param dependencySet Dependency pairs
+   */
   createFinalDependencies(dependencies: object, dependencySet: Set&lt;string&gt;): Array&lt;string&gt; {
     const finaldeps &#x3D; new Array&lt;string&gt;();
     for (const sourceName of Array.from(dependencySet)) {
@@ -1967,8 +2082,9 @@ export class DescriptorService {
     return finaldeps;
   }
 
-  // delete displayName for those nodes which doesnt have a link
-  // and delete the targetIP targetPort if not specified
+  /**
+   * Deletes the display name for those nodes which doesnt have a link and also deletes the targetIP and targetPort if its not specified
+   */
   correctOutputsWithoutLink(): void {
     for (const node of this.occopusDescriptor.nodes) {
       for (const outport of node.variables.flowbster.app.out) {
@@ -1983,8 +2099,12 @@ export class DescriptorService {
     }
   }
 
-  // corrects the attributes of those outputs which have links attached to another node.
-  // HINT : this is not needed if we get a proper linking event. (too hard)
+  /**
+   * Corrects the attributes of those outputs which have links attached to another node.
+   * @param link The link to be investigated.
+   * @param sourceCellName The Source cells name.
+   * @param targetCellName The Target cells name.
+   */
   correctOutputTargetNode(link: joint.dia.Link, sourceCellName: string, targetCellName: string): void {
 
     const node: NodeDescriptor &#x3D; this.occopusDescriptor.nodes.find(nodeEl &#x3D;&gt; nodeEl.name &#x3D;&#x3D;&#x3D; sourceCellName);
@@ -2014,6 +2134,10 @@ export class DescriptorService {
   }
 
   // gets every piece of the joint Nodes into a node description
+  /**
+   * Gets every cell which is not a link from the papers model into a collection of node Descriptors.
+   * @returns A collection of YAML formatted node descriptors.
+   */
   createDescriptorNodes(): NodeDescriptor[] {
     const cells: joint.dia.Cell[] &#x3D; this.jointSVC.getCells();
     const nodeDescriptors: NodeDescriptor[] &#x3D; [];
@@ -2033,7 +2157,12 @@ export class DescriptorService {
     return nodeDescriptors;
   }
 
-  // iterates through the parameter cells inputs and initializes an InputDescriptor Array.
+  /**
+   * Iterates through the parameter cells inputs and initializes an InputDescriptor Array.
+   * @param cell The actual Node&#x27;s cell.
+   * @returns A collection of YAML formatted InputDescriptors
+   */
+    // HINT : COULD BE ERASED BY SPEFICING.
   createInputs(cell: joint.dia.Cell): InputDescriptor[] {
     const inportNames &#x3D; cell.get(&#x27;inPorts&#x27;);
     const inportDescriptors: InputDescriptor[] &#x3D; [];
@@ -2052,7 +2181,12 @@ export class DescriptorService {
     return inportDescriptors;
   }
 
-  // from the input name and the inputs properties initializes an InputDescriptor object.
+  /**
+   * From the input name and its properties initializes a YAML formatted InputDescriptor entity.
+   * @param inportName The name of the input port.
+   * @param inportProperties The properties of that input.
+   * @returns An Occopus capable formatted InputDescriptor
+   */
   createInput(inportName: string, inportProperties: any): InputDescriptor {
 
     const inport: InputDescriptor &#x3D; { name: inportName };
@@ -2070,6 +2204,12 @@ export class DescriptorService {
   }
 
   // from the output name and the output properties initializes an Outputdescriptor object.
+  /**
+   * From the name and properties initializes a YAML formatted OutputDescriptor object.
+   * @param outportName The output port&#x27;s name.
+   * @param outportProperties  The output port&#x27;s properties.
+   * @returns An Occopus capable formatted OutputDescriptor
+   */
   createOutput(outportName: string, outportProperties: any): OutPutDescriptor {
 
     const actualProperties &#x3D; outportProperties[outportName];
@@ -2102,7 +2242,11 @@ export class DescriptorService {
     }
   }
 
-  // iterates through the parameter cells outputs and initializes an OutPutDescriptor Array.
+  /**
+   * Iterates through the paramater cells outputs and formats and initializes an OutPutDescriptor Array.
+   * @param cell The actual Node&#x27;s cell.
+   * @returns A collection of Occopus capable YAML formatted OutputDescriptors.
+   */
   createOutputs(cell: joint.dia.Cell): OutPutDescriptor[] {
 
     const outportNames &#x3D; cell.get(&#x27;outPorts&#x27;);
@@ -2151,8 +2295,10 @@ export class DescriptorService {
   //   return portDescriptors;
   // }
 
-
-  // initializes a valid YAML formatted NodeDescriptor.
+  /**
+   * Initializes a valid YAML formatted NodeDescriptor object.
+   * @param cell The Actual node&#x27;s cell.
+   */
   createNodeDescriptor(cell: joint.dia.Cell): NodeDescriptor {
     return {
       name: cell.attr(&#x27;.label/text&#x27;),

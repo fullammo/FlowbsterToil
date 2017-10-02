@@ -8,14 +8,28 @@ import { InputDescriptor } from 'app/editor/models/inputDescriptor';
 
 import * as jsyaml from 'js-yaml';
 
+
+/**
+ * A service to create a fully understandable YAML formatted description to Occopus.
+ * This service uses {@link JointService} to get the paper's model data to generate the YAML string.
+ */
 @Injectable()
 export class DescriptorService {
 
+  /**
+   * Holder of descriptor data.
+   */
   occopusDescriptor: OccopusDescriptor;
 
+  /**
+   * We inject the needed services and initialize a basic descriptor.
+   */
   constructor(private jointSVC: JointService) { this.occopusDescriptor = this.initOccopusDescriptor() }
 
-  // sets the workflowProperties and the occopus descriptors neccessary properties.
+  /**
+   * Sets the occopus descriptors neccessary properties.
+   * @param newWorkflow Workflow form data.
+   */
   updateDescriptorProperties(newWorkflow: Workflow) {
     this.occopusDescriptor.user_id = newWorkflow.userid;
     this.occopusDescriptor.infra_name = newWorkflow.infraname;
@@ -25,7 +39,9 @@ export class DescriptorService {
     this.occopusDescriptor.variables.flowbster_global.receiver_port = '&receiverport ' + newWorkflow.receiverport;
   }
 
-  // initialize a clean Occopus Descriptor.
+  /**
+   * Initialize a clean Occopus Descriptor.
+   */
   initOccopusDescriptor(): OccopusDescriptor {
     return {
       user_id: '',
@@ -41,7 +57,9 @@ export class DescriptorService {
     }
   }
 
-  // creates a YAML-formatted string from the actual papers graph as occopusDescriptor.
+  /**
+   * Creates a YAML-formatted string from the actual papers data model as occopusDescriptor.
+   */
   getYamlDescriptor(): string {
 
     if (this.jointSVC.workflow) {
@@ -56,6 +74,12 @@ export class DescriptorService {
 
     return null;
   }
+
+  /**
+   * Download the Yaml Description (could be placed in a utility service).
+   * @param fileName The name with the extension how the Descriptor is going to be saved.
+   * @param mimeType The given mimeType neccessary for the linking.
+   */
 
   // downloads the yaml descriptor (utilityService)
   downloadYamlDescriptor(fileName: string, mimeType: string): void {
@@ -76,13 +100,18 @@ export class DescriptorService {
 
   }
 
-  // sets the occo descriptors nodes and dependencies.
+  /**
+   * Updates the Occopus Descriptors nodes and dependencies.
+   */
   updateOccopusDescriptor() {
     this.occopusDescriptor.nodes = this.createDescriptorNodes();
     this.occopusDescriptor.dependencies = this.handleDependencies();
   }
 
-  // changes the names to be variables in proper yaml format and returns the valid YAML string.
+  /**
+   * Changes the names to be variables in proper yaml format.
+   * @returns The valid Yaml string represantation from the Occopus Descriptor.
+   */
   finalizeDescriptor(): string {
 
     const names = [];
@@ -105,8 +134,10 @@ export class DescriptorService {
     return doneYaml;
   }
 
-  // corrects the outputs by the given dependencies and creates an array from the node dependency chain.
-  // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
+  /**
+   * Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.
+   */
+   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array<string> {
     const dependencies = {};
     const dependencySet = new Set<string>();
@@ -130,6 +161,11 @@ export class DescriptorService {
   }
 
   // iterates over the sourceNodes and pairs them up with their targets.
+  /**
+   * Iterates over the sourceNodes and pairs them up with their targets.
+   * @param dependencies An object of every dependency sets.
+   * @param dependencySet Dependency pairs
+   */
   createFinalDependencies(dependencies: object, dependencySet: Set<string>): Array<string> {
     const finaldeps = new Array<string>();
     for (const sourceName of Array.from(dependencySet)) {
@@ -141,8 +177,9 @@ export class DescriptorService {
     return finaldeps;
   }
 
-  // delete displayName for those nodes which doesnt have a link
-  // and delete the targetIP targetPort if not specified
+  /**
+   * Deletes the display name for those nodes which doesnt have a link and also deletes the targetIP and targetPort if its not specified
+   */
   correctOutputsWithoutLink(): void {
     for (const node of this.occopusDescriptor.nodes) {
       for (const outport of node.variables.flowbster.app.out) {
@@ -157,8 +194,12 @@ export class DescriptorService {
     }
   }
 
-  // corrects the attributes of those outputs which have links attached to another node.
-  // HINT : this is not needed if we get a proper linking event. (too hard)
+  /**
+   * Corrects the attributes of those outputs which have links attached to another node.
+   * @param link The link to be investigated.
+   * @param sourceCellName The Source cells name.
+   * @param targetCellName The Target cells name.
+   */
   correctOutputTargetNode(link: joint.dia.Link, sourceCellName: string, targetCellName: string): void {
 
     const node: NodeDescriptor = this.occopusDescriptor.nodes.find(nodeEl => nodeEl.name === sourceCellName);
@@ -188,6 +229,10 @@ export class DescriptorService {
   }
 
   // gets every piece of the joint Nodes into a node description
+  /**
+   * Gets every cell which is not a link from the papers model into a collection of node Descriptors.
+   * @returns A collection of YAML formatted node descriptors.
+   */
   createDescriptorNodes(): NodeDescriptor[] {
     const cells: joint.dia.Cell[] = this.jointSVC.getCells();
     const nodeDescriptors: NodeDescriptor[] = [];
@@ -207,7 +252,12 @@ export class DescriptorService {
     return nodeDescriptors;
   }
 
-  // iterates through the parameter cells inputs and initializes an InputDescriptor Array.
+  /**
+   * Iterates through the parameter cells inputs and initializes an InputDescriptor Array.
+   * @param cell The actual Node's cell.
+   * @returns A collection of YAML formatted InputDescriptors
+   */
+    // HINT : COULD BE ERASED BY SPEFICING.
   createInputs(cell: joint.dia.Cell): InputDescriptor[] {
     const inportNames = cell.get('inPorts');
     const inportDescriptors: InputDescriptor[] = [];
@@ -226,7 +276,12 @@ export class DescriptorService {
     return inportDescriptors;
   }
 
-  // from the input name and the inputs properties initializes an InputDescriptor object.
+  /**
+   * From the input name and its properties initializes a YAML formatted InputDescriptor entity.
+   * @param inportName The name of the input port.
+   * @param inportProperties The properties of that input.
+   * @returns An Occopus capable formatted InputDescriptor
+   */
   createInput(inportName: string, inportProperties: any): InputDescriptor {
 
     const inport: InputDescriptor = { name: inportName };
@@ -244,6 +299,12 @@ export class DescriptorService {
   }
 
   // from the output name and the output properties initializes an Outputdescriptor object.
+  /**
+   * From the name and properties initializes a YAML formatted OutputDescriptor object.
+   * @param outportName The output port's name.
+   * @param outportProperties  The output port's properties.
+   * @returns An Occopus capable formatted OutputDescriptor
+   */
   createOutput(outportName: string, outportProperties: any): OutPutDescriptor {
 
     const actualProperties = outportProperties[outportName];
@@ -276,7 +337,11 @@ export class DescriptorService {
     }
   }
 
-  // iterates through the parameter cells outputs and initializes an OutPutDescriptor Array.
+  /**
+   * Iterates through the paramater cells outputs and formats and initializes an OutPutDescriptor Array.
+   * @param cell The actual Node's cell.
+   * @returns A collection of Occopus capable YAML formatted OutputDescriptors.
+   */
   createOutputs(cell: joint.dia.Cell): OutPutDescriptor[] {
 
     const outportNames = cell.get('outPorts');
@@ -325,8 +390,10 @@ export class DescriptorService {
   //   return portDescriptors;
   // }
 
-
-  // initializes a valid YAML formatted NodeDescriptor.
+  /**
+   * Initializes a valid YAML formatted NodeDescriptor object.
+   * @param cell The Actual node's cell.
+   */
   createNodeDescriptor(cell: joint.dia.Cell): NodeDescriptor {
     return {
       name: cell.attr('.label/text'),

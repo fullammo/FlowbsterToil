@@ -825,8 +825,23 @@
             <code>src/app/editor/shared/lower-case-text.directive.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A simple directive to change the forms ngModel input into lowercase characters</p>
+
+            </p>
 
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">&lt;input [(ngModel)]=&quot;inputProp&quot; [toilLowerCase]&gt;</code></pre>
+                        </div>
+            </div>
 
         <section>
             <h3>Metadata</h3>
@@ -878,24 +893,6 @@
                 </table>
             </section>
 
-            <section>
-                <h3 id="constructor">Constructor</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <code>constructor()</code>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/editor/shared/lower-case-text.directive.ts:13</a></div>
-                                        </td>
-                                    </tr>
-            
-                        </tbody>
-                    </table>
-            </section>
 
 
             <section>
@@ -908,13 +905,15 @@
                                     <code>ngModelChange</code>
                                 </td>
                                 <td class="col-md-10">
+                                    <div><p>Emits events whenever the ngModel property changes.</p>
+</div>
                                     <em><code>$event</code> type:</em>    <code>EventEmitter&lt;any&gt;</code>
 
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/editor/shared/lower-case-text.directive.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/editor/shared/lower-case-text.directive.ts:16</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -945,7 +944,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/editor/shared/lower-case-text.directive.ts:10</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/editor/shared/lower-case-text.directive.ts:22</a></div>
                                         </td>
                                     </tr>
             
@@ -961,20 +960,29 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Directive, HostListener, EventEmitter, Output } from &#x27;@angular/core&#x27;;
 
+/**
+ * A simple directive to change the forms ngModel input into lowercase characters
+ * @example
+ * &lt;input [(ngModel)]&#x3D;&quot;inputProp&quot; [toilLowerCase]&gt;
+ */
 @Directive({
   selector: &#x27;[ngModel][toilLowerCase]&#x27;
 })
 export class LowerCaseTextDirective {
 
+  /**
+   * Emits events whenever the ngModel property changes.
+   */
   @Output() ngModelChange: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
 
+  /**
+   * Whenever a KeyBoard Event happens its going to set it to lowercase and emits the value.
+   * @param event An event about the user keyboard usage.
+   */
   @HostListener(&#x27;input&#x27;, [&#x27;$event&#x27;]) onInput(event: KeyboardEvent) {
     const input &#x3D; event.target as HTMLInputElement;
     this.ngModelChange.emit(input.value.toLowerCase());
   }
-
-  constructor() { }
-
 }
 </code></pre>
     </div>

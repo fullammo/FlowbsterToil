@@ -19,9 +19,9 @@ export class UserService implements UserApi {
   }
 
   signOut(): Observable<any> {
-      this.isAuthenticated = false;
-      this.router.navigate(['/signin']);
-      return Observable.of({});
+    this.isAuthenticated = false;
+    this.router.navigate(['/signin']);
+    return Observable.of({});
   }
 
 }

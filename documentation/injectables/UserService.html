@@ -1090,12 +1090,13 @@ export class UserService implements UserApi {
   }
 
   signOut(): Observable&lt;any&gt; {
-      this.isAuthenticated &#x3D; false;
-      this.router.navigate([&#x27;/signin&#x27;]);
-      return Observable.of({});
+    this.isAuthenticated &#x3D; false;
+    this.router.navigate([&#x27;/signin&#x27;]);
+    return Observable.of({});
   }
 
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

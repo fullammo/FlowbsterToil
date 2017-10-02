@@ -1,5 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * A basic pipe to transform enumerable entities to their keys.
+ * @example
+ *  // use an enumerable entity and use its value.
+ * <p>{{DistributionType | keys}}</p>
+ */
 @Pipe({
   name: 'keys'
 })
