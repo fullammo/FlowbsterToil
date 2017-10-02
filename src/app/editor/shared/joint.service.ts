@@ -17,25 +17,65 @@ import * as _ from 'lodash';
 @Injectable()
 export class JointService {
 
+  /**
+   * The actual CellView that has been selected on the paper.
+   */
   selectedCellView: joint.dia.CellView;
+
+  /**
+   * The actual Port Name that has been selected on the paper.
+   */
   selectedPortName: string;
+
+  /**
+   * The actual ports type that has been selected on the paper.
+   */
   selectedPortType: string;
 
+  /**
+   * Holder of the actual workflows main properties.
+   */
   workflow: Workflow;
+
+  /**
+   * The Papers data model.
+   */
   graph = new joint.dia.Graph;
+
+  /**
+   * The paper object that has been associated with the given HTML element.
+   */
   paper: joint.dia.Paper;
 
+  /**
+   * Holder of the x and y coordinates where the user clicked on a blank paper.
+   */
   actualNodePlacement: { x: number, y: number };
-  actualNode: FlowbsterNode
-  actualNodeRect: joint.shapes.devs.Model;
 
+  /**
+   * The actual node that has been selected to modify. Useful for input data changes.
+   */
+  actualNode: FlowbsterNode
+
+  /**
+   * The actual port that has been selected to modify. Useful for input data changes.
+   */
   actualPort: InputPort | OutputPort;
 
+  /**
+   * An Observable datasource for watching if we are clicking on the blank paper or on an actual Node.
+   */
   isExistingNodeSubject: Subject<boolean>;
-  workflowChange: Subject<void>;
-  isWorkflowInitialized: Subject<boolean>
 
-  self = this;
+  /**
+   * An Observable datasource for watching, if there are any changes made to the workflows main properties.
+   */
+  workflowChange: Subject<void>;
+
+  /**
+   * An Observable datasource for watching, if the workflow have been initialized yet.
+   */
+  isWorkflowInitialized: Subject<boolean>
 
   // BONUS:  message events from proper linking and port creations and updates, and even nodes.
   // BONUS: on cancellation we reset the form again. a confirmation dialog.
@@ -71,13 +111,13 @@ export class JointService {
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
 
   // TODO: We need to have Id's for such operations on in/out , to change their name as well.
-  // TODO: Get the site ready with firebase backend.
   // TODO: Mulitple linking support and convert it to yaml.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
-  // TODO: Testing
 
-  // neccessary to initialize these actual elements before any association happens
+  /**
+   * Neccesarily initialize nodes,outports and workflow before any associaton happens.
+   */
   constructor() {
     this.actualNode = this.initNode();
     this.actualPort = this.initPort('out');
@@ -88,6 +128,11 @@ export class JointService {
   }
 
   // returns an observable with the information of the updated node
+  /**
+   * Validates the given node name against every node (even its last name) and the workflows name property.
+   * @param nodeName the Node's name you want to filter on.
+   * @returns an Observable with the information if the updateble Node's name is unique.
+   */
   isUpdateNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
     return new Observable(observer => {
       console.log('validate against updated nodes and workflowName');
@@ -106,11 +151,20 @@ export class JointService {
     });
   }
 
+  /**
+   * Decides wether it is a used workflow name.
+   * @param name The questionable name
+   * @returns A boolean value if it is taken or not-
+   */
   private isWorkflowName(name: string): boolean {
     return this.graph.get('wf_name') === name;
   }
 
-  // returns an observable with the information if the nodeName is unique
+  /**
+   * Validate the given node against every other node and the workflow.
+   * @param nodeName The node's name you want to filter on
+   * @returns an Observable with the information about the nodeNames uniqueness
+   */
   isNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
 
     return new Observable(observer => {
@@ -124,7 +178,11 @@ export class JointService {
     });
   }
 
-  //
+  /**
+   * Validates the proposed workflow Name against the nodes.
+   * @param workflowName The workflow's name you want to filter on
+   * @returns an Observable with the information if the workflowname is unique.
+   */
   isWorkflowNameUniqueObservable(workflowName: string): Observable<boolean> {
     return new Observable(observer => {
       console.log('validate against nodes');
@@ -137,19 +195,33 @@ export class JointService {
     });
   }
 
+  /**
+   * Clear the data model.
+   */
   clearGraph(): void {
     this.graph.clear();
   }
 
+  /**
+   * Gets every element from the data model.
+   * @returns A collection of the node's name.
+   */
   getNodeNames(): string[] {
     console.log(this.graph.getElements().map(element => element.attr('.label/text')));
     return this.graph.getElements().map(element => element.attr('.label/text'));
   }
 
+  /**
+   * Resets the workflow property with a pristine one.
+   */
   reinitializeWorkflow() {
     this.workflow = this.initWorkflow();
   }
 
+  /**
+   * Creates a pristine workflow.
+   * @returns a clean Workflow object
+   */
   initWorkflow(): Workflow {
     return {
       infraid: null,
@@ -161,7 +233,11 @@ export class JointService {
     };
   }
 
-  // associates the workflow properties to the graph.
+  /**
+   * Associates the new workflows properties to the papers data model.
+   * Emits information that the initialization happened and the workflow has changed.
+   * @param newWorkflow Workflow modal input data.
+   */
   updateWorkflowProperties(newWorkflow: Workflow) {
     this.workflow = newWorkflow;
     this.graph.set('infra_id', newWorkflow.infraid);
@@ -175,6 +251,11 @@ export class JointService {
   }
 
   // creates a link and attaches it to the DOM and downloads graph json content, after that immidietaly removes it from the DOM
+  /**
+   * Creates a link and attaches it to the DOM and downloads the data model's json content, and it when it is done, removes it form the DOM
+   * @param fileName demanded file name with the extension to be downloaded
+   * @param mimeType the given mimeType for the header
+   */
   downloadGraph(fileName: string, mimeType: string): void {
     if (this.graph) {
 
@@ -192,9 +273,12 @@ export class JointService {
     } else {
       console.log('Graph is not present');
     }
-
   }
 
+  /**
+   * Gets the workflow attributes as an object from the paper data model.
+   * @returns A fully set workflow object
+   */
   private getWorkflowAttributes(): Workflow {
     return {
       infraid: this.graph.get('infra_id'),
@@ -206,7 +290,9 @@ export class JointService {
     };
   }
 
-  // unhighlights the actual element to return a proper formatted graphJson and then highlights it again.
+  /**
+   * Unhighlights the actual element to return a proper formatted Data Model JSON and then highlights the selected element again
+   */
   private getDownloadableGraph(): string {
     let downloadableGraph = this.graph.toJSON();
 
@@ -219,16 +305,29 @@ export class JointService {
     return downloadableGraph;
   }
 
+  /**
+   * Sets the CellViews borders width to 1px and color to black.
+   * @param cellView selected CellView thats going to be unhighlighted.
+   */
   private unhighlightCellView(cellView: joint.dia.CellView): void {
     cellView.model.attr('rect/stroke', 'black');
     cellView.model.attr('rect/stroke-width', '1px');
   }
 
+  /**
+   * Sets the CellViews borders width to 5px and color to red.
+   * @param cellView selected CellView thats going to be highlighted.
+   */
   private highlightCellView(cellView: joint.dia.CellView): void {
     cellView.model.attr('rect/stroke', 'red');
     cellView.model.attr('rect/stroke-width', '5px');
   }
 
+  /**
+   * Gets the data model in JSON format and converts it to a string. If there is a selected Cell it is going to be unhighlighted before the
+   * conversion happens.
+   * @returns data Model's JSON in string format.
+   */
   getGraphJSON(): string {
     let graphJSON = JSON.stringify(this.graph.toJSON());
 
@@ -241,17 +340,30 @@ export class JointService {
     return graphJSON;
   }
 
-  // return the graphs cells.
+  /**
+   * Gets the data modell's cells.
+   * @returns A Collection of the graphs cells.
+   */
   getCells(): joint.dia.Cell[] {
     return this.graph.getCells();
   }
 
-  // reutrns the associated links to the graph.
+  /**
+   * Gets the associated Links from the paper
+   * @returns A collection of the graphs links.
+   */
   getLinks(): joint.dia.Link[] {
     return this.graph.getLinks();
   }
 
   // initializes a graph from a given JSON formatted Graph.
+  /**
+   * Sets the data modell and the workflow object properties from a JSON formatted data modell.
+   * Because we get an extra warning of graph change with the upload which is not neccessary.
+   * We are turning the eventListening on these changes off before actually updating the graph,
+   * and then listen on it again.
+   * @param graphJson Data Model JSON in string format.
+   */
   uploadGraph(graphJson: string): void {
     this.stopListeningOnGraphChange(); // when you upload you are getting an extra warning.
     this.graph.fromJSON(graphJson);
@@ -259,7 +371,10 @@ export class JointService {
     this.workflow = this.getWorkflowAttributes();
   }
 
-  // sets the scaling of the paper by the given level.
+  /**
+   * Sets the scaling of the paper by the given level.
+   * @param newLevel The level of the rescale on the paper.
+   */
   reScalePaper(newLevel: number): void {
     if (this.paper) {
       const newScale = newLevel / 100;
@@ -267,7 +382,11 @@ export class JointService {
     }
   }
 
-  // create a new flowbster node with unique name on the paper. Informs the user if it was done.
+  /**
+   * Create a new flowbster node with unique name on the paper. Informs the user if it was done.
+   * @param flowbsterNode Node input form data.
+   * @returns an indicator about its success.
+   */
   createNode(flowbsterNode: FlowbsterNode): boolean {
 
     const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
@@ -283,6 +402,10 @@ export class JointService {
   }
 
   // WARNING: here we violate our rule for duplicate nodeName
+  /**
+   *
+   * @param flowbsterNode Node input form data.
+   */
   cloneNode(flowbsterNode: FlowbsterNode): boolean {
 
     this.unhighlightCellView(this.selectedCellView);
