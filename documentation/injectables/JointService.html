@@ -91,10 +91,10 @@
                                     <a href="../components/AppComponent.html" >AppComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                    <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -137,9 +137,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -480,10 +477,10 @@
                                            <a href="../components/AppComponent.html" >AppComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                           <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -526,9 +523,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -825,6 +819,13 @@
             <code>src/app/editor/shared/joint.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Main Service that holds operations regarding the JointJS library.</p>
+
+            </p>
 
 
             <section>
@@ -1054,7 +1055,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/editor/shared/joint.service.ts:78</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/editor/shared/joint.service.ts:81</a></div>
                                         </td>
                                     </tr>
             
@@ -1084,12 +1085,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/app/editor/shared/joint.service.ts:510</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="543" class="link-to-prism">src/app/editor/shared/joint.service.ts:543</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If there is a selected Node, it creates a new port with the given type and initializes its attributes on the cellview&#39;s model,
+            otherwise its gonna log a message to the console.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1110,7 +1114,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The property holder objects property type for the given port.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1145,7 +1150,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/app/editor/shared/joint.service.ts:201</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/editor/shared/joint.service.ts:204</a></div>
                                         </td>
                                     </tr>
             
@@ -1179,12 +1184,16 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="405" class="link-to-prism">src/app/editor/shared/joint.service.ts:405</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="413" class="link-to-prism">src/app/editor/shared/joint.service.ts:413</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Unhighlights the selected Cell, checks if it is really a node and makes a copy of it in a translated location.
+            The actual cell gets highlighted again, and it notifies subscribers about the changes made to the model.
+            WARNING: here we violate our rule for duplicate nodeName</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1205,7 +1214,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Node input form data.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1217,7 +1227,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>Indicator about completion.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1240,7 +1251,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="390" class="link-to-prism">src/app/editor/shared/joint.service.ts:390</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="392" class="link-to-prism">src/app/editor/shared/joint.service.ts:392</a></div>
                                         </td>
                                     </tr>
             
@@ -1305,12 +1316,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="444" class="link-to-prism">src/app/editor/shared/joint.service.ts:444</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="459" class="link-to-prism">src/app/editor/shared/joint.service.ts:459</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If there is a node selected, it is going to be removed and it notifies subscribers about the change to the model.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1337,12 +1350,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="541" class="link-to-prism">src/app/editor/shared/joint.service.ts:541</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="581" class="link-to-prism">src/app/editor/shared/joint.service.ts:581</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If there is a node and a port selected, its going to delete it and notifies the subscribers about the changes made to the model,
+            Otherwise its gonna log a message to the console.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1369,7 +1385,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/app/editor/shared/joint.service.ts:259</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/app/editor/shared/joint.service.ts:261</a></div>
                                         </td>
                                     </tr>
             
@@ -1444,12 +1460,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="536" class="link-to-prism">src/app/editor/shared/joint.service.ts:536</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="572" class="link-to-prism">src/app/editor/shared/joint.service.ts:572</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Notifies subscriber&#39;s about changes made to the workflow.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1476,7 +1494,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/app/editor/shared/joint.service.ts:347</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="349" class="link-to-prism">src/app/editor/shared/joint.service.ts:349</a></div>
                                         </td>
                                     </tr>
             
@@ -1517,7 +1535,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/app/editor/shared/joint.service.ts:296</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/app/editor/shared/joint.service.ts:298</a></div>
                                         </td>
                                     </tr>
             
@@ -1551,12 +1569,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="653" class="link-to-prism">src/app/editor/shared/joint.service.ts:653</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="721" class="link-to-prism">src/app/editor/shared/joint.service.ts:721</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Checks if the given name is in the list of the data models Elements and returns it if it is present.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1577,7 +1597,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The name to search for in the list of nodes.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1605,7 +1626,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="331" class="link-to-prism">src/app/editor/shared/joint.service.ts:331</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="333" class="link-to-prism">src/app/editor/shared/joint.service.ts:333</a></div>
                                         </td>
                                     </tr>
             
@@ -1646,7 +1667,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">src/app/editor/shared/joint.service.ts:355</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="357" class="link-to-prism">src/app/editor/shared/joint.service.ts:357</a></div>
                                         </td>
                                     </tr>
             
@@ -1686,7 +1707,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/app/editor/shared/joint.service.ts:209</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/app/editor/shared/joint.service.ts:212</a></div>
                                         </td>
                                     </tr>
             
@@ -1727,12 +1748,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="851" class="link-to-prism">src/app/editor/shared/joint.service.ts:851</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="988" class="link-to-prism">src/app/editor/shared/joint.service.ts:988</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Gets data from the selected Cell&#39;s model by the attribute&#39;s name.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1753,7 +1776,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The attribute name you want to get from the data model.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>isScale</td>
@@ -1762,7 +1786,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator about that it is a scaling property.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1774,7 +1799,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>The value of the property.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1798,7 +1824,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/app/editor/shared/joint.service.ts:282</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/app/editor/shared/joint.service.ts:284</a></div>
                                         </td>
                                     </tr>
             
@@ -1839,12 +1865,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="480" class="link-to-prism">src/app/editor/shared/joint.service.ts:480</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="509" class="link-to-prism">src/app/editor/shared/joint.service.ts:509</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Creates a new entry in our Property holder object and deletes the old one. triggers the visual represantation(paper).</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1865,7 +1893,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The used port name.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>newName</td>
@@ -1874,7 +1903,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The wanted port name.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>portProps</td>
@@ -1883,7 +1913,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The actual port&#39;s properties.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>isInput</td>
@@ -1892,7 +1923,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator wether its an In or Out port.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1904,7 +1936,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>The updated property holder object.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1928,7 +1961,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/app/editor/shared/joint.service.ts:321</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/app/editor/shared/joint.service.ts:323</a></div>
                                         </td>
                                     </tr>
             
@@ -1992,17 +2025,25 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="782" class="link-to-prism">src/app/editor/shared/joint.service.ts:782</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="892" class="link-to-prism">src/app/editor/shared/joint.service.ts:892</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes a clean input port.</p>
+            </div>
             
+                                        <div>
+                                        </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="../interfaces/InputPort.html" target="_self" >InputPort</a></code>
             
                                         </div>
+                                            <div class="io-description">
+                                                <p>A pristine InputPort object.</p>
+            
+                                            </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -2025,17 +2066,25 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="556" class="link-to-prism">src/app/editor/shared/joint.service.ts:556</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="599" class="link-to-prism">src/app/editor/shared/joint.service.ts:599</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes a clean <a href="../interfaces/FlowbsterNode.html">FlowbsterNode</a>.</p>
+            </div>
             
+                                        <div>
+                                        </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="../interfaces/FlowbsterNode.html" target="_self" >FlowbsterNode</a></code>
             
                                         </div>
+                                            <div class="io-description">
+                                                <p>A pristine FlowbsterNode object.</p>
+            
+                                            </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -2057,12 +2106,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="568" class="link-to-prism">src/app/editor/shared/joint.service.ts:568</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="618" class="link-to-prism">src/app/editor/shared/joint.service.ts:618</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes a rect on the paper from the flowbsterNode&#39;s attributes and position,
+            while setting the rects size, the label and rects color.Also define the rect&#39;s inputs and outputs colors,magnitude and filling color.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2083,7 +2135,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Node input form data</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>x</td>
@@ -2092,7 +2145,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>X axis coordinate</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>y</td>
@@ -2101,7 +2155,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Y axis coordinate</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2130,17 +2185,25 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="791" class="link-to-prism">src/app/editor/shared/joint.service.ts:791</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="904" class="link-to-prism">src/app/editor/shared/joint.service.ts:904</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes a clean output port.</p>
+            </div>
             
+                                        <div>
+                                        </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="../interfaces/OutputPort.html" target="_self" >OutputPort</a></code>
             
                                         </div>
+                                            <div class="io-description">
+                                                <p>A pristine OutputPort object.</p>
+            
+                                            </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -2162,12 +2225,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="608" class="link-to-prism">src/app/editor/shared/joint.service.ts:608</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="662" class="link-to-prism">src/app/editor/shared/joint.service.ts:662</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>From the given DOM element we initialize the papers default attributes.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2188,7 +2253,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>the JQuery element we can bind our Paper class to.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>readOnly</td>
@@ -2197,7 +2263,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator wether you can interact with the paper.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2233,12 +2300,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="846" class="link-to-prism">src/app/editor/shared/joint.service.ts:846</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="978" class="link-to-prism">src/app/editor/shared/joint.service.ts:978</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Sets the actual Node&#39;s location on the paper.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2259,7 +2328,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>X axis coordinate</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>y</td>
@@ -2268,7 +2338,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Y axis coordinate</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2304,12 +2375,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="772" class="link-to-prism">src/app/editor/shared/joint.service.ts:772</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="879" class="link-to-prism">src/app/editor/shared/joint.service.ts:879</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes a fresh port by the given type.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2330,7 +2403,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Type of the port.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2342,7 +2416,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>a pristine In or Out port.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -2365,7 +2440,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/app/editor/shared/joint.service.ts:225</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/editor/shared/joint.service.ts:228</a></div>
                                         </td>
                                     </tr>
             
@@ -2406,12 +2481,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="641" class="link-to-prism">src/app/editor/shared/joint.service.ts:641</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="704" class="link-to-prism">src/app/editor/shared/joint.service.ts:704</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Checks wether the actual link is unique and validates if it goes from an input to an output.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2431,7 +2508,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Source Cell View.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>magnetS</td>
@@ -2439,7 +2517,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Source Magnet.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>cellViewT</td>
@@ -2447,7 +2526,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Target Cell View.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>magnetT</td>
@@ -2455,7 +2535,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Target Magnet.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>end</td>
@@ -2463,7 +2544,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>idk.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>linkView</td>
@@ -2471,7 +2553,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>idk.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2483,7 +2566,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>Indicator wether if it&#39;s a valid connection.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -2506,12 +2590,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="767" class="link-to-prism">src/app/editor/shared/joint.service.ts:767</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="870" class="link-to-prism">src/app/editor/shared/joint.service.ts:870</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Checks if your object holds any attributes.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2532,7 +2618,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Any object.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2544,7 +2631,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>An Indicator about its emptiness.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -2567,7 +2655,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/app/editor/shared/joint.service.ts:168</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/editor/shared/joint.service.ts:171</a></div>
                                         </td>
                                     </tr>
             
@@ -2632,7 +2720,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/editor/shared/joint.service.ts:136</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/editor/shared/joint.service.ts:139</a></div>
                                         </td>
                                     </tr>
             
@@ -2698,7 +2786,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/editor/shared/joint.service.ts:159</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/editor/shared/joint.service.ts:162</a></div>
                                         </td>
                                     </tr>
             
@@ -2763,7 +2851,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/app/editor/shared/joint.service.ts:186</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/app/editor/shared/joint.service.ts:189</a></div>
                                         </td>
                                     </tr>
             
@@ -2828,12 +2916,16 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="678" class="link-to-prism">src/app/editor/shared/joint.service.ts:678</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="756" class="link-to-prism">src/app/editor/shared/joint.service.ts:756</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on the blank click event. Whenever it is happening we want to store the X,Y axis coordinates,
+            Trigger the caller&#39;s attribute, notify subscribers that it isnt an existing Node at the moment,
+            and set the modifiable node property to a clean representation.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2854,7 +2946,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>A class or function who listens on this event.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>modalTriggerAttribute</td>
@@ -2863,7 +2956,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The listeners attribute&#39;s name, that is going to be set to true.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2898,12 +2992,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="805" class="link-to-prism">src/app/editor/shared/joint.service.ts:805</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="921" class="link-to-prism">src/app/editor/shared/joint.service.ts:921</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on the papers click events of the cells. Whenever it fires the actual clicked Cell is going to be selected.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2924,7 +3020,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator about the papers inactivity.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -2959,12 +3056,16 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="813" class="link-to-prism">src/app/editor/shared/joint.service.ts:813</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="936" class="link-to-prism">src/app/editor/shared/joint.service.ts:936</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on the double click events on the cells. Whenever it fires updates the modifiable node&#39;s properties to the
+            double clicked nodes properties,
+            triggers the modal for editing, and notifies subscribers about that it is an Existing Node that we are looking at.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -2985,7 +3086,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The class or function that is listening to this event.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>modalTriggerAttribute</td>
@@ -2994,7 +3096,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The class&#39;s attribute name that is going to be triggered.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3029,12 +3132,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="690" class="link-to-prism">src/app/editor/shared/joint.service.ts:690</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="772" class="link-to-prism">src/app/editor/shared/joint.service.ts:772</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on the data models changes.
+            Whenever it happens it is going to notify the subscribers about that the workflow have been changed.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -3054,19 +3160,21 @@
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-            <code>listenOnPointerUp(listener: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, inputAttributeName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, outputAttributeName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, readOnly: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+            <code>listenOnPointerUp(listener: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, inputTriggerAttributeName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, outputTriggerAttributeName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, readOnly: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                                 </td>
                             </tr>
             
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="706" class="link-to-prism">src/app/editor/shared/joint.service.ts:706</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="795" class="link-to-prism">src/app/editor/shared/joint.service.ts:795</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on the pointer up event and triggers the proper modal based on input/output ports.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -3087,25 +3195,28 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>A class or function who listens on this event.</p>
+            </td>
                                                             </tr>
                                                             <tr>
-                                                              <td>inputAttributeName</td>
+                                                              <td>inputTriggerAttributeName</td>
                                                               <td>
                                                                       <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The property&#39;s name on the listener that is going to be triggered if it is an input.</p>
+            </td>
                                                             </tr>
                                                             <tr>
-                                                              <td>outputAttributeName</td>
+                                                              <td>outputTriggerAttributeName</td>
                                                               <td>
                                                                       <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The property&#39;s name on the listener that is going to be triggered if it is an output.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>readOnly</td>
@@ -3114,7 +3225,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator about the papers interactivity.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3149,12 +3261,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="670" class="link-to-prism">src/app/editor/shared/joint.service.ts:670</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="743" class="link-to-prism">src/app/editor/shared/joint.service.ts:743</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on all events happening to the data model.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -3181,12 +3295,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="664" class="link-to-prism">src/app/editor/shared/joint.service.ts:664</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="734" class="link-to-prism">src/app/editor/shared/joint.service.ts:734</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Ensures we are listening on all events happening on the paper.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -3213,7 +3329,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/editor/shared/joint.service.ts:217</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/app/editor/shared/joint.service.ts:220</a></div>
                                         </td>
                                     </tr>
             
@@ -3247,7 +3363,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/app/editor/shared/joint.service.ts:378</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/app/editor/shared/joint.service.ts:380</a></div>
                                         </td>
                                     </tr>
             
@@ -3312,12 +3428,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="831" class="link-to-prism">src/app/editor/shared/joint.service.ts:831</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="959" class="link-to-prism">src/app/editor/shared/joint.service.ts:959</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If there is a new Cell selected then its going to highlight the new one and unhighlight the previous one.
+            If the paper is read only, then its not getting highlighted at all.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -3337,7 +3456,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The Cell View we want to select.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>readOnly</td>
@@ -3346,7 +3466,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator about the interactivity.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3381,12 +3502,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="736" class="link-to-prism">src/app/editor/shared/joint.service.ts:736</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="829" class="link-to-prism">src/app/editor/shared/joint.service.ts:829</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Gets the attributes from the Cell View&#39;s model and sets the modifiable port&#39;s properties based on I/O</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -3406,7 +3529,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The selected Cell View.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>attributeName</td>
@@ -3415,7 +3539,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The holder object attributes name you want to use.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3450,12 +3575,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="756" class="link-to-prism">src/app/editor/shared/joint.service.ts:756</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="854" class="link-to-prism">src/app/editor/shared/joint.service.ts:854</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Sets the port attributes by the given attributeName (in and output model difers because of events)</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -3475,7 +3602,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The selected Cell View.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>attributeName</td>
@@ -3484,7 +3612,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The holder object attributes name you want to use.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3519,12 +3648,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="699" class="link-to-prism">src/app/editor/shared/joint.service.ts:699</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="784" class="link-to-prism">src/app/editor/shared/joint.service.ts:784</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Turns off the listening on the data models changes.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -3552,7 +3683,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/app/editor/shared/joint.service.ts:312</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="314" class="link-to-prism">src/app/editor/shared/joint.service.ts:314</a></div>
                                         </td>
                                     </tr>
             
@@ -3615,12 +3746,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/app/editor/shared/joint.service.ts:425</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="438" class="link-to-prism">src/app/editor/shared/joint.service.ts:438</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Updates the selected Node&#39;s data model with the new values and notifies subscribers about the change to the model.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -3641,7 +3774,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Node input form data.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3653,7 +3787,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>Indicator about completion.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -3676,12 +3811,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="455" class="link-to-prism">src/app/editor/shared/joint.service.ts:455</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="476" class="link-to-prism">src/app/editor/shared/joint.service.ts:476</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Updates the attributes of the selected port, taking into consideration an actual name change
+            and notifies subscribers about changes made to the model.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -3702,7 +3840,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The Actual Ports properties.</p>
+            </td>
                                                             </tr>
                                                             <tr>
                                                               <td>isInput</td>
@@ -3711,7 +3850,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Indicator wether its an In or Out port.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -3723,7 +3863,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>Indicator about completion.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -3746,7 +3887,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/app/editor/shared/joint.service.ts:241</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/app/editor/shared/joint.service.ts:244</a></div>
                                         </td>
                                     </tr>
             
@@ -3811,7 +3952,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="367" class="link-to-prism">src/app/editor/shared/joint.service.ts:367</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="369" class="link-to-prism">src/app/editor/shared/joint.service.ts:369</a></div>
                                         </td>
                                     </tr>
             
@@ -3890,7 +4031,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/editor/shared/joint.service.ts:58</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/editor/shared/joint.service.ts:61</a></div>
                                         </td>
                                     </tr>
             
@@ -3925,7 +4066,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/editor/shared/joint.service.ts:53</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/editor/shared/joint.service.ts:56</a></div>
                                         </td>
                                     </tr>
             
@@ -3960,7 +4101,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/editor/shared/joint.service.ts:63</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/editor/shared/joint.service.ts:66</a></div>
                                         </td>
                                     </tr>
             
@@ -3989,7 +4130,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/editor/shared/joint.service.ts:43</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/editor/shared/joint.service.ts:46</a></div>
                                         </td>
                                     </tr>
             
@@ -4024,7 +4165,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/editor/shared/joint.service.ts:68</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/editor/shared/joint.service.ts:71</a></div>
                                         </td>
                                     </tr>
             
@@ -4059,7 +4200,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/editor/shared/joint.service.ts:78</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/editor/shared/joint.service.ts:81</a></div>
                                         </td>
                                     </tr>
             
@@ -4088,7 +4229,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/editor/shared/joint.service.ts:48</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/editor/shared/joint.service.ts:51</a></div>
                                         </td>
                                     </tr>
             
@@ -4117,7 +4258,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/editor/shared/joint.service.ts:23</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/editor/shared/joint.service.ts:26</a></div>
                                         </td>
                                     </tr>
             
@@ -4152,7 +4293,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/editor/shared/joint.service.ts:28</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/editor/shared/joint.service.ts:31</a></div>
                                         </td>
                                     </tr>
             
@@ -4187,7 +4328,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/editor/shared/joint.service.ts:33</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/editor/shared/joint.service.ts:36</a></div>
                                         </td>
                                     </tr>
             
@@ -4222,7 +4363,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/editor/shared/joint.service.ts:38</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/editor/shared/joint.service.ts:41</a></div>
                                         </td>
                                     </tr>
             
@@ -4257,7 +4398,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/editor/shared/joint.service.ts:73</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/editor/shared/joint.service.ts:76</a></div>
                                         </td>
                                     </tr>
             
@@ -4290,6 +4431,9 @@ import &#x27;app/editor/models/customArrayFeatures&#x27;;
 import * as joint from &#x27;jointjs&#x27;;
 import * as _ from &#x27;lodash&#x27;;
 
+/**
+ * Main Service that holds operations regarding the JointJS library.
+ */
 @Injectable()
 export class JointService {
 
@@ -4526,7 +4670,6 @@ export class JointService {
     this.emitWorkflowChange();
   }
 
-  // creates a link and attaches it to the DOM and downloads graph json content, after that immidietaly removes it from the DOM
   /**
    * Creates a link and attaches it to the DOM and downloads the data model&#x27;s json content, and it when it is done, removes it form the DOM
    * @param fileName demanded file name with the extension to be downloaded
@@ -4677,7 +4820,13 @@ export class JointService {
     return false;
   }
 
-  // WARNING: here we violate our rule for duplicate nodeName
+  /**
+   * Unhighlights the selected Cell, checks if it is really a node and makes a copy of it in a translated location.
+   * The actual cell gets highlighted again, and it notifies subscribers about the changes made to the model.
+   * WARNING: here we violate our rule for duplicate nodeName
+   * @param flowbsterNode Node input form data.
+   * @returns Indicator about completion.
+   */
   cloneNode(flowbsterNode: FlowbsterNode): boolean {
 
     this.unhighlightCellView(this.selectedCellView);
@@ -4698,6 +4847,11 @@ export class JointService {
   }
 
   // updates the selectedNodes model.
+  /**
+   * Updates the selected Node&#x27;s data model with the new values and notifies subscribers about the change to the model.
+   * @param flowbsterNode Node input form data.
+   * @returns Indicator about completion.
+   */
   updateNode(flowbsterNode: FlowbsterNode): boolean {
 
     // const existingNodeElement: joint.dia.Element &#x3D; this.getFlowbsterNodeElement(flowbsterNode.name);
@@ -4716,7 +4870,9 @@ export class JointService {
     // return false;
   }
 
-  // if there is a selected Node then its going to be removed.
+  /**
+   * If there is a node selected, it is going to be removed and it notifies subscribers about the change to the model.
+   */
   deleteNode(): void {
     if (this.selectedCellView) {
       this.selectedCellView.model.remove();
@@ -4727,7 +4883,13 @@ export class JointService {
     }
   }
 
-  // updates the attributes of the selected port. sets the model and triggers the visual appearance
+  /**
+   * Updates the attributes of the selected port, taking into consideration an actual name change
+   * and notifies subscribers about changes made to the model.
+   * @param portAttributes The Actual Ports properties.
+   * @param isInput Indicator wether its an In or Out port.
+   * @returns Indicator about completion.
+   */
   updatePort(portAttributes: InputPort | OutputPort, isInput: boolean): boolean {
 
     const oldName &#x3D; this.selectedPortName;
@@ -4753,6 +4915,14 @@ export class JointService {
 
 
   // creates a new entry in our Property holder object and deletes the old one. triggers the visual representation.
+  /**
+   * Creates a new entry in our Property holder object and deletes the old one. triggers the visual represantation(paper).
+   * @param oldName The used port name.
+   * @param newName The wanted port name.
+   * @param portProps The actual port&#x27;s properties.
+   * @param isInput Indicator wether its an In or Out port.
+   * @returns The updated property holder object.
+   */
   private handlePortNameChange(oldName: string, newName: string, portProps: InputPort[] | OutputPort[], isInput: boolean)
     : InputPort[] | OutputPort[] {
     const portType &#x3D; isInput ? &#x27;inPorts&#x27; : &#x27;outPorts&#x27;;
@@ -4782,7 +4952,11 @@ export class JointService {
     return portProps;
   }
 
-  // Creates a new port with the given type and initializes its attributes on the cellview model.
+  /**
+   * If there is a selected Node, it creates a new port with the given type and initializes its attributes on the cellview&#x27;s model,
+   * otherwise its gonna log a message to the console.
+   * @param type The property holder objects property type for the given port.
+   */
   addPort(type: string): void {
     if (this.selectedCellView) {
 
@@ -4809,11 +4983,18 @@ export class JointService {
     }
   }
 
+  /**
+   * Notifies subscriber&#x27;s about changes made to the workflow.
+   */
   private emitWorkflowChange(): void {
     this.workflowChange.next();
   }
 
   // deletes the selected port.
+  /**
+   * If there is a node and a port selected, its going to delete it and notifies the subscribers about the changes made to the model,
+   * Otherwise its gonna log a message to the console.
+   */
   deletePort(): void {
     if (this.selectedCellView &amp;&amp; this.selectedPortType) {
       const portType &#x3D; (this.selectedPortType &#x3D;&#x3D;&#x3D; &#x27;out&#x27; ? &#x27;outPorts&#x27; : &#x27;inPorts&#x27;);
@@ -4828,7 +5009,10 @@ export class JointService {
 
   }
 
-  // initializes a flowbsterNode from the start
+  /**
+   * Initializes a clean {@link FlowbsterNode}.
+   * @returns A pristine FlowbsterNode object.
+   */
   private initNode(): FlowbsterNode {
     return {
       args: &#x27;&#x27;,
@@ -4840,7 +5024,14 @@ export class JointService {
     }
   }
 
-  // initializes the rect on the paper from the flowbsternode attributes and the positions.
+  /**
+   * Initializes a rect on the paper from the flowbsterNode&#x27;s attributes and position,
+   * while setting the rects size, the label and rects color.Also define the rect&#x27;s inputs and outputs colors,magnitude and filling color.
+   * @param flowbsterNode Node input form data
+   * @param x X axis coordinate
+   * @param y Y axis coordinate
+   * @returns a data model for a Flowbster Node to be used within the paper.
+   */
   initNodeModel(flowbsterNode: FlowbsterNode, x: number, y: number): joint.shapes.devs.Model {
     return new joint.shapes.devs.Model({
       position: { x, y },
@@ -4880,7 +5071,11 @@ export class JointService {
     });
   }
 
-  // from the given DOM element we initialize the papers default attributes.
+  /**
+   * From the given DOM element we initialize the papers default attributes.
+   * @param domElement the JQuery element we can bind our Paper class to.
+   * @param readOnly Indicator wether you can interact with the paper.
+   */
   initPaper(domElement: JQuery, readOnly: boolean): void {
     const self &#x3D; this;
 
@@ -4913,7 +5108,16 @@ export class JointService {
     });
   }
 
-  // checks wether the actual link is unique and going from an input to an output.
+  /**
+   * Checks wether the actual link is unique and validates if it goes from an input to an output.
+   * @param cellViewS Source Cell View.
+   * @param magnetS  Source Magnet.
+   * @param cellViewT Target Cell View.
+   * @param magnetT Target Magnet.
+   * @param end idk.
+   * @param linkView idk.
+   * @returns Indicator wether if it&#x27;s a valid connection.
+   */
   private isConnectionValid(cellViewS, magnetS, cellViewT, magnetT, end, linkView): boolean {
     if (magnetS &amp;&amp; magnetS.getAttribute(&#x27;port-group&#x27;) &#x3D;&#x3D;&#x3D; &#x27;in&#x27;) {
       return false;
@@ -4926,6 +5130,11 @@ export class JointService {
   }
 
   // checks if the flowbsterNodes name is unique and returns the actual element.
+  /**
+   * Checks if the given name is in the list of the data models Elements and returns it if it is present.
+   * @param name The name to search for in the list of nodes.
+   * @returns The element used on the paper, if there is one, otherwise null.
+   */
   getFlowbsterNodeElement(name: string): joint.dia.Element {
     const elements: joint.dia.Element[] &#x3D; this.graph.getElements();
     for (const element of elements) {
@@ -4936,21 +5145,31 @@ export class JointService {
     return null;
   }
 
-  // ensures we are listening on all events from the paper
+  /**
+   * Ensures we are listening on all events happening on the paper.
+   */
   logAllEventsOnPaper() {
     this.paper.on(&#x27;all&#x27;, function (event, cell) {
       console.log(arguments);
     });
   }
 
+  /**
+   * Ensures we are listening on all events happening to the data model.
+   */
   logAllEventsOnGraph() {
     this.graph.on(&#x27;all&#x27;, function (event, cell) {
       console.log(arguments);
     })
   }
 
-  // its going to subscribe for the blank click event
-  // initializes the placement properties,reinitialize newNodeAttributes and toggles the callers attribute.
+  /**
+   * Ensures we are listening on the blank click event. Whenever it is happening we want to store the X,Y axis coordinates,
+   * Trigger the caller&#x27;s attribute, notify subscribers that it isnt an existing Node at the moment,
+   * and set the modifiable node property to a clean representation.
+   * @param listener A class or function who listens on this event.
+   * @param modalTriggerAttribute The listeners attribute&#x27;s name, that is going to be set to true.
+   */
   listenOnBlankClick(listener: any, modalTriggerAttribute: string): void {
     const self &#x3D; this;
 
@@ -4963,6 +5182,10 @@ export class JointService {
     });
   }
 
+  /**
+   * Ensures we are listening on the data models changes.
+   * Whenever it happens it is going to notify the subscribers about that the workflow have been changed.
+   */
   listenOnGraphChange() {
     const self &#x3D; this;
 
@@ -4972,14 +5195,21 @@ export class JointService {
     });
   }
 
+  /**
+   * Turns off the listening on the data models changes.
+   */
   stopListeningOnGraphChange() {
     this.graph.off(&#x27;change&#x27;);
   }
 
-
-
-  // listens on the pointerup event and fires up the proper modal of i/o ports.
-  listenOnPointerUp(listener: any, inputAttributeName: string, outputAttributeName: string, readOnly: boolean): void {
+  /**
+   * Ensures we are listening on the pointer up event and triggers the proper modal based on input/output ports.
+   * @param listener A class or function who listens on this event.
+   * @param inputTriggerAttributeName The property&#x27;s name on the listener that is going to be triggered if it is an input.
+   * @param outputTriggerAttributeName The property&#x27;s name on the listener that is going to be triggered if it is an output.
+   * @param readOnly Indicator about the papers interactivity.
+   */
+  listenOnPointerUp(listener: any, inputTriggerAttributeName: string, outputTriggerAttributeName: string, readOnly: boolean): void {
     const self &#x3D; this;
 
     this.paper.on(&#x27;cell:pointerup&#x27;, function (cellView, event, x, y) {
@@ -4994,12 +5224,12 @@ export class JointService {
             self.selectCellView(cellView.sourceView, readOnly); // if the source view exists we need to select that cellview.
           }
           self.setPort(cellView, &#x27;outPortsProps&#x27;);
-          listener[outputAttributeName] &#x3D; true; // trigger output modal.
+          listener[outputTriggerAttributeName] &#x3D; true; // trigger output modal.
 
         } else if (&#x27;in&#x27; &#x3D;&#x3D;&#x3D; self.selectedPortType) {
 
           self.setPort(cellView, &#x27;inPortsProps&#x27;);
-          listener[inputAttributeName] &#x3D; true; // trigger input modal.
+          listener[inputTriggerAttributeName] &#x3D; true; // trigger input modal.
         }
 
         console.log(self.selectedPortName + &#x27; &#x27; + self.selectedPortType);
@@ -5008,8 +5238,12 @@ export class JointService {
     });
   }
 
-  // gets the attributes from the cellview and sets the actual service port wether its an input or an output port
-  setPort(cellView, attributeName: string) {
+  /**
+   * Gets the attributes from the Cell View&#x27;s model and sets the modifiable port&#x27;s properties based on I/O
+   * @param cellView The selected Cell View.
+   * @param attributeName The holder object attributes name you want to use.
+   */
+  setPort(cellView, attributeName: string): void {
 
     const portAttributes &#x3D; this.setPortAttributes(cellView, attributeName);
 
@@ -5029,6 +5263,11 @@ export class JointService {
   }
 
   // sets the port Attributes by the given attributeName (in and output model difers)
+  /**
+   * Sets the port attributes by the given attributeName (in and output model difers because of events)
+   * @param cellView The selected Cell View.
+   * @param attributeName The holder object attributes name you want to use.
+   */
   setPortAttributes(cellView, attributeName: string) {
     if (attributeName &#x3D;&#x3D;&#x3D; &#x27;inPortsProps&#x27;) {
       return cellView.model.get(attributeName)[this.selectedPortName];
@@ -5040,11 +5279,20 @@ export class JointService {
     }
   }
 
+  /**
+   * Checks if your object holds any attributes.
+   * @param object Any object.
+   * @returns An Indicator about its emptiness.
+   */
   isEmpty(object: Object): boolean {
     return Object.keys(object).length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; object.constructor &#x3D;&#x3D;&#x3D; Object;
   }
 
-  // returns a fresh port by the given type
+  /**
+   * Initializes a fresh port by the given type.
+   * @param type Type of the port.
+   * @returns a pristine In or Out port.
+   */
   private initPort(type: string): InputPort | OutputPort {
 
     if (type &#x3D;&#x3D;&#x3D; &#x27;in&#x27;) {
@@ -5054,7 +5302,10 @@ export class JointService {
     return this.initOutputPort();
   }
 
-  // initializes an input port
+  /**
+   * Initializes a clean input port.
+   * @returns A pristine InputPort object.
+   */
   private initInputPort(): InputPort {
     return {
       name: this.selectedPortName,
@@ -5063,7 +5314,10 @@ export class JointService {
     };
   }
 
-  // initializes an output port
+  /**
+   * Initializes a clean output port.
+   * @returns A pristine OutputPort object.
+   */
   private initOutputPort(): OutputPort {
     return {
       name: this.selectedPortName,
@@ -5077,7 +5331,10 @@ export class JointService {
     };
   }
 
-  // listens on the pointerclick event and selects the actual cell
+  /**
+   * Ensures we are listening on the papers click events of the cells. Whenever it fires the actual clicked Cell is going to be selected.
+   * @param readOnly Indicator about the papers inactivity.
+   */
   listenOnCellClick(readOnly: boolean): void {
     const self &#x3D; this;
     this.paper.on(&#x27;cell:pointerclick&#x27;, function (cellView, event, x, y) {
@@ -5086,6 +5343,13 @@ export class JointService {
   }
 
   // listens on the double click event and updates the newNode&#x27;s attributes.
+  /**
+   * Ensures we are listening on the double click events on the cells. Whenever it fires updates the modifiable node&#x27;s properties to the
+   * double clicked nodes properties,
+   * triggers the modal for editing, and notifies subscribers about that it is an Existing Node that we are looking at.
+   * @param listener The class or function that is listening to this event.
+   * @param modalTriggerAttribute The class&#x27;s attribute name that is going to be triggered.
+   */
   listenOnCellDoubleClick(listener: any, modalTriggerAttribute: string): void {
     const self &#x3D; this;
     this.paper.on(&#x27;cell:pointerdblclick&#x27;, function (cellView, event, x, y) {
@@ -5103,7 +5367,12 @@ export class JointService {
     });
   }
 
-  // if there is a new cell its going to highlight it.
+  /**
+   * If there is a new Cell selected then its going to highlight the new one and unhighlight the previous one.
+   * If the paper is read only, then its not getting highlighted at all.
+   * @param cellView The Cell View we want to select.
+   * @param readOnly Indicator about the interactivity.
+   */
   private selectCellView(cellView: joint.dia.CellView, readOnly: boolean): void {
     if (cellView !&#x3D;&#x3D; this.selectedCellView) {
       if (this.selectedCellView !&#x3D; null &amp;&amp; !readOnly) {
@@ -5118,12 +5387,21 @@ export class JointService {
     }
   }
 
-  // initializes the placement of the new node.
+  /**
+   * Sets the actual Node&#x27;s location on the paper.
+   * @param x X axis coordinate
+   * @param y Y axis coordinate
+   */
   private initPlacement(x: number, y: number): void {
     this.actualNodePlacement &#x3D; { x, y };
   }
 
-  // get data from the selected Cell by the attribute name and by if its a scale prop or not.
+  /**
+   * Gets data from the selected Cell&#x27;s model by the attribute&#x27;s name.
+   * @param name The attribute name you want to get from the data model.
+   * @param isScale Indicator about that it is a scaling property.
+   * @returns The value of the property.
+   */
   private getSelectedJobsProperty(name: string, isScale: boolean): string {
 
     if (!this.selectedCellView) {

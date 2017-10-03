@@ -91,10 +91,10 @@
                                     <a href="../components/AppComponent.html" >AppComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                    <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -137,9 +137,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -480,10 +477,10 @@
                                            <a href="../components/AppComponent.html" >AppComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                           <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -526,9 +523,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -825,6 +819,13 @@
             <code>src/app/services/occo.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A service that holds the logic for communication with the Occopuses Rest interface.</p>
+
+            </p>
 
 
             <section>
@@ -877,12 +878,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/occo.service.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/occo.service.ts:14</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>We inject Angular Http Service and set a default end point.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -902,7 +905,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Angular&#39;s new HttpClient</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -935,12 +939,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/occo.service.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/services/occo.service.ts:29</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>It sets the headers to be applicable to a YAML formatted string.
+            Then it sends the yaml data via http and subscribes it, waiting for response from the server.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -996,12 +1003,16 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/services/occo.service.ts:32</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/services/occo.service.ts:52</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>It sets the header to be applicable to a simple text message.
+            Then it sends the actual infrastructures ID back to the server with a destroy commands based URL,
+            and it subscribes to any response back from the server.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -1040,10 +1051,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/occo.service.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/occo.service.ts:14</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The actual endpoint we want to reach with the http service.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1056,15 +1073,30 @@
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { HttpHeaders } from &#x27;@angular/common/http&#x27;;
 
+/**
+ * A service that holds the logic for communication with the Occopuses Rest interface.
+ */
 @Injectable()
 export class OccoService {
 
+  /**
+   * The actual endpoint we want to reach with the http service.
+   */
   url: string;
 
+  /**
+   * We inject Angular Http Service and set a default end point.
+   * @param http Angular&#x27;s new HttpClient
+   */
   constructor(private http: HttpClient) {
     this.url &#x3D; &#x27;http://192.168.248.129:5000/infrastructures/&#x27;; // provide a URL that has an occopus running on it.
   }
 
+  /**
+   * It sets the headers to be applicable to a YAML formatted string.
+   * Then it sends the yaml data via http and subscribes it, waiting for response from the server.
+   * @param yamldescriptor
+   */
   buildWorkflow(yamldescriptor: string) {
     const header &#x3D; new HttpHeaders();
     console.log(yamldescriptor);
@@ -1083,6 +1115,11 @@ export class OccoService {
       });
   }
 
+  /**
+   * It sets the header to be applicable to a simple text message.
+   * Then it sends the actual infrastructures ID back to the server with a destroy commands based URL,
+   * and it subscribes to any response back from the server.
+   */
   destroyWorkflow() {
     return this.http.post(this.url, { responseType: &#x27;text&#x27; }).subscribe(
       (res) &#x3D;&gt; {

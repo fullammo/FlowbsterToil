@@ -56,15 +56,9 @@ export let initialMenuItems: Array<MenuItem> = [
                 submenu: null
             },
             {
-                text: 'AuthFile',
+                text: 'Config',
                 icon: 'glyphicon-user',
-                route: 'authenticated/authform',
-                submenu: null
-            },
-            {
-                text: 'NodeDef',
-                icon: 'glyphicon-book',
-                route: 'authenticated/nodeform',
+                route: 'authenticated/connection',
                 submenu: null
             }
         ]

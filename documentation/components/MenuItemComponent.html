@@ -91,10 +91,10 @@
                                     <a href="../components/AppComponent.html" >AppComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                    <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -137,9 +137,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/MenuItemComponent.html"  data-type="entity-link" class="active" >MenuItemComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -480,10 +477,10 @@
                                            <a href="../components/AppComponent.html" >AppComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                           <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -526,9 +523,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/MenuItemComponent.html"  data-type="entity-link" class="active" >MenuItemComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -1736,7 +1730,7 @@ export class MenuItemComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="menu-item"     [ngClass]="{\'vertical-menu\': menuService.isVertical, \'router-link-active\': isActiveRoute }"     >  <span class="glyphicon {{ item.icon }}"></span>  <span>{{ item.text.toUpperCase() }}</span>  <span *ngIf="item.submenu && !parentIsPopup && !menuService.isVertical"         class="glyphicon glyphicon-menu-down"></span>  <span *ngIf="item.submenu && parentIsPopup && !menuService.isVertical"         class="glyphicon glyphicon-menu-right"></span>  <span *ngIf="item.submenu && menuService.isVertical && !(mouseInPopup || mouseInItem)"         class="glyphicon glyphicon-menu-left"></span>   <span *ngIf="item.submenu && menuService.isVertical && (mouseInPopup || mouseInItem)"         class="glyphicon glyphicon-menu-down"></span> </div><fw-popup-menu    *ngIf="mouseInPopup || mouseInItem"     [menu]=\'item.submenu\'    [ngClass]="{\'vertical-menu\': menuService.isVertical}"    (mouseleave)="onPopupMouseLeave($event)"     (mouseenter)="onPopupMouseEnter($event)"    [style.left.px]="popupLeft"    [style.top.px]="popupTop"    @visibilityChanged></fw-popup-menu></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthFileComponent', 'selector': 'auth-file'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'CountryDetailComponent', 'selector': 'app-country-detail'},{'name': 'CountryListComponent', 'selector': 'app-country-list'},{'name': 'CountryMaintComponent', 'selector': 'app-country-maint'},{'name': 'CountryPanelComponent', 'selector': 'app-country-panel'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'ImagePanelComponent', 'selector': 'app-image-panel'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodeDefComponent', 'selector': 'node-def'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'CountryDetailComponent', 'selector': 'app-country-detail'},{'name': 'CountryListComponent', 'selector': 'app-country-list'},{'name': 'CountryMaintComponent', 'selector': 'app-country-maint'},{'name': 'CountryPanelComponent', 'selector': 'app-country-panel'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'ImagePanelComponent', 'selector': 'app-image-panel'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
     var ACTUAL_COMPONENT = {'name': 'MenuItemComponent'};
 </script>

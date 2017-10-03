@@ -91,10 +91,10 @@
                                     <a href="../components/AppComponent.html" >AppComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                    <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -137,9 +137,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -480,10 +477,10 @@
                                            <a href="../components/AppComponent.html" >AppComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                           <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -526,9 +523,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -825,6 +819,13 @@
             <code>src/app/services/dialog.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A service that holds logic about different dialog components.</p>
+
+            </p>
 
 
             <section>
@@ -849,24 +850,6 @@
                 </table>
             </section>
 
-            <section>
-                <h3 id="constructor">Constructor</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <code>constructor()</code>
-                                </td>
-                            </tr>
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/services/dialog.service.ts:5</a></div>
-                                        </td>
-                                    </tr>
-            
-                        </tbody>
-                    </table>
-            </section>
 
             <section>
                 
@@ -890,12 +873,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/dialog.service.ts:9</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/dialog.service.ts:15</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Creates a window confirmation dialog with the given message.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -917,7 +902,8 @@
                                                               <td>
                                                                   true
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The text you want to output to the confirmation modal.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -929,7 +915,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>an Observable of the basic confirmation function.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -944,11 +931,17 @@
         <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * A service that holds logic about different dialog components.
+ */
 @Injectable()
 export class DialogService {
 
-  constructor() { }
-
+  /**
+   * Creates a window confirmation dialog with the given message.
+   * @param message The text you want to output to the confirmation modal.
+   * @returns an Observable of the basic confirmation function.
+   */
   confirm(message?: string) {
     return Observable.of(window.confirm(message || &#x27;Is it Ok?&#x27;));
   }

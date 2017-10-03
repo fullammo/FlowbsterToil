@@ -91,10 +91,10 @@
                                     <a href="../components/AppComponent.html" >AppComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                    <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -137,9 +137,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -480,10 +477,10 @@
                                            <a href="../components/AppComponent.html" >AppComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthFileComponent.html" >AuthFileComponent</a>
+                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
+                                           <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ContentComponent.html" >ContentComponent</a>
@@ -526,9 +523,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/MenuItemComponent.html" >MenuItemComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/NodeDefComponent.html" >NodeDefComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NodePropertiesComponent.html" >NodePropertiesComponent</a>
@@ -827,6 +821,13 @@
             <code>src/app/editor/shared/customValidators.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Holds the neccessary Observable based functions that are used in node validation.</p>
+
+            </p>
 
 
 
@@ -883,12 +884,17 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/editor/shared/customValidators.ts:6</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/editor/shared/customValidators.ts:18</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If the input controls value is changing,
+            then it will check the JointService about the changes made to the Nodes list and workflow name
+            and compare that list with the actual value.
+            If that exists, then this function emits an error message, that says the node exists, otherwise it can work uninterruptedly.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -909,7 +915,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The singleton instance of the JointService.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -921,7 +928,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>an Observable that informs you about the node&#39;s uniqueness.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -945,12 +953,18 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/editor/shared/customValidators.ts:50</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/editor/shared/customValidators.ts:78</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If the input controls value is changing,
+             then it will check the JointService about the changes made to the Nodes list
+             including the old name of the updated node too and the workflow,
+             and compares that list with the actual value.
+             If that exists, then this function emits an error message, that says the node exists, otherwise it can work uninterruptedly.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -971,7 +985,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The singleton instance of the JointService.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -983,7 +998,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>an Observable that informs you about the update node&#39;s uniqueness.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1007,12 +1023,16 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/editor/shared/customValidators.ts:28</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/editor/shared/customValidators.ts:47</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If the input controls value is changing,
+             then it will check the JointService about the changes made to the Nodes list and compare that list with the actual value.
+             If that exists, then this function emits an error message, that says the node exists, otherwise it can work uninterruptedly.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1033,7 +1053,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The singleton instance of the JointService.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1045,7 +1066,8 @@
             
                                         </div>
                                             <div class="io-description">
-                                                
+                                                <p>an Observable that informs you about the worfklow&#39;s uniqueness.</p>
+            
                                             </div>
                                 </td>
                             </tr>
@@ -1062,7 +1084,19 @@
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { AbstractControl } from &#x27;@angular/forms&#x27;;
 
+/**
+ * Holds the neccessary Observable based functions that are used in node validation.
+ */
 export class NodeValidator {
+
+  /**
+   * If the input controls value is changing,
+   * then it will check the JointService about the changes made to the Nodes list and workflow name
+   * and compare that list with the actual value.
+   * If that exists, then this function emits an error message, that says the node exists, otherwise it can work uninterruptedly.
+   * @param jointSVC The singleton instance of the JointService.
+   * @returns an Observable that informs you about the node&#x27;s uniqueness.
+   */
   static isNodeUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
@@ -1085,6 +1119,13 @@ export class NodeValidator {
     };
   }
 
+  /**
+    If the input controls value is changing,
+   * then it will check the JointService about the changes made to the Nodes list and compare that list with the actual value.
+   * If that exists, then this function emits an error message, that says the node exists, otherwise it can work uninterruptedly.
+   * @param jointSVC The singleton instance of the JointService.
+   * @returns an Observable that informs you about the worfklow&#x27;s uniqueness.
+   */
   static isWorkflowUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
@@ -1107,6 +1148,15 @@ export class NodeValidator {
     };
   }
 
+  /**
+    If the input controls value is changing,
+   * then it will check the JointService about the changes made to the Nodes list
+   * including the old name of the updated node too and the workflow,
+   * and compares that list with the actual value.
+   * If that exists, then this function emits an error message, that says the node exists, otherwise it can work uninterruptedly.
+   * @param jointSVC The singleton instance of the JointService.
+   * @returns an Observable that informs you about the update node&#x27;s uniqueness.
+   */
   static isUpdateUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
