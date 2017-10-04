@@ -31,6 +31,10 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate<WorkflowDeta
     const isPropertiesEdited = this.isEquivalent(component.starterEntry, cleanEntry);
     this.jointSVC.reinitializeWorkflow();
 
+    if (component.isSubmitted) {
+      return true;
+    }
+
     if (isPropertiesEdited && !component.isGraphEdited) {
       return true;
     }

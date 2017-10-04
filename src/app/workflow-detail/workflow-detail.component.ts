@@ -22,6 +22,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
 
   isGraphValid = false;
   isGraphEdited = false;
+  isSubmitted = false;
 
   constructor(private jointSVC: JointService,
     private descriptorSVC: DescriptorService,
@@ -90,6 +91,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
 
   onSubmit() {
     this.entry.descriptor = this.descriptorSVC.getYamlDescriptor();
+    this.isSubmitted = true;
     this.entry.graph = this.jointSVC.getGraphJSON();
     if (this.operation === 'create') {
       this.workflowEntrySVC.saveEntry(this.entry);

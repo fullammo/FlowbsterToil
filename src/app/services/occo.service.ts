@@ -18,7 +18,7 @@ export class OccoService {
    * @param http Angular's new HttpClient
    */
   constructor(private http: HttpClient) {
-    this.url = 'http://192.168.248.129:5000/infrastructures/'; // provide a URL that has an occopus running on it.
+    this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
   }
 
   /**
@@ -27,11 +27,13 @@ export class OccoService {
    * @param yamldescriptor
    */
   buildWorkflow(yamldescriptor: string) {
+
+    const endpoint = this.url + '/infrastructures/';
     const header = new HttpHeaders();
     console.log(yamldescriptor);
     header.append('Content-Type', 'application/x-yaml');
 
-    return this.http.post(this.url, yamldescriptor, { headers: header }).subscribe(
+    return this.http.post(endpoint, yamldescriptor, { headers: header }).subscribe(
       (res) => {
         console.log(res);
         return this;
