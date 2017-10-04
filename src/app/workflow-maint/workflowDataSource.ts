@@ -5,20 +5,50 @@ import { DataSource } from '@angular/cdk/collections';
 import { MdSort, MdPaginator } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+/**
+ * Own type of data source that can be accepted in the data grid.
+ * Represents a filterable and sortable data collection for the grid.
+ */
 export class WorkflowDataSource extends DataSource<any> {
 
+  /**
+   * An observable for watching any changes made to the filtering element.
+   */
   filterChange = new BehaviorSubject('');
+
+  /**
+   * Gets the observable's actual value.
+   */
   get filter(): string { return this.filterChange.value; }
+
+  /**
+   * Emits information about the next filter expression.
+   */
   set filter(filter: string) { this.filterChange.next(filter); }
 
+  /**
+   * A collection of actually filtered entries.
+   */
   filteredEntries: WorkflowEntry[] = [];
+
+  /**
+   * A collection of present entries in the datagrid.
+   */
   renderedEntries: WorkflowEntry[] = [];
 
+  /**
+   * We inject the needed services and whenever the filter changes the paginator page will be initial.
+   * @param paginator Paginator component for customization.
+   * @param sort Sorting component for customization.
+   */
   constructor(private workflowEntrySVC: WorkflowEntryService, private paginator: MdPaginator, private sort: MdSort) {
     super();
     this.filterChange.subscribe(() => this.paginator.pageIndex = 0);
   }
 
+  /**
+   * Whenever any changes made to the displayed data its going to rerender it.
+   */
   connect(): Observable<WorkflowEntry[]> {
     const displayDataChanges = [
       this.workflowEntrySVC.dataChange,
@@ -45,8 +75,16 @@ export class WorkflowDataSource extends DataSource<any> {
     });
   }
 
+  /**
+   *Idk.
+   */
   disconnect() { }
 
+  /**
+   * Sorts the database entries by the given operation.
+   * @param entries A collection of sortable entries.
+   * @returns A collection of sorted database entries.
+   */
   getSortedEntries(entries: WorkflowEntry[]): WorkflowEntry[] {
 
     if (!this.sort.active || this.sort.direction === '') {

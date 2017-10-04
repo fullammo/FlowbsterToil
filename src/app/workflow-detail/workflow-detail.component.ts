@@ -8,22 +8,55 @@ import { JointService } from 'app/editor/shared/joint.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 
+/**
+ * Enables you to edit the actual workflow's properties or create a new one.
+ */
 @Component({
   selector: 'toil-workflow-detail',
   templateUrl: './workflow-detail.component.html',
   styleUrls: ['./workflow-detail.component.scss']
 })
-export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy {
+export class WorkflowDetailComponent implements OnInit, AfterViewInit {
 
+  /**
+   * The url data wether you want to create or edit a workflow.
+   */
   operation: string;
-  entry: WorkflowEntry;
-  starterEntry: WorkflowEntry;
-  userform: FormGroup;
 
+  /**
+   * A modifiable identity for input fields.
+   */
+  entry: WorkflowEntry;
+
+  /**
+   * Memory of the entry at the initializaton
+   */
+  starterEntry: WorkflowEntry;
+
+  /**
+   * A group of form controls regarding the workflow's edition.
+   */
+  workflowEditform: FormGroup;
+
+  /**
+   * Indicator about the graph's valid state.
+   * A graph is valid when the main workflow properties are present.
+   */
   isGraphValid = false;
+
+  /**
+   * Indicator about the changes made to the graph.
+   */
   isGraphEdited = false;
+
+  /**
+   * Indicates if the form was submitted.
+   */
   isSubmitted = false;
 
+  /**
+   * We initialize a clean modifiable entry to start with.
+   */
   constructor(private jointSVC: JointService,
     private descriptorSVC: DescriptorService,
     private fb: FormBuilder,
@@ -33,30 +66,38 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     this.entry = { name: '', description: '', descriptor: '', graph: '' };
   }
 
-  ngOnDestroy() {
-
-  }
-
+  /**
+   * We subscribe to the neccessary Observables regarding the change of the entry, and initialize the controls.
+   */
   ngOnInit() {
     this.subscribeToEditorEditionChanges();
     this.subscribeToGraphValidationChanges();
-    this.userform = this.initForm();
+    this.workflowEditform = this.initForm();
     this.subscribeToOperationChanges();
     this.subscribeToEntryChanges();
   }
 
+  /**
+   * Listens on workflow main property changes and sets our indicator for it.
+   */
   private subscribeToGraphValidationChanges() {
     this.jointSVC.isWorkflowInitialized.subscribe(isGraphValid => {
       this.isGraphValid = isGraphValid;
     });
   }
 
+  /**
+   * Informs us whenever the Paper's data model is edited. Sets the associated indicator.
+   */
   private subscribeToEditorEditionChanges() {
     this.jointSVC.workflowChange.subscribe(() => {
       this.isGraphEdited = true;
     });
   }
 
+  /**
+   * Sets the editable entry and its backup whenever there are changes made to the route's resolved data.
+   */
   private subscribeToEntryChanges() {
     this.route.data.subscribe((data: { detail: WorkflowEntry }) => {
       this.entry = data.detail;
@@ -65,6 +106,9 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
+  /**
+   * Sets the operation whenever changes made to the route's parameters.
+   */
   private subscribeToOperationChanges(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.operation = params.get('operation');
@@ -72,12 +116,19 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
+  /**
+   * If we are on the edit page, and there is a useful graph, we are going to show it on the paper.
+   * (After the view is rendered, the paper component can set the JoitnService's properties.)
+   */
   ngAfterViewInit() {
     if (this.operation === 'edit' && this.entry.graph) {
       this.jointSVC.uploadGraph(JSON.parse(this.entry.graph));
     }
   }
 
+  /**
+   * Initializes the necessary controls with optional Validators.
+   */
   initForm() {
     return this.fb.group({
       'name': new FormControl('', Validators.required),
@@ -85,10 +136,17 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
+  /**
+   * Navigates us back to the maintenance page.
+   */
   onBack() {
     this.router.navigate(['/authenticated/workflow-maint']);
   }
 
+  /**
+   * Updates the editable entries properties, Sets the submission indicator,
+   * Based on the operation it corrects the database. Then navigates back to the maintenance page.
+   */
   onSubmit() {
     this.entry.descriptor = this.descriptorSVC.getYamlDescriptor();
     this.isSubmitted = true;

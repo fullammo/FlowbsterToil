@@ -864,7 +864,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:65</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:69</a></div>
                                         </td>
                                     </tr>
             
@@ -1027,7 +1027,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:49</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:53</a></div>
                                         </td>
                                     </tr>
             
@@ -1123,6 +1123,10 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate&lt;WorkflowD
     const cleanEntry &#x3D; this.workflowEntrySVC.initEntry(component.entry);
     const isPropertiesEdited &#x3D; this.isEquivalent(component.starterEntry, cleanEntry);
     this.jointSVC.reinitializeWorkflow();
+
+    if (component.isSubmitted) {
+      return true;
+    }
 
     if (isPropertiesEdited &amp;&amp; !component.isGraphEdited) {
       return true;

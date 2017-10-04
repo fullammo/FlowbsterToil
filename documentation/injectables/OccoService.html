@@ -1003,7 +1003,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/services/occo.service.ts:52</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/services/occo.service.ts:54</a></div>
                                         </td>
                                     </tr>
             
@@ -1089,7 +1089,7 @@ export class OccoService {
    * @param http Angular&#x27;s new HttpClient
    */
   constructor(private http: HttpClient) {
-    this.url &#x3D; &#x27;http://192.168.248.129:5000/infrastructures/&#x27;; // provide a URL that has an occopus running on it.
+    this.url &#x3D; &#x27;http://192.168.248.129:5000&#x27;; // provide a URL that has an occopus running on it.
   }
 
   /**
@@ -1098,11 +1098,13 @@ export class OccoService {
    * @param yamldescriptor
    */
   buildWorkflow(yamldescriptor: string) {
+
+    const endpoint &#x3D; this.url + &#x27;/infrastructures/&#x27;;
     const header &#x3D; new HttpHeaders();
     console.log(yamldescriptor);
     header.append(&#x27;Content-Type&#x27;, &#x27;application/x-yaml&#x27;);
 
-    return this.http.post(this.url, yamldescriptor, { headers: header }).subscribe(
+    return this.http.post(endpoint, yamldescriptor, { headers: header }).subscribe(
       (res) &#x3D;&gt; {
         console.log(res);
         return this;

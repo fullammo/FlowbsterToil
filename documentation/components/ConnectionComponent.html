@@ -1097,12 +1097,12 @@ export class ConnectionComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">
-  &lt;md-form-field&gt;
-    &lt;input required mdInput placeholder&#x3D;&quot;Occo Service Url endpoint&quot; [(ngModel)] &#x3D;&quot;url&quot;&gt;
-  &lt;/md-form-field&gt;
-  &lt;br&gt;
-  &lt;button (click)&#x3D;&quot;onClick()&quot; color&#x3D;&quot;primary&quot; md-raised-button&gt;Update Service Address&lt;/button&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;md-form-field&gt;
+  &lt;input required mdInput placeholder&#x3D;&quot;Occo Service Url endpoint&quot; [(ngModel)]&#x3D;&quot;url&quot;&gt;
+&lt;/md-form-field&gt;
+&lt;br&gt; http://192.168.248.129:5000/infrastructures/
+&lt;br&gt;
+&lt;button (click)&#x3D;&quot;onClick()&quot; color&#x3D;&quot;primary&quot; md-raised-button&gt;Update Service Address&lt;/button&gt;
 </code></pre>
     </div>
 
@@ -1129,7 +1129,7 @@ export class ConnectionComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>  <md-form-field>    <input required mdInput placeholder="Occo Service Url endpoint" [(ngModel)] ="url">  </md-form-field>  <br>  <button (click)="onClick()" color="primary" md-raised-button>Update Service Address</button></div>'
+        var COMPONENT_TEMPLATE = '<div><md-form-field>  <input required mdInput placeholder="Occo Service Url endpoint" [(ngModel)]="url"></md-form-field><br> http://192.168.248.129:5000/infrastructures/<br><button (click)="onClick()" color="primary" md-raised-button>Update Service Address</button></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'CountryDetailComponent', 'selector': 'app-country-detail'},{'name': 'CountryListComponent', 'selector': 'app-country-list'},{'name': 'CountryMaintComponent', 'selector': 'app-country-maint'},{'name': 'CountryPanelComponent', 'selector': 'app-country-panel'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'ImagePanelComponent', 'selector': 'app-image-panel'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
     var ACTUAL_COMPONENT = {'name': 'ConnectionComponent'};

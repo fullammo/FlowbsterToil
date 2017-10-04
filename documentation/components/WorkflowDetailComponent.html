@@ -822,6 +822,13 @@
     <code>src/app/workflow-detail/workflow-detail.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Enables you to edit the actual workflow&#39;s properties or create a new one.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -830,7 +837,6 @@
     <p class="comment">
                 <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
                 <code><a href="https://angular.io/docs/ts/latest/api/core/index/AfterViewInit-interface.html" target="_blank" >AfterViewInit</a></code>
-                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnDestroy-interface.html" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -894,13 +900,16 @@
                                  <a href="#isGraphValid">isGraphValid</a>
                             </li>
                             <li>
+                                 <a href="#isSubmitted">isSubmitted</a>
+                            </li>
+                            <li>
                                  <a href="#operation">operation</a>
                             </li>
                             <li>
                                  <a href="#starterEntry">starterEntry</a>
                             </li>
                             <li>
-                                 <a href="#userform">userform</a>
+                                 <a href="#workflowEditform">workflowEditform</a>
                             </li>
                         </ul>
                     </td>
@@ -918,9 +927,6 @@
                             </li>
                             <li>
                                  <a href="#ngAfterViewInit">ngAfterViewInit</a>
-                            </li>
-                            <li>
-                                 <a href="#ngOnDestroy">ngOnDestroy</a>
                             </li>
                             <li>
                                  <a href="#ngOnInit">ngOnInit</a>
@@ -961,12 +967,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:55</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>We initialize a clean modifiable entry to start with.</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1068,12 +1076,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:132</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initializes the necessary controls with optional Validators.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -1100,44 +1110,15 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:123</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="ngOnDestroy"></a>
-                            <span class="name"><b> ngOnDestroy</b><a href="#ngOnDestroy"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>ngOnDestroy()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:35</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
+                                <div class="io-description"><p>If we are on the edit page, and there is a useful graph, we are going to show it on the paper.
+    (After the view is rendered, the paper component can set the JoitnService&#39;s properties.)</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1164,12 +1145,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:72</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>We subscribe to the neccessary Observables regarding the change of the entry, and initialize the controls.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1196,12 +1179,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:142</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Navigates us back to the maintenance page.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1228,12 +1213,15 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:150</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Updates the editable entries properties, Sets the submission indicator,
+    Based on the operation it corrects the database. Then navigates back to the maintenance page.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1261,12 +1249,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:92</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Informs us whenever the Paper&#39;s data model is edited. Sets the associated indicator.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1294,12 +1284,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:101</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Sets the editable entry and its backup whenever there are changes made to the route&#39;s resolved data.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1327,12 +1319,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:83</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Listens on workflow main property changes and sets our indicator for it.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1360,12 +1354,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:112</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Sets the operation whenever changes made to the route&#39;s parameters.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1404,10 +1400,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:29</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>A modifiable identity for input fields.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1432,10 +1434,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:50</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Indicator about the changes made to the graph.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1460,10 +1468,51 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:45</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Indicator about the graph&#39;s valid state.
+    A graph is valid when the main workflow properties are present.</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="isSubmitted"></a>
+                            <span class="name"><b> isSubmitted</b><a href="#isSubmitted"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>isSubmitted:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:55</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Indicates if the form was submitted.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1489,10 +1538,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:24</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url data wether you want to create or edit a workflow.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1518,10 +1573,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:34</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Memory of the entry at the initializaton</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1529,13 +1590,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="userform"></a>
-                            <span class="name"><b> userform</b><a href="#userform"><span class="fa fa-link"></span></a></span>
+                            <a name="workflowEditform"></a>
+                            <span class="name"><b> workflowEditform</b><a href="#workflowEditform"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>userform:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
+                            <code>workflowEditform:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
     </code>
                         </td>
                     </tr>
@@ -1547,10 +1608,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/workflow-detail/workflow-detail.component.ts:39</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>A group of form controls regarding the workflow&#39;s edition.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1569,21 +1636,55 @@ import { JointService } from &#x27;app/editor/shared/joint.service&#x27;;
 import { DescriptorService } from &#x27;app/editor/shared/descriptor.service&#x27;;
 import { WorkflowEntryService } from &#x27;app/services/workflow-entry.service&#x27;;
 
+/**
+ * Enables you to edit the actual workflow&#x27;s properties or create a new one.
+ */
 @Component({
   selector: &#x27;toil-workflow-detail&#x27;,
   templateUrl: &#x27;./workflow-detail.component.html&#x27;,
   styleUrls: [&#x27;./workflow-detail.component.scss&#x27;]
 })
-export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy {
+export class WorkflowDetailComponent implements OnInit, AfterViewInit {
 
+  /**
+   * The url data wether you want to create or edit a workflow.
+   */
   operation: string;
-  entry: WorkflowEntry;
-  starterEntry: WorkflowEntry;
-  userform: FormGroup;
 
+  /**
+   * A modifiable identity for input fields.
+   */
+  entry: WorkflowEntry;
+
+  /**
+   * Memory of the entry at the initializaton
+   */
+  starterEntry: WorkflowEntry;
+
+  /**
+   * A group of form controls regarding the workflow&#x27;s edition.
+   */
+  workflowEditform: FormGroup;
+
+  /**
+   * Indicator about the graph&#x27;s valid state.
+   * A graph is valid when the main workflow properties are present.
+   */
   isGraphValid &#x3D; false;
+
+  /**
+   * Indicator about the changes made to the graph.
+   */
   isGraphEdited &#x3D; false;
 
+  /**
+   * Indicates if the form was submitted.
+   */
+  isSubmitted &#x3D; false;
+
+  /**
+   * We initialize a clean modifiable entry to start with.
+   */
   constructor(private jointSVC: JointService,
     private descriptorSVC: DescriptorService,
     private fb: FormBuilder,
@@ -1593,30 +1694,38 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     this.entry &#x3D; { name: &#x27;&#x27;, description: &#x27;&#x27;, descriptor: &#x27;&#x27;, graph: &#x27;&#x27; };
   }
 
-  ngOnDestroy() {
-
-  }
-
+  /**
+   * We subscribe to the neccessary Observables regarding the change of the entry, and initialize the controls.
+   */
   ngOnInit() {
     this.subscribeToEditorEditionChanges();
     this.subscribeToGraphValidationChanges();
-    this.userform &#x3D; this.initForm();
+    this.workflowEditform &#x3D; this.initForm();
     this.subscribeToOperationChanges();
     this.subscribeToEntryChanges();
   }
 
+  /**
+   * Listens on workflow main property changes and sets our indicator for it.
+   */
   private subscribeToGraphValidationChanges() {
     this.jointSVC.isWorkflowInitialized.subscribe(isGraphValid &#x3D;&gt; {
       this.isGraphValid &#x3D; isGraphValid;
     });
   }
 
+  /**
+   * Informs us whenever the Paper&#x27;s data model is edited. Sets the associated indicator.
+   */
   private subscribeToEditorEditionChanges() {
     this.jointSVC.workflowChange.subscribe(() &#x3D;&gt; {
       this.isGraphEdited &#x3D; true;
     });
   }
 
+  /**
+   * Sets the editable entry and its backup whenever there are changes made to the route&#x27;s resolved data.
+   */
   private subscribeToEntryChanges() {
     this.route.data.subscribe((data: { detail: WorkflowEntry }) &#x3D;&gt; {
       this.entry &#x3D; data.detail;
@@ -1625,6 +1734,9 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
+  /**
+   * Sets the operation whenever changes made to the route&#x27;s parameters.
+   */
   private subscribeToOperationChanges(): void {
     this.route.paramMap.subscribe((params: ParamMap) &#x3D;&gt; {
       this.operation &#x3D; params.get(&#x27;operation&#x27;);
@@ -1632,12 +1744,19 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
+  /**
+   * If we are on the edit page, and there is a useful graph, we are going to show it on the paper.
+   * (After the view is rendered, the paper component can set the JoitnService&#x27;s properties.)
+   */
   ngAfterViewInit() {
     if (this.operation &#x3D;&#x3D;&#x3D; &#x27;edit&#x27; &amp;&amp; this.entry.graph) {
       this.jointSVC.uploadGraph(JSON.parse(this.entry.graph));
     }
   }
 
+  /**
+   * Initializes the necessary controls with optional Validators.
+   */
   initForm() {
     return this.fb.group({
       &#x27;name&#x27;: new FormControl(&#x27;&#x27;, Validators.required),
@@ -1645,12 +1764,20 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
+  /**
+   * Navigates us back to the maintenance page.
+   */
   onBack() {
     this.router.navigate([&#x27;/authenticated/workflow-maint&#x27;]);
   }
 
+  /**
+   * Updates the editable entries properties, Sets the submission indicator,
+   * Based on the operation it corrects the database. Then navigates back to the maintenance page.
+   */
   onSubmit() {
     this.entry.descriptor &#x3D; this.descriptorSVC.getYamlDescriptor();
+    this.isSubmitted &#x3D; true;
     this.entry.graph &#x3D; this.jointSVC.getGraphJSON();
     if (this.operation &#x3D;&#x3D;&#x3D; &#x27;create&#x27;) {
       this.workflowEntrySVC.saveEntry(this.entry);
@@ -1666,30 +1793,30 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;button md-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;onBack()&quot;&gt;Back&lt;/button&gt;
- {{entry.name | json }} {{starterEntry.name | json}}
-&lt;form [formGroup]&#x3D;&quot;userform&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; #f&#x3D;&quot;ngForm&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;button md-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;onBack()&quot;&gt;Back&lt;/button&gt; {{entry.name | json }} {{starterEntry.name | json}}
+{{isSubmitted}}
+&lt;form [formGroup]&#x3D;&quot;workflowEditform&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; #f&#x3D;&quot;ngForm&quot;&gt;
 
   &lt;md-form-field&gt;
-    &lt;input required mdInput placeholder&#x3D;&quot;Workflow Name&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;name&#x27;]&quot; [(ngModel)]&#x3D;&quot;entry.name&quot;&gt;
-    &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;name&#x27;].valid&amp;&amp;userform.controls[&#x27;name&#x27;].dirty&quot;&gt;
+    &lt;input required mdInput placeholder&#x3D;&quot;Workflow Name&quot; [formControl]&#x3D;&quot;workflowEditform.controls[&#x27;name&#x27;]&quot; [(ngModel)]&#x3D;&quot;entry.name&quot;&gt;
+    &lt;md-error *ngIf&#x3D;&quot;!workflowEditform.controls[&#x27;name&#x27;].valid&amp;&amp;workflowEditform.controls[&#x27;name&#x27;].dirty&quot;&gt;
       Workflow name is &lt;strong&gt;required&lt;/strong&gt;
     &lt;/md-error&gt;
   &lt;/md-form-field&gt;
 
   &lt;md-form-field&gt;
-    &lt;textarea required mdInput placeholder&#x3D;&quot;Write description here&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;description&#x27;]&quot; [(ngModel)]&#x3D;&quot;entry.description&quot;&gt;&lt;/textarea&gt;
-    &lt;md-error *ngIf&#x3D;&quot;!userform.controls[&#x27;description&#x27;].valid&amp;&amp;userform.controls[&#x27;description&#x27;].dirty&quot;&gt;
+    &lt;textarea required mdInput placeholder&#x3D;&quot;Write description here&quot; [formControl]&#x3D;&quot;workflowEditform.controls[&#x27;description&#x27;]&quot; [(ngModel)]&#x3D;&quot;entry.description&quot;&gt;&lt;/textarea&gt;
+    &lt;md-error *ngIf&#x3D;&quot;!workflowEditform.controls[&#x27;description&#x27;].valid&amp;&amp;workflowEditform.controls[&#x27;description&#x27;].dirty&quot;&gt;
       A desrciption is &lt;strong&gt;required&lt;/strong&gt;
     &lt;/md-error&gt;
   &lt;/md-form-field&gt;
 
   &lt;div *ngIf&#x3D;&quot;operation &#x3D;&#x3D;&#x3D; &#x27;create&#x27;&quot; mdTooltip&#x3D;&quot;Before saving an entry, you have to enter the basic workflow properties&quot; [mdTooltipPosition]&#x3D;&quot;&#x27;below&#x27;&quot;&gt;
-    &lt;button type&#x3D;&quot;submit&quot; color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!(userform.valid &amp;&amp; isGraphValid)&quot; md-raised-button&gt;Save Workflow Entry&lt;/button&gt;
+    &lt;button type&#x3D;&quot;submit&quot; color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!(workflowEditform.valid &amp;&amp; isGraphValid)&quot; md-raised-button&gt;Save Workflow Entry&lt;/button&gt;
   &lt;/div&gt;
 
   &lt;div *ngIf&#x3D;&quot;operation !&#x3D;&#x3D; &#x27;create&#x27;&quot; mdTooltip&#x3D;&quot;Before saving an entry, you have to enter the basic workflow properties&quot; [mdTooltipPosition]&#x3D;&quot;&#x27;below&#x27;&quot;&gt;
-    &lt;button type&#x3D;&quot;submit&quot; color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!(userform.valid)&quot; md-raised-button&gt;Update Workflow Entry&lt;/button&gt;
+    &lt;button type&#x3D;&quot;submit&quot; color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!(workflowEditform.valid)&quot; md-raised-button&gt;Update Workflow Entry&lt;/button&gt;
   &lt;/div&gt;
 
   &lt;toil-editor [readOnly]&#x3D;&quot;false&quot;&gt;&lt;/toil-editor&gt;
@@ -1720,7 +1847,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit, OnDestroy
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button md-raised-button color="primary" (click)="onBack()">Back</button> {{entry.name | json }} {{starterEntry.name | json}}<form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">  <md-form-field>    <input required mdInput placeholder="Workflow Name" [formControl]="userform.controls[\'name\']" [(ngModel)]="entry.name">    <md-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty">      Workflow name is <strong>required</strong>    </md-error>  </md-form-field>  <md-form-field>    <textarea required mdInput placeholder="Write description here" [formControl]="userform.controls[\'description\']" [(ngModel)]="entry.description"></textarea>    <md-error *ngIf="!userform.controls[\'description\'].valid&&userform.controls[\'description\'].dirty">      A desrciption is <strong>required</strong>    </md-error>  </md-form-field>  <div *ngIf="operation === \'create\'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="\'below\'">    <button type="submit" color="primary" [disabled]="!(userform.valid && isGraphValid)" md-raised-button>Save Workflow Entry</button>  </div>  <div *ngIf="operation !== \'create\'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="\'below\'">    <button type="submit" color="primary" [disabled]="!(userform.valid)" md-raised-button>Update Workflow Entry</button>  </div>  <toil-editor [readOnly]="false"></toil-editor></form></div>'
+        var COMPONENT_TEMPLATE = '<div><button md-raised-button color="primary" (click)="onBack()">Back</button> {{entry.name | json }} {{starterEntry.name | json}}{{isSubmitted}}<form [formGroup]="workflowEditform" (ngSubmit)="onSubmit()" #f="ngForm">  <md-form-field>    <input required mdInput placeholder="Workflow Name" [formControl]="workflowEditform.controls[\'name\']" [(ngModel)]="entry.name">    <md-error *ngIf="!workflowEditform.controls[\'name\'].valid&&workflowEditform.controls[\'name\'].dirty">      Workflow name is <strong>required</strong>    </md-error>  </md-form-field>  <md-form-field>    <textarea required mdInput placeholder="Write description here" [formControl]="workflowEditform.controls[\'description\']" [(ngModel)]="entry.description"></textarea>    <md-error *ngIf="!workflowEditform.controls[\'description\'].valid&&workflowEditform.controls[\'description\'].dirty">      A desrciption is <strong>required</strong>    </md-error>  </md-form-field>  <div *ngIf="operation === \'create\'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="\'below\'">    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid && isGraphValid)" md-raised-button>Save Workflow Entry</button>  </div>  <div *ngIf="operation !== \'create\'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="\'below\'">    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid)" md-raised-button>Update Workflow Entry</button>  </div>  <toil-editor [readOnly]="false"></toil-editor></form></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'CountryDetailComponent', 'selector': 'app-country-detail'},{'name': 'CountryListComponent', 'selector': 'app-country-list'},{'name': 'CountryMaintComponent', 'selector': 'app-country-maint'},{'name': 'CountryPanelComponent', 'selector': 'app-country-panel'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'ImagePanelComponent', 'selector': 'app-image-panel'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
     var ACTUAL_COMPONENT = {'name': 'WorkflowDetailComponent'};
