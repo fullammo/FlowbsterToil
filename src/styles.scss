@@ -18,3 +18,25 @@ body {
 .cdk-overlay-container {
 z-index:1127;
 }
+
+.readOnlyEditor .link-tools .tool-remove {
+  display: none;
+}
+
+.readOnlyEditor .marker-arrowheads {
+  display: none;
+}
+
+.readOnlyEditor .marker-vertices {
+  display: none;
+}
+
+.readOnlyEditor .connection {
+  pointer-events: none;
+}
+
+.readOnlyEditor .connection-wrap {
+  pointer-events: none;
+}
+
+

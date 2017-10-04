@@ -1,4 +1,4 @@
-import { DistributionType } from "app/editor/models/distributionType";
+import { DistributionType } from 'app/editor/models/distributionType';
 
 export interface OutPutDescriptor {
     name: string,

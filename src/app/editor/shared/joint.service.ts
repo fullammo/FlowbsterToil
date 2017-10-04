@@ -14,28 +14,71 @@ import 'app/editor/models/customArrayFeatures';
 import * as joint from 'jointjs';
 import * as _ from 'lodash';
 
+/**
+ * Main Service that holds operations regarding the JointJS library.
+ */
 @Injectable()
 export class JointService {
 
+  /**
+   * The actual CellView that has been selected on the paper.
+   */
   selectedCellView: joint.dia.CellView;
+
+  /**
+   * The actual Port Name that has been selected on the paper.
+   */
   selectedPortName: string;
+
+  /**
+   * The actual ports type that has been selected on the paper.
+   */
   selectedPortType: string;
 
+  /**
+   * Holder of the actual workflows main properties.
+   */
   workflow: Workflow;
+
+  /**
+   * The Papers data model.
+   */
   graph = new joint.dia.Graph;
+
+  /**
+   * The paper object that has been associated with the given HTML element.
+   */
   paper: joint.dia.Paper;
 
+  /**
+   * Holder of the x and y coordinates where the user clicked on a blank paper.
+   */
   actualNodePlacement: { x: number, y: number };
-  actualNode: FlowbsterNode
-  actualNodeRect: joint.shapes.devs.Model;
 
+  /**
+   * The actual node that has been selected to modify. Useful for input data changes.
+   */
+  actualNode: FlowbsterNode
+
+  /**
+   * The actual port that has been selected to modify. Useful for input data changes.
+   */
   actualPort: InputPort | OutputPort;
 
+  /**
+   * An Observable datasource for watching if we are clicking on the blank paper or on an actual Node.
+   */
   isExistingNodeSubject: Subject<boolean>;
 
-  isWorkflowInitialized: Subject<boolean>
+  /**
+   * An Observable datasource for watching, if there are any changes made to the workflows main properties.
+   */
+  workflowChange: Subject<void>;
 
-  self = this;
+  /**
+   * An Observable datasource for watching, if the workflow have been initialized yet.
+   */
+  isWorkflowInitialized: Subject<boolean>
 
   // BONUS:  message events from proper linking and port creations and updates, and even nodes.
   // BONUS: on cancellation we reset the form again. a confirmation dialog.
@@ -71,22 +114,28 @@ export class JointService {
   // REFACTOR: Get the exact location from the 3rd party components to reduce file size.
 
   // TODO: We need to have Id's for such operations on in/out , to change their name as well.
-  // TODO: Get the site ready with firebase backend.
   // TODO: Mulitple linking support and convert it to yaml.
   // TODO: Change to PrimeNG-s Menubar. we need custom menuitems.
   // TODO: Refactor (downloadGraph and some functions could be in a UtilityService)
-  // TODO: Testing
 
-  // neccessary to initialize these actual elements before any association happens
+  /**
+   * Neccesarily initialize nodes,outports and workflow before any associaton happens.
+   */
   constructor() {
     this.actualNode = this.initNode();
     this.actualPort = this.initPort('out');
     this.workflow = this.initWorkflow();
     this.isExistingNodeSubject = new Subject();
     this.isWorkflowInitialized = new Subject();
+    this.workflowChange = new Subject<void>();
   }
 
   // returns an observable with the information of the updated node
+  /**
+   * Validates the given node name against every node (even its last name) and the workflows name property.
+   * @param nodeName the Node's name you want to filter on.
+   * @returns an Observable with the information if the updateble Node's name is unique.
+   */
   isUpdateNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
     return new Observable(observer => {
       console.log('validate against updated nodes and workflowName');
@@ -105,11 +154,20 @@ export class JointService {
     });
   }
 
+  /**
+   * Decides wether it is a used workflow name.
+   * @param name The questionable name
+   * @returns A boolean value if it is taken or not-
+   */
   private isWorkflowName(name: string): boolean {
     return this.graph.get('wf_name') === name;
   }
 
-  // returns an observable with the information if the nodeName is unique
+  /**
+   * Validate the given node against every other node and the workflow.
+   * @param nodeName The node's name you want to filter on
+   * @returns an Observable with the information about the nodeNames uniqueness
+   */
   isNodeNameUniqueObservable(nodeName: string): Observable<boolean> {
 
     return new Observable(observer => {
@@ -123,7 +181,11 @@ export class JointService {
     });
   }
 
-  //
+  /**
+   * Validates the proposed workflow Name against the nodes.
+   * @param workflowName The workflow's name you want to filter on
+   * @returns an Observable with the information if the workflowname is unique.
+   */
   isWorkflowNameUniqueObservable(workflowName: string): Observable<boolean> {
     return new Observable(observer => {
       console.log('validate against nodes');
@@ -136,15 +198,33 @@ export class JointService {
     });
   }
 
+  /**
+   * Clear the data model.
+   */
   clearGraph(): void {
     this.graph.clear();
   }
 
+  /**
+   * Gets every element from the data model.
+   * @returns A collection of the node's name.
+   */
   getNodeNames(): string[] {
     console.log(this.graph.getElements().map(element => element.attr('.label/text')));
     return this.graph.getElements().map(element => element.attr('.label/text'));
   }
 
+  /**
+   * Resets the workflow property with a pristine one.
+   */
+  reinitializeWorkflow() {
+    this.workflow = this.initWorkflow();
+  }
+
+  /**
+   * Creates a pristine workflow.
+   * @returns a clean Workflow object
+   */
   initWorkflow(): Workflow {
     return {
       infraid: null,
@@ -156,7 +236,11 @@ export class JointService {
     };
   }
 
-  // associates the workflow properties to the graph.
+  /**
+   * Associates the new workflows properties to the papers data model.
+   * Emits information that the initialization happened and the workflow has changed.
+   * @param newWorkflow Workflow modal input data.
+   */
   updateWorkflowProperties(newWorkflow: Workflow) {
     this.workflow = newWorkflow;
     this.graph.set('infra_id', newWorkflow.infraid);
@@ -166,9 +250,14 @@ export class JointService {
     this.graph.set('coll_port', newWorkflow.collectorport);
     this.graph.set('recv_port', newWorkflow.receiverport);
     this.isWorkflowInitialized.next(true);
+    this.emitWorkflowChange();
   }
 
-  // creates a link and attaches it to the DOM and downloads graph json content, after that immidietaly removes it from the DOM
+  /**
+   * Creates a link and attaches it to the DOM and downloads the data model's json content, and it when it is done, removes it form the DOM
+   * @param fileName demanded file name with the extension to be downloaded
+   * @param mimeType the given mimeType for the header
+   */
   downloadGraph(fileName: string, mimeType: string): void {
     if (this.graph) {
 
@@ -186,9 +275,12 @@ export class JointService {
     } else {
       console.log('Graph is not present');
     }
-
   }
 
+  /**
+   * Gets the workflow attributes as an object from the paper data model.
+   * @returns A fully set workflow object
+   */
   private getWorkflowAttributes(): Workflow {
     return {
       infraid: this.graph.get('infra_id'),
@@ -200,7 +292,9 @@ export class JointService {
     };
   }
 
-  // unhighlights the actual element to return a proper formatted graphJson and then highlights it again.
+  /**
+   * Unhighlights the actual element to return a proper formatted Data Model JSON and then highlights the selected element again
+   */
   private getDownloadableGraph(): string {
     let downloadableGraph = this.graph.toJSON();
 
@@ -213,16 +307,29 @@ export class JointService {
     return downloadableGraph;
   }
 
+  /**
+   * Sets the CellViews borders width to 1px and color to black.
+   * @param cellView selected CellView thats going to be unhighlighted.
+   */
   private unhighlightCellView(cellView: joint.dia.CellView): void {
     cellView.model.attr('rect/stroke', 'black');
     cellView.model.attr('rect/stroke-width', '1px');
   }
 
+  /**
+   * Sets the CellViews borders width to 5px and color to red.
+   * @param cellView selected CellView thats going to be highlighted.
+   */
   private highlightCellView(cellView: joint.dia.CellView): void {
     cellView.model.attr('rect/stroke', 'red');
     cellView.model.attr('rect/stroke-width', '5px');
   }
 
+  /**
+   * Gets the data model in JSON format and converts it to a string. If there is a selected Cell it is going to be unhighlighted before the
+   * conversion happens.
+   * @returns data Model's JSON in string format.
+   */
   getGraphJSON(): string {
     let graphJSON = JSON.stringify(this.graph.toJSON());
 
@@ -235,23 +342,41 @@ export class JointService {
     return graphJSON;
   }
 
-  // return the graphs cells.
+  /**
+   * Gets the data modell's cells.
+   * @returns A Collection of the graphs cells.
+   */
   getCells(): joint.dia.Cell[] {
     return this.graph.getCells();
   }
 
-  // reutrns the associated links to the graph.
+  /**
+   * Gets the associated Links from the paper
+   * @returns A collection of the graphs links.
+   */
   getLinks(): joint.dia.Link[] {
     return this.graph.getLinks();
   }
 
   // initializes a graph from a given JSON formatted Graph.
+  /**
+   * Sets the data modell and the workflow object properties from a JSON formatted data modell.
+   * Because we get an extra warning of graph change with the upload which is not neccessary.
+   * We are turning the eventListening on these changes off before actually updating the graph,
+   * and then listen on it again.
+   * @param graphJson Data Model JSON in string format.
+   */
   uploadGraph(graphJson: string): void {
+    this.stopListeningOnGraphChange(); // when you upload you are getting an extra warning.
     this.graph.fromJSON(graphJson);
+    this.listenOnGraphChange();
     this.workflow = this.getWorkflowAttributes();
   }
 
-  // sets the scaling of the paper by the given level.
+  /**
+   * Sets the scaling of the paper by the given level.
+   * @param newLevel The level of the rescale on the paper.
+   */
   reScalePaper(newLevel: number): void {
     if (this.paper) {
       const newScale = newLevel / 100;
@@ -259,7 +384,11 @@ export class JointService {
     }
   }
 
-  // create a new flowbster node with unique name on the paper. Informs the user if it was done.
+  /**
+   * Create a new flowbster node with unique name on the paper. Informs the user if it was done.
+   * @param flowbsterNode Node input form data.
+   * @returns an indicator about its success.
+   */
   createNode(flowbsterNode: FlowbsterNode): boolean {
 
     const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
@@ -268,12 +397,19 @@ export class JointService {
 
       const rect = this.initNodeModel(flowbsterNode, this.actualNodePlacement.x, this.actualNodePlacement.y);
       this.graph.addCell(rect);
+      this.emitWorkflowChange();
       return true;
     }
     return false;
   }
 
-  // WARNING: here we violate our rule for duplicate nodeName
+  /**
+   * Unhighlights the selected Cell, checks if it is really a node and makes a copy of it in a translated location.
+   * The actual cell gets highlighted again, and it notifies subscribers about the changes made to the model.
+   * WARNING: here we violate our rule for duplicate nodeName
+   * @param flowbsterNode Node input form data.
+   * @returns Indicator about completion.
+   */
   cloneNode(flowbsterNode: FlowbsterNode): boolean {
 
     this.unhighlightCellView(this.selectedCellView);
@@ -287,12 +423,18 @@ export class JointService {
 
       this.graph.addCell(clonedElement);
       this.highlightCellView(this.selectedCellView);
+      this.emitWorkflowChange();
       return true;
     }
     return false;
   }
 
   // updates the selectedNodes model.
+  /**
+   * Updates the selected Node's data model with the new values and notifies subscribers about the change to the model.
+   * @param flowbsterNode Node input form data.
+   * @returns Indicator about completion.
+   */
   updateNode(flowbsterNode: FlowbsterNode): boolean {
 
     // const existingNodeElement: joint.dia.Element = this.getFlowbsterNodeElement(flowbsterNode.name);
@@ -304,24 +446,33 @@ export class JointService {
     this.selectedCellView.model.attr('.exetgz/text', flowbsterNode.execurl);
     this.selectedCellView.model.attr('.scaling/min', flowbsterNode.scalingmin);
     this.selectedCellView.model.attr('.scaling/max', flowbsterNode.scalingmax);
-
+    this.emitWorkflowChange();
     return true;
     // }
 
     // return false;
   }
 
-  // if there is a selected Node then its going to be removed.
+  /**
+   * If there is a node selected, it is going to be removed and it notifies subscribers about the change to the model.
+   */
   deleteNode(): void {
     if (this.selectedCellView) {
       this.selectedCellView.model.remove();
       this.selectedCellView = null;
+      this.emitWorkflowChange();
     } else {
       console.log('no selected node present to remove');
     }
   }
 
-  // updates the attributes of the selected port. sets the model and triggers the visual appearance
+  /**
+   * Updates the attributes of the selected port, taking into consideration an actual name change
+   * and notifies subscribers about changes made to the model.
+   * @param portAttributes The Actual Ports properties.
+   * @param isInput Indicator wether its an In or Out port.
+   * @returns Indicator about completion.
+   */
   updatePort(portAttributes: InputPort | OutputPort, isInput: boolean): boolean {
 
     const oldName = this.selectedPortName;
@@ -340,13 +491,21 @@ export class JointService {
 
     portProps[newName] = portAttributes;
     this.selectedCellView.model.set(modelAttribute, portProps);
-
+    this.emitWorkflowChange();
     return true;
   }
 
 
 
   // creates a new entry in our Property holder object and deletes the old one. triggers the visual representation.
+  /**
+   * Creates a new entry in our Property holder object and deletes the old one. triggers the visual represantation(paper).
+   * @param oldName The used port name.
+   * @param newName The wanted port name.
+   * @param portProps The actual port's properties.
+   * @param isInput Indicator wether its an In or Out port.
+   * @returns The updated property holder object.
+   */
   private handlePortNameChange(oldName: string, newName: string, portProps: InputPort[] | OutputPort[], isInput: boolean)
     : InputPort[] | OutputPort[] {
     const portType = isInput ? 'inPorts' : 'outPorts';
@@ -376,7 +535,11 @@ export class JointService {
     return portProps;
   }
 
-  // Creates a new port with the given type and initializes its attributes on the cellview model.
+  /**
+   * If there is a selected Node, it creates a new port with the given type and initializes its attributes on the cellview's model,
+   * otherwise its gonna log a message to the console.
+   * @param type The property holder objects property type for the given port.
+   */
   addPort(type: string): void {
     if (this.selectedCellView) {
 
@@ -397,12 +560,24 @@ export class JointService {
       this.selectedCellView.model.set(type, ports);
       this.selectedCellView.model.trigger('change:' + type);
       this.graph.trigger('change');
+      this.emitWorkflowChange();
     } else {
       console.log('select a cell first'); // we need better error handling
     }
   }
 
+  /**
+   * Notifies subscriber's about changes made to the workflow.
+   */
+  private emitWorkflowChange(): void {
+    this.workflowChange.next();
+  }
+
   // deletes the selected port.
+  /**
+   * If there is a node and a port selected, its going to delete it and notifies the subscribers about the changes made to the model,
+   * Otherwise its gonna log a message to the console.
+   */
   deletePort(): void {
     if (this.selectedCellView && this.selectedPortType) {
       const portType = (this.selectedPortType === 'out' ? 'outPorts' : 'inPorts');
@@ -410,13 +585,17 @@ export class JointService {
       ports.remove(this.selectedPortName); // remove functiont valahogy ideeröltetni. és egy error handling az elejére.
       this.selectedCellView.model.set(portType, ports);
       this.selectedCellView.model.trigger('change:' + portType);
+      this.emitWorkflowChange();
     } else {
       console.log('select a port first'); // we need better error handling.
     }
 
   }
 
-  // initializes a flowbsterNode from the start
+  /**
+   * Initializes a clean {@link FlowbsterNode}.
+   * @returns A pristine FlowbsterNode object.
+   */
   private initNode(): FlowbsterNode {
     return {
       args: '',
@@ -428,7 +607,14 @@ export class JointService {
     }
   }
 
-  // initializes the rect on the paper from the flowbsternode attributes and the positions.
+  /**
+   * Initializes a rect on the paper from the flowbsterNode's attributes and position,
+   * while setting the rects size, the label and rects color.Also define the rect's inputs and outputs colors,magnitude and filling color.
+   * @param flowbsterNode Node input form data
+   * @param x X axis coordinate
+   * @param y Y axis coordinate
+   * @returns a data model for a Flowbster Node to be used within the paper.
+   */
   initNodeModel(flowbsterNode: FlowbsterNode, x: number, y: number): joint.shapes.devs.Model {
     return new joint.shapes.devs.Model({
       position: { x, y },
@@ -468,8 +654,12 @@ export class JointService {
     });
   }
 
-  // from the given DOM element we initialize the papers default attributes.
-  initPaper(domElement: JQuery): void {
+  /**
+   * From the given DOM element we initialize the papers default attributes.
+   * @param domElement the JQuery element we can bind our Paper class to.
+   * @param readOnly Indicator wether you can interact with the paper.
+   */
+  initPaper(domElement: JQuery, readOnly: boolean): void {
     const self = this;
 
     this.paper = new joint.dia.Paper({
@@ -479,7 +669,7 @@ export class JointService {
       gridSize: 5,
       model: this.graph,
       linkPinning: false,
-      interactive: true,
+      interactive: !readOnly,
       defaultLink: new joint.dia.Link({
         attrs: {
           '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
@@ -501,7 +691,16 @@ export class JointService {
     });
   }
 
-  // checks wether the actual link is unique and going from an input to an output.
+  /**
+   * Checks wether the actual link is unique and validates if it goes from an input to an output.
+   * @param cellViewS Source Cell View.
+   * @param magnetS  Source Magnet.
+   * @param cellViewT Target Cell View.
+   * @param magnetT Target Magnet.
+   * @param end idk.
+   * @param linkView idk.
+   * @returns Indicator wether if it's a valid connection.
+   */
   private isConnectionValid(cellViewS, magnetS, cellViewT, magnetT, end, linkView): boolean {
     if (magnetS && magnetS.getAttribute('port-group') === 'in') {
       return false;
@@ -514,6 +713,11 @@ export class JointService {
   }
 
   // checks if the flowbsterNodes name is unique and returns the actual element.
+  /**
+   * Checks if the given name is in the list of the data models Elements and returns it if it is present.
+   * @param name The name to search for in the list of nodes.
+   * @returns The element used on the paper, if there is one, otherwise null.
+   */
   getFlowbsterNodeElement(name: string): joint.dia.Element {
     const elements: joint.dia.Element[] = this.graph.getElements();
     for (const element of elements) {
@@ -524,21 +728,31 @@ export class JointService {
     return null;
   }
 
-  // ensures we are listening on all events from the paper
+  /**
+   * Ensures we are listening on all events happening on the paper.
+   */
   logAllEventsOnPaper() {
     this.paper.on('all', function (event, cell) {
       console.log(arguments);
     });
   }
 
+  /**
+   * Ensures we are listening on all events happening to the data model.
+   */
   logAllEventsOnGraph() {
     this.graph.on('all', function (event, cell) {
       console.log(arguments);
     })
   }
 
-  // its going to subscribe for the blank click event
-  // initializes the placement properties,reinitialize newNodeAttributes and toggles the callers attribute.
+  /**
+   * Ensures we are listening on the blank click event. Whenever it is happening we want to store the X,Y axis coordinates,
+   * Trigger the caller's attribute, notify subscribers that it isnt an existing Node at the moment,
+   * and set the modifiable node property to a clean representation.
+   * @param listener A class or function who listens on this event.
+   * @param modalTriggerAttribute The listeners attribute's name, that is going to be set to true.
+   */
   listenOnBlankClick(listener: any, modalTriggerAttribute: string): void {
     const self = this;
 
@@ -551,16 +765,34 @@ export class JointService {
     });
   }
 
-  listenOnGraphCellAdd() {
-    this.graph.on('add', function (cell: joint.dia.Cell) {
+  /**
+   * Ensures we are listening on the data models changes.
+   * Whenever it happens it is going to notify the subscribers about that the workflow have been changed.
+   */
+  listenOnGraphChange() {
+    const self = this;
 
-      console.log(cell);
+    this.graph.on('change', function (cell: joint.dia.Cell) {
+      console.log(this);
+      self.emitWorkflowChange();
     });
   }
 
+  /**
+   * Turns off the listening on the data models changes.
+   */
+  stopListeningOnGraphChange() {
+    this.graph.off('change');
+  }
 
-  // listens on the pointerup event and fires up the proper modal of i/o ports.
-  listenOnPointerUp(listener: any, inputAttributeName: string, outputAttributeName: string): void {
+  /**
+   * Ensures we are listening on the pointer up event and triggers the proper modal based on input/output ports.
+   * @param listener A class or function who listens on this event.
+   * @param inputTriggerAttributeName The property's name on the listener that is going to be triggered if it is an input.
+   * @param outputTriggerAttributeName The property's name on the listener that is going to be triggered if it is an output.
+   * @param readOnly Indicator about the papers interactivity.
+   */
+  listenOnPointerUp(listener: any, inputTriggerAttributeName: string, outputTriggerAttributeName: string, readOnly: boolean): void {
     const self = this;
 
     this.paper.on('cell:pointerup', function (cellView, event, x, y) {
@@ -572,15 +804,15 @@ export class JointService {
 
         if ('out' === self.selectedPortType) {
           if (cellView.sourceView) {
-            self.selectCellView(cellView.sourceView); // if the source view exists we need to select that cellview.
+            self.selectCellView(cellView.sourceView, readOnly); // if the source view exists we need to select that cellview.
           }
           self.setPort(cellView, 'outPortsProps');
-          listener[outputAttributeName] = true; // trigger output modal.
+          listener[outputTriggerAttributeName] = true; // trigger output modal.
 
         } else if ('in' === self.selectedPortType) {
 
           self.setPort(cellView, 'inPortsProps');
-          listener[inputAttributeName] = true; // trigger input modal.
+          listener[inputTriggerAttributeName] = true; // trigger input modal.
         }
 
         console.log(self.selectedPortName + ' ' + self.selectedPortType);
@@ -589,8 +821,12 @@ export class JointService {
     });
   }
 
-  // gets the attributes from the cellview and sets the actual service port wether its an input or an output port
-  setPort(cellView, attributeName: string) {
+  /**
+   * Gets the attributes from the Cell View's model and sets the modifiable port's properties based on I/O
+   * @param cellView The selected Cell View.
+   * @param attributeName The holder object attributes name you want to use.
+   */
+  setPort(cellView, attributeName: string): void {
 
     const portAttributes = this.setPortAttributes(cellView, attributeName);
 
@@ -610,6 +846,11 @@ export class JointService {
   }
 
   // sets the port Attributes by the given attributeName (in and output model difers)
+  /**
+   * Sets the port attributes by the given attributeName (in and output model difers because of events)
+   * @param cellView The selected Cell View.
+   * @param attributeName The holder object attributes name you want to use.
+   */
   setPortAttributes(cellView, attributeName: string) {
     if (attributeName === 'inPortsProps') {
       return cellView.model.get(attributeName)[this.selectedPortName];
@@ -621,11 +862,20 @@ export class JointService {
     }
   }
 
+  /**
+   * Checks if your object holds any attributes.
+   * @param object Any object.
+   * @returns An Indicator about its emptiness.
+   */
   isEmpty(object: Object): boolean {
     return Object.keys(object).length === 0 && object.constructor === Object;
   }
 
-  // returns a fresh port by the given type
+  /**
+   * Initializes a fresh port by the given type.
+   * @param type Type of the port.
+   * @returns a pristine In or Out port.
+   */
   private initPort(type: string): InputPort | OutputPort {
 
     if (type === 'in') {
@@ -635,7 +885,10 @@ export class JointService {
     return this.initOutputPort();
   }
 
-  // initializes an input port
+  /**
+   * Initializes a clean input port.
+   * @returns A pristine InputPort object.
+   */
   private initInputPort(): InputPort {
     return {
       name: this.selectedPortName,
@@ -644,7 +897,10 @@ export class JointService {
     };
   }
 
-  // initializes an output port
+  /**
+   * Initializes a clean output port.
+   * @returns A pristine OutputPort object.
+   */
   private initOutputPort(): OutputPort {
     return {
       name: this.selectedPortName,
@@ -658,15 +914,25 @@ export class JointService {
     };
   }
 
-  // listens on the pointerclick event and selects the actual cell
-  listenOnCellClick(): void {
+  /**
+   * Ensures we are listening on the papers click events of the cells. Whenever it fires the actual clicked Cell is going to be selected.
+   * @param readOnly Indicator about the papers inactivity.
+   */
+  listenOnCellClick(readOnly: boolean): void {
     const self = this;
     this.paper.on('cell:pointerclick', function (cellView, event, x, y) {
-      self.selectCellView(cellView);
+      self.selectCellView(cellView, readOnly);
     });
   }
 
   // listens on the double click event and updates the newNode's attributes.
+  /**
+   * Ensures we are listening on the double click events on the cells. Whenever it fires updates the modifiable node's properties to the
+   * double clicked nodes properties,
+   * triggers the modal for editing, and notifies subscribers about that it is an Existing Node that we are looking at.
+   * @param listener The class or function that is listening to this event.
+   * @param modalTriggerAttribute The class's attribute name that is going to be triggered.
+   */
   listenOnCellDoubleClick(listener: any, modalTriggerAttribute: string): void {
     const self = this;
     this.paper.on('cell:pointerdblclick', function (cellView, event, x, y) {
@@ -684,25 +950,41 @@ export class JointService {
     });
   }
 
-  // if there is a new cell its going to highlight it.
-  private selectCellView(cellView: joint.dia.CellView): void {
+  /**
+   * If there is a new Cell selected then its going to highlight the new one and unhighlight the previous one.
+   * If the paper is read only, then its not getting highlighted at all.
+   * @param cellView The Cell View we want to select.
+   * @param readOnly Indicator about the interactivity.
+   */
+  private selectCellView(cellView: joint.dia.CellView, readOnly: boolean): void {
     if (cellView !== this.selectedCellView) {
-      if (this.selectedCellView != null) {
+      if (this.selectedCellView != null && !readOnly) {
         this.unhighlightCellView(this.selectedCellView);
       }
       if (cellView.model !== undefined) {
         this.selectedCellView = cellView;
-        this.highlightCellView(this.selectedCellView);
+        if (!readOnly) {
+          this.highlightCellView(this.selectedCellView);
+        }
       }
     }
   }
 
-  // initializes the placement of the new node.
+  /**
+   * Sets the actual Node's location on the paper.
+   * @param x X axis coordinate
+   * @param y Y axis coordinate
+   */
   private initPlacement(x: number, y: number): void {
     this.actualNodePlacement = { x, y };
   }
 
-  // get data from the selected Cell by the attribute name and by if its a scale prop or not.
+  /**
+   * Gets data from the selected Cell's model by the attribute's name.
+   * @param name The attribute name you want to get from the data model.
+   * @param isScale Indicator about that it is a scaling property.
+   * @returns The value of the property.
+   */
   private getSelectedJobsProperty(name: string, isScale: boolean): string {
 
     if (!this.selectedCellView) {

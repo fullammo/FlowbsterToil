@@ -1,5 +1,6 @@
 <md-slider (input)="onSliderChanged($event)" [min]="minSliderValue" [value]="sliderValue"></md-slider>
-<div id="paper" class="paper drawing-area">
+<div *ngIf="readOnly">{{ jointSVC.workflow | json}}</div>
+<div id="paper" class="paper drawing-area" [ngClass]="{'readOnlyEditor': readOnly}">
 </div>
 
 <!-- <p>{{jointSVC.actualNode |json}}</p> -->
@@ -7,21 +8,16 @@
 <p-growl [(value)]="msgs" sticky="sticky"></p-growl>
 
 <p-dialog header="Node Properties" [(visible)]="nodeModalVisible" modal="true">
-  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)"
-                       (onUpdateDialog)="nodeUpdateDialogChanged($event)"
-                       (onCloneDialog) ="nodeCloneDialogChanged($event)"
-                       [NodeProps]="jointSVC.actualNode"
-                      >
-                      <!-- [isExistingNode]="jointSVC.isExistingNode" -->
+  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)" (onUpdateDialog)="nodeUpdateDialogChanged($event)"
+    (onCloneDialog)="nodeCloneDialogChanged($event)" [NodeProps]="jointSVC.actualNode" [readOnly]="readOnly">
+    <!-- [isExistingNode]="jointSVC.isExistingNode" -->
   </toil-editor-node-properties>
 </p-dialog>
 
 <p-dialog header="Input Properties" [(visible)]="inputModalVisible" modal="true">
-  <toil-editor-input-properties (onSubmitDialog)="inputDialogChanged($event)" [InputProps]="jointSVC.actualPort"></toil-editor-input-properties>
+  <toil-editor-input-properties [readOnly]="readOnly" (onSubmitDialog)="inputDialogChanged($event)" [InputProps]="jointSVC.actualPort"></toil-editor-input-properties>
 </p-dialog>
 
 <p-dialog header="Output Properties" [(visible)]="outputModalVisible" modal="true">
-  <toil-editor-output-properties (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualPort"></toil-editor-output-properties>
+  <toil-editor-output-properties [readOnly]="readOnly" (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualPort"></toil-editor-output-properties>
 </p-dialog>
-
-

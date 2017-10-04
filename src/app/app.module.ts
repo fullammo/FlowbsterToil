@@ -36,13 +36,12 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AppDataService } from './services/app-data.service';
 import { CountryPanelComponent } from './panels/country-panel/country-panel.component';
 import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
-import { NodeDefComponent } from './node-def/node-def.component';
-import { AuthFileComponent } from './auth-file/auth-file.component';
 import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
 import { environment } from 'environments/environment';
 import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { OccoService } from 'app/services/occo.service';
+import { ConnectionComponent } from './connection/connection.component';
 
 
 @NgModule({
@@ -55,10 +54,9 @@ import { OccoService } from 'app/services/occo.service';
     AuthenticatedUserComponent,
     CountryPanelComponent,
     ImagePanelComponent,
-    NodeDefComponent,
-    AuthFileComponent,
     WorkflowMaintComponent,
-    WorkflowDetailComponent
+    WorkflowDetailComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,

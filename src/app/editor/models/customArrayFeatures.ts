@@ -1,7 +1,17 @@
+/**
+ * The basic Array interface with a plus feature.
+ */
 interface Array<T> {
+
+  /**
+   * A remove function is added to the array to support port deletion from a collection.
+   */
   remove();
 }
 
+/**
+ * Idk.
+ */
 Array.prototype.remove = function () {
   const a = arguments;
   let what, L = a.length, ax;
