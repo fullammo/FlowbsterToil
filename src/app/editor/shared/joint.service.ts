@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 
 import { element } from 'protractor';
 import { Subject } from 'rxjs/Subject';
@@ -10,6 +11,7 @@ import { Workflow } from 'app/editor/models/workflow';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 
 import 'app/editor/models/customArrayFeatures';
+import 'app/editor/shared/modelExtension';
 
 import * as joint from 'jointjs';
 import * as _ from 'lodash';
@@ -466,6 +468,14 @@ export class JointService {
     }
   }
 
+  updateInPortv2(portAttributes: InputPort) {
+    console.log(this.selectedCellView.model);
+  }
+
+  updateOutPortv2(portAttributes: OutputPort) {
+
+  }
+
   /**
    * Updates the attributes of the selected port, taking into consideration an actual name change
    * and notifies subscribers about changes made to the model.
@@ -473,6 +483,7 @@ export class JointService {
    * @param isInput Indicator wether its an In or Out port.
    * @returns Indicator about completion.
    */
+
   updatePort(portAttributes, isInput: boolean): boolean {
 
     const oldName = this.selectedPortName;
@@ -541,35 +552,156 @@ export class JointService {
   }
 
   /**
+   * Iterates through the elements of the data model.
+   * @param id The id of the item you want to get from the graph.
+   */
+  private getElementById(id: string): joint.dia.Element {
+    let element: joint.dia.Element;
+    this.graph.getElements().forEach((el) => {
+      if (el.id === id) {
+        element = el;
+      }
+    });
+    return element;
+  }
+
+  /**
+   * If there is a selected Flowbster node, we get the specific element from the data model
+   * and adds the input port to the view with initial values.
+   * @returns Indicator about completion.
+   */
+  addInPort(): boolean {
+    if (this.selectedCellView) {
+
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+      if (this.isPortUnique(element, 'sada', 'inPorts')) {
+        this.createInportOnElement(element, 'sada');
+      } else {
+        console.log('foglalt,másik nevet kell választani');
+      }
+      return true;
+
+    } else {
+      console.log('select a node to add inport to');
+      return false;
+    }
+  }
+
+  //
+  addPort(type: string): boolean {
+    if (this.selectedCellView) {
+
+      const name = 'sada';
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+
+      // ez működik. kell majd még valahogy felvenni névvel őket az in és output portokhoz. persze csak ha egyedi a név (in-out). ha nem akkor sírunk.
+      element.addPort({
+        group: 'in',
+        attrs: {
+          '.port-label': { text: 'hurrá' },
+          'format': '',
+          'collector': 'false'
+        }
+      });
+      // if (this.isPortUnique(element, name, type)) {
+      //   this.createPortOnElement(element, name, type);
+      // } else {
+      //   console.log('foglalt,másik nevet kell választani');
+      // }
+      console.log(element);
+      return true;
+
+    } else {
+      console.log('select a node to add ports to.');
+      return false;
+    }
+  }
+
+  private createPortOnElement(element: joint.shapes.devs.Model, name: string, type: string) {
+    if (type === 'inPorts') {
+      this.createInportOnElement(element, name + 'Inports');
+    } else if (type === 'outPorts') {
+      this.createOutportOnElement(element, name + 'Outports');
+    }
+  }
+
+  /**
+   * Decides wether a port on the given element is unique by the id or not.
+   * @param element The model object you want to decide about the ports uniqueness.
+   * @param name  The id you want to check the uniqueness to.
+   * @param type The type of ports you want to analyze
+   * @returns Indicator about the ports uniqueness.
+   */
+  private isPortUnique(element: joint.shapes.devs.Model, name: string, type: string): boolean {
+    let unique = true;
+    element.attributes[type].forEach(inport => {
+      if (inport === name) {
+        unique = false;
+      }
+    });
+    return unique;
+  }
+
+  /**
+   * Adds the output port to the given element, and sets the initial properties.
+   * @param element The model object you want to add the outputs to.
+   * @param name The given id you want to initialize the Output port.
+   */
+  private createOutportOnElement(element: joint.shapes.devs.Model, name: string): void {
+    const id = _.uniqueId(name);
+    element.addOutPort(id);
+    element.portProp(id, 'attrs/targetname', '');
+    element.portProp(id, 'attrs/targetport', '');
+    element.portProp(id, 'attrs/targetip', '');
+    element.portProp(id, 'attrs/isGenerator', 'false');
+    element.portProp(id, 'attrs/targetnode', '');
+    element.portProp(id, 'attrs/filter', '');
+    element.portProp(id, 'attrs/distribution', '');
+  }
+
+  /**
+   * Adds the input port to the given element, and sets the initial properties.
+   * @param element The model object you want to add the inputs to.
+   * @param name The given id you want to initialize the Input port.
+   */
+  private createInportOnElement(element: joint.shapes.devs.Model, name: string): void {
+    const id = _.uniqueId(name);
+    element.addInPort(id);
+    element.portProp(id, 'attrs/.port-label/text', 'anyád');
+    element.portProp(id, 'attrs/format', '');
+    element.portProp(id, 'attrs/collector', 'false');
+  }
+
+  /**
    * If there is a selected Node, it creates a new port with the given type and initializes its attributes on the cellview's model,
    * otherwise its gonna log a message to the console.
    * @param type The property holder objects property type for the given port.
    */
-  addPort(type: string): void {
-    if (this.selectedCellView) {
+  // addPort(type: string): void {
+  //   if (this.selectedCellView) {
 
-      let ports = this.selectedCellView.model.get(type);
+  //     let ports = this.selectedCellView.model.get(type);
 
-      if (ports === null) {
-        ports = [type + ''];
-      } else {
-        ports.push(type + ports.length);
-      }
+  //     if (ports === null) {
+  //       ports = [type + ''];
+  //     } else {
+  //       ports.push(type + ports.length);
+  //     }
 
-      const portName = ports[ports.length - 1];
-      const portGroup = (type === 'inPorts' ? 'inPortsProps' : 'outPortsProps');
-      const portsProps = this.selectedCellView.model.get(portGroup);
-      portsProps[portName] = {};
+  //     const portName = ports[ports.length - 1];
+  //     const portGroup = (type === 'inPorts' ? 'inPortsProps' : 'outPortsProps');
+  //     const portsProps = this.selectedCellView.model.get(portGroup);
+  //     portsProps[portName] = {};
 
-      this.selectedCellView.model.set(portGroup, portsProps);
-      this.selectedCellView.model.set(type, ports);
-      this.selectedCellView.model.trigger('change:' + type);
-      this.graph.trigger('change');
-      this.emitWorkflowChange();
-    } else {
-      console.log('select a cell first'); // we need better error handling
-    }
-  }
+  //     this.selectedCellView.model.set(portGroup, portsProps);
+  //     this.selectedCellView.model.set(type, ports);
+  //     this.selectedCellView.model.trigger('change:' + type);
+  //     this.graph.trigger('change');
+  //     this.emitWorkflowChange();
+  //   } else {
+  //     console.log('select a cell first'); // we need better error handling
+  //   }
+  // }
 
   /**
    * Notifies subscriber's about changes made to the workflow.
@@ -626,8 +758,6 @@ export class JointService {
       size: { width: 100, height: 100 },
       inPorts: [],
       outPorts: [],
-      inPortsProps: {},
-      outPortsProps: {},
       ports: {
         groups: {
           'in': {
@@ -635,7 +765,10 @@ export class JointService {
               '.port-body': {
                 fill: '#16A085',
                 magnet: 'passive'
-              } // here we could enter the inPortProps attributes
+              },
+              '.collector': { collector: false },
+              '.format': { format: '' }
+              // here we could enter the inPortProps attributes
             }
           },
           'out': {

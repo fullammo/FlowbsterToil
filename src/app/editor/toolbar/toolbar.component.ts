@@ -109,7 +109,6 @@ export class ToolbarComponent implements OnInit {
         items: [
           {
             label: 'Add Input port', icon: 'fa-plus-circle', command: (event) => {
-
               this.jointSVC.addPort('inPorts');
             }
           },

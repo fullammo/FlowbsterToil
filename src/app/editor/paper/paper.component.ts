@@ -177,11 +177,13 @@ export class PaperComponent implements OnInit {
    * @param updatedInputProps Input Modal form data.
    */
   private tryInputUpdate(updatedInputProps: InputPort) {
-    if (this.jointSVC.updatePort(updatedInputProps, true)) {
-      this.sendStickyMessage(true, `Input port '${updatedInputProps.name}' updated!`);
-    } else {
-      this.sendStickyMessage(false, `Input port name '${updatedInputProps.name}' already exists!`);
-    }
+
+    this.jointSVC.updateInPortv2(updatedInputProps);
+    // if (this.jointSVC.updatePort(updatedInputProps, true)) {
+    //   this.sendStickyMessage(true, `Input port '${updatedInputProps.name}' updated!`);
+    // } else {
+    //   this.sendStickyMessage(false, `Input port name '${updatedInputProps.name}' already exists!`);
+    // }
   }
 
   /**
