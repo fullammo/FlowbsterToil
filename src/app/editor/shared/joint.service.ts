@@ -670,7 +670,6 @@ export class JointService {
     } else {
       console.log('select a port first'); // we need better error handling.
     }
-
   }
 
   /**
@@ -882,11 +881,8 @@ export class JointService {
       const portId = event.target.getAttribute('port');
 
       if (portId !== null) {
-        // save these from the event to the service
-        self.selectedPortId = portId;
-        // self.selectedPortType = event.target.getAttribute('port-group');
-        // not sure if i need this in the service,maybe a local is enough
 
+        self.selectedPortId = portId;
         const selectedPortType = event.target.getAttribute('port-group');
 
         if ('out' === selectedPortType) {
