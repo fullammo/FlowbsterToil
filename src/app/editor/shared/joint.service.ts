@@ -647,22 +647,29 @@ export class JointService {
     this.workflowChange.next();
   }
 
-  // deletes the selected port.
   /**
    * If there is a node and a port selected, its going to delete it and notifies the subscribers about the changes made to the model,
    * Otherwise its gonna log a message to the console.
    */
   deletePort(): void {
-    // if (this.selectedCellView && this.selectedPortType) {
-    //   // const portType = (this.selectedPortType === 'out' ? 'outPorts' : 'inPorts');
-    //   const ports = this.selectedCellView.model.get(portType);
-    //   ports.remove(this.selectedPortId); // remove functiont valahogy ideeröltetni. és egy error handling az elejére.
-    //   this.selectedCellView.model.set(portType, ports);
-    //   this.selectedCellView.model.trigger('change:' + portType);
-    //   this.emitWorkflowChange();
-    // } else {
-    //   console.log('select a port first'); // we need better error handling.
-    // }
+    if (this.selectedCellView && this.selectedPortId) {
+
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+      const port = element.getPort(this.selectedPortId);
+      const group = port.group;
+      const portName = port.attrs['.port-label'].text;
+
+      if (group === 'in') {
+        element.removeInPort(portName);
+      } else {
+        element.removeOutPort(portName);
+      }
+      element.removePort(this.selectedPortId);
+
+      this.emitWorkflowChange();
+    } else {
+      console.log('select a port first'); // we need better error handling.
+    }
 
   }
 
