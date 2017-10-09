@@ -11,7 +11,6 @@ import { Workflow } from 'app/editor/models/workflow';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 
 import 'app/editor/models/customArrayFeatures';
-import 'app/editor/shared/modelExtension';
 
 import * as joint from 'jointjs';
 import * as _ from 'lodash';
@@ -587,27 +586,57 @@ export class JointService {
     }
   }
 
-  //
-  addPort(type: string): boolean {
-    if (this.selectedCellView) {
+  /**
+   * Adds an initial port with unique id to the element by the given type.
+   * @param element The element you want the port on.
+   * @param type Decides what kind of port you want.
+   * @param portName The initial name of the port.
+   */
+  private addPortToView(element: joint.shapes.devs.Model, type: string, portName: string): void {
 
-      const name = 'sada';
-      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+    const group = (type === 'inPorts' ? 'in' : 'out');
 
-      // ez működik. kell majd még valahogy felvenni névvel őket az in és output portokhoz. persze csak ha egyedi a név (in-out). ha nem akkor sírunk.
+    if (group === 'in') {
+
       element.addPort({
-        group: 'in',
+        group: group,
         attrs: {
-          '.port-label': { text: 'hurrá' },
+          '.port-label': { text: portName },
           'format': '',
           'collector': 'false'
         }
       });
-      // if (this.isPortUnique(element, name, type)) {
-      //   this.createPortOnElement(element, name, type);
-      // } else {
-      //   console.log('foglalt,másik nevet kell választani');
-      // }
+
+    } else {
+      element.addPort({
+        group: group,
+        attrs: {
+          '.port-label': { text: portName },
+          'targetname': '',
+          'isGenerator': 'false',
+          'targetport': '',
+          'targetip': '',
+          'distribution': '',
+          'filter': '',
+          'targetnode': '',
+        }
+      });
+    }
+
+  }
+
+  // nem vizsgáljuk még hogy egyedi e.
+  addPort(type: string): boolean {
+    if (this.selectedCellView) {
+
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+      const portCollection = element.attributes[type];
+      const portName = type + portCollection.length;
+
+      portCollection.push(portName);
+
+      this.addPortToView(element, type, portName);
+
       console.log(element);
       return true;
 
