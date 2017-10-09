@@ -15,9 +15,9 @@
 </p-dialog>
 
 <p-dialog header="Input Properties" [(visible)]="inputModalVisible" modal="true">
-  <toil-editor-input-properties [readOnly]="readOnly" (onSubmitDialog)="inputDialogChanged($event)" [InputProps]="jointSVC.actualPort"></toil-editor-input-properties>
+  <toil-editor-input-properties [readOnly]="readOnly" (onSubmitDialog)="inputDialogChanged($event)" [InputProps]="jointSVC.actualInPort"></toil-editor-input-properties>
 </p-dialog>
 
 <p-dialog header="Output Properties" [(visible)]="outputModalVisible" modal="true">
-  <toil-editor-output-properties [readOnly]="readOnly" (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualPort"></toil-editor-output-properties>
+  <toil-editor-output-properties [readOnly]="readOnly" (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualOutPort"></toil-editor-output-properties>
 </p-dialog>

@@ -47,5 +47,5 @@ export interface OutputPort {
   /**
    * The display name of the Output port in string format.
    */
-  displayName: string;
+  displayName?: string;
 }

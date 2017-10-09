@@ -29,12 +29,7 @@ export class JointService {
   /**
    * The actual Port Name that has been selected on the paper.
    */
-  selectedPortName: string;
-
-  /**
-   * The actual ports type that has been selected on the paper.
-   */
-  selectedPortType: string;
+  selectedPortId: string;
 
   /**
    * Holder of the actual workflows main properties.
@@ -61,10 +56,8 @@ export class JointService {
    */
   actualNode: FlowbsterNode
 
-  /**
-   * The actual port that has been selected to modify. Useful for input data changes.
-   */
-  actualPort: InputPort | OutputPort;
+  actualOutPort: OutputPort;
+  actualInPort: InputPort;
 
   /**
    * An Observable datasource for watching if we are clicking on the blank paper or on an actual Node.
@@ -124,11 +117,27 @@ export class JointService {
    */
   constructor() {
     this.actualNode = this.initNode();
-    this.actualPort = this.initPort('out');
+    this.actualInPort = this.initInport();
+    this.actualOutPort = this.initOutport();
     this.workflow = this.initWorkflow();
     this.isExistingNodeSubject = new Subject();
     this.isWorkflowInitialized = new Subject();
     this.workflowChange = new Subject<void>();
+  }
+
+  private initOutport(): OutputPort {
+    return {
+      'name': '',
+      'isGenerator': false,
+      'filter': '',
+      'targetname': '',
+      'targetport': '',
+      'targetip': ''
+    };
+  }
+
+  private initInport(): InputPort {
+    return { 'name': '', 'format': '', 'collector': false };
   }
 
   // returns an observable with the information of the updated node
@@ -485,7 +494,7 @@ export class JointService {
 
   updatePort(portAttributes, isInput: boolean): boolean {
 
-    const oldName = this.selectedPortName;
+    const oldName = this.selectedPortId;
     let newName: string;
     if (isInput) {
       newName = portAttributes.name;
@@ -553,6 +562,7 @@ export class JointService {
   /**
    * Iterates through the elements of the data model.
    * @param id The id of the item you want to get from the graph.
+   * @returns The found element if there is any.
    */
   private getElementById(id: string): joint.dia.Element {
     let element: joint.dia.Element;
@@ -604,11 +614,12 @@ export class JointService {
   }
 
   /**
-   * If there is a Flowbster Node selected we get the actual element from the model, we register it by the given type and
-   * add it to the view.
+   * If there is a Flowbster Node selected we get the actual element from the model, we register it by
+   * the given type and the count of the collection and add it to the view.
    * @param type Decides if you want an input or an output port.
    * @returns Indicator about the completion.
    */
+  // nem vizsgáljuk hogy tényleg egyedi e.
   addPort(type: string): boolean {
     if (this.selectedCellView) {
 
@@ -630,23 +641,6 @@ export class JointService {
   }
 
   /**
-   * Decides wether a port on the given element is unique by the id or not.
-   * @param element The model object you want to decide about the ports uniqueness.
-   * @param name  The id you want to check the uniqueness to.
-   * @param type The type of ports you want to analyze
-   * @returns Indicator about the ports uniqueness.
-   */
-  private isPortUnique(element: joint.shapes.devs.Model, name: string, type: string): boolean {
-    let unique = true;
-    element.attributes[type].forEach(inport => {
-      if (inport === name) {
-        unique = false;
-      }
-    });
-    return unique;
-  }
-
-  /**
    * Notifies subscriber's about changes made to the workflow.
    */
   private emitWorkflowChange(): void {
@@ -659,16 +653,16 @@ export class JointService {
    * Otherwise its gonna log a message to the console.
    */
   deletePort(): void {
-    if (this.selectedCellView && this.selectedPortType) {
-      const portType = (this.selectedPortType === 'out' ? 'outPorts' : 'inPorts');
-      const ports = this.selectedCellView.model.get(portType);
-      ports.remove(this.selectedPortName); // remove functiont valahogy ideeröltetni. és egy error handling az elejére.
-      this.selectedCellView.model.set(portType, ports);
-      this.selectedCellView.model.trigger('change:' + portType);
-      this.emitWorkflowChange();
-    } else {
-      console.log('select a port first'); // we need better error handling.
-    }
+    // if (this.selectedCellView && this.selectedPortType) {
+    //   // const portType = (this.selectedPortType === 'out' ? 'outPorts' : 'inPorts');
+    //   const ports = this.selectedCellView.model.get(portType);
+    //   ports.remove(this.selectedPortId); // remove functiont valahogy ideeröltetni. és egy error handling az elejére.
+    //   this.selectedCellView.model.set(portType, ports);
+    //   this.selectedCellView.model.trigger('change:' + portType);
+    //   this.emitWorkflowChange();
+    // } else {
+    //   console.log('select a port first'); // we need better error handling.
+    // }
 
   }
 
@@ -877,29 +871,53 @@ export class JointService {
     const self = this;
 
     this.paper.on('cell:pointerup', function (cellView, event, x, y) {
-      const portName = event.target.getAttribute('port');
-      if (portName !== null) {
-        // save these from the event to the service
-        self.selectedPortName = portName;
-        self.selectedPortType = event.target.getAttribute('port-group'); // not sure if i need this in the service,maybe a local is enough
 
-        if ('out' === self.selectedPortType) {
+      const portId = event.target.getAttribute('port');
+
+      if (portId !== null) {
+        // save these from the event to the service
+        self.selectedPortId = portId;
+        // self.selectedPortType = event.target.getAttribute('port-group');
+        // not sure if i need this in the service,maybe a local is enough
+
+        const selectedPortType = event.target.getAttribute('port-group');
+
+        if ('out' === selectedPortType) {
           if (cellView.sourceView) {
             self.selectCellView(cellView.sourceView, readOnly); // if the source view exists we need to select that cellview.
           }
-          self.setPort(cellView, 'outPortsProps');
+          self.setPort(cellView, selectedPortType);
           listener[outputTriggerAttributeName] = true; // trigger output modal.
 
-        } else if ('in' === self.selectedPortType) {
+        } else if ('in' === selectedPortType) {
 
-          self.setPort(cellView, 'inPortsProps');
+          self.setPort(cellView, selectedPortType);
           listener[inputTriggerAttributeName] = true; // trigger input modal.
         }
-
-        console.log(self.selectedPortName + ' ' + self.selectedPortType);
-        console.log(self.actualPort);
       }
     });
+  }
+
+  setInputPort(port: any): void {
+    this.actualInPort = {
+      'name': port.attrs['.port-label'].text,
+      'format': port.attrs.format,
+      'collector': port.attrs.collector === 'false' ? false : true
+    };
+    console.log(this.actualInPort);
+  }
+
+  setOutPort(port: any): void {
+    this.actualOutPort = {
+      'name': port.attrs['.port-label'].text,
+      'targetname': port.attrs.targetname,
+      'targetip': port.attrs.targetip,
+      'targetport': port.attrs.targetport,
+      'isGenerator': port.attrs.isGenerator === 'false' ? false : true,
+      'filter': port.attrs.filter,
+      'distribution': port.attrs.distribution
+    };
+    console.log(this.actualOutPort);
   }
 
   /**
@@ -907,39 +925,15 @@ export class JointService {
    * @param cellView The selected Cell View.
    * @param attributeName The holder object attributes name you want to use.
    */
-  setPort(cellView, attributeName: string): void {
+  setPort(cellView, selectedPortType: string): void {
 
-    const portAttributes = this.setPortAttributes(cellView, attributeName);
-
-    if (undefined !== portAttributes && this.isEmpty(portAttributes)) {
-
-      if (attributeName === 'inPortsProps') {
-        console.log('setting input');
-        this.actualPort = this.initPort('in');
-      } else if (attributeName === 'outPortsProps') {
-        this.actualPort = this.initPort('out');
-        console.log('setting output');
-      }
+    const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+    const port = element.getPort(this.selectedPortId);
+    // itt már csak a megfelelő fajta portTypeként kell beadni az adatokat neki.
+    if (selectedPortType === 'in') {
+      this.setInputPort(port);
     } else {
-      console.log('getting the same guy');
-      this.actualPort = portAttributes;
-    }
-  }
-
-  // sets the port Attributes by the given attributeName (in and output model difers)
-  /**
-   * Sets the port attributes by the given attributeName (in and output model difers because of events)
-   * @param cellView The selected Cell View.
-   * @param attributeName The holder object attributes name you want to use.
-   */
-  setPortAttributes(cellView, attributeName: string) {
-    if (attributeName === 'inPortsProps') {
-      return cellView.model.get(attributeName)[this.selectedPortName];
-    }
-    if (cellView.sourceView) {
-      return cellView.sourceView.model.get(attributeName)[this.selectedPortName];
-    } else {
-      return cellView.model.get(attributeName)[this.selectedPortName];
+      this.setOutPort(port);
     }
   }
 
@@ -950,49 +944,6 @@ export class JointService {
    */
   isEmpty(object: Object): boolean {
     return Object.keys(object).length === 0 && object.constructor === Object;
-  }
-
-  /**
-   * Initializes a fresh port by the given type.
-   * @param type Type of the port.
-   * @returns a pristine In or Out port.
-   */
-  private initPort(type: string): InputPort | OutputPort {
-
-    if (type === 'in') {
-      return this.initInputPort();
-    }
-
-    return this.initOutputPort();
-  }
-
-  /**
-   * Initializes a clean input port.
-   * @returns A pristine InputPort object.
-   */
-  private initInputPort(): InputPort {
-    return {
-      name: this.selectedPortName,
-      collector: false,
-      format: ''
-    };
-  }
-
-  /**
-   * Initializes a clean output port.
-   * @returns A pristine OutputPort object.
-   */
-  private initOutputPort(): OutputPort {
-    return {
-      displayName: this.selectedPortName,
-      name: '',
-      targetname: '',
-      targetip: '',
-      targetport: '',
-      isGenerator: false,
-      filter: '',
-      distribution: null
-    };
   }
 
   /**
