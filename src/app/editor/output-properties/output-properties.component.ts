@@ -45,24 +45,24 @@ export class OutputPropertiesComponent implements OnInit {
 
     return this.fb.group({
       // TODO : better pattern is needed
-      'name': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]),
-      'fileName': new FormControl(formState, Validators.required),
-      'targetName': new FormControl(formState),
-      'targetIp': new FormControl(formState),
-      'targetPort': new FormControl(formState),
+      'displayName': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]),
+      'name': new FormControl(formState, Validators.required),
+      'targetname': new FormControl(formState),
+      'targetip': new FormControl(formState),
+      'targetport': new FormControl(formState),
       'isGenerator': new FormControl(formState),
-      'filterExpression': new FormControl({ value: '', disabled: true }),
-      'distributionType': new FormControl({ value: '', disabled: true })
+      'filter': new FormControl({ value: '', disabled: true }),
+      'distribution': new FormControl({ value: '', disabled: true })
     });
   }
 
   onCheckboxToggle() {
     if (this.userform.controls['isGenerator'].value) {
-      this.userform.controls['distributionType'].enable();
-      this.userform.controls['filterExpression'].enable();
+      this.userform.controls['distribution'].enable();
+      this.userform.controls['filter'].enable();
     } else {
-      this.userform.controls['distributionType'].disable();
-      this.userform.controls['filterExpression'].disable();
+      this.userform.controls['distribution'].disable();
+      this.userform.controls['filter'].disable();
     }
   }
 
