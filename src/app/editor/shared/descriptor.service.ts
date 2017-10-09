@@ -4,7 +4,7 @@ import { JointService } from 'app/editor/shared/joint.service';
 import { Workflow } from 'app/editor/models/workflow';
 import { OutPutDescriptor } from 'app/editor/models/outputDescriptor';
 import { NodeDescriptor } from 'app/editor/models/nodeDescriptor';
-import { InputDescriptor } from 'app/editor/models/inputDescriptor';
+import { InputPort } from 'app/editor/models/InputPort';
 
 import * as jsyaml from 'js-yaml';
 
@@ -253,14 +253,14 @@ export class DescriptorService {
   }
 
   /**
-   * Iterates through the parameter cells inputs and initializes an InputDescriptor Array.
+   * Iterates through the parameter cells inputs and initializes an InputPort Array.
    * @param cell The actual Node's cell.
-   * @returns A collection of YAML formatted InputDescriptors
+   * @returns A collection of YAML formatted InputPorts
    */
     // HINT : COULD BE ERASED BY SPEFICING.
-  createInputs(cell: joint.dia.Cell): InputDescriptor[] {
+  createInputs(cell: joint.dia.Cell): InputPort[] {
     const inportNames = cell.get('inPorts');
-    const inportDescriptors: InputDescriptor[] = [];
+    const inportDescriptors: InputPort[] = [];
 
     if (inportNames.length) {
 
@@ -277,20 +277,20 @@ export class DescriptorService {
   }
 
   /**
-   * From the input name and its properties initializes a YAML formatted InputDescriptor entity.
+   * From the input name and its properties initializes a YAML formatted InputPort entity.
    * @param inportName The name of the input port.
    * @param inportProperties The properties of that input.
-   * @returns An Occopus capable formatted InputDescriptor
+   * @returns An Occopus capable formatted InputPort
    */
-  createInput(inportName: string, inportProperties: any): InputDescriptor {
+  createInput(inportName: string, inportProperties: any): InputPort {
 
-    const inport: InputDescriptor = { name: inportName };
+    const inport: InputPort = { name: inportName };
 
-    const hasProperties = inportProperties[inportName]['isCollector']; // change this with the InputPort
+    const hasProperties = inportProperties[inportName]['collector']; // change this with the InputPort
 
     if (hasProperties) {
       inport.collector = hasProperties;
-      inport.format = '\\' + inportProperties[inportName]['storagePattern'] + '\\'; // "" needed
+      inport.format = '\\' + inportProperties[inportName]['format'] + '\\'; // "" needed
     } else {
       console.log(`No properties in this given input port ${inportName}`);
     }
@@ -367,7 +367,7 @@ export class DescriptorService {
     return outportDescriptors;
   }
 
-  // createPorts(cell: joint.dia.Cell, portAttribute: string):InputDescriptor[] | OutPutDescriptor[] {
+  // createPorts(cell: joint.dia.Cell, portAttribute: string):InputPort[] | OutPutDescriptor[] {
   //   let portNames = cell.get(portAttribute);
   //   let portDescriptors = [];
 

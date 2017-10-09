@@ -13,10 +13,10 @@ export interface InputPort {
      * A boolean value to decide wether this port accepts
      * data chunks from a generator output port {@link OutputPort}
      */
-    isCollector?: boolean;
+    collector?: boolean;
 
     /**
      * The given regular expression,states in which format you want to store the data.
      */
-    storagePattern?: string;
+    format?: string;
 }

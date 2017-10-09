@@ -40,17 +40,17 @@ export class InputPropertiesComponent implements OnInit {
     const formState = { value: '', disabled: this.readOnly };
     return this.fb.group({
       'name': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]),
-      'isCollector': new FormControl(formState),
-      'storagePattern': new FormControl({ value: '', disabled: true }),
+      'collector': new FormControl(formState),
+      'format': new FormControl({ value: '', disabled: true }),
     });
   }
 
   // refactor is neccessarry here.
   onCheckboxToggle() {
-    if (this.userform.controls['isCollector'].value) {
-      this.userform.controls['storagePattern'].enable();
+    if (this.userform.controls['collector'].value) {
+      this.userform.controls['format'].enable();
     } else {
-      this.userform.controls['storagePattern'].disable();
+      this.userform.controls['format'].disable();
     }
   }
 

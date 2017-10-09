@@ -12,10 +12,10 @@
     </div>
 
     <div class="ui-grid-row">
-      <md-checkbox [formControl]="userform.controls['isCollector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.isCollector">Collector port</md-checkbox>
+      <md-checkbox [formControl]="userform.controls['collector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.collector">Collector port</md-checkbox>
       <!-- <md-input-container>
-        <input mdInput type="text" placeholder="isCollector" [formControl]="userform.controls['isCollector']" [(ngModel)]="inputProps.isCollector">
-        <md-error *ngIf="!userform.controls['isCollector'].valid&&userform.controls['isCollector'].dirty">
+        <input mdInput type="text" placeholder="collector" [formControl]="userform.controls['collector']" [(ngModel)]="inputProps.collector">
+        <md-error *ngIf="!userform.controls['collector'].valid&&userform.controls['collector'].dirty">
           Name is <strong>required</strong>
         </md-error>
       </md-input-container> -->
@@ -23,8 +23,8 @@
 
     <div class="ui-grid-row">
       <md-input-container>
-        <input mdInput type="text" placeholder="storagePattern" [formControl]="userform.controls['storagePattern']" [(ngModel)]="inputProps.storagePattern">
-        <md-error *ngIf="!userform.controls['storagePattern'].valid&&userform.controls['storagePattern'].dirty">
+        <input mdInput type="text" placeholder="format" [formControl]="userform.controls['format']" [(ngModel)]="inputProps.format">
+        <md-error *ngIf="!userform.controls['format'].valid&&userform.controls['format'].dirty">
           Name is <strong>required</strong>
         </md-error>
       </md-input-container>
