@@ -165,11 +165,12 @@ export class PaperComponent implements OnInit {
    * @param updatedOutputProps Output Modal form data.
    */
   private tryOutputUpdate(updatedOutputProps: OutputPort) {
-    if (this.jointSVC.updatePort(updatedOutputProps, false)) {
-      this.sendStickyMessage(true, `Output port '${updatedOutputProps.name}' updated!`);
-    } else {
-      this.sendStickyMessage(false, `Output port name '${updatedOutputProps.name}' already exists!`);
-    }
+    this.jointSVC.updateOutPort(updatedOutputProps);
+    // if (this.jointSVC.updatePort(updatedOutputProps, false)) {
+    //   this.sendStickyMessage(true, `Output port '${updatedOutputProps.name}' updated!`);
+    // } else {
+    //   this.sendStickyMessage(false, `Output port name '${updatedOutputProps.name}' already exists!`);
+    // }
   }
 
   /**
@@ -178,7 +179,7 @@ export class PaperComponent implements OnInit {
    */
   private tryInputUpdate(updatedInputProps: InputPort) {
 
-    this.jointSVC.updateInPortv2(updatedInputProps);
+    this.jointSVC.updateInPort(updatedInputProps);
     // if (this.jointSVC.updatePort(updatedInputProps, true)) {
     //   this.sendStickyMessage(true, `Input port '${updatedInputProps.name}' updated!`);
     // } else {

@@ -1,9 +1,10 @@
+import { Injectable } from '@angular/core';
+
 import { SelectionModel } from '@angular/cdk/collections';
 
-import { element } from 'protractor';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
+
 import { OutputPort } from 'app/editor/models/outputPort';
 import { InputPort } from 'app/editor/models/inputPort';
 import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
@@ -476,12 +477,40 @@ export class JointService {
     }
   }
 
-  updateInPortv2(portAttributes: InputPort) {
-    console.log(this.selectedCellView.model);
+  private replaceSelectedItemInCollection(flowbsterNodeModel: joint.shapes.devs.Model, type: string, newName: string): void {
+
+    const inputCollection = flowbsterNodeModel.attributes[type] as Array<string>;
+    const port = flowbsterNodeModel.getPort(this.selectedPortId);
+    const changerIndex = inputCollection.indexOf(port.attrs['.port-label'].text);
+    inputCollection[changerIndex] = newName;
   }
 
-  updateOutPortv2(portAttributes: OutputPort) {
+  private setSelectedInportProperties(flowbsterNodeModel: joint.shapes.devs.Model, portAttributes: InputPort): void {
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/.port-label/text', portAttributes.name);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/format', portAttributes.format);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/collector', portAttributes.collector);
+  }
 
+  private setSelectedOutportProperties(flowbsterNodeModel: joint.shapes.devs.Model, portAttributes: OutputPort): void {
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/.port-label/text', portAttributes.name);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/targetip', portAttributes.targetip);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/targetport', portAttributes.targetport);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/isGenerator', portAttributes.isGenerator);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/distribution', portAttributes.distribution);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/filter', portAttributes.filter);
+    flowbsterNodeModel.portProp(this.selectedPortId, 'attrs/targetname', portAttributes.targetname);
+  }
+
+  updateInPort(portAttributes: InputPort) {
+    const flowbsterNodeModel = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+    this.replaceSelectedItemInCollection(flowbsterNodeModel, 'inPorts', portAttributes.name);
+    this.setSelectedInportProperties(flowbsterNodeModel, portAttributes);
+  }
+
+  updateOutPort(portAttributes: OutputPort) {
+    const flowbsterNodeModel = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+    this.replaceSelectedItemInCollection(flowbsterNodeModel, 'outPorts', portAttributes.name);
+    this.setSelectedOutportProperties(flowbsterNodeModel, portAttributes);
   }
 
   /**
@@ -654,21 +683,27 @@ export class JointService {
   deletePort(): void {
     if (this.selectedCellView && this.selectedPortId) {
 
-      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
-      const port = element.getPort(this.selectedPortId);
-      const group = port.group;
-      const portName = port.attrs['.port-label'].text;
-
-      if (group === 'in') {
-        element.removeInPort(portName);
-      } else {
-        element.removeOutPort(portName);
-      }
-      element.removePort(this.selectedPortId);
-
+      const flowbsterNodeModel = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+      this.removeSelectedItemFromCollection(flowbsterNodeModel)
+      flowbsterNodeModel.removePort(this.selectedPortId);
       this.emitWorkflowChange();
+
     } else {
       console.log('select a port first'); // we need better error handling.
+    }
+  }
+
+  private removeSelectedItemFromCollection(flowbsterNodeModel: joint.shapes.devs.Model): void {
+
+    const port = flowbsterNodeModel.getPort(this.selectedPortId);
+    const group = port.group;
+    const collectionAttribute = group === 'in' ? 'inPorts' : 'outPorts';
+    const portName = port.attrs['.port-label'].text;
+
+    const portCollection = (flowbsterNodeModel.attributes[collectionAttribute] as Array<string>);
+    const removeIndex = portCollection.indexOf(portName);
+    if (removeIndex > -1) {
+      portCollection.splice(removeIndex, 1);
     }
   }
 
