@@ -288,7 +288,6 @@ export class DescriptorService {
 
   }
 
-  // from the output name and the output properties initializes an Outputdescriptor object.
   /**
    * From the name and properties initializes a YAML formatted OutputDescriptor object.
    * @param outportName The output port's name.
@@ -356,29 +355,6 @@ export class DescriptorService {
     }
     return outportDescriptors;
   }
-
-  // createPorts(cell: joint.dia.Cell, portAttribute: string):InputPort[] | OutPutDescriptor[] {
-  //   let portNames = cell.get(portAttribute);
-  //   let portDescriptors = [];
-
-  //   if (portNames.length) {
-
-  //     let portProperties = cell.get(portAttribute + 'Props');
-
-  //     console.log(JSON.stringify(portProperties));
-
-  //     for (let portName of portNames) {
-
-  //       if (portAttribute === 'inPorts') {
-  //         portDescriptors.push(this.createInput(portName, portProperties));
-  //       } else if (portAttribute === 'outPorts') {
-  //         portDescriptors.push(this.createOutput(portName, portProperties));
-  //       }
-  //     }
-  //   }
-
-  //   return portDescriptors;
-  // }
 
   /**
    * Initializes a valid YAML formatted NodeDescriptor object.
