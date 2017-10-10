@@ -137,7 +137,7 @@ export class DescriptorService {
   /**
    * Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.
    */
-   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
+  // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array<string> {
     const dependencies = {};
     const dependencySet = new Set<string>();
@@ -253,50 +253,39 @@ export class DescriptorService {
     return nodeDescriptors;
   }
 
-  /**
-   * Iterates through the parameter cells inputs and initializes an InputPort Array.
-   * @param cell The actual Node's cell.
-   * @returns A collection of YAML formatted InputPorts
-   */
-    // HINT : COULD BE ERASED BY SPEFICING.
   createInputs(cell: joint.dia.Cell): InputPort[] {
     const inportNames = cell.get('inPorts');
     const inportDescriptors: InputPort[] = [];
 
     if (inportNames.length) {
+      const ports = cell.get('ports').items as Array<any>;
+      const inports = ports.filter(port => {
+        return port.group === 'in';
+      });
 
-      const inportProperties = cell.get('inPortsProps');
-
-      console.log(JSON.stringify(inportProperties));
-
-      for (const inportName of inportNames) {
-        inportDescriptors.push(this.createInput(inportName, inportProperties));
-      }
+      inports.forEach(port => {
+        inportDescriptors.push(this.createInput(port));
+      });
     }
 
     return inportDescriptors;
+
   }
 
-  /**
-   * From the input name and its properties initializes a YAML formatted InputPort entity.
-   * @param inportName The name of the input port.
-   * @param inportProperties The properties of that input.
-   * @returns An Occopus capable formatted InputPort
-   */
-  createInput(inportName: string, inportProperties: any): InputPort {
-
-    const inport: InputPort = { name: inportName };
-
-    const hasProperties = inportProperties[inportName]['collector']; // change this with the InputPort
-
-    if (hasProperties) {
-      inport.collector = hasProperties;
-      inport.format = '\\' + inportProperties[inportName]['format'] + '\\'; // "" needed
+  createInput(port: any): InputPort {
+    console.log(port);
+    if (port.attrs.collector) {
+      return {
+        name: port.attrs['.port-label'].text,
+        format: '\\' + port.attrs.format + '\\',
+        collector: port.attrs.collector
+      };
     } else {
-      console.log(`No properties in this given input port ${inportName}`);
+      return {
+        name: port.attrs['.port-label'].text
+      };
     }
 
-    return inport;
   }
 
   // from the output name and the output properties initializes an Outputdescriptor object.

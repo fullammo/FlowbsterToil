@@ -620,7 +620,7 @@ export class JointService {
         attrs: {
           '.port-label': { text: portName },
           'format': '',
-          'collector': 'false'
+          'collector': false
         }
       });
 
@@ -630,7 +630,7 @@ export class JointService {
         attrs: {
           '.port-label': { text: portName },
           'targetname': '',
-          'isGenerator': 'false',
+          'isGenerator': false,
           'targetport': '',
           'targetip': '',
           'distribution': '',
@@ -940,7 +940,7 @@ export class JointService {
     this.actualInPort = {
       'name': port.attrs['.port-label'].text,
       'format': port.attrs.format,
-      'collector': port.attrs.collector === 'false' ? false : true
+      'collector': port.attrs.collector
     };
     console.log(this.actualInPort);
   }
@@ -951,7 +951,7 @@ export class JointService {
       'targetname': port.attrs.targetname,
       'targetip': port.attrs.targetip,
       'targetport': port.attrs.targetport,
-      'isGenerator': port.attrs.isGenerator === 'false' ? false : true,
+      'isGenerator': port.attrs.isGenerator,
       'filter': port.attrs.filter,
       'distribution': port.attrs.distribution
     };
