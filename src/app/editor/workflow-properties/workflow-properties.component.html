@@ -2,65 +2,65 @@
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Infrastructure ID" [formControl]="workflowForm.controls['infraid']" [(ngModel)]="workflowProps.infraid">
-        <md-error *ngIf="!workflowForm.controls['infraid'].valid&&workflowForm.controls['infraid'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Infrastructure ID" [formControl]="workflowForm.controls['infraid']" [(ngModel)]="workflowProps.infraid">
+        <mat-error *ngIf="!workflowForm.controls['infraid'].valid&&workflowForm.controls['infraid'].dirty">
           Infra ID is <strong>required</strong>
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="User ID" [formControl]="workflowForm.controls['userid']" [(ngModel)]="workflowProps.userid">
-        <md-error *ngIf="!workflowForm.controls['userid'].valid&&workflowForm.controls['userid'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="User ID" [formControl]="workflowForm.controls['userid']" [(ngModel)]="workflowProps.userid">
+        <mat-error *ngIf="!workflowForm.controls['userid'].valid&&workflowForm.controls['userid'].dirty">
           User ID is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Infrastructure Name" [formControl]="workflowForm.controls['infraname']" [(ngModel)]="workflowProps.infraname">
-        <md-error *ngIf="!workflowForm.controls['infraname'].valid&&workflowForm.controls['infraname'].dirty&&!workflowForm.controls['infraname'].hasError('workflowNameExist')">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Infrastructure Name" [formControl]="workflowForm.controls['infraname']" [(ngModel)]="workflowProps.infraname">
+        <mat-error *ngIf="!workflowForm.controls['infraname'].valid&&workflowForm.controls['infraname'].dirty&&!workflowForm.controls['infraname'].hasError('workflowNameExist')">
           Infra name is <strong>required</strong>
-        </md-error>
-        <md-error *ngIf="!workflowForm.controls['infraname'].valid&&workflowForm.controls['infraname'].dirty&&workflowForm.controls['infraname'].hasError('workflowNameExist')">
+        </mat-error>
+        <mat-error *ngIf="!workflowForm.controls['infraname'].valid&&workflowForm.controls['infraname'].dirty&&workflowForm.controls['infraname'].hasError('workflowNameExist')">
           Node name is already <strong>taken</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Collector IP" [formControl]="workflowForm.controls['collectorip']" [(ngModel)]="workflowProps.collectorip">
-        <md-error *ngIf="!workflowForm.controls['collectorip'].valid&&workflowForm.controls['collectorip'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Collector IP" [formControl]="workflowForm.controls['collectorip']" [(ngModel)]="workflowProps.collectorip">
+        <mat-error *ngIf="!workflowForm.controls['collectorip'].valid&&workflowForm.controls['collectorip'].dirty">
           Collector IP is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="number" placeholder="Collector port" [formControl]="workflowForm.controls['collectorport']" [(ngModel)]="workflowProps.collectorport">
-        <md-error *ngIf="!workflowForm.controls['collectorport'].valid&&workflowForm.controls['collectorport'].dirty">
+      <mat-input-container>
+        <input matInput type="number" placeholder="Collector port" [formControl]="workflowForm.controls['collectorport']" [(ngModel)]="workflowProps.collectorport">
+        <mat-error *ngIf="!workflowForm.controls['collectorport'].valid&&workflowForm.controls['collectorport'].dirty">
           Collector port is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="number" placeholder="Receiver port" [formControl]="workflowForm.controls['receiverport']" [(ngModel)]="workflowProps.receiverport">
-        <md-error *ngIf="!workflowForm.controls['receiverport'].valid&&workflowForm.controls['receiverport'].dirty">
+      <mat-input-container>
+        <input matInput type="number" placeholder="Receiver port" [formControl]="workflowForm.controls['receiverport']" [(ngModel)]="workflowProps.receiverport">
+        <mat-error *ngIf="!workflowForm.controls['receiverport'].valid&&workflowForm.controls['receiverport'].dirty">
           Receiver port is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
