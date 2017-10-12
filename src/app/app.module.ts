@@ -9,12 +9,12 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
-  MdTableModule,
-  MdPaginatorModule,
-  MdSortModule, MdInputModule,
-  MdCheckboxModule,
-  MdButtonModule,
-  MdTooltipModule
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule, MatInputModule,
+  MatCheckboxModule,
+  MatButtonModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
@@ -70,13 +70,13 @@ import { ConnectionComponent } from './connection/connection.component';
     RouterModule.forRoot(appRoutes),
     FlexLayoutModule,
     EditorModule,
-    MdTableModule,
-    MdPaginatorModule,
-    MdSortModule,
-    MdInputModule,
-    MdCheckboxModule,
-    MdButtonModule,
-    MdTooltipModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatTooltipModule,
     ReactiveFormsModule
   ],
   providers: [

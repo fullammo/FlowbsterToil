@@ -2,7 +2,7 @@ import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { Observable } from 'rxjs/Observable';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { DataSource } from '@angular/cdk/collections';
-import { MdSort, MdPaginator } from '@angular/material';
+import { MatSort, MatPaginator } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 /**
@@ -41,7 +41,7 @@ export class WorkflowDataSource extends DataSource<any> {
    * @param paginator Paginator component for customization.
    * @param sort Sorting component for customization.
    */
-  constructor(private workflowEntrySVC: WorkflowEntryService, private paginator: MdPaginator, private sort: MdSort) {
+  constructor(private workflowEntrySVC: WorkflowEntryService, private paginator: MatPaginator, private sort: MatSort) {
     super();
     this.filterChange.subscribe(() => this.paginator.pageIndex = 0);
   }
@@ -52,7 +52,7 @@ export class WorkflowDataSource extends DataSource<any> {
   connect(): Observable<WorkflowEntry[]> {
     const displayDataChanges = [
       this.workflowEntrySVC.dataChange,
-      this.sort._matSortChange,
+      this.sort.sortChange,
       this.filterChange,
       this.paginator.page
     ];

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdSliderChange } from '@angular/material/material';
+import { MatSliderChange } from '@angular/material/material';
 
 import { InputPort } from 'app/editor/models/inputPort';
 import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
@@ -131,7 +131,7 @@ export class PaperComponent implements OnInit {
    * When the slider is changed, the paper is resized by the fired events value.
    * @param event Angular Material 2 SliderChange event.
    */
-  onSliderChanged(event: MdSliderChange) {
+  onSliderChanged(event: MatSliderChange) {
     this.jointSVC.reScalePaper(event.value);
   }
 

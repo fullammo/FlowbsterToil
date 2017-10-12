@@ -4,51 +4,51 @@
     <!-- {{isExistingNode}} -->
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Name" [formControl]="userform.controls['name']" [(ngModel)]="nodeProps.name">
-        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty && !userform.controls['name'].hasError('nodeNameExist')">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Name" [formControl]="userform.controls['name']" [(ngModel)]="nodeProps.name">
+        <mat-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty && !userform.controls['name'].hasError('nodeNameExist')">
           Name is <strong>required</strong>
-        </md-error>
-        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty&&userform.controls['name'].hasError('nodeNameExist')">
+        </mat-error>
+        <mat-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty&&userform.controls['name'].hasError('nodeNameExist')">
           Entered name is already <strong>taken</strong>
-          </md-error>
-      </md-input-container>
+          </mat-error>
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Executable Name" [formControl]="userform.controls['execname']" [(ngModel)]="nodeProps.execname">
-        <md-error *ngIf="!userform.controls['execname'].valid&&userform.controls['execname'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Executable Name" [formControl]="userform.controls['execname']" [(ngModel)]="nodeProps.execname">
+        <mat-error *ngIf="!userform.controls['execname'].valid&&userform.controls['execname'].dirty">
           Executable name is <strong>required</strong>
-        </md-error>
+        </mat-error>
 
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Arguments" [formControl]="userform.controls['args']" [(ngModel)]="nodeProps.args">
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+      <mat-input-container>
+        <input matInput type="text" placeholder="Arguments" [formControl]="userform.controls['args']" [(ngModel)]="nodeProps.args">
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Executable URL" [formControl]="userform.controls['execurl']" [(ngModel)]="nodeProps.execurl">
-      </md-input-container>
+      <mat-input-container>
+        <input matInput type="text" placeholder="Executable URL" [formControl]="userform.controls['execurl']" [(ngModel)]="nodeProps.execurl">
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="number" placeholder="MinScale" min="1" [formControl]="userform.controls['scalingmin']" [(ngModel)]="nodeProps.scalingmin">
-      </md-input-container>
+      <mat-input-container>
+        <input matInput type="number" placeholder="MinScale" min="1" [formControl]="userform.controls['scalingmin']" [(ngModel)]="nodeProps.scalingmin">
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="number" placeholder="MaxScale" min="1" [formControl]="userform.controls['scalingmax']" [(ngModel)]="nodeProps.scalingmax">
-      </md-input-container>
+      <mat-input-container>
+        <input matInput type="number" placeholder="MaxScale" min="1" [formControl]="userform.controls['scalingmax']" [(ngModel)]="nodeProps.scalingmax">
+      </mat-input-container>
     </div>
 
 

@@ -1,27 +1,27 @@
-<button md-raised-button color="primary" (click)="onBack()">Back</button> {{entry.name | json }} {{starterEntry.name | json}}
+<button mat-raised-button color="primary" (click)="onBack()">Back</button> {{entry.name | json }} {{starterEntry.name | json}}
 {{isSubmitted}}
 <form [formGroup]="workflowEditform" (ngSubmit)="onSubmit()" #f="ngForm">
 
-  <md-form-field>
-    <input required mdInput placeholder="Workflow Name" [formControl]="workflowEditform.controls['name']" [(ngModel)]="entry.name">
-    <md-error *ngIf="!workflowEditform.controls['name'].valid&&workflowEditform.controls['name'].dirty">
+  <mat-form-field>
+    <input required matInput placeholder="Workflow Name" [formControl]="workflowEditform.controls['name']" [(ngModel)]="entry.name">
+    <mat-error *ngIf="!workflowEditform.controls['name'].valid&&workflowEditform.controls['name'].dirty">
       Workflow name is <strong>required</strong>
-    </md-error>
-  </md-form-field>
+    </mat-error>
+  </mat-form-field>
 
-  <md-form-field>
-    <textarea required mdInput placeholder="Write description here" [formControl]="workflowEditform.controls['description']" [(ngModel)]="entry.description"></textarea>
-    <md-error *ngIf="!workflowEditform.controls['description'].valid&&workflowEditform.controls['description'].dirty">
+  <mat-form-field>
+    <textarea required matInput placeholder="Write description here" [formControl]="workflowEditform.controls['description']" [(ngModel)]="entry.description"></textarea>
+    <mat-error *ngIf="!workflowEditform.controls['description'].valid&&workflowEditform.controls['description'].dirty">
       A desrciption is <strong>required</strong>
-    </md-error>
-  </md-form-field>
+    </mat-error>
+  </mat-form-field>
 
-  <div *ngIf="operation === 'create'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
-    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid && isGraphValid)" md-raised-button>Save Workflow Entry</button>
+  <div *ngIf="operation === 'create'" matTooltip="Before saving an entry, you have to enter the basic workflow properties" [matTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid && isGraphValid)" mat-raised-button>Save Workflow Entry</button>
   </div>
 
-  <div *ngIf="operation !== 'create'" mdTooltip="Before saving an entry, you have to enter the basic workflow properties" [mdTooltipPosition]="'below'">
-    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid)" md-raised-button>Update Workflow Entry</button>
+  <div *ngIf="operation !== 'create'" matTooltip="Before saving an entry, you have to enter the basic workflow properties" [matTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid)" mat-raised-button>Update Workflow Entry</button>
   </div>
 
   <toil-editor [readOnly]="false"></toil-editor>

@@ -2,7 +2,7 @@ import { JointService } from 'app/editor/shared/joint.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataSource, SelectionModel } from '@angular/cdk/collections';
-import { MdSort, MdPaginator } from '@angular/material';
+import { MatSort, MatPaginator } from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
@@ -40,12 +40,12 @@ export class WorkflowMaintComponent implements OnInit {
   /**
    * 3rd party paginator component for the data grid.
    */
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
    * 3rd party sorter component for the data grid columns.
    */
-  @ViewChild(MdSort) sort: MdSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   /**
    * Element reference for filtering functionality.
