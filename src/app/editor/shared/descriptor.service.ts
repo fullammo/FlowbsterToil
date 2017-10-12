@@ -135,7 +135,7 @@ export class DescriptorService {
   }
 
   /**
-   * Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.
+   * Corrects the outputs by the given dependencies and creates an array from the node dependency chain.
    */
   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array<string> {
@@ -288,6 +288,45 @@ export class DescriptorService {
 
   }
 
+  createOutputsv2(cell: joint.dia.Cell): OutputPort[] {
+    const outportNames = cell.get('outPorts');
+    const outportDescriptors: OutputPort[] = [];
+
+    if (outportNames.length) {
+      const ports = cell.get('ports').items as Array<any>;
+      const outports = ports.filter(port => {
+        return port.group === 'out';
+      });
+
+      outports.forEach(port => {
+        outportDescriptors.push(this.createOutputv2(port));
+      });
+    }
+
+    return outportDescriptors;
+  }
+
+  createOutputv2(port: any): OutputPort {
+    console.log(port);
+    if (port.attrs.isGenerator) {
+      return {
+        name: port.attrs['.port-label'].text,
+        targetip: port.attrs.targetip,
+        targetname: port.attrs.targetname,
+        targetport: port.attrs.targetport,
+        filter: '\\' + port.attrs.filter + '\\',
+        distribution: port.attrs.distribution
+      };
+    } else {
+      return {
+        name: port.attrs['.port-label'].text,
+        targetip: port.attrs.targetip,
+        targetname: port.attrs.targetname,
+        targetport: port.attrs.targetport,
+      };
+    }
+  }
+
   /**
    * From the name and properties initializes a YAML formatted OutputDescriptor object.
    * @param outportName The output port's name.
@@ -377,7 +416,7 @@ export class DescriptorService {
             },
             args: '\"' + cell.attr('.args/text') + '\"', // " " needed for jsyaml
             in: this.createInputs(cell),
-            out: this.createOutputs(cell)
+            out: this.createOutputsv2(cell)
           }
         }
       }
