@@ -4,85 +4,85 @@
     <!-- {{OutputProps | json}} -->
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="DisplayName" [formControl]="userform.controls['displayName']" [(ngModel)]="outputProps.displayName">
-        <md-error *ngIf="!userform.controls['displayName'].valid&&userform.controls['displayName'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="DisplayName" [formControl]="userform.controls['displayName']" [(ngModel)]="outputProps.displayName">
+        <mat-error *ngIf="!userform.controls['displayName'].valid&&userform.controls['displayName'].dirty">
           Name is <strong>required</strong>
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="outputProps.name">
-        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="outputProps.name">
+        <mat-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
           Name is <strong>required</strong>
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Target Name" [formControl]="userform.controls['targetname']" [(ngModel)]="outputProps.targetname">
-        <md-error *ngIf="!userform.controls['targetname'].valid&&userform.controls['targetname'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Target Name" [formControl]="userform.controls['targetname']" [(ngModel)]="outputProps.targetname">
+        <mat-error *ngIf="!userform.controls['targetname'].valid&&userform.controls['targetname'].dirty">
           Executable name is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Target IP" [formControl]="userform.controls['targetip']" [(ngModel)]="outputProps.targetip">
-        <md-error *ngIf="!userform.controls['targetip'].valid&&userform.controls['targetip'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Target IP" [formControl]="userform.controls['targetip']" [(ngModel)]="outputProps.targetip">
+        <mat-error *ngIf="!userform.controls['targetip'].valid&&userform.controls['targetip'].dirty">
           Executable name is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Target Port" [formControl]="userform.controls['targetport']" [(ngModel)]="outputProps.targetport">
-        <md-error *ngIf="!userform.controls['targetport'].valid&&userform.controls['targetport'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Target Port" [formControl]="userform.controls['targetport']" [(ngModel)]="outputProps.targetport">
+        <mat-error *ngIf="!userform.controls['targetport'].valid&&userform.controls['targetport'].dirty">
           Executable name is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-checkbox [formControl]="userform.controls['isGenerator']" (change)="onCheckboxToggle()" [(ngModel)]="outputProps.isGenerator">Generator port</md-checkbox>
-      <!-- <md-input-container>
+      <mat-checkbox [formControl]="userform.controls['isGenerator']" (change)="onCheckboxToggle()" [(ngModel)]="outputProps.isGenerator">Generator port</mat-checkbox>
+      <!-- <mat-input-container>
 
 
-        <input mdInput type="text" placeholder="Generator port" [formControl]="userform.controls['isGenerator']" [(ngModel)]="outputProps.isGenerator">
-        <md-error *ngIf="!userform.controls['isGenerator'].valid&&userform.controls['isGenerator'].dirty">
+        <input matInput type="text" placeholder="Generator port" [formControl]="userform.controls['isGenerator']" [(ngModel)]="outputProps.isGenerator">
+        <mat-error *ngIf="!userform.controls['isGenerator'].valid&&userform.controls['isGenerator'].dirty">
           Executable name is <strong>required</strong>
-        </md-error>
-        <! <md-hint align="start"><strong>something</strong></md-hint> >
-      </md-input-container> -->
+        </mat-error>
+        <! <mat-hint align="start"><strong>something</strong></mat-hint> >
+      </mat-input-container> -->
     </div>
     <br>
 
     <div class="ui-grid-row">
-      <md-select placeholder="Distribution" [formControl]="userform.controls['distribution']" [(ngModel)]="outputProps.distribution"
+      <mat-select placeholder="Distribution" [formControl]="userform.controls['distribution']" [(ngModel)]="outputProps.distribution"
         floatPLaceholder="never">
-        <md-option *ngFor="let dist of distributionTypes | keys" [value]="dist.value">
+        <mat-option *ngFor="let dist of distributionTypes | keys" [value]="dist.value">
           {{dist.value}}
-        </md-option>
-      </md-select>
+        </mat-option>
+      </mat-select>
     </div>
     <br>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="Filter RegExp" [formControl]="userform.controls['filter']" [(ngModel)]="outputProps.filter">
-        <md-error *ngIf="!userform.controls['filter'].valid&&userform.controls['filter'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Filter RegExp" [formControl]="userform.controls['filter']" [(ngModel)]="outputProps.filter">
+        <mat-error *ngIf="!userform.controls['filter'].valid&&userform.controls['filter'].dirty">
           Executable name is <strong>required</strong>
-        </md-error>
-        <!-- <md-hint align="start"><strong>something</strong></md-hint> -->
-      </md-input-container>
+        </mat-error>
+        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
+      </mat-input-container>
     </div>
 
 

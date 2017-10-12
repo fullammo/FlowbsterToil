@@ -7,7 +7,7 @@ import {
   MenuModule, DialogModule, GrowlModule, DropdownModule, PanelModule, InputTextModule, ButtonModule, FileUploadModule, TabViewModule,
   CodeHighlighterModule
 } from 'primeng/primeng';
-import { MdInputModule, MdCheckboxModule, MdSelectModule, MdSliderModule } from '@angular/material';
+import { MatInputModule, MatCheckboxModule, MatSelectModule, MatSliderModule } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
 import { PaperComponent } from './paper/paper.component';
@@ -31,7 +31,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     MenuModule,
     FileUploadModule,
-    MdSliderModule,
+    MatSliderModule,
     DialogModule,
     GrowlModule,
     TabViewModule,
@@ -41,9 +41,9 @@ import 'hammerjs';
     PanelModule,
     InputTextModule,
     ButtonModule,
-    MdInputModule,
-    MdCheckboxModule,
-    MdSelectModule
+    MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   declarations: [
     EditorComponent,

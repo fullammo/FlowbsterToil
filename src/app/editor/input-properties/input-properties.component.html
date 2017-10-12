@@ -3,31 +3,31 @@
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="inputProps.name">
-        <md-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="inputProps.name">
+        <mat-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
           Input name is <strong>required</strong>
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row">
-      <md-checkbox [formControl]="userform.controls['collector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.collector">Collector port</md-checkbox>
-      <!-- <md-input-container>
-        <input mdInput type="text" placeholder="collector" [formControl]="userform.controls['collector']" [(ngModel)]="inputProps.collector">
-        <md-error *ngIf="!userform.controls['collector'].valid&&userform.controls['collector'].dirty">
+      <mat-checkbox [formControl]="userform.controls['collector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.collector">Collector port</mat-checkbox>
+      <!-- <mat-input-container>
+        <input matInput type="text" placeholder="collector" [formControl]="userform.controls['collector']" [(ngModel)]="inputProps.collector">
+        <mat-error *ngIf="!userform.controls['collector'].valid&&userform.controls['collector'].dirty">
           Name is <strong>required</strong>
-        </md-error>
-      </md-input-container> -->
+        </mat-error>
+      </mat-input-container> -->
     </div>
 
     <div class="ui-grid-row">
-      <md-input-container>
-        <input mdInput type="text" placeholder="format" [formControl]="userform.controls['format']" [(ngModel)]="inputProps.format">
-        <md-error *ngIf="!userform.controls['format'].valid&&userform.controls['format'].dirty">
+      <mat-input-container>
+        <input matInput type="text" placeholder="format" [formControl]="userform.controls['format']" [(ngModel)]="inputProps.format">
+        <mat-error *ngIf="!userform.controls['format'].valid&&userform.controls['format'].dirty">
           Name is <strong>required</strong>
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-input-container>
     </div>
 
     <div class="ui-grid-row" *ngIf="!readOnly">

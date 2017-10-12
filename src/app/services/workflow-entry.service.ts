@@ -2,23 +2,26 @@ import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { Workflow } from './../editor/models/workflow';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class WorkflowEntryService {
 
   dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<WorkflowEntry[]>([]);
-  entries: FirebaseListObservable<WorkflowEntry[]>;
+  entries: AngularFireList<any>;
 
 
   get data(): WorkflowEntry[] { return this.dataChange.value; }
 
   constructor(private db: AngularFireDatabase) {
-    this.entries = this.db.list('entries');
-    this.entries.subscribe(workflowEntries => {
+
+    this.entries = this.db.list<any>('entries');
+    this.entries.valueChanges().subscribe((workflowEntries: WorkflowEntry[]) => {
       this.dataChange.next(workflowEntries);
     });
+
+
   }
 
   deleteEntry(key: string) {
@@ -51,7 +54,7 @@ export class WorkflowEntryService {
   }
 
   getEntry(id: string) {
-    return this.db.object(`/entries/${id}`);
+    return this.db.object(`/entries/${id}`).valueChanges();
   }
 
   updateEntry(entry: WorkflowEntry) {

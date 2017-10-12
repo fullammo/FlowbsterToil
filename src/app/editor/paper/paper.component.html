@@ -1,4 +1,4 @@
-<md-slider (input)="onSliderChanged($event)" [min]="minSliderValue" [value]="sliderValue"></md-slider>
+<mat-slider (input)="onSliderChanged($event)" [min]="minSliderValue" [value]="sliderValue"></mat-slider>
 <div *ngIf="readOnly">{{ jointSVC.workflow | json}}</div>
 <div id="paper" class="paper drawing-area" [ngClass]="{'readOnlyEditor': readOnly}">
 </div>
