@@ -536,34 +536,56 @@ export class JointService {
   }
 
   /**
+   * Iterates through the elements of the data model.
+   * @param id The id of the item you want to get from the graph.
+   * @returns The found element if there is any.
+   */
+  private getElementById(id: string): joint.dia.Element {
+    let element: joint.dia.Element;
+    this.graph.getElements().forEach((el) => {
+      if (el.id === id) {
+        element = el;
+      }
+    });
+    return element;
+  }
+
+  /**
    * If there is a selected Node, it creates a new port with the given type and initializes its attributes on the cellview's model,
    * otherwise its gonna log a message to the console.
    * @param type The property holder objects property type for the given port.
    */
+  // nem tudunk csak eltérő nevű portokat létrehozni.
+  // adjunk hozzá egy sima portot, adjuk hozzá az id-t az i/o arrayhez, id- alapján állítsuk a propertyket.
   addPort(type: string): void {
     if (this.selectedCellView) {
 
-      let ports = this.selectedCellView.model.get(type);
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
-      if (ports === null) {
-        ports = [type + ''];
-      } else {
-        ports.push(type + ports.length);
+      const portCollection = element.attributes[type];
+      const portName = type + portCollection.length;
+
+      console.log(portName);
+      if (type === 'inPorts' && !element.hasPort(portName)) {
+        element.addInPort(portName);
+      } else if (type === 'outPorts' && !element.hasPort(portName)) {
+        element.addOutPort(portName);
       }
 
-      const portName = ports[ports.length - 1];
-      const portGroup = (type === 'inPorts' ? 'inPortsProps' : 'outPortsProps');
-      const portsProps = this.selectedCellView.model.get(portGroup);
-      portsProps[portName] = {};
-
-      this.selectedCellView.model.set(portGroup, portsProps);
-      this.selectedCellView.model.set(type, ports);
-      this.selectedCellView.model.trigger('change:' + type);
-      this.graph.trigger('change');
+      this.setPortProperties(type, portName);
       this.emitWorkflowChange();
+
     } else {
       console.log('select a cell first'); // we need better error handling
     }
+  }
+
+  private setPortProperties(type: string, portName: string) {
+    const portGroup = (type === 'inPorts' ? 'inPortsProps' : 'outPortsProps');
+    const portsProps = this.selectedCellView.model.get(portGroup);
+    portsProps[portName] = {};
+
+    this.selectedCellView.model.set(portGroup, portsProps);
   }
 
   /**
