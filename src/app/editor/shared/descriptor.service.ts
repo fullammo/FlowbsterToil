@@ -1,9 +1,9 @@
+import { OutputPort } from './../models/outputPort';
 import { InputPort } from './../models/inputPort';
 import { Injectable } from '@angular/core';
 import { OccopusDescriptor } from 'app/editor/models/occopusDescriptor';
 import { JointService } from 'app/editor/shared/joint.service';
 import { Workflow } from 'app/editor/models/workflow';
-import { OutPutDescriptor } from 'app/editor/models/outputDescriptor';
 import { NodeDescriptor } from 'app/editor/models/nodeDescriptor';
 
 import * as jsyaml from 'js-yaml';
@@ -203,7 +203,7 @@ export class DescriptorService {
   correctOutputTargetNode(link: joint.dia.Link, sourceCellName: string, targetCellName: string): void {
 
     const node: NodeDescriptor = this.occopusDescriptor.nodes.find(nodeEl => nodeEl.name === sourceCellName);
-    const outputDescriptors: OutPutDescriptor[] = node.variables.flowbster.app.out;
+    const outputDescriptors: OutputPort[] = node.variables.flowbster.app.out;
     console.log(outputDescriptors);
 
     if (outputDescriptors) {
@@ -305,7 +305,7 @@ export class DescriptorService {
    * @param outportProperties  The output port's properties.
    * @returns An Occopus capable formatted OutputDescriptor
    */
-  createOutput(outportName: string, outportProperties: any): OutPutDescriptor {
+  createOutput(outportName: string, outportProperties: any): OutputPort {
 
     const actualProperties = outportProperties[outportName];
     // console.log('MEEEEEEE');
@@ -313,16 +313,16 @@ export class DescriptorService {
 
 
     if (!this.jointSVC.isEmpty(actualProperties)) {
-      const outport: OutPutDescriptor = {
-        name: actualProperties['fileName'],
-        displayName: actualProperties['name'],
-        targetip: actualProperties['targetIp'] === undefined ? this.jointSVC.workflow.collectorip : actualProperties['targetIp'],
-        targetname: actualProperties['targetName'],
-        targetport: actualProperties['targetPort'] === undefined ? this.jointSVC.workflow.collectorport : actualProperties['targetPort']
+      const outport: OutputPort = {
+        name: actualProperties['name'],
+        displayName: actualProperties['displayName'],
+        targetip: actualProperties['targetip'] === undefined ? this.jointSVC.workflow.collectorip : actualProperties['targetip'],
+        targetname: actualProperties['targetname'],
+        targetport: actualProperties['targetport'] === undefined ? this.jointSVC.workflow.collectorport : actualProperties['targetport']
       };
 
       if (actualProperties.isGenerator) {
-        outport.filter = '\\' + actualProperties['filterExpression'] + '\\'; // "" needed
+        outport.filter = '\\' + actualProperties['filter'] + '\\'; // "" needed
         const distribution = actualProperties['distribution'];
         if (distribution) {
           outport.distribution = distribution;
@@ -342,11 +342,11 @@ export class DescriptorService {
    * @param cell The actual Node's cell.
    * @returns A collection of Occopus capable YAML formatted OutputDescriptors.
    */
-  createOutputs(cell: joint.dia.Cell): OutPutDescriptor[] {
+  createOutputs(cell: joint.dia.Cell): OutputPort[] {
 
     const outportNames = cell.get('outPorts');
     // console.log('outportNames: ' + outportNames);
-    const outportDescriptors: OutPutDescriptor[] = [];
+    const outportDescriptors: OutputPort[] = [];
 
     if (outportNames.length) {
 

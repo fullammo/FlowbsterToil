@@ -5,7 +5,16 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="DisplayName" [formControl]="userform.controls['name']" [(ngModel)]="outputProps.name">
+        <input matInput type="text" placeholder="DisplayName" [formControl]="userform.controls['displayName']" [(ngModel)]="outputProps.displayName">
+        <mat-error *ngIf="!userform.controls['displayName'].valid&&userform.controls['displayName'].dirty">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-input-container>
+    </div>
+
+    <div class="ui-grid-row">
+      <mat-input-container>
+        <input matInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="outputProps.name">
         <mat-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
           Name is <strong>required</strong>
         </mat-error>
@@ -14,17 +23,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="FileName" [formControl]="userform.controls['fileName']" [(ngModel)]="outputProps.fileName">
-        <mat-error *ngIf="!userform.controls['fileName'].valid&&userform.controls['fileName'].dirty">
-          Name is <strong>required</strong>
-        </mat-error>
-      </mat-input-container>
-    </div>
-
-    <div class="ui-grid-row">
-      <mat-input-container>
-        <input matInput type="text" placeholder="Target Name" [formControl]="userform.controls['targetName']" [(ngModel)]="outputProps.targetName">
-        <mat-error *ngIf="!userform.controls['targetName'].valid&&userform.controls['targetName'].dirty">
+        <input matInput type="text" placeholder="Target Name" [formControl]="userform.controls['targetname']" [(ngModel)]="outputProps.targetname">
+        <mat-error *ngIf="!userform.controls['targetname'].valid&&userform.controls['targetname'].dirty">
           Executable name is <strong>required</strong>
         </mat-error>
         <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
@@ -33,8 +33,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="Target IP" [formControl]="userform.controls['targetIp']" [(ngModel)]="outputProps.targetIp">
-        <mat-error *ngIf="!userform.controls['targetIp'].valid&&userform.controls['targetIp'].dirty">
+        <input matInput type="text" placeholder="Target IP" [formControl]="userform.controls['targetip']" [(ngModel)]="outputProps.targetip">
+        <mat-error *ngIf="!userform.controls['targetip'].valid&&userform.controls['targetip'].dirty">
           Executable name is <strong>required</strong>
         </mat-error>
         <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
@@ -43,8 +43,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="Target Port" [formControl]="userform.controls['targetPort']" [(ngModel)]="outputProps.targetPort">
-        <mat-error *ngIf="!userform.controls['targetPort'].valid&&userform.controls['targetPort'].dirty">
+        <input matInput type="text" placeholder="Target Port" [formControl]="userform.controls['targetport']" [(ngModel)]="outputProps.targetport">
+        <mat-error *ngIf="!userform.controls['targetport'].valid&&userform.controls['targetport'].dirty">
           Executable name is <strong>required</strong>
         </mat-error>
         <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
@@ -66,7 +66,7 @@
     <br>
 
     <div class="ui-grid-row">
-      <mat-select placeholder="Distribution" [formControl]="userform.controls['distributionType']" [(ngModel)]="outputProps.distributionType"
+      <mat-select placeholder="Distribution" [formControl]="userform.controls['distribution']" [(ngModel)]="outputProps.distribution"
         floatPLaceholder="never">
         <mat-option *ngFor="let dist of distributionTypes | keys" [value]="dist.value">
           {{dist.value}}
@@ -77,8 +77,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="Filter RegExp" [formControl]="userform.controls['filterExpression']" [(ngModel)]="outputProps.filterExpression">
-        <mat-error *ngIf="!userform.controls['filterExpression'].valid&&userform.controls['filterExpression'].dirty">
+        <input matInput type="text" placeholder="Filter RegExp" [formControl]="userform.controls['filter']" [(ngModel)]="outputProps.filter">
+        <mat-error *ngIf="!userform.controls['filter'].valid&&userform.controls['filter'].dirty">
           Executable name is <strong>required</strong>
         </mat-error>
         <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
@@ -87,7 +87,7 @@
 
 
 
-    <!-- {{distributionTypes | keys | json }} -->
+    <!-- {{distributions | keys | json }} -->
 
 
     <br>

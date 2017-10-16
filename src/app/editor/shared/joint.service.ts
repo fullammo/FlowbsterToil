@@ -473,10 +473,17 @@ export class JointService {
    * @param isInput Indicator wether its an In or Out port.
    * @returns Indicator about completion.
    */
-  updatePort(portAttributes: InputPort | OutputPort, isInput: boolean): boolean {
+  updatePort(portAttributes, isInput: boolean): boolean {
 
     const oldName = this.selectedPortName;
-    const newName = portAttributes.name;
+
+    let newName: string;
+    if (isInput) {
+      newName = portAttributes.name;
+    } else {
+      newName = portAttributes.displayName;
+    }
+
     const modelAttribute = isInput ? 'inPortsProps' : 'outPortsProps';
     let portProps = this.selectedCellView.model.get(modelAttribute);
 
@@ -925,14 +932,14 @@ export class JointService {
    */
   private initOutputPort(): OutputPort {
     return {
-      name: this.selectedPortName,
-      fileName: '',
-      targetName: '',
-      targetIp: '',
-      targetPort: '',
+      displayName: this.selectedPortName,
+      name: '',
+      targetname: '',
+      targetip: '',
+      targetport: '',
       isGenerator: false,
-      filterExpression: '',
-      distributionType: null
+      filter: '',
+      distribution: null
     };
   }
 

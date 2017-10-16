@@ -4,29 +4,29 @@
 export interface OutputPort {
 
   /**
-   * The display name of the Output port in string format.
+   * The file's name in strnig format, that we are waiting to get.
    */
   name: string;
 
   /**
-   * The file's name in strnig format, that we are waiting to get.
+   * The name of the node that has been connected to this outport.
    */
-  fileName: string;
+  targetnode?: string;
 
   /**
    * The given {@link FlowbsterNode}'s name in string format, whom we want to connect to.
    */
-  targetName?: string;
+  targetname?: string;
 
   /**
    * The given {@link FlowbsterNode}'s IP address in string format, whom we want to connect to.
    */
-  targetIp?: string;
+  targetip?: string;
 
   /**
    * The given {@link FlowbsterNode}'s Port address in string format, whom we want to connect to.
    */
-  targetPort?: string;
+  targetport?: string;
 
   /**
    * A boolean value that decides, if this port can distribute the file in chunks.
@@ -36,11 +36,16 @@ export interface OutputPort {
   /**
    * The regular expression in string format, how we want to filter these data chunks.
    */
-  filterExpression?: string;
+  filter?: string;
 
   /**
    * Describes the type of distribution.
    * There are two values of this type: random and round-robin.
    */
-  distributionType?: string
+  distribution?: string
+
+  /**
+   * The display name of the Output port in string format.
+   */
+  displayName?: string;
 }

@@ -1,5 +1,5 @@
+import { OutputPort } from 'app/editor/models/outputPort';
 import { InputPort } from './inputPort';
-import { OutPutDescriptor } from './outputDescriptor';
 
 export interface NodeDescriptor {
     name: string,
@@ -17,7 +17,7 @@ export interface NodeDescriptor {
                 },
                 args: string,
                 in?: InputPort[],
-                out?: OutPutDescriptor[]
+                out?: OutputPort[]
             }
         }
     }
