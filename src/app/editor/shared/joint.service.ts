@@ -476,18 +476,12 @@ export class JointService {
   updatePort(portAttributes, isInput: boolean): boolean {
 
     const oldName = this.selectedPortName;
-
-    let newName: string;
-    if (isInput) {
-      newName = portAttributes.name;
-    } else {
-      newName = portAttributes.displayName;
-    }
-
+    const newName = portAttributes.displayName;
     const modelAttribute = isInput ? 'inPortsProps' : 'outPortsProps';
     let portProps = this.selectedCellView.model.get(modelAttribute);
 
     if (oldName !== newName) {
+      this.changeIdOfPort(this.selectedPortName, portAttributes.displayName);
       const handledInportsProps = this.handlePortNameChange(oldName, newName, portProps, isInput);
       if (handledInportsProps === null) {
         return false;
@@ -502,7 +496,10 @@ export class JointService {
     return true;
   }
 
-
+  private changeIdOfPort(oldId: string, newId: string): void {
+    const flowsbterNodeModel = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+    flowsbterNodeModel.portProp(oldId, 'id', newId);
+  }
 
   // creates a new entry in our Property holder object and deletes the old one. triggers the visual representation.
   /**
@@ -570,7 +567,7 @@ export class JointService {
       const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
       const portCollection = element.attributes[type];
-      const portName = type + portCollection.length;
+      const portName = _.uniqueId('Port');
 
       console.log(portName);
       if (type === 'inPorts' && !element.hasPort(portName)) {
@@ -919,7 +916,8 @@ export class JointService {
     return {
       name: this.selectedPortName,
       collector: false,
-      format: ''
+      format: '',
+      displayName: ''
     };
   }
 

@@ -39,7 +39,8 @@ export class InputPropertiesComponent implements OnInit {
   initForm() {
     const formState = { value: '', disabled: this.readOnly };
     return this.fb.group({
-      'name': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]),
+      'displayName': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]), // own validator
+      'name': new FormControl(formState, Validators.required),
       'collector': new FormControl(formState),
       'format': new FormControl({ value: '', disabled: true }),
     });
