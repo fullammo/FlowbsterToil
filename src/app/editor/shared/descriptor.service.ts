@@ -137,7 +137,7 @@ export class DescriptorService {
   /**
    * Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.
    */
-   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
+  // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array<string> {
     const dependencies = {};
     const dependencySet = new Set<string>();
@@ -236,11 +236,12 @@ export class DescriptorService {
    */
   createDescriptorNodes(): NodeDescriptor[] {
     const cells: joint.dia.Cell[] = this.jointSVC.getCells();
+    console.log(cells);
     const nodeDescriptors: NodeDescriptor[] = [];
 
     if (cells) {
       for (const cell of cells) {
-        if (cell.get('type') === 'link') {
+        if (cell.get('type') === 'link' || cell.get('type') === 'devs.Link') {
           continue;
         }
         const nodeDescriptor: NodeDescriptor = this.createNodeDescriptor(cell);
@@ -258,10 +259,15 @@ export class DescriptorService {
    * @param cell The actual Node's cell.
    * @returns A collection of YAML formatted InputDescriptors
    */
-    // HINT : COULD BE ERASED BY SPEFICING.
+  // HINT : COULD BE ERASED BY SPEFICING.
   createInputs(cell: joint.dia.Cell): InputPort[] {
     const inportNames = cell.get('inPorts');
     const inportDescriptors: InputPort[] = [];
+
+    if (!inportNames) {
+      console.log('nincs');
+      return inportDescriptors;
+    }
 
     if (inportNames.length) {
 
@@ -343,11 +349,16 @@ export class DescriptorService {
    * @param cell The actual Node's cell.
    * @returns A collection of Occopus capable YAML formatted OutputDescriptors.
    */
+    // IN ÉS OUTPORTNÁL IS EGYEDINEK KELL LENNIE NEM HASONLÍTHAT SE NODERA SE SEMMIRE.
   createOutputs(cell: joint.dia.Cell): OutputPort[] {
 
     const outportNames = cell.get('outPorts');
     // console.log('outportNames: ' + outportNames);
     const outportDescriptors: OutputPort[] = [];
+
+    if (!outportNames) {
+      return outportDescriptors;
+    }
 
     if (outportNames.length) {
 

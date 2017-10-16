@@ -481,7 +481,13 @@ export class JointService {
     let portProps = this.selectedCellView.model.get(modelAttribute);
 
     if (oldName !== newName) {
-      this.changeIdOfPort(this.selectedPortName, portAttributes.displayName);
+
+      if (isInput) {
+        this.reRenderInPortAndLink(oldName, newName);
+      } else {
+        this.reRenderOutPortAndLink(oldName, newName);
+      }
+
       const handledInportsProps = this.handlePortNameChange(oldName, newName, portProps, isInput);
       if (handledInportsProps === null) {
         return false;
@@ -494,6 +500,63 @@ export class JointService {
     this.selectedCellView.model.set(modelAttribute, portProps);
     this.emitWorkflowChange();
     return true;
+  }
+
+  private reRenderOutPortAndLink(oldId: string, newId: string) {
+    const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+
+    const links = this.getLinks();
+
+    for (let i = 0; i < links.length; i++) {
+      const targetAttrs = links[i].get('target');
+      const sourceAttrs = links[i].get('source');
+
+      if (sourceAttrs.port === element.getPort(oldId).id) {
+        const link = new joint.shapes.devs.Link({
+          source: {
+            id: sourceAttrs.id,
+            port: newId
+          },
+          target: {
+            id: targetAttrs.id,
+            port: targetAttrs.port
+          },
+          attrs: {
+            '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
+          }
+        });
+        this.changeIdOfPort(this.selectedPortName, newId);
+      }
+    }
+  }
+
+  private reRenderInPortAndLink(oldId: string, newId: string) {
+    const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+
+    const links = this.getLinks();
+
+    for (let i = 0; i < links.length; i++) {
+      const targetAttrs = links[i].get('target');
+      const sourceAttrs = links[i].get('source');
+
+      if (targetAttrs.port === element.getPort(oldId).id) {
+        const link = new joint.shapes.devs.Link({
+          source: {
+            id: sourceAttrs.id,
+            port: sourceAttrs.port
+          },
+          target: {
+            id: targetAttrs.id,
+            port: newId
+          },
+          attrs: {
+            '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
+          }
+        });
+        this.changeIdOfPort(this.selectedPortName, newId);
+        this.graph.addCell(link);
+      }
+    }
   }
 
   private changeIdOfPort(oldId: string, newId: string): void {
@@ -656,14 +719,14 @@ export class JointService {
               '.port-body': {
                 fill: '#16A085',
                 magnet: 'passive'
-              } // here we could enter the inPortProps attributes
+              }
             }
           },
           'out': {
             attrs: {
               '.port-body': {
                 fill: '#E74C3C'
-              } // here we could enter the outPortProps attributes
+              }
             }
           }
         }
