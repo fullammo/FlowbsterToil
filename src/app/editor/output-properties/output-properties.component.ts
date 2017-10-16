@@ -46,8 +46,7 @@ export class OutputPropertiesComponent implements OnInit {
     return this.fb.group({
       // TODO : better pattern is needed
       'displayName': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]),
-      'name': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]),
-      'filename': new FormControl(formState, Validators.required),
+      'name': new FormControl(formState, Validators.required),
       'targetname': new FormControl(formState),
       'targetip': new FormControl(formState),
       'targetport': new FormControl(formState),
