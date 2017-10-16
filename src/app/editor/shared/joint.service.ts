@@ -704,11 +704,28 @@ export class JointService {
           '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
         }
       }),
-      validateConnection: this.isConnectionValid,
+      validateConnection: function (cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
+        const links = self.getLinks();
+        for (let i = 0; i < links.length; i++) {
+          if (cellViewT.model.id === links[i].get('target').id && (magnetT.getAttribute('port') === links[i].get('target').port)) {
+            console.log('nem engedi');
+            return false;
+          }
+        }
+
+        if (magnetS && magnetS.getAttribute('port-group') === 'in') {
+          return false;
+        }
+        if (cellViewS === cellViewT) {
+          return false;
+        }
+
+        return magnetT && magnetT.getAttribute('port-group') === 'in';
+      },
       validateMagnet: function (cellView, magnet) {
         const links = self.getLinks();
         for (let i = 0; i < links.length; i++) {
-          if (((cellView.model.id === links[i].get('source').id) && (magnet.getAttribute('port') === links[i].get('source').port)) ||
+          if (
             ((cellView.model.id === links[i].get('target').id) && (magnet.getAttribute('port') === links[i].get('target').port))) {
             return false;
           }
@@ -718,27 +735,6 @@ export class JointService {
       snapLinks: { radius: 75 },
       markAvailable: true
     });
-  }
-
-  /**
-   * Checks wether the actual link is unique and validates if it goes from an input to an output.
-   * @param cellViewS Source Cell View.
-   * @param magnetS  Source Magnet.
-   * @param cellViewT Target Cell View.
-   * @param magnetT Target Magnet.
-   * @param end idk.
-   * @param linkView idk.
-   * @returns Indicator wether if it's a valid connection.
-   */
-  private isConnectionValid(cellViewS, magnetS, cellViewT, magnetT, end, linkView): boolean {
-    if (magnetS && magnetS.getAttribute('port-group') === 'in') {
-      return false;
-    }
-    if (cellViewS === cellViewT) {
-      return false;
-    }
-
-    return magnetT && magnetT.getAttribute('port-group') === 'in';
   }
 
   // checks if the flowbsterNodes name is unique and returns the actual element.
