@@ -1,5 +1,5 @@
+import { InputPort } from './inputPort';
 import { OutPutDescriptor } from './outputDescriptor';
-import { InputDescriptor } from './inputDescriptor';
 
 export interface NodeDescriptor {
     name: string,
@@ -16,7 +16,7 @@ export interface NodeDescriptor {
                     tgzurl: string
                 },
                 args: string,
-                in?: InputDescriptor[],
+                in?: InputPort[],
                 out?: OutPutDescriptor[]
             }
         }

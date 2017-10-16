@@ -914,8 +914,8 @@ export class JointService {
   private initInputPort(): InputPort {
     return {
       name: this.selectedPortName,
-      isCollector: false,
-      storagePattern: ''
+      collector: false,
+      format: ''
     };
   }
 

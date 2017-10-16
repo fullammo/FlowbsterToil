@@ -12,10 +12,10 @@
     </div>
 
     <div class="ui-grid-row">
-      <mat-checkbox [formControl]="userform.controls['isCollector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.isCollector">Collector port</mat-checkbox>
+      <mat-checkbox [formControl]="userform.controls['collector']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.collector">Collector port</mat-checkbox>
       <!-- <mat-input-container>
-        <input matInput type="text" placeholder="isCollector" [formControl]="userform.controls['isCollector']" [(ngModel)]="inputProps.isCollector">
-        <mat-error *ngIf="!userform.controls['isCollector'].valid&&userform.controls['isCollector'].dirty">
+        <input matInput type="text" placeholder="collector" [formControl]="userform.controls['collector']" [(ngModel)]="inputProps.collector">
+        <mat-error *ngIf="!userform.controls['collector'].valid&&userform.controls['collector'].dirty">
           Name is <strong>required</strong>
         </mat-error>
       </mat-input-container> -->
@@ -23,8 +23,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="storagePattern" [formControl]="userform.controls['storagePattern']" [(ngModel)]="inputProps.storagePattern">
-        <mat-error *ngIf="!userform.controls['storagePattern'].valid&&userform.controls['storagePattern'].dirty">
+        <input matInput type="text" placeholder="format" [formControl]="userform.controls['format']" [(ngModel)]="inputProps.format">
+        <mat-error *ngIf="!userform.controls['format'].valid&&userform.controls['format'].dirty">
           Name is <strong>required</strong>
         </mat-error>
       </mat-input-container>

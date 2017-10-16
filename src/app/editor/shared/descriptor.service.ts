@@ -1,10 +1,10 @@
+import { InputPort } from './../models/inputPort';
 import { Injectable } from '@angular/core';
 import { OccopusDescriptor } from 'app/editor/models/occopusDescriptor';
 import { JointService } from 'app/editor/shared/joint.service';
 import { Workflow } from 'app/editor/models/workflow';
 import { OutPutDescriptor } from 'app/editor/models/outputDescriptor';
 import { NodeDescriptor } from 'app/editor/models/nodeDescriptor';
-import { InputDescriptor } from 'app/editor/models/inputDescriptor';
 
 import * as jsyaml from 'js-yaml';
 
@@ -258,9 +258,9 @@ export class DescriptorService {
    * @returns A collection of YAML formatted InputDescriptors
    */
     // HINT : COULD BE ERASED BY SPEFICING.
-  createInputs(cell: joint.dia.Cell): InputDescriptor[] {
+  createInputs(cell: joint.dia.Cell): InputPort[] {
     const inportNames = cell.get('inPorts');
-    const inportDescriptors: InputDescriptor[] = [];
+    const inportDescriptors: InputPort[] = [];
 
     if (inportNames.length) {
 
@@ -282,9 +282,9 @@ export class DescriptorService {
    * @param inportProperties The properties of that input.
    * @returns An Occopus capable formatted InputDescriptor
    */
-  createInput(inportName: string, inportProperties: any): InputDescriptor {
+  createInput(inportName: string, inportProperties: any): InputPort {
 
-    const inport: InputDescriptor = { name: inportName };
+    const inport: InputPort = { name: inportName };
 
     const hasProperties = inportProperties[inportName]['isCollector']; // change this with the InputPort
 
