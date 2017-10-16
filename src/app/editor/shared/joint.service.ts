@@ -705,19 +705,20 @@ export class JointService {
         }
       }),
       validateConnection: function (cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
-        const links = self.getLinks();
-        for (let i = 0; i < links.length; i++) {
-          if (cellViewT.model.id === links[i].get('target').id && (magnetT.getAttribute('port') === links[i].get('target').port)) {
-            console.log('nem engedi');
-            return false;
-          }
-        }
 
         if (magnetS && magnetS.getAttribute('port-group') === 'in') {
           return false;
         }
         if (cellViewS === cellViewT) {
           return false;
+        }
+
+        const links = self.getLinks();
+        for (let i = 0; i < links.length; i++) {
+          if (cellViewT.model.id === links[i].get('target').id && (magnetT.getAttribute('port') === links[i].get('target').port)) {
+            console.log('nem engedi');
+            return false;
+          }
         }
 
         return magnetT && magnetT.getAttribute('port-group') === 'in';
@@ -732,7 +733,7 @@ export class JointService {
         }
         return magnet.getAttribute('magnet') !== 'passive';
       },
-      snapLinks: { radius: 75 },
+      snapLinks: { radius: 25 },
       markAvailable: true
     });
   }
