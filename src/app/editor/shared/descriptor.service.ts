@@ -143,6 +143,11 @@ export class DescriptorService {
     const dependencySet = new Set<string>();
     const links = this.jointSVC.getLinks();
 
+    // placement is important.
+    const multilinks = this.getMulticastLinks(links);
+
+    this.correctMulticastLinks(multilinks);
+
     for (const link of links) {
       const sourceCellName = link.getSourceElement().attr('.label/text');
       const targetCellName = link.getTargetElement().attr('.label/text');
@@ -157,8 +162,49 @@ export class DescriptorService {
 
       dependencies[sourceCellName].add(targetCellName);
     }
+    // placement is important.
+    this.correctOutputsWithoutLink();
 
     return this.createFinalDependencies(dependencies, dependencySet);
+  }
+
+  correctMulticastLinks(linksCollection: joint.dia.Link[][]): void {
+    for (const links of linksCollection) {
+      const node: NodeDescriptor = this.occopusDescriptor.nodes.find(nodeEl =>
+        nodeEl.name === links[0].getSourceElement().attr('.label/text'));
+      const outputDescriptors: OutputPort[] = node.variables.flowbster.app.out;
+
+      const usefulDescriptor = outputDescriptors.filter(output => {
+        return output.displayName === links[0].get('source').port;
+      })[0];
+
+      for (let iii = 1; iii < links.length; iii++) {
+        let newDescriptor: OutputPort = { name: '' };
+        newDescriptor = Object.assign(newDescriptor, usefulDescriptor);
+        outputDescriptors.push(newDescriptor);
+      }
+    }
+  }
+
+  getMulticastLinks(links: joint.dia.Link[]): joint.dia.Link[][] {
+    const nodes = this.jointSVC.graph.getCells().filter(cell => {
+      return cell.get('type') === 'devs.Model';
+    });
+
+    const linksCollections: [joint.dia.Link[]] = [[]];
+
+    for (const node of nodes) {
+      const sourceName = node.attr('.label/text');
+      for (const outPort of node.attributes['outPorts']) {
+        const matchingLinks = links.filter(link => {
+          const linkSourcePort = link.get('source').port;
+          const linkSourceName = link.getSourceElement().attr('.label/text');
+          return linkSourceName === sourceName && linkSourcePort === outPort;
+        });
+        linksCollections.push(matchingLinks);
+      }
+    }
+    return linksCollections.filter(collection => collection.length >= 2);
   }
 
   // iterates over the sourceNodes and pairs them up with their targets.
@@ -225,6 +271,7 @@ export class DescriptorService {
         outputDescriptor.targetname = targetPortName;
 
         outputDescriptor.targetnode = targetCellName;
+        break;
       }
     }
   }
@@ -349,7 +396,7 @@ export class DescriptorService {
    * @param cell The actual Node's cell.
    * @returns A collection of Occopus capable YAML formatted OutputDescriptors.
    */
-    // IN ÉS OUTPORTNÁL IS EGYEDINEK KELL LENNIE NEM HASONLÍTHAT SE NODERA SE SEMMIRE.
+  // IN ÉS OUTPORTNÁL IS EGYEDINEK KELL LENNIE NEM HASONLÍTHAT SE NODERA SE SEMMIRE.
   createOutputs(cell: joint.dia.Cell): OutputPort[] {
 
     const outportNames = cell.get('outPorts');

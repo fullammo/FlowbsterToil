@@ -532,6 +532,7 @@ export class JointService {
     }
   }
 
+  // multiple linking problems.
   private reRenderInPortAndLink(oldId: string, newId: string) {
     const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
