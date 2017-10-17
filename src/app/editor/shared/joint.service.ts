@@ -510,8 +510,10 @@ export class JointService {
     for (let i = 0; i < links.length; i++) {
       const targetAttrs = links[i].get('target');
       const sourceAttrs = links[i].get('source');
+      const sourceElementId = links[i].getSourceElement().id;
+      const targetElementId = links[i].getTargetElement().id;
 
-      if (sourceAttrs.port === element.getPort(oldId).id) {
+      if (sourceAttrs.port === element.getPort(oldId).id && sourceElementId === element.id) {
         const link = new joint.shapes.devs.Link({
           source: {
             id: sourceAttrs.id,
@@ -541,8 +543,10 @@ export class JointService {
     for (let i = 0; i < links.length; i++) {
       const targetAttrs = links[i].get('target');
       const sourceAttrs = links[i].get('source');
+      const sourceElementId = links[i].getSourceElement().id;
+      const targetElementId = links[i].getTargetElement().id;
 
-      if (targetAttrs.port === element.getPort(oldId).id) {
+      if (targetAttrs.port === element.getPort(oldId).id && targetElementId === element.id) {
         const link = new joint.shapes.devs.Link({
           source: {
             id: sourceAttrs.id,
