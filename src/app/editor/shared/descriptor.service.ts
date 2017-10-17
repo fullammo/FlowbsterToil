@@ -148,7 +148,7 @@ export class DescriptorService {
       const targetCellName = link.getTargetElement().attr('.label/text');
 
       this.correctOutputTargetNode(link, sourceCellName, targetCellName); // could be somewhere else or outside.
-      this.correctOutputsWithoutLink();
+      // this.correctOutputsWithoutLink();
       dependencySet.add(sourceCellName);
 
       if (dependencies[sourceCellName] === undefined) {
