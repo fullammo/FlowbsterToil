@@ -130,6 +130,29 @@ export class JointService {
     this.workflowChange = new Subject<void>();
   }
 
+  isPortNameUniqueObservable(portName: string): Observable<boolean> {
+    return new Observable(observer => {
+      console.log('validate name against ports on the actual FlowbsterNode');
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+
+      if (element) {
+        const ports = element.getPorts();
+        let isUsed = false;
+        for (const port of ports) {
+          if (portName === port.id && this.selectedPortName !== portName) {
+            isUsed = true;
+            console.log('set to true');
+          }
+        }
+        if (isUsed) {
+          observer.next(false);
+        } {
+          observer.next(true);
+        }
+      }
+    });
+  }
+
   // returns an observable with the information of the updated node
   /**
    * Validates the given node name against every node (even its last name) and the workflows name property.
@@ -992,10 +1015,10 @@ export class JointService {
    */
   private initInputPort(): InputPort {
     return {
-      name: this.selectedPortName,
+      name: '',
       collector: false,
       format: '',
-      displayName: ''
+      displayName: this.selectedPortName
     };
   }
 

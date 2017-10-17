@@ -3,6 +3,8 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 
 import { OutputPort } from 'app/editor/models/outputPort';
 import { DistributionType } from 'app/editor/models/distributionType';
+import { PortValidator } from 'app/editor/shared/customValidators';
+import { JointService } from 'app/editor/shared/joint.service';
 
 @Component({
   selector: 'toil-editor-output-properties',
@@ -34,7 +36,7 @@ export class OutputPropertiesComponent implements OnInit {
     this.OutputPropsChange.emit(this.outputProps);
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private jointSVC: JointService) { }
 
   ngOnInit() {
     this.userform = this.initForm();
@@ -45,7 +47,9 @@ export class OutputPropertiesComponent implements OnInit {
 
     return this.fb.group({
       // TODO : better pattern is needed
-      'displayName': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*outPorts\d)/)]),
+      'displayName': new FormControl(formState, [Validators.required],
+        PortValidator.isPortUnique(this.jointSVC)),
+      // something we need to protect the pattern. Better error messaging.Validators.pattern(/^(?!.*Port\d)/)
       'name': new FormControl(formState, Validators.required),
       'targetname': new FormControl(formState),
       'targetip': new FormControl(formState),
