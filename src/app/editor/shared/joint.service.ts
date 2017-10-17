@@ -516,7 +516,7 @@ export class JointService {
       const targetElementId = links[i].getTargetElement().id;
 
       if (sourceAttrs.port === element.getPort(oldId).id && sourceElementId === element.id) {
-        const link = new joint.shapes.devs.Link({
+        const link = new joint.dia.Link({
           source: {
             id: sourceAttrs.id,
             port: newId
@@ -554,7 +554,7 @@ export class JointService {
       const targetElementId = links[i].getTargetElement().id;
 
       if (targetAttrs.port === element.getPort(oldId).id && targetElementId === element.id) {
-        const link = new joint.shapes.devs.Link({
+        const link = new joint.dia.Link({
           source: {
             id: sourceAttrs.id,
             port: sourceAttrs.port
