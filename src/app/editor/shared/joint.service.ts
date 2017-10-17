@@ -507,6 +507,8 @@ export class JointService {
 
     const links = this.getLinks();
 
+    const linkstoBeAdded = [];
+
     for (let i = 0; i < links.length; i++) {
       const targetAttrs = links[i].get('target');
       const sourceAttrs = links[i].get('source');
@@ -527,10 +529,15 @@ export class JointService {
             '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
           }
         });
-        this.changeIdOfPort(this.selectedPortName, newId);
-        this.graph.addCell(link);
-        break;
+
+        linkstoBeAdded.push(link);
       }
+    }
+
+    this.changeIdOfPort(this.selectedPortName, newId);
+
+    if (linkstoBeAdded.length > 0) {
+      this.graph.addCells(linkstoBeAdded);
     }
   }
 
