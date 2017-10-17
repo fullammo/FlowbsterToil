@@ -526,6 +526,8 @@ export class JointService {
           }
         });
         this.changeIdOfPort(this.selectedPortName, newId);
+        this.graph.addCell(link);
+        break;
       }
     }
   }
@@ -555,6 +557,7 @@ export class JointService {
         });
         this.changeIdOfPort(this.selectedPortName, newId);
         this.graph.addCell(link);
+        break;
       }
     }
   }
