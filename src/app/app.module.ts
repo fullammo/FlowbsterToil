@@ -1,3 +1,4 @@
+import { CloudMessagingService } from './services/cloud-messaging.service';
 import { DialogService } from './services/dialog.service';
 import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
 import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
@@ -88,7 +89,8 @@ import { ConnectionComponent } from './connection/connection.component';
     OccoService,
     WorkflowDetailResolver,
     WorkflowDetailDeactivateGuard,
-    DialogService
+    DialogService,
+    CloudMessagingService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,11 @@
 <h3>Workflow Maintenance</h3>
+
+<!-- Current Message:
+<h1>{{(message | async)?.notificiation.title}}</h1>
+<img [src]="(message | async)?.notificiation.icon" width="100px">
+<p>{{(message | async )?.notification.body}}</p>
+
+{{ message | async | json}} <br> -->
 <button mat-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button>
 <button mat-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
 <button mat-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button>
