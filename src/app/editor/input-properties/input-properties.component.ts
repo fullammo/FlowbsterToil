@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { InputPort } from 'app/editor/models/inputPort';
+import { PortValidator } from './../shared/customValidators';
+import { JointService } from 'app/editor/shared/joint.service';
 
 @Component({
   selector: 'toil-editor-input-properties',
@@ -30,7 +32,7 @@ export class InputPropertiesComponent implements OnInit {
     this.InputPropsChange.emit(this.inputProps);
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private jointSVC: JointService) { }
 
   ngOnInit() {
     this.userform = this.initForm();
@@ -39,7 +41,10 @@ export class InputPropertiesComponent implements OnInit {
   initForm() {
     const formState = { value: '', disabled: this.readOnly };
     return this.fb.group({
-      'name': new FormControl(formState, [Validators.required, Validators.pattern(/^(?!.*inPorts\d)/)]),
+      'displayName': new FormControl(formState, [Validators.required],
+        PortValidator.isPortUnique(this.jointSVC)),
+      // something we need to protect the pattern. Better error messaging.Validators.pattern(/^(?!.*Port\d)/)
+      'name': new FormControl(formState, Validators.required),
       'collector': new FormControl(formState),
       'format': new FormControl({ value: '', disabled: true }),
     });

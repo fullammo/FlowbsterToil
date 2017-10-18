@@ -130,6 +130,29 @@ export class JointService {
     this.workflowChange = new Subject<void>();
   }
 
+  isPortNameUniqueObservable(portName: string): Observable<boolean> {
+    return new Observable(observer => {
+      console.log('validate name against ports on the actual FlowbsterNode');
+      const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+
+      if (element) {
+        const ports = element.getPorts();
+        let isUsed = false;
+        for (const port of ports) {
+          if (portName === port.id && this.selectedPortName !== portName) {
+            isUsed = true;
+            console.log('set to true');
+          }
+        }
+        if (isUsed) {
+          observer.next(false);
+        } {
+          observer.next(true);
+        }
+      }
+    });
+  }
+
   // returns an observable with the information of the updated node
   /**
    * Validates the given node name against every node (even its last name) and the workflows name property.
@@ -476,18 +499,18 @@ export class JointService {
   updatePort(portAttributes, isInput: boolean): boolean {
 
     const oldName = this.selectedPortName;
-
-    let newName: string;
-    if (isInput) {
-      newName = portAttributes.name;
-    } else {
-      newName = portAttributes.displayName;
-    }
-
+    const newName = portAttributes.displayName;
     const modelAttribute = isInput ? 'inPortsProps' : 'outPortsProps';
     let portProps = this.selectedCellView.model.get(modelAttribute);
 
     if (oldName !== newName) {
+
+      if (isInput) {
+        this.reRenderInPortAndLink(oldName, newName);
+      } else {
+        this.reRenderOutPortAndLink(oldName, newName);
+      }
+
       const handledInportsProps = this.handlePortNameChange(oldName, newName, portProps, isInput);
       if (handledInportsProps === null) {
         return false;
@@ -502,7 +525,82 @@ export class JointService {
     return true;
   }
 
+  private reRenderOutPortAndLink(oldId: string, newId: string) {
+    const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
+    const links = this.getLinks();
+
+    const linkstoBeAdded = [];
+
+    for (let i = 0; i < links.length; i++) {
+      const targetAttrs = links[i].get('target');
+      const sourceAttrs = links[i].get('source');
+      const sourceElementId = links[i].getSourceElement().id;
+      const targetElementId = links[i].getTargetElement().id;
+
+      if (sourceAttrs.port === element.getPort(oldId).id && sourceElementId === element.id) {
+        const link = new joint.dia.Link({
+          source: {
+            id: sourceAttrs.id,
+            port: newId
+          },
+          target: {
+            id: targetAttrs.id,
+            port: targetAttrs.port
+          },
+          attrs: {
+            '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
+          }
+        });
+
+        linkstoBeAdded.push(link);
+      }
+    }
+
+    this.changeIdOfPort(this.selectedPortName, newId);
+
+    if (linkstoBeAdded.length > 0) {
+      this.graph.addCells(linkstoBeAdded);
+    }
+  }
+
+  // multiple linking problems.
+  private reRenderInPortAndLink(oldId: string, newId: string) {
+    const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+
+    const links = this.getLinks();
+
+    for (let i = 0; i < links.length; i++) {
+      const targetAttrs = links[i].get('target');
+      const sourceAttrs = links[i].get('source');
+      const sourceElementId = links[i].getSourceElement().id;
+      const targetElementId = links[i].getTargetElement().id;
+
+      if (targetAttrs.port === element.getPort(oldId).id && targetElementId === element.id) {
+        const link = new joint.dia.Link({
+          source: {
+            id: sourceAttrs.id,
+            port: sourceAttrs.port
+          },
+          target: {
+            id: targetAttrs.id,
+            port: newId
+          },
+          attrs: {
+            '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
+          }
+        });
+        this.changeIdOfPort(this.selectedPortName, newId);
+        this.graph.addCell(link);
+        break;
+      }
+    }
+  }
+
+  private changeIdOfPort(oldId: string, newId: string): void {
+    const flowsbterNodeModel = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
+    flowsbterNodeModel.portProp(oldId, 'id', newId);
+  }
 
   // creates a new entry in our Property holder object and deletes the old one. triggers the visual representation.
   /**
@@ -570,7 +668,7 @@ export class JointService {
       const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
       const portCollection = element.attributes[type];
-      const portName = type + portCollection.length;
+      const portName = _.uniqueId('Port');
 
       console.log(portName);
       if (type === 'inPorts' && !element.hasPort(portName)) {
@@ -659,14 +757,14 @@ export class JointService {
               '.port-body': {
                 fill: '#16A085',
                 magnet: 'passive'
-              } // here we could enter the inPortProps attributes
+              }
             }
           },
           'out': {
             attrs: {
               '.port-body': {
                 fill: '#E74C3C'
-              } // here we could enter the outPortProps attributes
+              }
             }
           }
         }
@@ -917,9 +1015,10 @@ export class JointService {
    */
   private initInputPort(): InputPort {
     return {
-      name: this.selectedPortName,
+      name: '',
       collector: false,
-      format: ''
+      format: '',
+      displayName: this.selectedPortName
     };
   }
 

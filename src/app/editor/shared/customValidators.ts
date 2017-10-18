@@ -96,3 +96,27 @@ export class NodeValidator {
     };
   }
 }
+
+export class PortValidator {
+  static isPortUnique(jointSVC: JointService) {
+    return (control: AbstractControl) => {
+      return new Observable((obs: any) => {
+        control
+          .valueChanges
+          .filter(value => {
+            if (value) {
+              return value.length > 0;
+            }
+          })
+          .debounceTime(500)
+          .distinctUntilChanged()
+          .flatMap(portName => jointSVC.isPortNameUniqueObservable(portName))
+          .subscribe(result => {
+            result === false ?
+              obs.next({ portNameExist: true }) : obs.next(null);
+            obs.complete();
+          });
+      });
+    };
+  }
+}

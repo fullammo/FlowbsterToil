@@ -2,9 +2,18 @@
   <!-- {{InputProps | json}} -->
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
 
+      <div class="ui-grid-row">
+          <mat-input-container>
+            <input matInput type="text" placeholder="displayName" [formControl]="userform.controls['displayName']" [(ngModel)]="inputProps.displayName">
+            <mat-error *ngIf="!userform.controls['displayName'].valid&&userform.controls['displayName'].dirty">
+              Input name is <strong>required</strong>
+            </mat-error>
+          </mat-input-container>
+        </div>
+
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="name" [formControl]="userform.controls['name']" [(ngModel)]="inputProps.name">
+        <input matInput type="text" placeholder="FileName" [formControl]="userform.controls['name']" [(ngModel)]="inputProps.name">
         <mat-error *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
           Input name is <strong>required</strong>
         </mat-error>

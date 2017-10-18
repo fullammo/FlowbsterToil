@@ -137,18 +137,23 @@ export class DescriptorService {
   /**
    * Corrects the outputs by the given dependencies and creates an array frmo the node dependency chain.
    */
-   // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
+  // HINT: not neccessary to correct the outputs if we can do it on a higher level, maybe in the modal. not sure yet.
   handleDependencies(): Array<string> {
     const dependencies = {};
     const dependencySet = new Set<string>();
     const links = this.jointSVC.getLinks();
+
+    // placement is important.
+    const multilinks = this.getMulticastLinks(links);
+
+    this.correctMulticastLinks(multilinks);
 
     for (const link of links) {
       const sourceCellName = link.getSourceElement().attr('.label/text');
       const targetCellName = link.getTargetElement().attr('.label/text');
 
       this.correctOutputTargetNode(link, sourceCellName, targetCellName); // could be somewhere else or outside.
-      this.correctOutputsWithoutLink();
+      // this.correctOutputsWithoutLink();
       dependencySet.add(sourceCellName);
 
       if (dependencies[sourceCellName] === undefined) {
@@ -157,8 +162,49 @@ export class DescriptorService {
 
       dependencies[sourceCellName].add(targetCellName);
     }
+    // placement is important.
+    this.correctOutputsWithoutLink();
 
     return this.createFinalDependencies(dependencies, dependencySet);
+  }
+
+  correctMulticastLinks(linksCollection: joint.dia.Link[][]): void {
+    for (const links of linksCollection) {
+      const node: NodeDescriptor = this.occopusDescriptor.nodes.find(nodeEl =>
+        nodeEl.name === links[0].getSourceElement().attr('.label/text'));
+      const outputDescriptors: OutputPort[] = node.variables.flowbster.app.out;
+
+      const usefulDescriptor = outputDescriptors.filter(output => {
+        return output.displayName === links[0].get('source').port;
+      })[0];
+
+      for (let iii = 1; iii < links.length; iii++) {
+        let newDescriptor: OutputPort = { name: '' };
+        newDescriptor = Object.assign(newDescriptor, usefulDescriptor);
+        outputDescriptors.push(newDescriptor);
+      }
+    }
+  }
+
+  getMulticastLinks(links: joint.dia.Link[]): joint.dia.Link[][] {
+    const nodes = this.jointSVC.graph.getCells().filter(cell => {
+      return cell.get('type') === 'devs.Model';
+    });
+
+    const linksCollections: [joint.dia.Link[]] = [[]];
+
+    for (const node of nodes) {
+      const sourceName = node.attr('.label/text');
+      for (const outPort of node.attributes['outPorts']) {
+        const matchingLinks = links.filter(link => {
+          const linkSourcePort = link.get('source').port;
+          const linkSourceName = link.getSourceElement().attr('.label/text');
+          return linkSourceName === sourceName && linkSourcePort === outPort;
+        });
+        linksCollections.push(matchingLinks);
+      }
+    }
+    return linksCollections.filter(collection => collection.length >= 2);
   }
 
   // iterates over the sourceNodes and pairs them up with their targets.
@@ -225,6 +271,7 @@ export class DescriptorService {
         outputDescriptor.targetname = targetPortName;
 
         outputDescriptor.targetnode = targetCellName;
+        break;
       }
     }
   }
@@ -236,11 +283,12 @@ export class DescriptorService {
    */
   createDescriptorNodes(): NodeDescriptor[] {
     const cells: joint.dia.Cell[] = this.jointSVC.getCells();
+    console.log(cells);
     const nodeDescriptors: NodeDescriptor[] = [];
 
     if (cells) {
       for (const cell of cells) {
-        if (cell.get('type') === 'link') {
+        if (cell.get('type') === 'link' || cell.get('type') === 'devs.Link') {
           continue;
         }
         const nodeDescriptor: NodeDescriptor = this.createNodeDescriptor(cell);
@@ -258,10 +306,15 @@ export class DescriptorService {
    * @param cell The actual Node's cell.
    * @returns A collection of YAML formatted InputDescriptors
    */
-    // HINT : COULD BE ERASED BY SPEFICING.
+  // HINT : COULD BE ERASED BY SPEFICING.
   createInputs(cell: joint.dia.Cell): InputPort[] {
     const inportNames = cell.get('inPorts');
     const inportDescriptors: InputPort[] = [];
+
+    if (!inportNames) {
+      console.log('nincs');
+      return inportDescriptors;
+    }
 
     if (inportNames.length) {
 
@@ -343,11 +396,16 @@ export class DescriptorService {
    * @param cell The actual Node's cell.
    * @returns A collection of Occopus capable YAML formatted OutputDescriptors.
    */
+  // IN ÉS OUTPORTNÁL IS EGYEDINEK KELL LENNIE NEM HASONLÍTHAT SE NODERA SE SEMMIRE.
   createOutputs(cell: joint.dia.Cell): OutputPort[] {
 
     const outportNames = cell.get('outPorts');
     // console.log('outportNames: ' + outportNames);
     const outportDescriptors: OutputPort[] = [];
+
+    if (!outportNames) {
+      return outportDescriptors;
+    }
 
     if (outportNames.length) {
 

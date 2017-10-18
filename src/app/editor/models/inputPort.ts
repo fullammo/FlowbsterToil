@@ -19,4 +19,6 @@ export interface InputPort {
    * The given regular expression,states in which format you want to store the data.
    */
   format?: string;
+
+  displayName?: string;
 }
