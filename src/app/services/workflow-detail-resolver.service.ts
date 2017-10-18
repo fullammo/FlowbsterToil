@@ -17,7 +17,7 @@ export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
     const id = route.paramMap.get('id');
 
     return this.workflowEntrySVC.getEntry(id).take(1).map(entry => {
-      if (entry.$exists()) {
+      if (entry) {
         return entry;
       } else {
         if (operation === 'create' && id === '0') {

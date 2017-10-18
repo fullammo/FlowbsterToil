@@ -4,7 +4,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataSource, SelectionModel } from '@angular/cdk/collections';
 import { MatSort, MatPaginator } from '@angular/material';
-import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 import { WorkflowEntry } from 'app/view-models/workflowEntry';

@@ -1,22 +1,33 @@
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
+import { WorkflowEntry } from './../view-models/workflowEntry';
 import { Workflow } from './../editor/models/workflow';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class WorkflowEntryService {
 
   dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<WorkflowEntry[]>([]);
-  entries: FirebaseListObservable<WorkflowEntry[]>;
+  entries: AngularFireList<any>;
 
 
   get data(): WorkflowEntry[] { return this.dataChange.value; }
 
   constructor(private db: AngularFireDatabase) {
-    this.entries = this.db.list('entries');
-    this.entries.subscribe(workflowEntries => {
+    this.entries = this.db.list<WorkflowEntry[]>('entries');
+    // this.entries.valueChanges().subscribe((workflowEntries: WorkflowEntry[]) => {
+    //   console.log(workflowEntries);
+    //   this.dataChange.next(workflowEntries);
+    // });
+
+    this.entries.snapshotChanges().subscribe(actions => {
+      const workflowEntries: WorkflowEntry[] = [];
+      actions.forEach(action => {
+        const entry: WorkflowEntry = action.payload.val();
+        entry.$key = action.key;
+        workflowEntries.push(entry);
+      });
       this.dataChange.next(workflowEntries);
     });
   }
@@ -51,7 +62,11 @@ export class WorkflowEntryService {
   }
 
   getEntry(id: string) {
-    return this.db.object(`/entries/${id}`);
+    return this.db.object(`/entries/${id}`).snapshotChanges().map(action => {
+      const data = action.payload.val();
+      console.log(data);
+      return data;
+    });
   }
 
   updateEntry(entry: WorkflowEntry) {
