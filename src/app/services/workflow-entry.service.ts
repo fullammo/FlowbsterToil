@@ -1,4 +1,4 @@
-import { WorkflowEntry } from './../view-models/workflowEntry';
+import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { Workflow } from './../editor/models/workflow';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
@@ -24,9 +24,7 @@ export class WorkflowEntryService {
     this.entries.snapshotChanges().subscribe(actions => {
       const workflowEntries: WorkflowEntry[] = [];
       actions.forEach(action => {
-        const entry: WorkflowEntry = action.payload.val();
-        entry.$key = action.key;
-        workflowEntries.push(entry);
+        workflowEntries.push(this.createInitialEntry(action));
       });
       this.dataChange.next(workflowEntries);
     });
@@ -63,13 +61,19 @@ export class WorkflowEntryService {
 
   getEntry(id: string) {
     return this.db.object(`/entries/${id}`).snapshotChanges().map(action => {
-      const data = action.payload.val();
-      console.log(data);
-      return data;
+      return this.createInitialEntry(action);
     });
   }
 
+  private createInitialEntry(action): WorkflowEntry {
+    const entry: WorkflowEntry = action.payload.val();
+    entry.$key = action.key;
+    return entry;
+  }
+
   updateEntry(entry: WorkflowEntry) {
-    this.entries.update(entry.$key, entry);
+    const key = entry.$key;
+    delete entry.$key;
+    this.entries.update(key, entry);
   }
 }
