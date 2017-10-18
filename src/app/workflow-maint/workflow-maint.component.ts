@@ -1,3 +1,4 @@
+import { CloudMessagingService } from './../services/cloud-messaging.service';
 import { JointService } from 'app/editor/shared/joint.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,6 +22,8 @@ import { DescriptorService } from 'app/editor/shared/descriptor.service';
   styleUrls: ['./workflow-maint.component.scss']
 })
 export class WorkflowMaintComponent implements OnInit {
+
+  message;
 
   /**
    * the displayed Columns in the data grid.
@@ -58,7 +61,8 @@ export class WorkflowMaintComponent implements OnInit {
   constructor(private workflowEntrySVC: WorkflowEntryService,
     private router: Router,
     private occoSVC: OccoService,
-    private jointSVC: JointService) {
+    private jointSVC: JointService,
+    private cloudMessagingSVC: CloudMessagingService) {
   }
 
   /**
@@ -74,6 +78,13 @@ export class WorkflowMaintComponent implements OnInit {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+    this.initializeCloudMessaging();
+  }
+
+  private initializeCloudMessaging(): void {
+    this.cloudMessagingSVC.getPermission();
+    this.cloudMessagingSVC.receiveMessage();
+    this.message = this.cloudMessagingSVC.currentMessage;
   }
 
   /**
