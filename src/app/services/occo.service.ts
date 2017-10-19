@@ -58,7 +58,7 @@ export class OccoService {
         return this;
       },
       (error) => {
-        console.log('error occured', error);
+           console.log('error occured', error);
       },
       () => {
 

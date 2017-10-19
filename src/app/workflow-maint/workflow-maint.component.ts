@@ -6,6 +6,8 @@ import { DataSource, SelectionModel } from '@angular/cdk/collections';
 import { MatSort, MatPaginator } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
+import 'rxjs/add/observable/fromEvent';
+
 import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { WorkflowDataSource } from 'app/workflow-maint/workflowDataSource';
@@ -21,7 +23,6 @@ import { DescriptorService } from 'app/editor/shared/descriptor.service';
   styleUrls: ['./workflow-maint.component.scss']
 })
 export class WorkflowMaintComponent implements OnInit {
-
   message;
 
   /**
@@ -57,24 +58,31 @@ export class WorkflowMaintComponent implements OnInit {
   /**
    * Injects the needed services.
    */
-  constructor(private workflowEntrySVC: WorkflowEntryService,
+  constructor(
+    private workflowEntrySVC: WorkflowEntryService,
     private router: Router,
     private occoSVC: OccoService,
     private jointSVC: JointService,
-    private cloudMessagingSVC: CloudMessagingService) {
-  }
+    private cloudMessagingSVC: CloudMessagingService
+  ) {}
 
   /**
    * Initializes the data grids datasource with paginated and sortable database entries
    * and subscribes to the filtering elements keyup event.
    */
   ngOnInit() {
-    this.dataSource = new WorkflowDataSource(this.workflowEntrySVC, this.paginator, this.sort);
+    this.dataSource = new WorkflowDataSource(
+      this.workflowEntrySVC,
+      this.paginator,
+      this.sort
+    );
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
       .subscribe(() => {
-        if (!this.dataSource) { return; }
+        if (!this.dataSource) {
+          return;
+        }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
     this.initializeCloudMessaging();
@@ -91,13 +99,22 @@ export class WorkflowMaintComponent implements OnInit {
    * @returns An indicator about all of the checkboxes state.
    */
   isAllSelected(): boolean {
-    if (!this.dataSource) { return false; }
-    if (this.selection.isEmpty()) { return false; }
+    if (!this.dataSource) {
+      return false;
+    }
+    if (this.selection.isEmpty()) {
+      return false;
+    }
 
     if (this.filter.nativeElement.value) {
-      return this.selection.selected.length === this.dataSource.renderedEntries.length;
+      return (
+        this.selection.selected.length ===
+        this.dataSource.renderedEntries.length
+      );
     } else {
-      return this.selection.selected.length === this.workflowEntrySVC.data.length;
+      return (
+        this.selection.selected.length === this.workflowEntrySVC.data.length
+      );
     }
   }
 
@@ -119,14 +136,20 @@ export class WorkflowMaintComponent implements OnInit {
    * Checks every checkboxes.
    */
   masterToggle() {
-    if (!this.dataSource) { return; }
+    if (!this.dataSource) {
+      return;
+    }
 
     if (this.isAllSelected()) {
       this.selection.clear();
     } else if (this.filter.nativeElement.value) {
-      this.dataSource.renderedEntries.forEach(data => this.selection.select(data.$key));
+      this.dataSource.renderedEntries.forEach(data =>
+        this.selection.select(data.$key)
+      );
     } else {
-      this.workflowEntrySVC.data.forEach(data => this.selection.select(data.$key));
+      this.workflowEntrySVC.data.forEach(data =>
+        this.selection.select(data.$key)
+      );
     }
   }
 
@@ -147,23 +170,17 @@ export class WorkflowMaintComponent implements OnInit {
   /**
    * Idk.
    */
-  destroyWorkflow(): void {
-
-  }
+  destroyWorkflow(): void {}
 
   /**
    *Idk.
    */
-  startProcessing(): void {
-
-  }
+  startProcessing(): void {}
 
   /**
    *Idk.
    */
-  stopProcessing(): void {
-
-  }
+  stopProcessing(): void {}
 
   /**
    * Gets the selected entries and creates a clone of them to the database.
@@ -198,7 +215,9 @@ export class WorkflowMaintComponent implements OnInit {
    * Deletes every selected workflow from the database.
    */
   deleteWorkflow(): void {
-    this.selection.selected.forEach(key => this.workflowEntrySVC.deleteEntry(key));
+    this.selection.selected.forEach(key =>
+      this.workflowEntrySVC.deleteEntry(key)
+    );
     this.selection.clear();
   }
 
@@ -209,5 +228,3 @@ export class WorkflowMaintComponent implements OnInit {
     this.router.navigate(['/authenticated/workflow-detail', 0, 'create']);
   }
 }
-
-

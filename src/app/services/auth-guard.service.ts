@@ -1,24 +1,42 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, Router } from '@angular/router';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Router,
+  CanActivateChild
+} from '@angular/router';
 
-import { UserService } from './user.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+
+import { UserService } from 'app/services/user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
+  constructor(private userSVC: UserService, private router: Router) {}
 
-  constructor(private userService: UserService, private router: Router) { }
-
-  canActivate(): boolean {
-    console.log('AuthGuard#canActivate called ' + this.userService.isAuthenticated);
-
-    if (!this.userService.isAuthenticated) {
-      console.log('not auth');
-      this.router.navigate(['/signin']);
-    }
-    return this.userService.isAuthenticated;
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | boolean {
+    return this.userSVC.user
+      .take(1)
+      .map(user => !!user)
+      .do(loggedIn => {
+        if (!loggedIn) {
+          console.log('access denied');
+          this.router.navigate(['/signin']);
+        }
+      });
   }
 
-  canActivateChild(): boolean {
-    return this.canActivate();
+  canActivateChild(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | boolean {
+    return this.canActivate(next, state);
   }
 }

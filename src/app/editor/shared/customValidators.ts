@@ -2,6 +2,9 @@ import { JointService } from 'app/editor/shared/joint.service';
 import { Observable } from 'rxjs/Observable';
 import { AbstractControl } from '@angular/forms';
 
+import 'rxjs/add/operator/debounceTime';
+import "rxjs/add/operator/mergeMap";
+
 /**
  * Holds the neccessary Observable based functions that are used in node validation.
  */
