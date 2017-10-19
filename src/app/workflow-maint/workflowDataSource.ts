@@ -1,9 +1,10 @@
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
+
 import { Observable } from 'rxjs/Observable';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { WorkflowEntry } from 'app/core/models/workflowEntry';
 
 /**
  * Own type of data source that can be accepted in the data grid.

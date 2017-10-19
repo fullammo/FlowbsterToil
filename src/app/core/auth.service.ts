@@ -10,10 +10,12 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-import { User } from 'app/core/user';
+
+import { UserApi } from 'fw/users/user-api';
+import { User } from 'app/core/models/user';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements UserApi {
   user: Observable<User>;
 
   constructor(
@@ -38,6 +40,7 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider).then(credential => {
       this.updateUserData(credential.user);
+      this.router.navigate(['/authenticated']);
     });
   }
 

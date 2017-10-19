@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { AuthenticatedUserComponent } from './authenticated-user/authenticated-user.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignInComponent } from '../fw/users/sign-in/sign-in.component';
 import { RegisterUserComponent } from '../fw/users/register-user/register-user.component';
 import { EditorComponent } from './editor/editor/editor.component';
@@ -9,9 +8,9 @@ import { WorkflowMaintComponent } from 'app/workflow-maint/workflow-maint.compon
 import { WorkflowDetailComponent } from 'app/workflow-detail/workflow-detail.component';
 import { ConnectionComponent } from 'app/connection/connection.component';
 
-import { AuthGuard } from './services/auth-guard.service';
 import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
 import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
+import { AuthGuard } from 'app/core/auth.guard';
 
 export const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },

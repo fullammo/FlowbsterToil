@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/fromEvent';
 
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { WorkflowDataSource } from 'app/workflow-maint/workflowDataSource';
 import { OccoService } from 'app/services/occo.service';

@@ -1,12 +1,17 @@
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { DialogService } from './../services/dialog.service';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  Validators,
+  FormControl,
+  FormGroup,
+  FormBuilder
+} from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { JointService } from 'app/editor/shared/joint.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+import { WorkflowEntry } from 'app/core/models/workflowEntry';
 
 /**
  * Enables you to edit the actual workflow's properties or create a new one.
@@ -17,7 +22,6 @@ import { WorkflowEntryService } from 'app/services/workflow-entry.service';
   styleUrls: ['./workflow-detail.component.scss']
 })
 export class WorkflowDetailComponent implements OnInit, AfterViewInit {
-
   /**
    * The url data wether you want to create or edit a workflow.
    */
@@ -57,12 +61,14 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
   /**
    * We initialize a clean modifiable entry to start with.
    */
-  constructor(private jointSVC: JointService,
+  constructor(
+    private jointSVC: JointService,
     private descriptorSVC: DescriptorService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private workflowEntrySVC: WorkflowEntryService) {
+    private workflowEntrySVC: WorkflowEntryService
+  ) {
     this.entry = { name: '', description: '', descriptor: '', graph: '' };
   }
 
@@ -131,8 +137,8 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
    */
   initForm() {
     return this.fb.group({
-      'name': new FormControl('', Validators.required),
-      'description': new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required)
     });
   }
 

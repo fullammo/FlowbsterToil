@@ -1,9 +1,9 @@
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { Workflow } from './../editor/models/workflow';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { WorkflowEntry } from 'app/core/models/workflowEntry';
 
 @Injectable()
 export class WorkflowEntryService {

@@ -1,11 +1,11 @@
 import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { JointService } from './../editor/shared/joint.service';
-import { WorkflowEntry } from 'app/view-models/workflowEntry';
 import { DialogService } from './dialog.service';
 import { WorkflowDetailComponent } from 'app/workflow-detail/workflow-detail.component';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { WorkflowEntry } from 'app/core/models/workflowEntry';
 
 /**
  * The Deactivation Guard service for the WorkflowDetailComponent.

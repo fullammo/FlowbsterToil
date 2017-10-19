@@ -28,11 +28,6 @@ import { FwModule } from '../fw/fw.module';
 import { EditorModule } from 'app/editor/editor.module';
 import { appRoutes } from './app.routing';
 import { AuthenticatedUserComponent } from './authenticated-user/authenticated-user.component';
-import { UserService } from './services/user.service';
-import { UserApi } from '../fw/users/user-api';
-import { AuthGuard } from './services/auth-guard.service';
-import { CountryPanelComponent } from './panels/country-panel/country-panel.component';
-import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
 import { WorkflowMaintComponent } from './workflow-maint/workflow-maint.component';
 import { environment } from 'environments/environment';
 import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
@@ -45,8 +40,6 @@ import { CoreModule } from 'app/core/core.module';
   declarations: [
     AppComponent,
     AuthenticatedUserComponent,
-    CountryPanelComponent,
-    ImagePanelComponent,
     WorkflowMaintComponent,
     WorkflowDetailComponent,
     ConnectionComponent
@@ -74,9 +67,6 @@ import { CoreModule } from 'app/core/core.module';
     CoreModule
   ],
   providers: [
-    UserService,
-    { provide: UserApi, useExisting: UserService },
-    AuthGuard,
     WorkflowEntryService,
     OccoService,
     WorkflowDetailResolver,

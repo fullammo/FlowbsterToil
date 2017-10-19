@@ -12,17 +12,17 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-import { UserService } from 'app/services/user.service';
+import { AuthService } from 'app/core/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private userSVC: UserService, private router: Router) {}
+  constructor(private authSVC: AuthService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
-    return this.userSVC.user
+    return this.authSVC.user
       .take(1)
       .map(user => !!user)
       .do(loggedIn => {

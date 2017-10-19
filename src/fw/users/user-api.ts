@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { User } from 'app/core/user';
+import { User } from 'app/core/models/user';
 
 export abstract class UserApi {
   // signIn: (
