@@ -231,9 +231,20 @@ export class WorkflowMaintComponent implements OnInit {
    * Navigates to the workflow creation page.
    */
   createEntry(): void {
-    const key = this.workflowEntrySVC.saveEntry(
-      this.workflowEntrySVC.initEntry()
-    );
-    this.router.navigate(['/authenticated/workflow-detail', key, 'create']);
+    this.workflowEntrySVC
+      .saveEntry(this.workflowEntrySVC.initEntry())
+      .then(doc => {
+        console.log(doc.id);
+        this.router.navigate([
+          '/authenticated/workflow-detail',
+          doc.id,
+          'create'
+        ]);
+      });
+
+      // const key = this.workflowEntrySVC.saveEntry(
+      //   this.workflowEntrySVC.initEntry()
+      // );
+      // this.router.navigate(['/authenticated/workflow-detail', key, 'create']);
   }
 }

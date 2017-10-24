@@ -5,12 +5,16 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { WorkflowEntry } from 'app/core/models/workflowEntry';
 import { AngularFireAuth } from 'angularfire2/auth';
+// ***AngularFireStore features ***
 import {
   AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection
 } from 'angularfire2/firestore';
 import { AuthService } from 'app/core/auth.service';
+
+// AngularFireStore function are not good enough at the moment.
+// The json parsing doesnt work very well. also the pushing has some limitations.
 
 @Injectable()
 export class WorkflowEntryService {
@@ -19,6 +23,7 @@ export class WorkflowEntryService {
   >([]);
   entries: AngularFireList<any>;
 
+  // ***AngularFireStore features ***
   graphCollection: AngularFirestoreCollection<WorkflowEntry>;
   graphs: Observable<WorkflowEntry[]>;
   graphSnapshot: Observable<any>;
@@ -28,15 +33,27 @@ export class WorkflowEntryService {
   }
 
   constructor(
+    // ***AngularFireStore features ***
     private afs: AngularFirestore,
     private db: AngularFireDatabase,
     private authSVC: AuthService
   ) {
     // ***AngularFireStore features ***
-    // this.subscribetoUserChanges();
+    this.subscribeToUserChanges();
 
-    this.entries = this.db.list<WorkflowEntry[]>('entries');
-    this.entries.snapshotChanges().subscribe(actions => {
+    // this.entries = this.db.list<WorkflowEntry[]>('entries');
+    // this.entries.snapshotChanges().subscribe(actions => {
+    //   const workflowEntries: WorkflowEntry[] = [];
+    //   actions.forEach(action => {
+    //     workflowEntries.push(this.createInitialEntry(action));
+    //   });
+    //   this.dataChange.next(workflowEntries);
+    // });
+  }
+
+  // ***AngularFireStore features ***
+  private subscribeToSnapShotChanges(collection) {
+    collection.snapshotChanges().subscribe(actions => {
       const workflowEntries: WorkflowEntry[] = [];
       actions.forEach(action => {
         workflowEntries.push(this.createInitialEntry(action));
@@ -46,43 +63,35 @@ export class WorkflowEntryService {
   }
 
   // ***AngularFireStore features ***
-  // private subscribeToSnapShotChanges(collection) {
-  //   collection.snapshotChanges().subscribe(actions => {
-  //     const workflowEntries: WorkflowEntry[] = [];
-  //     actions.forEach(action => {
-  //       workflowEntries.push(this.createInitialEntry(action));
-  //     });
-  //     this.dataChange.next(workflowEntries);
-  //   });
-  // }
+  private subscribeToUserChanges() {
+    this.authSVC.user.subscribe(user => {
+      if (user) {
+        this.graphCollection = this.afs.collection<WorkflowEntry>(
+          `users/${user.uid}/entries`
+        );
 
-  // ***AngularFireStore features ***
-  // private subscribeToUserChanges() {
-  //   this.authSVC.user.subscribe(user => {
-  //     if (user) {
-  //       this.graphCollection = this.afs.collection<WorkflowEntry>(
-  //         `users/${user.uid}/entries`
-  //       );
+        this.subscribeToSnapShotChanges(this.graphCollection);
 
-  //       this.subscribeToSnapShotChanges(this.graphCollection);
-
-  //       this.graphs = this.graphCollection.valueChanges();
-  //       this.graphs.subscribe(graphs => {
-  //         console.log(graphs);
-  //       });
-  //     }
-  //   });
-  // }
+        this.graphs = this.graphCollection.valueChanges();
+        this.graphs.subscribe(graphs => {
+          console.log(graphs);
+        });
+      }
+    });
+  }
 
   deleteEntry(key: string) {
-    this.entries.remove(key);
+    // this.entries.remove(key);
+
+    // ***AngularFireStore features ***
+    this.graphCollection.doc(key).delete();
   }
 
   saveEntry(entry: WorkflowEntry) {
-    return this.entries.push(entry).key;
+    // return this.entries.push(entry).key;
 
     // ***AngularFireStore features ***
-    // this.graphCollection.add(entry);
+    return this.graphCollection.add(entry);
   }
 
   cloneEntry(entry: WorkflowEntry): WorkflowEntry {
@@ -107,37 +116,47 @@ export class WorkflowEntryService {
   }
 
   getEntry(id: string) {
-    return this.db
-      .object(`/entries/${id}`)
-      .snapshotChanges()
-      .map(action => {
-        return this.createInitialEntry(action);
-      });
-
-    //  // ***AngularFireStore features ***
-    // return this.graphCollection
-    //   .doc(id)
+    // return this.db
+    //   .object(`/entries/${id}`)
     //   .snapshotChanges()
     //   .map(action => {
-    //     console.log(action);
     //     return this.createInitialEntry(action);
     //   });
+
+    // ***AngularFireStore features ***
+    return this.graphCollection
+      .doc(id)
+      .snapshotChanges()
+      .map(action => {
+        console.log(action);
+        return this.createInitialEntry(action);
+      });
   }
 
   private createInitialEntry(action): WorkflowEntry {
     console.log(action);
-    const entry: WorkflowEntry = action.payload.val();
-    entry.$key = action.key;
+    // const entry: WorkflowEntry = action.payload.val();
+    // entry.$key = action.key;
 
     // ***AngularFireStore features ***
-    // const entry: WorkflowEntry = action.payload.doc._document.value();
-    // entry.$key = action.payload.doc.id;
+    let entry: WorkflowEntry;
+    if (action.payload.doc) {
+      entry = action.payload.doc._document.value();
+      entry.$key = action.payload.doc.id;
+    } else {
+      entry = action.payload._document.value();
+      entry.$key = action.payload.id;
+    }
+
     return entry;
   }
 
   updateEntry(entry: WorkflowEntry) {
     const key = entry.$key;
     delete entry.$key;
-    this.entries.update(key, entry);
+    // this.entries.update(key, entry);
+
+    // ***AngularFireStore features ***
+    this.graphCollection.doc(key).update(entry);
   }
 }
