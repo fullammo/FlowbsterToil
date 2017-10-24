@@ -158,7 +158,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
     this.isSubmitted = true;
     this.entry.graph = this.jointSVC.getGraphJSON();
     if (this.operation === 'create') {
-      this.workflowEntrySVC.saveEntry(this.entry);
+      this.workflowEntrySVC.updateEntry(this.entry);
     } else if (this.operation === 'edit') {
       console.log(this.entry);
       this.workflowEntrySVC.updateEntry(this.entry);

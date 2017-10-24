@@ -19,8 +19,9 @@ export class WorkflowEntryService {
   >([]);
   entries: AngularFireList<any>;
 
-  graphsStore: AngularFirestoreDocument<WorkflowEntry>;
+  graphCollection: AngularFirestoreCollection<WorkflowEntry>;
   graphs: Observable<WorkflowEntry[]>;
+  graphSnapshot: Observable<any>;
 
   get data(): WorkflowEntry[] {
     return this.dataChange.value;
@@ -31,9 +32,10 @@ export class WorkflowEntryService {
     private db: AngularFireDatabase,
     private authSVC: AuthService
   ) {
-    this.subscribeToUserChanges();
-    this.entries = this.db.list<WorkflowEntry[]>('entries');
+    // ***AngularFireStore features ***
+    // this.subscribetoUserChanges();
 
+    this.entries = this.db.list<WorkflowEntry[]>('entries');
     this.entries.snapshotChanges().subscribe(actions => {
       const workflowEntries: WorkflowEntry[] = [];
       actions.forEach(action => {
@@ -43,24 +45,44 @@ export class WorkflowEntryService {
     });
   }
 
-  private subscribeToUserChanges() {
-    this.authSVC.user.subscribe(user => {
-      if (user) {
-        this.graphs = this.afs
-          .collection<WorkflowEntry>(`users/${user.uid}/entries`)
-          .valueChanges();
+  // ***AngularFireStore features ***
+  // private subscribeToSnapShotChanges(collection) {
+  //   collection.snapshotChanges().subscribe(actions => {
+  //     const workflowEntries: WorkflowEntry[] = [];
+  //     actions.forEach(action => {
+  //       workflowEntries.push(this.createInitialEntry(action));
+  //     });
+  //     this.dataChange.next(workflowEntries);
+  //   });
+  // }
 
-        console.log(this.graphs);
-      }
-    });
-  }
+  // ***AngularFireStore features ***
+  // private subscribeToUserChanges() {
+  //   this.authSVC.user.subscribe(user => {
+  //     if (user) {
+  //       this.graphCollection = this.afs.collection<WorkflowEntry>(
+  //         `users/${user.uid}/entries`
+  //       );
+
+  //       this.subscribeToSnapShotChanges(this.graphCollection);
+
+  //       this.graphs = this.graphCollection.valueChanges();
+  //       this.graphs.subscribe(graphs => {
+  //         console.log(graphs);
+  //       });
+  //     }
+  //   });
+  // }
 
   deleteEntry(key: string) {
     this.entries.remove(key);
   }
 
   saveEntry(entry: WorkflowEntry) {
-    this.entries.push(entry);
+    return this.entries.push(entry).key;
+
+    // ***AngularFireStore features ***
+    // this.graphCollection.add(entry);
   }
 
   cloneEntry(entry: WorkflowEntry): WorkflowEntry {
@@ -91,11 +113,25 @@ export class WorkflowEntryService {
       .map(action => {
         return this.createInitialEntry(action);
       });
+
+    //  // ***AngularFireStore features ***
+    // return this.graphCollection
+    //   .doc(id)
+    //   .snapshotChanges()
+    //   .map(action => {
+    //     console.log(action);
+    //     return this.createInitialEntry(action);
+    //   });
   }
 
   private createInitialEntry(action): WorkflowEntry {
+    console.log(action);
     const entry: WorkflowEntry = action.payload.val();
     entry.$key = action.key;
+
+    // ***AngularFireStore features ***
+    // const entry: WorkflowEntry = action.payload.doc._document.value();
+    // entry.$key = action.payload.doc.id;
     return entry;
   }
 
