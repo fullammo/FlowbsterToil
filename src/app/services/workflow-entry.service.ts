@@ -4,22 +4,35 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { AngularFireAuth } from 'angularfire2/auth';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
+} from 'angularfire2/firestore';
+import { AuthService } from 'app/core/auth.service';
 
 @Injectable()
 export class WorkflowEntryService {
-
-  dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<WorkflowEntry[]>([]);
+  dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<
+    WorkflowEntry[]
+  >([]);
   entries: AngularFireList<any>;
 
+  graphsStore: AngularFirestoreDocument<WorkflowEntry>;
+  graphs: Observable<WorkflowEntry[]>;
 
-  get data(): WorkflowEntry[] { return this.dataChange.value; }
+  get data(): WorkflowEntry[] {
+    return this.dataChange.value;
+  }
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(
+    private afs: AngularFirestore,
+    private db: AngularFireDatabase,
+    private authSVC: AuthService
+  ) {
+    this.subscribeToUserChanges();
     this.entries = this.db.list<WorkflowEntry[]>('entries');
-    // this.entries.valueChanges().subscribe((workflowEntries: WorkflowEntry[]) => {
-    //   console.log(workflowEntries);
-    //   this.dataChange.next(workflowEntries);
-    // });
 
     this.entries.snapshotChanges().subscribe(actions => {
       const workflowEntries: WorkflowEntry[] = [];
@@ -27,6 +40,18 @@ export class WorkflowEntryService {
         workflowEntries.push(this.createInitialEntry(action));
       });
       this.dataChange.next(workflowEntries);
+    });
+  }
+
+  private subscribeToUserChanges() {
+    this.authSVC.user.subscribe(user => {
+      if (user) {
+        this.graphs = this.afs
+          .collection<WorkflowEntry>(`users/${user.uid}/entries`)
+          .valueChanges();
+
+        console.log(this.graphs);
+      }
     });
   }
 
@@ -60,9 +85,12 @@ export class WorkflowEntryService {
   }
 
   getEntry(id: string) {
-    return this.db.object(`/entries/${id}`).snapshotChanges().map(action => {
-      return this.createInitialEntry(action);
-    });
+    return this.db
+      .object(`/entries/${id}`)
+      .snapshotChanges()
+      .map(action => {
+        return this.createInitialEntry(action);
+      });
   }
 
   private createInitialEntry(action): WorkflowEntry {

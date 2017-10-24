@@ -24,6 +24,8 @@ import { DescriptorService } from 'app/editor/shared/descriptor.service';
 export class WorkflowMaintComponent implements OnInit {
   message;
 
+  graphs;
+
   /**
    * the displayed Columns in the data grid.
    */
@@ -85,12 +87,17 @@ export class WorkflowMaintComponent implements OnInit {
         this.dataSource.filter = this.filter.nativeElement.value;
       });
     this.initializeCloudMessaging();
+    this.initGraphs();
   }
 
   private initializeCloudMessaging(): void {
     this.cloudMessagingSVC.getPermission();
     this.cloudMessagingSVC.receiveMessage();
     this.message = this.cloudMessagingSVC.currentMessage;
+  }
+
+  private initGraphs(): void {
+    this.graphs = this.workflowEntrySVC.graphs;
   }
 
   /**

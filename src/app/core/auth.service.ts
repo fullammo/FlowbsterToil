@@ -46,7 +46,7 @@ export class AuthService implements UserApi {
 
   private updateUserData(user) {
     // Sets user data to firestore on login
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
     const data: User = {

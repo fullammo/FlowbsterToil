@@ -6,6 +6,12 @@
 <p>{{(message | async )?.notification.body}}</p>
 
 {{ message | async | json}} <br> -->
+
+<div *ngFor="let graph of graphs | async">
+  <h3>{{graph | json }}</h3>
+</div>
+
+
 <button mat-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button>
 <button mat-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
 <button mat-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button>
