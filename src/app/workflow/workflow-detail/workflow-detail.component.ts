@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { JointService } from 'app/editor/shared/joint.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
 
-import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
 /**

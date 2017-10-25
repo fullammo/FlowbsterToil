@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 import { AngularFireAuth } from 'angularfire2/auth';
 // ***AngularFireStore features ***
 import {

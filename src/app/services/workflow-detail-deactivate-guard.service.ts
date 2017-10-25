@@ -7,7 +7,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot
 } from '@angular/router';
-import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
