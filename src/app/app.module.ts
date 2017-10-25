@@ -1,7 +1,6 @@
+import { AppRoutingModule } from './app-routing.module';
 import { CloudMessagingService } from './services/cloud-messaging.service';
 import { DialogService } from './services/dialog.service';
-import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
-import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -53,7 +52,7 @@ import { CoreModule } from 'app/core/core.module';
     FormsModule,
     HttpModule,
     FwModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     FlexLayoutModule,
     EditorModule,
     MatTableModule,
@@ -69,8 +68,6 @@ import { CoreModule } from 'app/core/core.module';
   providers: [
     WorkflowEntryService,
     OccoService,
-    WorkflowDetailResolver,
-    WorkflowDetailDeactivateGuard,
     DialogService,
     CloudMessagingService
   ],
