@@ -3,7 +3,6 @@ import { DialogService } from './services/dialog.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AngularFireModule } from 'angularfire2';
@@ -26,7 +25,6 @@ import { WorkflowModule } from 'app/workflow/shared/workflow.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule,
     FwModule,
     AppRoutingModule,
     CoreModule,
