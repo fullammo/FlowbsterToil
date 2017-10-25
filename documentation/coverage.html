@@ -79,6 +79,15 @@
                                 <li class="link">
                                     <a href="./modules/FwModule.html" >FwModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="./modules/MaterialModule.html" >MaterialModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./modules/SharedModule.html" >SharedModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="./modules/WorkflowModule.html" >WorkflowModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -452,6 +461,15 @@
                                        </li>
                                        <li class="link">
                                            <a href="./modules/FwModule.html" >FwModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./modules/MaterialModule.html" >MaterialModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./modules/SharedModule.html" >SharedModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="./modules/WorkflowModule.html" >WorkflowModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -897,21 +915,6 @@
                 <span class="coverage-count">(0/6)</span>
             </td>
         </tr>
-        <tr class="low">
-            <td>
-                <a href="./interfaces/WorkflowEntry.html">src/app/core/models/workflowEntry.ts</a>
-            </td>
-            <td>
-                interface
-            </td>
-            <td>
-                WorkflowEntry
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
-            </td>
-        </tr>
         <tr class="good">
             <td>
                 <a href="./components/EditorComponent.html">src/app/editor/editor/editor.component.ts</a>
@@ -1227,21 +1230,6 @@
                 <span class="coverage-count">(9/9)</span>
             </td>
         </tr>
-        <tr class="low">
-            <td>
-                <a href="./injectables/CloudMessagingService.html">src/app/services/cloud-messaging.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                CloudMessagingService
-            </td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
-            </td>
-        </tr>
         <tr class="good">
             <td>
                 <a href="./injectables/DialogService.html">src/app/services/dialog.service.ts</a>
@@ -1255,21 +1243,6 @@
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(2/2)</span>
-            </td>
-        </tr>
-        <tr class="good">
-            <td>
-                <a href="./injectables/OccoService.html">src/app/services/occo.service.ts</a>
-            </td>
-            <td>
-                injectable
-            </td>
-            <td>
-                OccoService
-            </td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
             </td>
         </tr>
         <tr class="good">
@@ -1304,7 +1277,37 @@
         </tr>
         <tr class="low">
             <td>
-                <a href="./injectables/WorkflowEntryService.html">src/app/services/workflow-entry.service.ts</a>
+                <a href="./injectables/CloudMessagingService.html">src/app/workflow/shared/cloud-messaging.service.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                CloudMessagingService
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <a href="./injectables/OccoService.html">src/app/workflow/shared/occo.service.ts</a>
+            </td>
+            <td>
+                injectable
+            </td>
+            <td>
+                OccoService
+            </td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./injectables/WorkflowEntryService.html">src/app/workflow/shared/workflow-entry.service.ts</a>
             </td>
             <td>
                 injectable
@@ -1317,9 +1320,24 @@
                 <span class="coverage-count">(0/17)</span>
             </td>
         </tr>
+        <tr class="low">
+            <td>
+                <a href="./interfaces/WorkflowEntry.html">src/app/workflow/shared/workflowEntry.ts</a>
+            </td>
+            <td>
+                interface
+            </td>
+            <td>
+                WorkflowEntry
+            </td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
         <tr class="good">
             <td>
-                <a href="./components/WorkflowDetailComponent.html">src/app/workflow-detail/workflow-detail.component.ts</a>
+                <a href="./components/WorkflowDetailComponent.html">src/app/workflow/workflow-detail/workflow-detail.component.ts</a>
             </td>
             <td>
                 component
@@ -1334,7 +1352,7 @@
         </tr>
         <tr class="good">
             <td>
-                <a href="./components/WorkflowMaintComponent.html">src/app/workflow-maint/workflow-maint.component.ts</a>
+                <a href="./components/WorkflowMaintComponent.html">src/app/workflow/workflow-maint/workflow-maint.component.ts</a>
             </td>
             <td>
                 component
@@ -1349,7 +1367,7 @@
         </tr>
         <tr class="good">
             <td>
-                <a href="./classes/WorkflowDataSource.html">src/app/workflow-maint/workflowDataSource.ts</a>
+                <a href="./classes/WorkflowDataSource.html">src/app/workflow/workflow-maint/workflowDataSource.ts</a>
             </td>
             <td>
                 class

@@ -79,6 +79,15 @@
                                 <li class="link">
                                     <a href="../modules/FwModule.html" >FwModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/MaterialModule.html" >MaterialModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/SharedModule.html" >SharedModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/WorkflowModule.html" >WorkflowModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -452,6 +461,15 @@
                                        </li>
                                        <li class="link">
                                            <a href="../modules/FwModule.html" >FwModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MaterialModule.html" >MaterialModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/SharedModule.html" >SharedModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/WorkflowModule.html" >WorkflowModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -840,7 +858,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:69</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:77</a></div>
                                         </td>
                                     </tr>
             
@@ -918,7 +936,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:24</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:28</a></div>
                                         </td>
                                     </tr>
             
@@ -1003,7 +1021,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:53</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:61</a></div>
                                         </td>
                                     </tr>
             
@@ -1067,21 +1085,25 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { WorkflowEntryService } from &#x27;app/services/workflow-entry.service&#x27;;
-import { JointService } from &#x27;./../editor/shared/joint.service&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { JointService } from &#x27;./../editor/shared/joint.service&#x27;;
 import { DialogService } from &#x27;./dialog.service&#x27;;
-import { WorkflowDetailComponent } from &#x27;app/workflow-detail/workflow-detail.component&#x27;;
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from &#x27;@angular/router&#x27;;
-import { WorkflowEntry } from &#x27;app/core/models/workflowEntry&#x27;;
+import {
+  CanDeactivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+} from &#x27;@angular/router&#x27;;
+import { WorkflowEntry } from &#x27;app/workflow/shared/workflowEntry&#x27;;
+import { WorkflowDetailComponent } from &#x27;app/workflow/workflow-detail/workflow-detail.component&#x27;;
+import { WorkflowEntryService } from &#x27;app/workflow/shared/workflow-entry.service&#x27;;
 
 /**
  * The Deactivation Guard service for the WorkflowDetailComponent.
  */
 @Injectable()
-export class WorkflowDetailDeactivateGuard implements CanDeactivate&lt;WorkflowDetailComponent&gt; {
-
+export class WorkflowDetailDeactivateGuard
+  implements CanDeactivate&lt;WorkflowDetailComponent&gt; {
   /**
    * Checks wether the Workflow entries properties or the associated graph has been edited.
    * If no changes were made its going to let you deactivate and refreshes the main workflow properties,
@@ -1090,14 +1112,18 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate&lt;WorkflowD
    * @param route
    * @param state
    */
-  canDeactivate(component: WorkflowDetailComponent,
+  canDeactivate(
+    component: WorkflowDetailComponent,
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable&lt;boolean&gt; | boolean {
-
+    state: RouterStateSnapshot
+  ): Observable&lt;boolean&gt; | boolean {
     console.log(&#x27;Deactivating...&#x27;);
 
     const cleanEntry &#x3D; this.workflowEntrySVC.initEntry(component.entry);
-    const isPropertiesEdited &#x3D; this.isEquivalent(component.starterEntry, cleanEntry);
+    const isPropertiesEdited &#x3D; this.isEquivalent(
+      component.starterEntry,
+      cleanEntry
+    );
     this.jointSVC.reinitializeWorkflow();
 
     if (component.isSubmitted) {
@@ -1143,10 +1169,11 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate&lt;WorkflowD
    * @param jointSVC
    * @param workflowEntrySVC
    */
-  constructor(private dialogSVC: DialogService, private jointSVC: JointService, private workflowEntrySVC: WorkflowEntryService) {
-
-  }
-
+  constructor(
+    private dialogSVC: DialogService,
+    private jointSVC: JointService,
+    private workflowEntrySVC: WorkflowEntryService
+  ) {}
 }
 </code></pre>
     </div>

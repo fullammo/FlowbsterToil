@@ -79,6 +79,15 @@
                                 <li class="link">
                                     <a href="../modules/FwModule.html" >FwModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/MaterialModule.html" >MaterialModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/SharedModule.html" >SharedModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/WorkflowModule.html" >WorkflowModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -452,6 +461,15 @@
                                        </li>
                                        <li class="link">
                                            <a href="../modules/FwModule.html" >FwModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MaterialModule.html" >MaterialModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/SharedModule.html" >SharedModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/WorkflowModule.html" >WorkflowModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -959,7 +977,6 @@
         <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
 import &#x27;rxjs/add/operator/map&#x27;;
 import &#x27;rxjs/add/operator/take&#x27;;
-import { WorkflowEntryService } from &#x27;app/services/workflow-entry.service&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 import {
   Resolve,
@@ -967,7 +984,8 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot
 } from &#x27;@angular/router&#x27;;
-import { WorkflowEntry } from &#x27;app/core/models/workflowEntry&#x27;;
+import { WorkflowEntry } from &#x27;app/workflow/shared/workflowEntry&#x27;;
+import { WorkflowEntryService } from &#x27;app/workflow/shared/workflow-entry.service&#x27;;
 
 @Injectable()
 export class WorkflowDetailResolver implements Resolve&lt;WorkflowEntry&gt; {

@@ -79,6 +79,15 @@
                                 <li class="link">
                                     <a href="../modules/FwModule.html" >FwModule</a>
                                 </li>
+                                <li class="link">
+                                    <a href="../modules/MaterialModule.html" >MaterialModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/SharedModule.html" >SharedModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/WorkflowModule.html" >WorkflowModule</a>
+                                </li>
                         </ul>
                     </li>
             
@@ -452,6 +461,15 @@
                                        </li>
                                        <li class="link">
                                            <a href="../modules/FwModule.html" >FwModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MaterialModule.html" >MaterialModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/SharedModule.html" >SharedModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/WorkflowModule.html" >WorkflowModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -896,7 +914,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/connection/connection.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/connection/connection.component.ts:10</a></div>
                                 </td>
                             </tr>
     
@@ -958,7 +976,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/connection/connection.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/connection/connection.component.ts:14</a></div>
                                 </td>
                             </tr>
     
@@ -990,7 +1008,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/connection/connection.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/connection/connection.component.ts:16</a></div>
                                 </td>
                             </tr>
     
@@ -1034,7 +1052,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/connection/connection.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/connection/connection.component.ts:10</a></div>
                                 </td>
                             </tr>
     
@@ -1047,7 +1065,7 @@
 
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { OccoService } from &#x27;app/services/occo.service&#x27;;
+import { OccoService } from &#x27;app/workflow/shared/occo.service&#x27;;
 
 @Component({
   selector: &#x27;toil-connection&#x27;,
@@ -1055,27 +1073,23 @@ import { OccoService } from &#x27;app/services/occo.service&#x27;;
   styleUrls: [&#x27;./connection.component.scss&#x27;]
 })
 export class ConnectionComponent implements OnInit {
-
   url: string;
 
-  constructor(private occoSVC: OccoService) { }
+  constructor(private occoSVC: OccoService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClick() {
     this.occoSVC.url &#x3D; this.url;
     console.log(this.occoSVC.url);
   }
-
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-form-field&gt;
-  &lt;input required matInput placeholder&#x3D;&quot;Occo Service Url endpoint&quot; [(ngModel)]&#x3D;&quot;url&quot;&gt;
-&lt;/mat-form-field&gt;
+        <pre class="line-numbers"><code class="language-html">
+  &lt;!-- &lt;input required placeholder&#x3D;&quot;Occo Service Url endpoint&quot; [(ngModel)]&#x3D;&quot;url&quot;&gt; --&gt;
 &lt;br&gt; http://192.168.248.129:5000/infrastructures/
 &lt;br&gt;
 &lt;button (click)&#x3D;&quot;onClick()&quot; color&#x3D;&quot;primary&quot; mat-raised-button&gt;Update Service Address&lt;/button&gt;
@@ -1105,7 +1119,7 @@ export class ConnectionComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-form-field>  <input required matInput placeholder="Occo Service Url endpoint" [(ngModel)]="url"></mat-form-field><br> http://192.168.248.129:5000/infrastructures/<br><button (click)="onClick()" color="primary" mat-raised-button>Update Service Address</button></div>'
+        var COMPONENT_TEMPLATE = '<div>  <!-- <input required placeholder="Occo Service Url endpoint" [(ngModel)]="url"> --><br> http://192.168.248.129:5000/infrastructures/<br><button (click)="onClick()" color="primary" mat-raised-button>Update Service Address</button></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
     var ACTUAL_COMPONENT = {'name': 'ConnectionComponent'};
