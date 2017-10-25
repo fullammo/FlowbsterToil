@@ -1,4 +1,3 @@
-import { Workflow } from './../editor/models/workflow';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';

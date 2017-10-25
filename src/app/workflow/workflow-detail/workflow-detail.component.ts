@@ -1,4 +1,3 @@
-import { DialogService } from './../services/dialog.service';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import {
   Validators,
@@ -10,8 +9,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { JointService } from 'app/editor/shared/joint.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
-import { WorkflowEntryService } from 'app/services/workflow-entry.service';
+
 import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
 /**
  * Enables you to edit the actual workflow's properties or create a new one.

@@ -1,8 +1,6 @@
 import { ConnectionComponent } from 'app/connection/connection.component';
-import { WorkflowMaintComponent } from 'app/workflow-maint/workflow-maint.component';
 import { EditorComponent } from './editor/editor/editor.component';
 import { WorkflowDetailDeactivateGuard } from './services/workflow-detail-deactivate-guard.service';
-import { WorkflowDetailComponent } from 'app/workflow-detail/workflow-detail.component';
 import { WorkflowDetailResolver } from './services/workflow-detail-resolver.service';
 import { RegisterUserComponent } from './../fw/users/register-user/register-user.component';
 import { SignInComponent } from './../fw/users/sign-in/sign-in.component';
@@ -12,6 +10,8 @@ import { AuthGuard } from './core/auth.guard';
 
 import { CoreModule } from './core/core.module';
 import { AuthenticatedUserComponent } from 'app/authenticated-user/authenticated-user.component';
+import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
+import { WorkflowMaintComponent } from 'app/workflow/workflow-maint/workflow-maint.component';
 
 export const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },

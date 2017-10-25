@@ -1,4 +1,3 @@
-import { CloudMessagingService } from './../services/cloud-messaging.service';
 import { JointService } from 'app/editor/shared/joint.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,10 +7,11 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/fromEvent';
 
-import { WorkflowEntryService } from 'app/services/workflow-entry.service';
-import { WorkflowDataSource } from 'app/workflow-maint/workflowDataSource';
-import { OccoService } from 'app/services/occo.service';
 import { DescriptorService } from 'app/editor/shared/descriptor.service';
+import { WorkflowDataSource } from 'app/workflow/workflow-maint/workflowDataSource';
+import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.service';
+import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
+import { OccoService } from 'app/workflow/shared/occo.service';
 
 /**
  * Component to visualize database entries and make various operations with them.
@@ -242,9 +242,9 @@ export class WorkflowMaintComponent implements OnInit {
         ]);
       });
 
-      // const key = this.workflowEntrySVC.saveEntry(
-      //   this.workflowEntrySVC.initEntry()
-      // );
-      // this.router.navigate(['/authenticated/workflow-detail', key, 'create']);
+    // const key = this.workflowEntrySVC.saveEntry(
+    //   this.workflowEntrySVC.initEntry()
+    // );
+    // this.router.navigate(['/authenticated/workflow-detail', key, 'create']);
   }
 }

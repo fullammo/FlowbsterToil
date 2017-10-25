@@ -1,17 +1,15 @@
-
 import { Observable } from 'rxjs/Observable';
-import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
 /**
  * Own type of data source that can be accepted in the data grid.
  * Represents a filterable and sortable data collection for the grid.
  */
 export class WorkflowDataSource extends DataSource<any> {
-
   /**
    * An observable for watching any changes made to the filtering element.
    */
@@ -20,12 +18,16 @@ export class WorkflowDataSource extends DataSource<any> {
   /**
    * Gets the observable's actual value.
    */
-  get filter(): string { return this.filterChange.value; }
+  get filter(): string {
+    return this.filterChange.value;
+  }
 
   /**
    * Emits information about the next filter expression.
    */
-  set filter(filter: string) { this.filterChange.next(filter); }
+  set filter(filter: string) {
+    this.filterChange.next(filter);
+  }
 
   /**
    * A collection of actually filtered entries.
@@ -42,9 +44,13 @@ export class WorkflowDataSource extends DataSource<any> {
    * @param paginator Paginator component for customization.
    * @param sort Sorting component for customization.
    */
-  constructor(private workflowEntrySVC: WorkflowEntryService, private paginator: MatPaginator, private sort: MatSort) {
+  constructor(
+    private workflowEntrySVC: WorkflowEntryService,
+    private paginator: MatPaginator,
+    private sort: MatSort
+  ) {
     super();
-    this.filterChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
 
   /**
@@ -60,17 +66,22 @@ export class WorkflowDataSource extends DataSource<any> {
 
     return Observable.merge(...displayDataChanges).map(() => {
       // filter data
-      this.filteredEntries = this.workflowEntrySVC.data.slice().filter((entry: WorkflowEntry) => {
-        const searchStr = (entry.name + entry.description).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-      });
+      this.filteredEntries = this.workflowEntrySVC.data
+        .slice()
+        .filter((entry: WorkflowEntry) => {
+          const searchStr = (entry.name + entry.description).toLowerCase();
+          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        });
 
       // Sort filtered data
       const sortedData = this.getSortedEntries(this.filteredEntries.slice());
 
       // Grab the page's slice of the filtered sorted data.
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      this.renderedEntries = sortedData.splice(startIndex, this.paginator.pageSize);
+      this.renderedEntries = sortedData.splice(
+        startIndex,
+        this.paginator.pageSize
+      );
 
       return this.renderedEntries;
     });
@@ -79,7 +90,7 @@ export class WorkflowDataSource extends DataSource<any> {
   /**
    *Idk.
    */
-  disconnect() { }
+  disconnect() {}
 
   /**
    * Sorts the database entries by the given operation.
@@ -87,7 +98,6 @@ export class WorkflowDataSource extends DataSource<any> {
    * @returns A collection of sorted database entries.
    */
   getSortedEntries(entries: WorkflowEntry[]): WorkflowEntry[] {
-
     if (!this.sort.active || this.sort.direction === '') {
       return entries;
     }
@@ -97,13 +107,17 @@ export class WorkflowDataSource extends DataSource<any> {
       let propertyB: number | string = '';
 
       switch (this.sort.active) {
-        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
+        case 'name':
+          [propertyA, propertyB] = [a.name, b.name];
+          break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
-      return (valueA < valueB ? -1 : 1) * (this.sort.direction === 'asc' ? 1 : -1);
+      return (
+        (valueA < valueB ? -1 : 1) * (this.sort.direction === 'asc' ? 1 : -1)
+      );
     });
   }
 }

@@ -1,18 +1,22 @@
-import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { JointService } from './../editor/shared/joint.service';
 import { DialogService } from './dialog.service';
-import { WorkflowDetailComponent } from 'app/workflow-detail/workflow-detail.component';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {
+  CanDeactivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+} from '@angular/router';
 import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
+import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
 /**
  * The Deactivation Guard service for the WorkflowDetailComponent.
  */
 @Injectable()
-export class WorkflowDetailDeactivateGuard implements CanDeactivate<WorkflowDetailComponent> {
-
+export class WorkflowDetailDeactivateGuard
+  implements CanDeactivate<WorkflowDetailComponent> {
   /**
    * Checks wether the Workflow entries properties or the associated graph has been edited.
    * If no changes were made its going to let you deactivate and refreshes the main workflow properties,
@@ -21,14 +25,18 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate<WorkflowDeta
    * @param route
    * @param state
    */
-  canDeactivate(component: WorkflowDetailComponent,
+  canDeactivate(
+    component: WorkflowDetailComponent,
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | boolean {
-
+    state: RouterStateSnapshot
+  ): Observable<boolean> | boolean {
     console.log('Deactivating...');
 
     const cleanEntry = this.workflowEntrySVC.initEntry(component.entry);
-    const isPropertiesEdited = this.isEquivalent(component.starterEntry, cleanEntry);
+    const isPropertiesEdited = this.isEquivalent(
+      component.starterEntry,
+      cleanEntry
+    );
     this.jointSVC.reinitializeWorkflow();
 
     if (component.isSubmitted) {
@@ -74,8 +82,9 @@ export class WorkflowDetailDeactivateGuard implements CanDeactivate<WorkflowDeta
    * @param jointSVC
    * @param workflowEntrySVC
    */
-  constructor(private dialogSVC: DialogService, private jointSVC: JointService, private workflowEntrySVC: WorkflowEntryService) {
-
-  }
-
+  constructor(
+    private dialogSVC: DialogService,
+    private jointSVC: JointService,
+    private workflowEntrySVC: WorkflowEntryService
+  ) {}
 }

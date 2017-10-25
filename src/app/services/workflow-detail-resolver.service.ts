@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
-import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { Injectable } from '@angular/core';
 import {
   Resolve,
@@ -10,6 +9,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { WorkflowEntry } from 'app/core/models/workflowEntry';
+import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
 @Injectable()
 export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
