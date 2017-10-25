@@ -8,15 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatInputModule,
-  MatCheckboxModule,
-  MatButtonModule,
-  MatTooltipModule
-} from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -34,6 +25,7 @@ import { WorkflowEntryService } from 'app/services/workflow-entry.service';
 import { OccoService } from 'app/services/occo.service';
 import { ConnectionComponent } from './connection/connection.component';
 import { CoreModule } from 'app/core/core.module';
+import { MaterialModule } from 'app/material/material.module';
 
 @NgModule({
   declarations: [
@@ -51,17 +43,11 @@ import { CoreModule } from 'app/core/core.module';
     AngularFireAuthModule,
     FormsModule,
     HttpModule,
+    MaterialModule,
     FwModule,
     AppRoutingModule,
     FlexLayoutModule,
     EditorModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatTooltipModule,
     ReactiveFormsModule,
     CoreModule
   ],
