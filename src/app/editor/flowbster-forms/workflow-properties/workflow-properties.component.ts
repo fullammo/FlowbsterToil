@@ -6,7 +6,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 
-import { Workflow } from 'app/editor/models/workflow';
+import { Workflow } from './workflow';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { NodeValidator } from 'app/editor/flowbster-forms/shared/customValidators';
 

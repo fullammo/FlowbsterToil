@@ -1,5 +1,3 @@
-import { AppRoutingModule } from './app-routing.module';
-import { DialogService } from './services/dialog.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -11,14 +9,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { FwModule } from '../fw/fw.module';
-import { AuthenticatedUserComponent } from './authenticated-user/authenticated-user.component';
 import { environment } from 'environments/environment';
-import { ConnectionComponent } from './connection/connection.component';
 import { CoreModule } from 'app/core/core.module';
 import { WorkflowModule } from 'app/workflow/shared/workflow.module';
+import { AppRoutingModule } from 'app/app-routing/app-routing.module';
+import { OccopusConfigModule } from 'app/occopus-config/occopus-config.module';
 
 @NgModule({
-  declarations: [AppComponent, AuthenticatedUserComponent, ConnectionComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,9 +26,9 @@ import { WorkflowModule } from 'app/workflow/shared/workflow.module';
     FwModule,
     AppRoutingModule,
     CoreModule,
-    WorkflowModule
+    WorkflowModule,
+    OccopusConfigModule
   ],
-  providers: [ DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

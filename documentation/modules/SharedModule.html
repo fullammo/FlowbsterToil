@@ -89,6 +89,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                 </li>
                                 <li class="link">
@@ -113,9 +116,6 @@
                             >
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -260,9 +260,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/DialogService.html" >DialogService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -475,6 +472,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                        </li>
                                        <li class="link">
@@ -499,9 +499,6 @@
                    >
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -646,9 +643,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/DialogService.html" >DialogService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -993,10 +987,12 @@
         <pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { ReactiveFormsModule, FormsModule } from &#x27;@angular/forms&#x27;;
-import { MaterialModule } from &#x27;app/material/material.module&#x27;;
-import { PrimeModule } from &#x27;app/prime/prime.module&#x27;;
-import { KeysPipe } from &#x27;app/shared/keys.pipe&#x27;;
 import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
+
+import { KeysPipe } from &#x27;app/shared/keys.pipe&#x27;;
+
+import { MaterialModule } from &#x27;app/shared/material/material.module&#x27;;
+import { PrimeModule } from &#x27;app/shared/prime/prime.module&#x27;;
 
 import &#x27;hammerjs&#x27;;
 

@@ -89,6 +89,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                 </li>
                                 <li class="link">
@@ -113,9 +116,6 @@
                             >
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -260,9 +260,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/DialogService.html" >DialogService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -475,6 +472,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                        </li>
                                        <li class="link">
@@ -499,9 +499,6 @@
                    >
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -646,9 +643,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/DialogService.html" >DialogService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -2245,7 +2239,7 @@ Current Message:
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><h3>Workflow Maintenance</h3>Current Message:<h1>{{(message | async)?.notificiation.title}}</h1><img [src]="(message | async)?.notificiation.icon" width="100px"><p>{{(message | async )?.notification.body}}</p>{{ message | async | json}} <br><button mat-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button><button mat-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button><button mat-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button><button mat-raised-button color="primary" (click)="destroyWorkflow()">Destroy Workflow</button><button mat-raised-button color="primary" (click)="startProcessing()">Start Processing</button><button mat-raised-button color="primary" (click)="stopProcessing()">Stop Processing</button><button mat-raised-button color="primary" (click)="copyEntries()">Copy Entries</button><div>  <mat-input-container floatPlaceholder="never">    <input matInput #filter placeholder="Filter workflows">  </mat-input-container></div><mat-table #table [dataSource]="dataSource" matSort>  <!-- Checkbox Column -->  <ng-container matColumnDef="select">    <mat-header-cell *matHeaderCellDef>      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">      </mat-checkbox>    </mat-header-cell>    <mat-cell *matCellDef="let row">      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.$key) : null" [checked]="selection.isSelected(row.$key)">      </mat-checkbox>    </mat-cell>  </ng-container>  <!-- Name Column -->  <ng-container matColumnDef="name">    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>    <mat-cell *matCellDef="let entry"> {{entry.name}}</mat-cell>  </ng-container>  <!-- Description Column -->  <ng-container matColumnDef="description">    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>    <mat-cell *matCellDef="let entry"> {{entry.description}} </mat-cell>  </ng-container>  <!-- Descriptor Column  <ng-container matColumnDef="descriptor">    <mat-header-cell *matHeaderCellDef> Descriptor </mat-header-cell>    <mat-cell *matCellDef="let entry"> Descriptor </mat-cell>  </ng-container> -->  <!-- Graph Column  <ng-container matColumnDef="graph">    <mat-header-cell *matHeaderCellDef> Graph </mat-header-cell>    <mat-cell *matCellDef="let entry"> Graph </mat-cell>  </ng-container> -->  <!-- Date Column  <ng-container matColumnDef="date">      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>      <mat-cell *matCellDef="let entry"> {{entry.date}} </mat-cell>    </ng-container> -->  <ng-container matColumnDef="edit">    <mat-header-cell *matHeaderCellDef> </mat-header-cell>    <mat-cell *matCellDef="let entry">      <button mat-raised-button color="primary" (click)="editEntry(entry.$key)">Edit</button>    </mat-cell>  </ng-container>  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"> </mat-row> -->  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onEntryClick(row.$key)"> </mat-row></mat-table><mat-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,25]"></mat-paginator><toil-editor [readOnly]="true"></toil-editor></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'WorkflowMaintComponent'};
 </script>

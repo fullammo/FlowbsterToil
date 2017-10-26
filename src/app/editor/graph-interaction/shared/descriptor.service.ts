@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { OccopusDescriptor } from 'app/editor/models/occopusDescriptor';
+
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
-import { Workflow } from 'app/editor/models/workflow';
-import { NodeDescriptor } from 'app/editor/models/nodeDescriptor';
+
+import { OccopusDescriptor } from 'app/editor/graph-interaction/shared/occopusDescriptor';
+import { NodeDescriptor } from 'app/editor/graph-interaction/shared/nodeDescriptor';
+
+import { Workflow } from 'app/editor/flowbster-forms/workflow-properties/workflow';
+import { OutputPort } from 'app/editor/flowbster-forms/output-properties/outputPort';
+import { InputPort } from 'app/editor/flowbster-forms/input-properties/inputPort';
 
 import * as jsyaml from 'js-yaml';
-import { OutputPort } from 'app/editor/models/outputPort';
-import { InputPort } from 'app/editor/models/inputPort';
-
 
 /**
  * A service to create a fully understandable YAML formatted description to Occopus.

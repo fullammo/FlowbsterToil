@@ -89,6 +89,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                 </li>
                                 <li class="link">
@@ -113,9 +116,6 @@
                             >
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -260,9 +260,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/DialogService.html" >DialogService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -475,6 +472,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                        </li>
                                        <li class="link">
@@ -499,9 +499,6 @@
                    >
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -646,9 +643,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/DialogService.html" >DialogService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -1027,7 +1021,7 @@ To interact with the graph more precisely.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:101</a></div>
                                 </td>
                             </tr>
     
@@ -1061,7 +1055,7 @@ To interact with the graph more precisely.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:83</a></div>
                                 </td>
                             </tr>
     
@@ -1123,7 +1117,7 @@ To interact with the graph more precisely.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:58</a></div>
                                 </td>
                             </tr>
     
@@ -1158,7 +1152,7 @@ To interact with the graph more precisely.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:68</a></div>
                                 </td>
                             </tr>
     
@@ -1306,7 +1300,7 @@ To interact with the graph more precisely.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/editor/graph-interaction/toolbar/toolbar.component.ts:51</a></div>
                                 </td>
                             </tr>
     
@@ -1400,8 +1394,9 @@ import { Message } from &#x27;primeng/components/common/message&#x27;;
 import { MenuItem } from &#x27;primeng/components/common/menuitem&#x27;;
 
 import { DescriptorService } from &#x27;app/editor/graph-interaction/shared/descriptor.service&#x27;;
-import { Workflow } from &#x27;app/editor/models/workflow&#x27;;
 import { JointService } from &#x27;app/editor/flowbster-forms/shared/joint.service&#x27;;
+
+import { Workflow } from &#x27;app/editor/flowbster-forms/workflow-properties/workflow&#x27;;
 
 /**
  * Displays the toolbar for the {@link EditorComponent}.
@@ -1416,7 +1411,6 @@ import { JointService } from &#x27;app/editor/flowbster-forms/shared/joint.servi
   styleUrls: [&#x27;./toolbar.component.scss&#x27;]
 })
 export class ToolbarComponent implements OnInit {
-
   /**
    * The array to hold Toastr messages.
    */
@@ -1442,7 +1436,10 @@ export class ToolbarComponent implements OnInit {
    * Provide the dependency injection of services.
    * @param jointSVC Maintain graph related actions and serve data to the WorkflowProperties Modal.
    */
-  constructor(private descriptorSVC: DescriptorService, public jointSVC: JointService) { }
+  constructor(
+    private descriptorSVC: DescriptorService,
+    public jointSVC: JointService
+  ) {}
 
   /**
    * Sets the modal click indicator and initializes
@@ -1462,10 +1459,13 @@ export class ToolbarComponent implements OnInit {
     this.editClicked &#x3D; false;
     this.jointSVC.updateWorkflowProperties(newWorkflow);
     this.descriptorSVC.updateDescriptorProperties(newWorkflow);
-    this.msgs.push({ severity: &#x27;success&#x27;, summary: &#x27;Success&#x27;, detail: &#x27;Workflow properties updated!&#x27; });
+    this.msgs.push({
+      severity: &#x27;success&#x27;,
+      summary: &#x27;Success&#x27;,
+      detail: &#x27;Workflow properties updated!&#x27;
+    });
     // deploy to some outside method to let them call with your own details.
   }
-
 
   /**
    * Reads the JSON file and uploads the represented graph into the paper.
@@ -1475,11 +1475,11 @@ export class ToolbarComponent implements OnInit {
     const reader &#x3D; new FileReader();
     const self &#x3D; this;
 
-    reader.onload &#x3D; (function (theFile) {
-      return function (e) {
+    reader.onload &#x3D; (function(theFile) {
+      return function(e) {
         console.log(e);
         self.jointSVC.uploadGraph(JSON.parse(e.target.result));
-      }
+      };
     })(file);
 
     reader.readAsText(file); // confirm dialog before this.
@@ -1494,52 +1494,68 @@ export class ToolbarComponent implements OnInit {
         label: &#x27;Workflow Settings&#x27;,
         items: [
           {
-            label: &#x27;Edit Properties&#x27;, icon: &#x27;fa-microchip&#x27;, command: (event) &#x3D;&gt; {
+            label: &#x27;Edit Properties&#x27;,
+            icon: &#x27;fa-microchip&#x27;,
+            command: event &#x3D;&gt; {
               this.editClicked &#x3D; true;
             }
-          },
+          }
         ]
       },
       {
         label: &#x27;Drawing Controls&#x27;,
         items: [
           {
-            label: &#x27;Add Input port&#x27;, icon: &#x27;fa-plus-circle&#x27;, command: (event) &#x3D;&gt; {
-
+            label: &#x27;Add Input port&#x27;,
+            icon: &#x27;fa-plus-circle&#x27;,
+            command: event &#x3D;&gt; {
               this.jointSVC.addPort(&#x27;inPorts&#x27;);
             }
           },
           {
-            label: &#x27;Add Output port&#x27;, icon: &#x27;fa-plus-circle&#x27;, command: (event) &#x3D;&gt; {
-
+            label: &#x27;Add Output port&#x27;,
+            icon: &#x27;fa-plus-circle&#x27;,
+            command: event &#x3D;&gt; {
               this.jointSVC.addPort(&#x27;outPorts&#x27;);
             }
           },
           {
-            label: &#x27;Delete port&#x27;, icon: &#x27;fa-times-circle&#x27;, command: (event) &#x3D;&gt; {
-
+            label: &#x27;Delete port&#x27;,
+            icon: &#x27;fa-times-circle&#x27;,
+            command: event &#x3D;&gt; {
               this.jointSVC.deletePort();
             }
           },
           {
-            label: &#x27;Delete node&#x27;, icon: &#x27;fa-times-circle&#x27;, command: (event) &#x3D;&gt; {
+            label: &#x27;Delete node&#x27;,
+            icon: &#x27;fa-times-circle&#x27;,
+            command: event &#x3D;&gt; {
               console.log(&#x27;Im about to delete a node&#x27;);
               this.jointSVC.deleteNode();
             }
-          },
+          }
         ]
       },
       {
         label: &#x27;File Sharing&#x27;,
         items: [
           {
-            label: &#x27;Download Descriptor&#x27;, icon: &#x27;fa-download&#x27;, command: (event) &#x3D;&gt; {
-              this.descriptorSVC.updateDescriptorProperties(this.jointSVC.workflow);
-              this.descriptorSVC.downloadYamlDescriptor(&#x27;occopus.yaml&#x27;, &#x27;application/x-yaml&#x27;);
+            label: &#x27;Download Descriptor&#x27;,
+            icon: &#x27;fa-download&#x27;,
+            command: event &#x3D;&gt; {
+              this.descriptorSVC.updateDescriptorProperties(
+                this.jointSVC.workflow
+              );
+              this.descriptorSVC.downloadYamlDescriptor(
+                &#x27;occopus.yaml&#x27;,
+                &#x27;application/x-yaml&#x27;
+              );
             }
           },
           {
-            label: &#x27;Download Graph&#x27;, icon: &#x27;fa-download&#x27;, command: (event) &#x3D;&gt; {
+            label: &#x27;Download Graph&#x27;,
+            icon: &#x27;fa-download&#x27;,
+            command: event &#x3D;&gt; {
               this.jointSVC.downloadGraph(&#x27;graph.json&#x27;, &#x27;application/json&#x27;);
             }
           }
@@ -1589,7 +1605,7 @@ export class ToolbarComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><p-menu [model]="items"></p-menu><p-fileUpload mode="basic" customUpload="true" accept=".json" maxFileSize="1000000" (uploadHandler)="myUploader($event)" #fileupload chooseLabel="Upload Graph"></p-fileUpload><button pButton type="button" label="Clear Upload" (click)="fileupload.clear()"><p-growl [(value)]="msgs" sticky="sticky"></p-growl><p-dialog header="Workflow Properties" [(visible)]="editClicked" modal="true">    <toil-editor-workflow-properties (onSubmitDialog)="workflowDialogChange($event)" [WorkflowProps]="jointSVC.workflow"></toil-editor-workflow-properties></p-dialog></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};
 </script>

@@ -14,7 +14,7 @@ import {
   AbstractControl
 } from '@angular/forms';
 
-import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
+import { FlowbsterNode } from './flowbsterNode';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { NodeValidator } from 'app/editor/flowbster-forms/shared/customValidators';
 

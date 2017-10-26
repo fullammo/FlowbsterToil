@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatSliderChange } from '@angular/material/material';
 
-import { InputPort } from 'app/editor/models/inputPort';
-import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
-import { OutputPort } from 'app/editor/models/outputPort';
+import { FlowbsterNode } from 'app/editor/flowbster-forms/node-properties/flowbsterNode';
+import { OutputPort } from 'app/editor/flowbster-forms/output-properties/outputPort';
+import { InputPort } from 'app/editor/flowbster-forms/input-properties/inputPort';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 
 import { Message } from 'primeng/components/common/message';
+import { MatSliderChange } from '@angular/material/material';
+
 
 /**
  * Maintains the drawing areas events and ModalChanges with the help of

@@ -4,8 +4,9 @@ import { Message } from 'primeng/components/common/message';
 import { MenuItem } from 'primeng/components/common/menuitem';
 
 import { DescriptorService } from 'app/editor/graph-interaction/shared/descriptor.service';
-import { Workflow } from 'app/editor/models/workflow';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
+
+import { Workflow } from 'app/editor/flowbster-forms/workflow-properties/workflow';
 
 /**
  * Displays the toolbar for the {@link EditorComponent}.
@@ -20,7 +21,6 @@ import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-
   /**
    * The array to hold Toastr messages.
    */
@@ -46,7 +46,10 @@ export class ToolbarComponent implements OnInit {
    * Provide the dependency injection of services.
    * @param jointSVC Maintain graph related actions and serve data to the WorkflowProperties Modal.
    */
-  constructor(private descriptorSVC: DescriptorService, public jointSVC: JointService) { }
+  constructor(
+    private descriptorSVC: DescriptorService,
+    public jointSVC: JointService
+  ) {}
 
   /**
    * Sets the modal click indicator and initializes
@@ -66,10 +69,13 @@ export class ToolbarComponent implements OnInit {
     this.editClicked = false;
     this.jointSVC.updateWorkflowProperties(newWorkflow);
     this.descriptorSVC.updateDescriptorProperties(newWorkflow);
-    this.msgs.push({ severity: 'success', summary: 'Success', detail: 'Workflow properties updated!' });
+    this.msgs.push({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Workflow properties updated!'
+    });
     // deploy to some outside method to let them call with your own details.
   }
-
 
   /**
    * Reads the JSON file and uploads the represented graph into the paper.
@@ -79,11 +85,11 @@ export class ToolbarComponent implements OnInit {
     const reader = new FileReader();
     const self = this;
 
-    reader.onload = (function (theFile) {
-      return function (e) {
+    reader.onload = (function(theFile) {
+      return function(e) {
         console.log(e);
         self.jointSVC.uploadGraph(JSON.parse(e.target.result));
-      }
+      };
     })(file);
 
     reader.readAsText(file); // confirm dialog before this.
@@ -98,52 +104,68 @@ export class ToolbarComponent implements OnInit {
         label: 'Workflow Settings',
         items: [
           {
-            label: 'Edit Properties', icon: 'fa-microchip', command: (event) => {
+            label: 'Edit Properties',
+            icon: 'fa-microchip',
+            command: event => {
               this.editClicked = true;
             }
-          },
+          }
         ]
       },
       {
         label: 'Drawing Controls',
         items: [
           {
-            label: 'Add Input port', icon: 'fa-plus-circle', command: (event) => {
-
+            label: 'Add Input port',
+            icon: 'fa-plus-circle',
+            command: event => {
               this.jointSVC.addPort('inPorts');
             }
           },
           {
-            label: 'Add Output port', icon: 'fa-plus-circle', command: (event) => {
-
+            label: 'Add Output port',
+            icon: 'fa-plus-circle',
+            command: event => {
               this.jointSVC.addPort('outPorts');
             }
           },
           {
-            label: 'Delete port', icon: 'fa-times-circle', command: (event) => {
-
+            label: 'Delete port',
+            icon: 'fa-times-circle',
+            command: event => {
               this.jointSVC.deletePort();
             }
           },
           {
-            label: 'Delete node', icon: 'fa-times-circle', command: (event) => {
+            label: 'Delete node',
+            icon: 'fa-times-circle',
+            command: event => {
               console.log('Im about to delete a node');
               this.jointSVC.deleteNode();
             }
-          },
+          }
         ]
       },
       {
         label: 'File Sharing',
         items: [
           {
-            label: 'Download Descriptor', icon: 'fa-download', command: (event) => {
-              this.descriptorSVC.updateDescriptorProperties(this.jointSVC.workflow);
-              this.descriptorSVC.downloadYamlDescriptor('occopus.yaml', 'application/x-yaml');
+            label: 'Download Descriptor',
+            icon: 'fa-download',
+            command: event => {
+              this.descriptorSVC.updateDescriptorProperties(
+                this.jointSVC.workflow
+              );
+              this.descriptorSVC.downloadYamlDescriptor(
+                'occopus.yaml',
+                'application/x-yaml'
+              );
             }
           },
           {
-            label: 'Download Graph', icon: 'fa-download', command: (event) => {
+            label: 'Download Graph',
+            icon: 'fa-download',
+            command: event => {
               this.jointSVC.downloadGraph('graph.json', 'application/json');
             }
           }

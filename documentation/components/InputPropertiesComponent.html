@@ -89,6 +89,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                 </li>
                                 <li class="link">
@@ -113,9 +116,6 @@
                             >
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -260,9 +260,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/DialogService.html" >DialogService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -475,6 +472,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                        </li>
                                        <li class="link">
@@ -499,9 +499,6 @@
                    >
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -646,9 +643,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/DialogService.html" >DialogService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -1330,7 +1324,7 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from &#x27;@angular/core&#x27;;
 import { Validators, FormControl, FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
-import { InputPort } from &#x27;app/editor/models/inputPort&#x27;;
+import { InputPort } from &#x27;./inputPort&#x27;;
 import { JointService } from &#x27;app/editor/flowbster-forms/shared/joint.service&#x27;;
 import { PortValidator } from &#x27;app/editor/flowbster-forms/shared/customValidators&#x27;;
 
@@ -1476,7 +1470,7 @@ export class InputPropertiesComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">  <!-- {{InputProps | json}} -->  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">      <div class="ui-grid-row">          <mat-input-container>            <input matInput type="text" placeholder="displayName" [formControl]="userform.controls[\'displayName\']" [(ngModel)]="inputProps.displayName">            <mat-error *ngIf="!userform.controls[\'displayName\'].valid&&userform.controls[\'displayName\'].dirty">              Input name is <strong>required</strong>            </mat-error>          </mat-input-container>        </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="FileName" [formControl]="userform.controls[\'name\']" [(ngModel)]="inputProps.name">        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty">          Input name is <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-checkbox [formControl]="userform.controls[\'collector\']" (change)="onCheckboxToggle()" [(ngModel)]="inputProps.collector">Collector port</mat-checkbox>      <!-- <mat-input-container>        <input matInput type="text" placeholder="collector" [formControl]="userform.controls[\'collector\']" [(ngModel)]="inputProps.collector">        <mat-error *ngIf="!userform.controls[\'collector\'].valid&&userform.controls[\'collector\'].dirty">          Name is <strong>required</strong>        </mat-error>      </mat-input-container> -->    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="format" [formControl]="userform.controls[\'format\']" [(ngModel)]="inputProps.format">        <mat-error *ngIf="!userform.controls[\'format\'].valid&&userform.controls[\'format\'].dirty">          Name is <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row" *ngIf="!readOnly">      <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>    </div>  </div></form></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'InputPropertiesComponent'};
 </script>

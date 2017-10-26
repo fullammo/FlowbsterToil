@@ -89,6 +89,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                 </li>
                                 <li class="link">
@@ -113,9 +116,6 @@
                             >
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -260,9 +260,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/DialogService.html" >DialogService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -475,6 +472,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                        </li>
                                        <li class="link">
@@ -499,9 +499,6 @@
                    >
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -646,9 +643,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/DialogService.html" >DialogService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -901,7 +895,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/app-routing.module.ts</code>
+            <code>src/app/app-routing/app-routing.module.ts</code>
         </p>
 
 
@@ -927,27 +921,28 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { ConnectionComponent } from &#x27;app/connection/connection.component&#x27;;
-import { WorkflowDetailDeactivateGuard } from &#x27;./services/workflow-detail-deactivate-guard.service&#x27;;
-import { WorkflowDetailResolver } from &#x27;./services/workflow-detail-resolver.service&#x27;;
-import { RegisterUserComponent } from &#x27;./../fw/users/register-user/register-user.component&#x27;;
-import { SignInComponent } from &#x27;./../fw/users/sign-in/sign-in.component&#x27;;
-import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import { AuthGuard } from &#x27;./core/auth.guard&#x27;;
 
-import { CoreModule } from &#x27;./core/core.module&#x27;;
-import { AuthenticatedUserComponent } from &#x27;app/authenticated-user/authenticated-user.component&#x27;;
+
+
 import { WorkflowDetailComponent } from &#x27;app/workflow/workflow-detail/workflow-detail.component&#x27;;
 import { WorkflowMaintComponent } from &#x27;app/workflow/workflow-maint/workflow-maint.component&#x27;;
 import { EditorComponent } from &#x27;app/editor/editor.component&#x27;;
+import { FrameworkBodyComponent } from &#x27;fw/framework-body/framework-body.component&#x27;;
+import { SignInComponent } from &#x27;fw/users/sign-in/sign-in.component&#x27;;
+import { RegisterUserComponent } from &#x27;fw/users/register-user/register-user.component&#x27;;
+import { AuthGuard } from &#x27;app/core/auth.guard&#x27;;
+import { WorkflowDetailResolver } from &#x27;app/app-routing/workflow-detail-resolver.service&#x27;;
+import { WorkflowDetailDeactivateGuard } from &#x27;app/app-routing/workflow-detail-deactivate-guard.service&#x27;;
+import { ConnectionComponent } from &#x27;app/occopus-config/connection/connection.component&#x27;;
 
 export const appRoutes: Routes &#x3D; [
   { path: &#x27;signin&#x27;, component: SignInComponent },
   { path: &#x27;register&#x27;, component: RegisterUserComponent },
   {
     path: &#x27;authenticated&#x27;,
-    component: AuthenticatedUserComponent,
+    component: FrameworkBodyComponent,
     canActivate: [AuthGuard],
     children: [
       {

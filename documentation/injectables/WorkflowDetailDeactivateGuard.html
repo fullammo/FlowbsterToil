@@ -89,6 +89,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                 </li>
                                 <li class="link">
@@ -113,9 +116,6 @@
                             >
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -260,9 +260,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/DialogService.html" >DialogService</a>
                                 </li>
                                 <li class="link">
                                     <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -475,6 +472,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/OccopusConfigModule.html" >OccopusConfigModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PrimeModule.html" >PrimeModule</a>
                                        </li>
                                        <li class="link">
@@ -499,9 +499,6 @@
                    >
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedUserComponent.html" >AuthenticatedUserComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ConnectionComponent.html" >ConnectionComponent</a>
@@ -646,9 +643,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/DescriptorService.html" >DescriptorService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/DialogService.html" >DialogService</a>
                                        </li>
                                        <li class="link">
                                            <a href="../injectables/FrameworkConfigService.html" >FrameworkConfigService</a>
@@ -816,7 +810,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/workflow-detail-deactivate-guard.service.ts</code>
+            <code>src/app/app-routing/workflow-detail-deactivate-guard.service.ts</code>
         </p>
 
             <p class="comment">
@@ -844,6 +838,9 @@
                                          <a href="#canDeactivate">canDeactivate</a>
                                     </li>
                                     <li>
+                                        <span class="modifier">Private</span> <a href="#confirm">confirm</a>
+                                    </li>
+                                    <li>
                                         <span class="modifier">Private</span> <a href="#isEquivalent">isEquivalent</a>
                                     </li>
                                 </ul>
@@ -859,12 +856,12 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>constructor(dialogSVC: <a href="../injectables/DialogService.html">DialogService</a>, jointSVC: <a href="../injectables/JointService.html">JointService</a>, workflowEntrySVC: <a href="../injectables/WorkflowEntryService.html">WorkflowEntryService</a>)</code>
+                                    <code>constructor(jointSVC: <a href="../injectables/JointService.html">JointService</a>, workflowEntrySVC: <a href="../injectables/WorkflowEntryService.html">WorkflowEntryService</a>)</code>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:77</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:81</a></div>
                                         </td>
                                     </tr>
             
@@ -884,15 +881,6 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                            <tr>
-                                                              <td>dialogSVC</td>
-                                                              <td>
-                                                                        <code><a href="../injectables/DialogService.html" target="_self" >DialogService</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td></td>
-                                                            </tr>
                                                             <tr>
                                                               <td>jointSVC</td>
                                                               <td>
@@ -942,7 +930,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:28</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:28</a></div>
                                         </td>
                                     </tr>
             
@@ -1013,6 +1001,69 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="confirm"></a>
+                                    <span class="name"><b><span class="modifier">Private</span> confirm</b><a href="#confirm"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                        <span class="modifier-icon fa fa-lock"></span>
+                                    <code>confirm(message?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:55</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Type</td>
+                                                            <td>Optional</td>
+                                                            <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                              <td>message</td>
+                                                              <td>
+                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                              </td>
+                                                              <td>
+                                                                  true
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="isEquivalent"></a>
                                     <span class="name"><b><span class="modifier">Private</span> isEquivalent</b><a href="#isEquivalent"><span class="fa fa-link"></span></a></span>
                                 </td>
@@ -1027,7 +1078,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/services/workflow-detail-deactivate-guard.service.ts:61</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:65</a></div>
                                         </td>
                                     </tr>
             
@@ -1092,7 +1143,7 @@
 
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { JointService } from &#x27;app/editor/flowbster-forms/shared/joint.service&#x27;;
-import { DialogService } from &#x27;./dialog.service&#x27;;
+
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 import {
@@ -1140,9 +1191,13 @@ export class WorkflowDetailDeactivateGuard
       return true;
     }
 
-    const confirmObservable &#x3D; this.dialogSVC.confirm(&#x27;Discard Changes?&#x27;);
+    const confirmObservable &#x3D; this.confirm(&#x27;Discard Changes?&#x27;);
 
     return confirmObservable;
+  }
+
+  private confirm(message?: string) {
+    return Observable.of(window.confirm(message || &#x27;Is it Ok?&#x27;));
   }
 
   /**
@@ -1176,7 +1231,6 @@ export class WorkflowDetailDeactivateGuard
    * @param workflowEntrySVC
    */
   constructor(
-    private dialogSVC: DialogService,
     private jointSVC: JointService,
     private workflowEntrySVC: WorkflowEntryService
   ) {}

@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
-import { OutputPort } from 'app/editor/models/outputPort';
-import { DistributionType } from 'app/editor/models/distributionType';
+import { OutputPort } from './outputPort';
 import { PortValidator } from 'app/editor/flowbster-forms/shared/customValidators';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
+import { DistributionType } from 'app/editor/flowbster-forms/shared/distributionType';
 
 @Component({
   selector: 'toil-editor-output-properties',

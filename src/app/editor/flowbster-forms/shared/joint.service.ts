@@ -1,17 +1,18 @@
+import { Injectable } from '@angular/core';
 
-import { element } from 'protractor';
+import { Workflow } from 'app/editor/flowbster-forms/workflow-properties/workflow';
+import { FlowbsterNode } from 'app/editor/flowbster-forms/node-properties/flowbsterNode';
+import { InputPort } from 'app/editor/flowbster-forms/input-properties/inputPort';
+import { OutputPort } from 'app/editor/flowbster-forms/output-properties/outputPort';
+
+import './customArrayFeatures';
+
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
-import { OutputPort } from 'app/editor/models/outputPort';
-import { InputPort } from 'app/editor/models/inputPort';
-import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
-import { Workflow } from 'app/editor/models/workflow';
-
-import 'app/editor/models/customArrayFeatures';
 
 import * as joint from 'jointjs';
 import * as _ from 'lodash';
+
 
 /**
  * Main Service that holds operations regarding the JointJS library.
@@ -708,7 +709,7 @@ export class JointService {
     if (this.selectedCellView && this.selectedPortType) {
       const portType = (this.selectedPortType === 'out' ? 'outPorts' : 'inPorts');
       const ports = this.selectedCellView.model.get(portType);
-      ports.remove(this.selectedPortName); // remove functiont valahogy ideeröltetni. és egy error handling az elejére.
+      ports.remove(this.selectedPortName);
       this.selectedCellView.model.set(portType, ports);
       this.selectedCellView.model.trigger('change:' + portType);
       this.emitWorkflowChange();

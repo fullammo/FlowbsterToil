@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { InputPort } from 'app/editor/models/inputPort';
+import { InputPort } from './inputPort';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { PortValidator } from 'app/editor/flowbster-forms/shared/customValidators';
 

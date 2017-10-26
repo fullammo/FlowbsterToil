@@ -1,5 +1,5 @@
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
-import { DialogService } from './dialog.service';
+
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import {
@@ -47,9 +47,13 @@ export class WorkflowDetailDeactivateGuard
       return true;
     }
 
-    const confirmObservable = this.dialogSVC.confirm('Discard Changes?');
+    const confirmObservable = this.confirm('Discard Changes?');
 
     return confirmObservable;
+  }
+
+  private confirm(message?: string) {
+    return Observable.of(window.confirm(message || 'Is it Ok?'));
   }
 
   /**
@@ -83,7 +87,6 @@ export class WorkflowDetailDeactivateGuard
    * @param workflowEntrySVC
    */
   constructor(
-    private dialogSVC: DialogService,
     private jointSVC: JointService,
     private workflowEntrySVC: WorkflowEntryService
   ) {}
