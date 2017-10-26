@@ -6,9 +6,9 @@ import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-d
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.service';
 
-import { EditorModule } from 'app/editor/editor.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { OccoService } from 'app/workflow/shared/occo.service';
+import { EditorModule } from 'app/editor/shared/editor.module';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],

@@ -83,6 +83,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/SharedModule.html" >SharedModule</a>
                                 </li>
                                 <li class="link">
@@ -192,16 +195,10 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
-                                    <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                 </li>
                         </ul>
                     </li>
@@ -466,6 +463,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/SharedModule.html" >SharedModule</a>
                                        </li>
                                        <li class="link">
@@ -575,16 +575,10 @@
                                        id="directives-links"
                    >
                                        <li class="link">
-                                           <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                        </li>
                                </ul>
                            </li>
@@ -878,7 +872,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/editor/shared/customValidators.ts:21</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/editor/shared/customValidators.ts:20</a></div>
                                         </td>
                                     </tr>
             
@@ -947,7 +941,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/editor/shared/customValidators.ts:81</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/editor/shared/customValidators.ts:82</a></div>
                                         </td>
                                     </tr>
             
@@ -1017,7 +1011,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/editor/shared/customValidators.ts:50</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/editor/shared/customValidators.ts:49</a></div>
                                         </td>
                                     </tr>
             
@@ -1079,13 +1073,12 @@ import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { AbstractControl } from &#x27;@angular/forms&#x27;;
 
 import &#x27;rxjs/add/operator/debounceTime&#x27;;
-import &quot;rxjs/add/operator/mergeMap&quot;;
+import &#x27;rxjs/add/operator/mergeMap&#x27;;
 
 /**
  * Holds the neccessary Observable based functions that are used in node validation.
  */
 export class NodeValidator {
-
   /**
    * If the input controls value is changing,
    * then it will check the JointService about the changes made to the Nodes list and workflow name
@@ -1097,8 +1090,7 @@ export class NodeValidator {
   static isNodeUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value &#x3D;&gt; {
             if (value) {
               return value.length &gt; 0;
@@ -1108,8 +1100,9 @@ export class NodeValidator {
           .distinctUntilChanged()
           .flatMap(nodeName &#x3D;&gt; jointSVC.isNodeNameUniqueObservable(nodeName))
           .subscribe(result &#x3D;&gt; {
-            result &#x3D;&#x3D;&#x3D; false ?
-              obs.next({ nodeNameExist: true }) : obs.next(null);
+            result &#x3D;&#x3D;&#x3D; false
+              ? obs.next({ nodeNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
@@ -1126,8 +1119,7 @@ export class NodeValidator {
   static isWorkflowUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value &#x3D;&gt; {
             if (value) {
               return value.length &gt; 0;
@@ -1135,10 +1127,13 @@ export class NodeValidator {
           })
           .debounceTime(500)
           .distinctUntilChanged()
-          .flatMap(nodeName &#x3D;&gt; jointSVC.isWorkflowNameUniqueObservable(nodeName))
+          .flatMap(nodeName &#x3D;&gt;
+            jointSVC.isWorkflowNameUniqueObservable(nodeName)
+          )
           .subscribe(result &#x3D;&gt; {
-            result &#x3D;&#x3D;&#x3D; false ?
-              obs.next({ workflowNameExist: true }) : obs.next(null);
+            result &#x3D;&#x3D;&#x3D; false
+              ? obs.next({ workflowNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
@@ -1157,18 +1152,20 @@ export class NodeValidator {
   static isUpdateUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value &#x3D;&gt; {
             if (value) {
               return value.length &gt; 0;
             }
           })
           .distinctUntilChanged()
-          .flatMap(nodeName &#x3D;&gt; jointSVC.isUpdateNodeNameUniqueObservable(nodeName))
+          .flatMap(nodeName &#x3D;&gt;
+            jointSVC.isUpdateNodeNameUniqueObservable(nodeName)
+          )
           .subscribe(result &#x3D;&gt; {
-            result &#x3D;&#x3D;&#x3D; false ?
-              obs.next({ nodeNameExist: true }) : obs.next(null);
+            result &#x3D;&#x3D;&#x3D; false
+              ? obs.next({ nodeNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
@@ -1180,8 +1177,7 @@ export class PortValidator {
   static isPortUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value &#x3D;&gt; {
             if (value) {
               return value.length &gt; 0;
@@ -1191,8 +1187,9 @@ export class PortValidator {
           .distinctUntilChanged()
           .flatMap(portName &#x3D;&gt; jointSVC.isPortNameUniqueObservable(portName))
           .subscribe(result &#x3D;&gt; {
-            result &#x3D;&#x3D;&#x3D; false ?
-              obs.next({ portNameExist: true }) : obs.next(null);
+            result &#x3D;&#x3D;&#x3D; false
+              ? obs.next({ portNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });

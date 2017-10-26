@@ -83,6 +83,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/SharedModule.html" >SharedModule</a>
                                 </li>
                                 <li class="link">
@@ -192,16 +195,10 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
-                                    <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                 </li>
                         </ul>
                     </li>
@@ -466,6 +463,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/SharedModule.html" >SharedModule</a>
                                        </li>
                                        <li class="link">
@@ -575,16 +575,10 @@
                                        id="directives-links"
                    >
                                        <li class="link">
-                                           <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                        </li>
                                </ul>
                            </li>
@@ -1782,7 +1776,7 @@ export class NodePropertiesComponent implements OnInit {
 <script>
         var COMPONENT_TEMPLATE = '<div><form [formGroup]="userform" #f="ngForm">  <div class="ui-grid ui-grid-responsive ui-grid-pad" style="margin: 10px 0px">    <!-- {{isExistingNode}} -->    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Name" [formControl]="userform.controls[\'name\']" [(ngModel)]="nodeProps.name">        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty && !userform.controls[\'name\'].hasError(\'nodeNameExist\')">          Name is <strong>required</strong>        </mat-error>        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty&&userform.controls[\'name\'].hasError(\'nodeNameExist\')">          Entered name is already <strong>taken</strong>          </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Executable Name" [formControl]="userform.controls[\'execname\']" [(ngModel)]="nodeProps.execname">        <mat-error *ngIf="!userform.controls[\'execname\'].valid&&userform.controls[\'execname\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Arguments" [formControl]="userform.controls[\'args\']" [(ngModel)]="nodeProps.args">        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Executable URL" [formControl]="userform.controls[\'execurl\']" [(ngModel)]="nodeProps.execurl">      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="number" placeholder="MinScale" min="1" [formControl]="userform.controls[\'scalingmin\']" [(ngModel)]="nodeProps.scalingmin">      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="number" placeholder="MaxScale" min="1" [formControl]="userform.controls[\'scalingmax\']" [(ngModel)]="nodeProps.scalingmax">      </mat-input-container>    </div>    <div class="ui-grid-row">      <button *ngIf=" !readOnly && isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate()" [disabled]="!userform.valid"></button>      <button *ngIf=" !readOnly && isExistingNode" pButton type="submit" label="Clone Node" (click)="onClone()" [disabled]="!userform.valid"></button>      <button *ngIf="!isExistingNode" pButton type="submit" label="Create Node" (click)="onCreate()" [disabled]="!userform.valid"></button>    </div>  </div></form></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
-    var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
+    var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'NodePropertiesComponent'};
 </script>
 <script src="../js/tree.js"></script>

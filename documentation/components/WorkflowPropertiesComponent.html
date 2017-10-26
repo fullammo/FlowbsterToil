@@ -83,6 +83,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/SharedModule.html" >SharedModule</a>
                                 </li>
                                 <li class="link">
@@ -192,16 +195,10 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
-                                    <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                 </li>
                         </ul>
                     </li>
@@ -466,6 +463,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/SharedModule.html" >SharedModule</a>
                                        </li>
                                        <li class="link">
@@ -575,16 +575,10 @@
                                        id="directives-links"
                    >
                                        <li class="link">
-                                           <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                        </li>
                                </ul>
                            </li>
@@ -1427,7 +1421,7 @@ export class WorkflowPropertiesComponent implements OnInit {
 <script>
         var COMPONENT_TEMPLATE = '<div><form [formGroup]="workflowForm" (ngSubmit)="onSubmit()">  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Infrastructure ID" [formControl]="workflowForm.controls[\'infraid\']" [(ngModel)]="workflowProps.infraid">        <mat-error *ngIf="!workflowForm.controls[\'infraid\'].valid&&workflowForm.controls[\'infraid\'].dirty">          Infra ID is <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="User ID" [formControl]="workflowForm.controls[\'userid\']" [(ngModel)]="workflowProps.userid">        <mat-error *ngIf="!workflowForm.controls[\'userid\'].valid&&workflowForm.controls[\'userid\'].dirty">          User ID is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Infrastructure Name" [formControl]="workflowForm.controls[\'infraname\']" [(ngModel)]="workflowProps.infraname">        <mat-error *ngIf="!workflowForm.controls[\'infraname\'].valid&&workflowForm.controls[\'infraname\'].dirty&&!workflowForm.controls[\'infraname\'].hasError(\'workflowNameExist\')">          Infra name is <strong>required</strong>        </mat-error>        <mat-error *ngIf="!workflowForm.controls[\'infraname\'].valid&&workflowForm.controls[\'infraname\'].dirty&&workflowForm.controls[\'infraname\'].hasError(\'workflowNameExist\')">          Node name is already <strong>taken</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Collector IP" [formControl]="workflowForm.controls[\'collectorip\']" [(ngModel)]="workflowProps.collectorip">        <mat-error *ngIf="!workflowForm.controls[\'collectorip\'].valid&&workflowForm.controls[\'collectorip\'].dirty">          Collector IP is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="number" placeholder="Collector port" [formControl]="workflowForm.controls[\'collectorport\']" [(ngModel)]="workflowProps.collectorport">        <mat-error *ngIf="!workflowForm.controls[\'collectorport\'].valid&&workflowForm.controls[\'collectorport\'].dirty">          Collector port is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="number" placeholder="Receiver port" [formControl]="workflowForm.controls[\'receiverport\']" [(ngModel)]="workflowProps.receiverport">        <mat-error *ngIf="!workflowForm.controls[\'receiverport\'].valid&&workflowForm.controls[\'receiverport\'].dirty">          Receiver port is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <button pButton type="submit" label="Submit" [disabled]="!workflowForm.valid"></button>    </div>  </div></form></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthenticatedUserComponent', 'selector': 'app-authenticated-user'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
-    var DIRECTIVES = [{'name': 'LowerCaseTextDirective', 'selector': '[ngModel][toilLowerCase]'},{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'},{'name': 'UpperCaseTextDirective', 'selector': '[ngModel][toilUpperCase]'}];
+    var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'WorkflowPropertiesComponent'};
 </script>
 <script src="../js/tree.js"></script>

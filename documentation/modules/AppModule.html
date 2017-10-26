@@ -83,6 +83,9 @@
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/SharedModule.html" >SharedModule</a>
                                 </li>
                                 <li class="link">
@@ -192,16 +195,10 @@
                                 id="xs-directives-links"
                             >
                                 <li class="link">
-                                    <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                 </li>
                                 <li class="link">
                                     <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                 </li>
                         </ul>
                     </li>
@@ -466,6 +463,9 @@
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/PrimeModule.html" >PrimeModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/SharedModule.html" >SharedModule</a>
                                        </li>
                                        <li class="link">
@@ -575,16 +575,10 @@
                                        id="directives-links"
                    >
                                        <li class="link">
-                                           <a href="../directives/LowerCaseTextDirective.html" >LowerCaseTextDirective</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../directives/ScreenBelowLarge.html" >ScreenBelowLarge</a>
                                        </li>
                                        <li class="link">
                                            <a href="../directives/ScreenLarge.html" >ScreenLarge</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../directives/UpperCaseTextDirective.html" >UpperCaseTextDirective</a>
                                        </li>
                                </ul>
                            </li>
@@ -1043,7 +1037,6 @@ import { DialogService } from &#x27;./services/dialog.service&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
 import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
-import { HttpModule } from &#x27;@angular/http&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 
 import { AngularFireModule } from &#x27;angularfire2&#x27;;
@@ -1066,7 +1059,6 @@ import { WorkflowModule } from &#x27;app/workflow/shared/workflow.module&#x27;;
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule,
     FwModule,
     AppRoutingModule,
     CoreModule,

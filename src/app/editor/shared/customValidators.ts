@@ -3,13 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { AbstractControl } from '@angular/forms';
 
 import 'rxjs/add/operator/debounceTime';
-import "rxjs/add/operator/mergeMap";
+import 'rxjs/add/operator/mergeMap';
 
 /**
  * Holds the neccessary Observable based functions that are used in node validation.
  */
 export class NodeValidator {
-
   /**
    * If the input controls value is changing,
    * then it will check the JointService about the changes made to the Nodes list and workflow name
@@ -21,8 +20,7 @@ export class NodeValidator {
   static isNodeUnique(jointSVC: JointService) {
     return (control: AbstractControl) => {
       return new Observable((obs: any) => {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value => {
             if (value) {
               return value.length > 0;
@@ -32,8 +30,9 @@ export class NodeValidator {
           .distinctUntilChanged()
           .flatMap(nodeName => jointSVC.isNodeNameUniqueObservable(nodeName))
           .subscribe(result => {
-            result === false ?
-              obs.next({ nodeNameExist: true }) : obs.next(null);
+            result === false
+              ? obs.next({ nodeNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
@@ -50,8 +49,7 @@ export class NodeValidator {
   static isWorkflowUnique(jointSVC: JointService) {
     return (control: AbstractControl) => {
       return new Observable((obs: any) => {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value => {
             if (value) {
               return value.length > 0;
@@ -59,10 +57,13 @@ export class NodeValidator {
           })
           .debounceTime(500)
           .distinctUntilChanged()
-          .flatMap(nodeName => jointSVC.isWorkflowNameUniqueObservable(nodeName))
+          .flatMap(nodeName =>
+            jointSVC.isWorkflowNameUniqueObservable(nodeName)
+          )
           .subscribe(result => {
-            result === false ?
-              obs.next({ workflowNameExist: true }) : obs.next(null);
+            result === false
+              ? obs.next({ workflowNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
@@ -81,18 +82,20 @@ export class NodeValidator {
   static isUpdateUnique(jointSVC: JointService) {
     return (control: AbstractControl) => {
       return new Observable((obs: any) => {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value => {
             if (value) {
               return value.length > 0;
             }
           })
           .distinctUntilChanged()
-          .flatMap(nodeName => jointSVC.isUpdateNodeNameUniqueObservable(nodeName))
+          .flatMap(nodeName =>
+            jointSVC.isUpdateNodeNameUniqueObservable(nodeName)
+          )
           .subscribe(result => {
-            result === false ?
-              obs.next({ nodeNameExist: true }) : obs.next(null);
+            result === false
+              ? obs.next({ nodeNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
@@ -104,8 +107,7 @@ export class PortValidator {
   static isPortUnique(jointSVC: JointService) {
     return (control: AbstractControl) => {
       return new Observable((obs: any) => {
-        control
-          .valueChanges
+        control.valueChanges
           .filter(value => {
             if (value) {
               return value.length > 0;
@@ -115,8 +117,9 @@ export class PortValidator {
           .distinctUntilChanged()
           .flatMap(portName => jointSVC.isPortNameUniqueObservable(portName))
           .subscribe(result => {
-            result === false ?
-              obs.next({ portNameExist: true }) : obs.next(null);
+            result === false
+              ? obs.next({ portNameExist: true })
+              : obs.next(null);
             obs.complete();
           });
       });
