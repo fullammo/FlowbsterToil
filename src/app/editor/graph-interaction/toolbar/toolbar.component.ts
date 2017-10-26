@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from 'primeng/components/common/message';
 import { MenuItem } from 'primeng/components/common/menuitem';
 
-import { DescriptorService } from 'app/editor/shared/descriptor.service';
-import { JointService } from 'app/editor/shared/joint.service';
+import { DescriptorService } from 'app/editor/graph-interaction/shared/descriptor.service';
 import { Workflow } from 'app/editor/models/workflow';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 
 /**
  * Displays the toolbar for the {@link EditorComponent}.

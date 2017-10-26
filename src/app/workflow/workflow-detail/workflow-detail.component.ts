@@ -7,11 +7,11 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { JointService } from 'app/editor/shared/joint.service';
-import { DescriptorService } from 'app/editor/shared/descriptor.service';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 
 import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
+import { DescriptorService } from 'app/editor/graph-interaction/shared/descriptor.service';
 
 /**
  * Enables you to edit the actual workflow's properties or create a new one.

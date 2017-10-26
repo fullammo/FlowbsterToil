@@ -1,12 +1,12 @@
-import { OutputPort } from './../models/outputPort';
-import { InputPort } from './../models/inputPort';
 import { Injectable } from '@angular/core';
 import { OccopusDescriptor } from 'app/editor/models/occopusDescriptor';
-import { JointService } from 'app/editor/shared/joint.service';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { Workflow } from 'app/editor/models/workflow';
 import { NodeDescriptor } from 'app/editor/models/nodeDescriptor';
 
 import * as jsyaml from 'js-yaml';
+import { OutputPort } from 'app/editor/models/outputPort';
+import { InputPort } from 'app/editor/models/inputPort';
 
 
 /**

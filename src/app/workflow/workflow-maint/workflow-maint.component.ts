@@ -1,4 +1,4 @@
-import { JointService } from 'app/editor/shared/joint.service';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataSource, SelectionModel } from '@angular/cdk/collections';
@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/fromEvent';
 
-import { DescriptorService } from 'app/editor/shared/descriptor.service';
 import { WorkflowDataSource } from 'app/workflow/workflow-maint/workflowDataSource';
 import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.service';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';

@@ -1,10 +1,14 @@
-import { NodeValidator } from './../shared/customValidators';
-import { JointService } from './../shared/joint.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {
+  Validators,
+  FormControl,
+  FormGroup,
+  FormBuilder
+} from '@angular/forms';
 
 import { Workflow } from 'app/editor/models/workflow';
-
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
+import { NodeValidator } from 'app/editor/flowbster-forms/shared/customValidators';
 
 /**
  * Modal form component for the Flowbster Workflow's Main Attributes.
@@ -18,7 +22,6 @@ import { Workflow } from 'app/editor/models/workflow';
   styleUrls: ['./workflow-properties.component.scss']
 })
 export class WorkflowPropertiesComponent implements OnInit {
-
   /**
    * The FormGroup to hold the user's input
    */
@@ -58,19 +61,23 @@ export class WorkflowPropertiesComponent implements OnInit {
   /**
    * We inject the needed services.
    */
-  constructor(private fb: FormBuilder, private jointSVC: JointService) { }
+  constructor(private fb: FormBuilder, private jointSVC: JointService) {}
 
   /**
    * Initializes the workflow form with proper validators.
    */
   ngOnInit() {
     this.workflowForm = this.fb.group({
-      'infraid': new FormControl('', Validators.required),
-      'userid': new FormControl('', Validators.required),
-      'infraname': new FormControl('', Validators.required, NodeValidator.isWorkflowUnique(this.jointSVC)),
-      'collectorip': new FormControl('', Validators.required),
-      'collectorport': new FormControl('', Validators.required),
-      'receiverport': new FormControl('', Validators.required)
+      infraid: new FormControl('', Validators.required),
+      userid: new FormControl('', Validators.required),
+      infraname: new FormControl(
+        '',
+        Validators.required,
+        NodeValidator.isWorkflowUnique(this.jointSVC)
+      ),
+      collectorip: new FormControl('', Validators.required),
+      collectorport: new FormControl('', Validators.required),
+      receiverport: new FormControl('', Validators.required)
     });
   }
 
@@ -80,6 +87,4 @@ export class WorkflowPropertiesComponent implements OnInit {
   onSubmit() {
     this.onSubmitDialog.emit(this.workflowForm.value);
   }
-
 }
-

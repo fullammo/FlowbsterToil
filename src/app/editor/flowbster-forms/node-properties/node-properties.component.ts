@@ -1,9 +1,23 @@
-import { JointService } from './../shared/joint.service';
-import { NodeValidator } from './../shared/customValidators';
-import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Output,
+  Input,
+  EventEmitter,
+  ViewChild
+} from '@angular/core';
+import {
+  Validators,
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  AbstractControl
+} from '@angular/forms';
 
-import { FlowbsterNode } from 'app/editor/models/flowbsterNode'
+import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
+import { NodeValidator } from 'app/editor/flowbster-forms/shared/customValidators';
+
 
 @Component({
   selector: 'toil-editor-node-properties',
@@ -11,9 +25,7 @@ import { FlowbsterNode } from 'app/editor/models/flowbsterNode'
   styleUrls: ['./node-properties.component.scss']
 })
 export class NodePropertiesComponent implements OnInit {
-
-  @Input()
-  readOnly: boolean;
+  @Input() readOnly: boolean;
 
   userform: FormGroup;
   nodeProps: FlowbsterNode;
@@ -38,9 +50,9 @@ export class NodePropertiesComponent implements OnInit {
     this.NodePropsChange.emit(this.nodeProps);
   }
 
-  private nameControl: AbstractControl
+  private nameControl: AbstractControl;
 
-  constructor(private fb: FormBuilder, private jointSVC: JointService) { }
+  constructor(private fb: FormBuilder, private jointSVC: JointService) {}
 
   ngOnInit() {
     this.userform = this.initForm();
@@ -49,28 +61,30 @@ export class NodePropertiesComponent implements OnInit {
   }
 
   private subscribeToNodeChanges() {
-    this.jointSVC.isExistingNodeSubject.subscribe(
-      isExistingNode => {
-        if (isExistingNode) {
-          this.setExistingNodeValidators();
-        } else {
-          this.setNewNodeValidators();
-        }
-        this.isExistingNode = isExistingNode
+    this.jointSVC.isExistingNodeSubject.subscribe(isExistingNode => {
+      if (isExistingNode) {
+        this.setExistingNodeValidators();
+      } else {
+        this.setNewNodeValidators();
       }
-    );
+      this.isExistingNode = isExistingNode;
+    });
   }
 
   private setExistingNodeValidators() {
     console.log('doing the job');
     this.nameControl.clearAsyncValidators();
-    this.nameControl.setAsyncValidators([NodeValidator.isUpdateUnique(this.jointSVC)]);
+    this.nameControl.setAsyncValidators([
+      NodeValidator.isUpdateUnique(this.jointSVC)
+    ]);
     this.nameControl.updateValueAndValidity();
   }
 
   private setNewNodeValidators() {
     this.nameControl.clearAsyncValidators();
-    this.nameControl.setAsyncValidators([NodeValidator.isNodeUnique(this.jointSVC)]);
+    this.nameControl.setAsyncValidators([
+      NodeValidator.isNodeUnique(this.jointSVC)
+    ]);
     this.nameControl.updateValueAndValidity();
   }
 
@@ -79,12 +93,18 @@ export class NodePropertiesComponent implements OnInit {
     const numberFormState = { value: '1', disabled: this.readOnly };
 
     return this.fb.group({
-      'name': new FormControl(formState, Validators.required),
-      'execname': new FormControl(formState, Validators.required),
-      'args': new FormControl(formState),
-      'execurl': new FormControl(formState, Validators.required),
-      'scalingmin': new FormControl(numberFormState, [Validators.min(1), Validators.required]), // TODO:custom validator for  whole number
-      'scalingmax': new FormControl(numberFormState, [Validators.min(1), Validators.required]) // TODO: custom validator for whole number
+      name: new FormControl(formState, Validators.required),
+      execname: new FormControl(formState, Validators.required),
+      args: new FormControl(formState),
+      execurl: new FormControl(formState, Validators.required),
+      scalingmin: new FormControl(numberFormState, [
+        Validators.min(1),
+        Validators.required
+      ]), // TODO:custom validator for  whole number
+      scalingmax: new FormControl(numberFormState, [
+        Validators.min(1),
+        Validators.required
+      ]) // TODO: custom validator for whole number
     });
   }
 
@@ -112,4 +132,3 @@ export class NodePropertiesComponent implements OnInit {
   //   }
   // );
 }
-

@@ -3,8 +3,8 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 
 import { OutputPort } from 'app/editor/models/outputPort';
 import { DistributionType } from 'app/editor/models/distributionType';
-import { PortValidator } from 'app/editor/shared/customValidators';
-import { JointService } from 'app/editor/shared/joint.service';
+import { PortValidator } from 'app/editor/flowbster-forms/shared/customValidators';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 
 @Component({
   selector: 'toil-editor-output-properties',

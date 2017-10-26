@@ -8,7 +8,7 @@ import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.servi
 
 import { SharedModule } from 'app/shared/shared.module';
 import { OccoService } from 'app/workflow/shared/occo.service';
-import { EditorModule } from 'app/editor/shared/editor.module';
+import { EditorModule } from 'app/editor/editor.module';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],

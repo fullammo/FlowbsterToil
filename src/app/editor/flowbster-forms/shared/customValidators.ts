@@ -1,4 +1,4 @@
-import { JointService } from 'app/editor/shared/joint.service';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { Observable } from 'rxjs/Observable';
 import { AbstractControl } from '@angular/forms';
 

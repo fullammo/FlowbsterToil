@@ -77,7 +77,13 @@
                                     <a href="../modules/EditorModule.html" >EditorModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/FlowbsterFormsModule.html" >FlowbsterFormsModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/FwModule.html" >FwModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GraphInteractionModule.html" >GraphInteractionModule</a>
                                 </li>
                                 <li class="link">
                                     <a href="../modules/MaterialModule.html" >MaterialModule</a>
@@ -457,7 +463,13 @@
                                            <a href="../modules/EditorModule.html" >EditorModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/FlowbsterFormsModule.html" >FlowbsterFormsModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/FwModule.html" >FwModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GraphInteractionModule.html" >GraphInteractionModule</a>
                                        </li>
                                        <li class="link">
                                            <a href="../modules/MaterialModule.html" >MaterialModule</a>
@@ -916,7 +928,6 @@
 
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { ConnectionComponent } from &#x27;app/connection/connection.component&#x27;;
-import { EditorComponent } from &#x27;./editor/editor/editor.component&#x27;;
 import { WorkflowDetailDeactivateGuard } from &#x27;./services/workflow-detail-deactivate-guard.service&#x27;;
 import { WorkflowDetailResolver } from &#x27;./services/workflow-detail-resolver.service&#x27;;
 import { RegisterUserComponent } from &#x27;./../fw/users/register-user/register-user.component&#x27;;
@@ -929,6 +940,7 @@ import { CoreModule } from &#x27;./core/core.module&#x27;;
 import { AuthenticatedUserComponent } from &#x27;app/authenticated-user/authenticated-user.component&#x27;;
 import { WorkflowDetailComponent } from &#x27;app/workflow/workflow-detail/workflow-detail.component&#x27;;
 import { WorkflowMaintComponent } from &#x27;app/workflow/workflow-maint/workflow-maint.component&#x27;;
+import { EditorComponent } from &#x27;app/editor/editor.component&#x27;;
 
 export const appRoutes: Routes &#x3D; [
   { path: &#x27;signin&#x27;, component: SignInComponent },

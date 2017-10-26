@@ -4,7 +4,7 @@ import { MatSliderChange } from '@angular/material/material';
 import { InputPort } from 'app/editor/models/inputPort';
 import { FlowbsterNode } from 'app/editor/models/flowbsterNode';
 import { OutputPort } from 'app/editor/models/outputPort';
-import { JointService } from 'app/editor/shared/joint.service';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 
 import { Message } from 'primeng/components/common/message';
 

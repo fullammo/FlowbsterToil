@@ -1,4 +1,4 @@
-import { JointService } from './../editor/shared/joint.service';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { DialogService } from './dialog.service';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
