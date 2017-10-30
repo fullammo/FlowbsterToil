@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FrameworkConfigService, FrameworkConfigSettings } from '../fw/services/framework-config.service';
+import {
+  FrameworkConfigService,
+  FrameworkConfigSettings
+} from '../fw/services/framework-config.service';
 import { MenuService } from '../fw/services/menu.service';
-import { initialMenuItems } from './app.menu';
-
 
 import * as jsyaml from 'js-yaml';
+import { initialMenuItems } from 'app/core/models/app.menu';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +15,27 @@ import * as jsyaml from 'js-yaml';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  constructor(private frameworkConfigService: FrameworkConfigService,
-    private menuService: MenuService) {
-
-    let config: FrameworkConfigSettings = {
+  constructor(
+    private frameworkConfigService: FrameworkConfigService,
+    private menuService: MenuService
+  ) {
+    const config: FrameworkConfigSettings = {
       socialIcons: [
-        { imageFile: 'assets/social-fb-bw.png', alt: 'Facebook', link: 'http://www.facebook.com' },
-        { imageFile: 'assets/social-google-bw.png', alt: 'Google +', link: 'http://www.google.com' },
-        { imageFile: 'assets/social-twitter-bw.png', alt: 'Twitter', link: 'http://www.twitter.com' }
+        {
+          imageFile: 'assets/social-fb-bw.png',
+          alt: 'Facebook',
+          link: 'http://www.facebook.com'
+        },
+        {
+          imageFile: 'assets/social-google-bw.png',
+          alt: 'Google +',
+          link: 'http://www.google.com'
+        },
+        {
+          imageFile: 'assets/social-twitter-bw.png',
+          alt: 'Twitter',
+          link: 'http://www.twitter.com'
+        }
       ],
       showLanguageSelector: true,
       showUserControls: true,
@@ -32,9 +46,7 @@ export class AppComponent implements OnInit {
     frameworkConfigService.configure(config);
 
     menuService.items = initialMenuItems;
-
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

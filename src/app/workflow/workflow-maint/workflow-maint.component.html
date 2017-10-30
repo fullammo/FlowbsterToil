@@ -1,0 +1,86 @@
+<h3>Workflow Maintenance</h3>
+
+Current Message:
+<h1>{{(message | async)?.notificiation.title}}</h1>
+<img [src]="(message | async)?.notificiation.icon" width="100px">
+<p>{{(message | async )?.notification.body}}</p>
+
+{{ message | async | json}} <br>
+
+<button mat-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button>
+<button mat-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
+<button mat-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button>
+<button mat-raised-button color="primary" (click)="destroyWorkflow()">Destroy Workflow</button>
+<button mat-raised-button color="primary" (click)="startProcessing()">Start Processing</button>
+<button mat-raised-button color="primary" (click)="stopProcessing()">Stop Processing</button>
+<button mat-raised-button color="primary" (click)="copyEntries()">Copy Entries</button>
+
+
+
+<div>
+  <mat-input-container floatPlaceholder="never">
+    <input matInput #filter placeholder="Filter workflows">
+  </mat-input-container>
+</div>
+
+<mat-table #table [dataSource]="dataSource" matSort>
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.$key) : null" [checked]="selection.isSelected(row.$key)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let entry"> {{entry.name}}</mat-cell>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let entry"> {{entry.description}} </mat-cell>
+  </ng-container>
+
+  <!-- Descriptor Column
+  <ng-container matColumnDef="descriptor">
+    <mat-header-cell *matHeaderCellDef> Descriptor </mat-header-cell>
+    <mat-cell *matCellDef="let entry"> Descriptor </mat-cell>
+  </ng-container> -->
+
+  <!-- Graph Column
+  <ng-container matColumnDef="graph">
+    <mat-header-cell *matHeaderCellDef> Graph </mat-header-cell>
+    <mat-cell *matCellDef="let entry"> Graph </mat-cell>
+  </ng-container> -->
+
+  <!-- Date Column
+  <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let entry"> {{entry.date}} </mat-cell>
+    </ng-container> -->
+
+  <ng-container matColumnDef="edit">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let entry">
+      <button mat-raised-button color="primary" (click)="editEntry(entry.$key)">Edit</button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"> </mat-row> -->
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onEntryClick(row.$key)"> </mat-row>
+
+</mat-table>
+<mat-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,25]"></mat-paginator>
+
+<toil-editor [readOnly]="true"></toil-editor>

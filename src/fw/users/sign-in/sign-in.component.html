@@ -1,4 +1,4 @@
-<div class="sign-in-form">
+<!-- <div class="sign-in-form">
   <img src="./assets/logo.png" width="320" />
   <h4>Sign In</h4>
   <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)" novalidate>
@@ -30,4 +30,27 @@
       <p class="message">Signing In...</p>
     </div>
   </form>
+</div> -->
+
+<div *ngIf="userApi.user | async; then authenticated else guest">
+  <!-- template will replace this div -->
 </div>
+<!-- User NOT logged in -->
+<ng-template #guest>
+  <h3>Howdy, GUEST</h3>
+  <p>Login to get started...</p>
+
+  <button (click)="userApi.googleLogin()">
+    <i class="fa fa-google"></i> Connect Google
+  </button>
+</ng-template>
+<!-- User logged in -->
+<ng-template #authenticated>
+  <div *ngIf="userApi.user | async as user">
+    <h3>Howdy, {{ user.displayName }}</h3>
+    <img [src]="user.photoURL">
+    <p>UID: {{ user.uid }}</p>
+    <p>Favorite Color: {{ user?.favoriteColor }} </p>
+    <button (click)="userApi.signOut()">Logout</button>
+  </div>
+</ng-template>

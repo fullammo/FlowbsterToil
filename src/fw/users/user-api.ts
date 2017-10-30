@@ -1,7 +1,14 @@
 import { Observable } from 'rxjs/Observable';
+import { User } from 'app/core/models/user';
 
 export abstract class UserApi {
-    signIn : (username: string, password: string, rememberMe: boolean) => Observable<any>;
-    signOut : () => Observable<any>;
-    // changePassword : 
+  // signIn: (
+  //   username: string,
+  //   password: string,
+  //   rememberMe: boolean
+  // ) => Observable<any>;
+  user: Observable<User>;
+  signOut: () => void;
+  // changePassword :
+  googleLogin: () => Promise<void>;
 }
