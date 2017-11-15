@@ -25,7 +25,6 @@ export class WorkflowEntryService {
   // ***AngularFireStore features ***
   graphCollection: AngularFirestoreCollection<WorkflowEntry>;
   graphs: Observable<WorkflowEntry[]>;
-  graphSnapshot: Observable<any>;
 
   get data(): WorkflowEntry[] {
     return this.dataChange.value;
@@ -34,7 +33,7 @@ export class WorkflowEntryService {
   constructor(
     // ***AngularFireStore features ***
     private afs: AngularFirestore,
-    private db: AngularFireDatabase,
+    // private db: AngularFireDatabase,
     private authSVC: AuthService
   ) {
     // ***AngularFireStore features ***

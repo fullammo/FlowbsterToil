@@ -33,7 +33,7 @@ export class WorkflowDetailDeactivateGuard
     console.log('Deactivating...');
 
     const cleanEntry = this.workflowEntrySVC.initEntry(component.entry);
-    const isPropertiesEdited = this.isEquivalent(
+    const isEqual = this.isEquivalent(
       component.starterEntry,
       cleanEntry
     );
@@ -43,7 +43,7 @@ export class WorkflowDetailDeactivateGuard
       return true;
     }
 
-    if (isPropertiesEdited && !component.isGraphEdited) {
+    if (isEqual && !component.isGraphEdited) {
       return true;
     }
 
