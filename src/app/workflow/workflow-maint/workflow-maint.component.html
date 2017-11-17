@@ -1,4 +1,4 @@
-<h3>Workflow Maintenance</h3>
+<h3>Templates</h3>
 
 <!-- Current Message:
 <h1>{{(message | async)?.notificiation.title}}</h1>
@@ -9,14 +9,10 @@
 
 <button mat-raised-button color="primary" (click)="createEntry()">New Workflow Entry</button>
 <button mat-raised-button color="primary" (click)="deleteWorkflow()">Delete Workflow Entry</button>
-<button mat-raised-button color="primary" (click)="buildWorkflow()">Build Workflow</button>
-<button mat-raised-button color="primary" (click)="destroyWorkflow()">Destroy Workflow</button>
-<button mat-raised-button color="primary" (click)="infraInfo()">Info</button>
+<button mat-raised-button color="primary" (click)="buildWorkflow()">Build Workflow from Template</button>
 <!-- <button mat-raised-button color="primary" (click)="startProcessing()">Start Processing</button>
 <button mat-raised-button color="primary" (click)="stopProcessing()">Stop Processing</button> -->
 <button mat-raised-button color="primary" (click)="copyEntries()">Copy Entries</button>
-
-
 
 <div>
   <mat-input-container floatPlaceholder="never">
@@ -85,3 +81,9 @@
 <mat-paginator #paginator [length]="dataSource.filteredEntries.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,25]"></mat-paginator>
 
 <toil-editor [readOnly]="true"></toil-editor>
+
+<h3>Running infrastructures</h3>
+
+<button mat-raised-button color="primary" (click)="destroyWorkflow()">Destroy Workflow</button>
+<button mat-raised-button color="primary" (click)="infraInfo()">Info</button>
+<button mat-raised-button color="primary" (click)="startProcessing()">Start Processing</button>

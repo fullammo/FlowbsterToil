@@ -197,12 +197,8 @@ export class WorkflowMaintComponent implements OnInit {
   /**
    *Idk.
    */
-  startProcessing(): void {}
-
-  /**
-   *Idk.
-   */
-  stopProcessing(): void {}
+  startProcessing(): void {
+  }
 
   /**
    * Gets the selected entries and creates a clone of them to the database.
