@@ -1,3 +1,4 @@
+import { CloudMessagingService } from './../workflow/shared/cloud-messaging.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -21,7 +22,8 @@ export class AuthService implements UserApi {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private cloudMessagingSVC: CloudMessagingService
   ) {
     //// Get auth data, then get firestore user document || null
     this.user = this.afAuth.authState.switchMap(user => {
@@ -40,6 +42,7 @@ export class AuthService implements UserApi {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider).then(credential => {
       this.updateUserData(credential.user);
+      this.cloudMessagingSVC.getPermission();
       this.router.navigate(['/authenticated']);
     });
   }

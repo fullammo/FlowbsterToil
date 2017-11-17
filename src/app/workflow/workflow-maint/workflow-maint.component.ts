@@ -90,7 +90,6 @@ export class WorkflowMaintComponent implements OnInit {
   }
 
   private initializeCloudMessaging(): void {
-    this.cloudMessagingSVC.getPermission();
     this.cloudMessagingSVC.receiveMessage();
     this.message = this.cloudMessagingSVC.currentMessage;
   }
