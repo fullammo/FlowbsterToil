@@ -32,8 +32,8 @@ export class OccoService {
    * Then it sends the yaml data via http and subscribes it, waiting for response from the server.
    * @param yamldescriptor
    */
-  buildWorkflow(yamldescriptor: string, entryid: string) {
-    console.log(entryid);
+  buildWorkflow(yamldescriptor: string, entryId: string) {
+    console.log(entryId);
     const endpoint = this.url + '/infrastructures/';
     const header = new HttpHeaders();
     console.log(yamldescriptor);
@@ -53,7 +53,7 @@ export class OccoService {
               return;
             }
 
-            const data = { [user.uid]: { [entryid]: res } };
+            const data = { [user.uid]: { [entryId]: res } };
             this.db.object('infrastructures/').update(data);
           });
           return this;
@@ -83,6 +83,19 @@ export class OccoService {
         console.log('error occured', error);
       },
       () => {}
+    );
+  }
+
+  getWorkflowInformation(entryId?: string) {
+    const endpoint = this.url + '/infrastructures/' + this.infraid;
+
+    this.http.get(endpoint, { responseType: 'text' }).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log('error occured', error);
+      }
     );
   }
 }

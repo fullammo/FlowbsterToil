@@ -186,6 +186,14 @@ export class WorkflowMaintComponent implements OnInit {
     }
   }
 
+  infraInfo(): void {
+    if (this.selection.selected.length === 1) {
+      this.occoSVC.getWorkflowInformation();
+    } else {
+      window.alert('Only one workflow can be selected for information process!');
+    }
+  }
+
   /**
    *Idk.
    */
