@@ -6,6 +6,7 @@ import { MatSort, MatPaginator } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import { WorkflowDataSource } from 'app/workflow/workflow-maint/workflowDataSource';
 import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.service';
