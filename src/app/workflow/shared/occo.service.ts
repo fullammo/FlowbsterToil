@@ -1,3 +1,5 @@
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -7,17 +9,21 @@ import { HttpHeaders } from '@angular/common/http';
  */
 @Injectable()
 export class OccoService {
-
   /**
    * The actual endpoint we want to reach with the http service.
    */
   url: string;
+  infraid: string;
 
   /**
    * We inject Angular Http Service and set a default end point.
    * @param http Angular's new HttpClient
    */
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private db: AngularFireDatabase,
+    private auth: AngularFireAuth
+  ) {
     this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
   }
 
@@ -26,24 +32,37 @@ export class OccoService {
    * Then it sends the yaml data via http and subscribes it, waiting for response from the server.
    * @param yamldescriptor
    */
-  buildWorkflow(yamldescriptor: string) {
-
+  buildWorkflow(yamldescriptor: string, entryId: string) {
+    console.log(entryId);
     const endpoint = this.url + '/infrastructures/';
     const header = new HttpHeaders();
     console.log(yamldescriptor);
     header.append('Content-Type', 'application/x-yaml');
 
-    return this.http.post(endpoint, yamldescriptor, { headers: header }).subscribe(
-      (res) => {
-        console.log(res);
-        return this;
-      },
-      (error) => {
-        console.log('error occured', error);
-      },
-      () => {
+    return this.http
+      .post(endpoint, yamldescriptor, { headers: header })
+      .subscribe(
+        (res: { infraid: string }) => {
+          console.log(res);
 
-      });
+          this.infraid = res.infraid;
+          console.log(this.infraid);
+
+          this.auth.authState.take(1).subscribe(user => {
+            if (!user) {
+              return;
+            }
+
+            const data = { [user.uid]: { [entryId]: res } };
+            this.db.object('infrastructures/').update(data);
+          });
+          return this;
+        },
+        error => {
+          console.log('error occured', error);
+        },
+        () => {}
+      );
   }
 
   /**
@@ -52,16 +71,31 @@ export class OccoService {
    * and it subscribes to any response back from the server.
    */
   destroyWorkflow() {
-    return this.http.post(this.url, { responseType: 'text' }).subscribe(
-      (res) => {
+    const infraid = 'asd';
+    const endpoint = this.url + '/infrastructures/' + this.infraid;
+
+    return this.http.delete(endpoint, { responseType: 'text' }).subscribe(
+      res => {
         console.log(res);
         return this;
       },
-      (error) => {
-           console.log('error occured', error);
+      error => {
+        console.log('error occured', error);
       },
-      () => {
+      () => {}
+    );
+  }
 
-      });
+  getWorkflowInformation(entryId?: string) {
+    const endpoint = this.url + '/infrastructures/' + this.infraid;
+
+    this.http.get(endpoint, { responseType: 'text' }).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log('error occured', error);
+      }
+    );
   }
 }

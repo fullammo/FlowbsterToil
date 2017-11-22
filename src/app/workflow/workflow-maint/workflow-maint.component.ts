@@ -6,6 +6,7 @@ import { MatSort, MatPaginator } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import { WorkflowDataSource } from 'app/workflow/workflow-maint/workflowDataSource';
 import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.service';
@@ -90,7 +91,6 @@ export class WorkflowMaintComponent implements OnInit {
   }
 
   private initializeCloudMessaging(): void {
-    this.cloudMessagingSVC.getPermission();
     this.cloudMessagingSVC.receiveMessage();
     this.message = this.cloudMessagingSVC.currentMessage;
   }
@@ -162,35 +162,50 @@ export class WorkflowMaintComponent implements OnInit {
    * Gets the selected workflow's entry and calls the Occopus service with its descriptor.
    */
   buildWorkflow(): void {
-    const entryy = this.workflowEntrySVC.data.find(entry => {
-      const selected = this.selection.selected.find(key => {
-        return key === entry.$key;
+    if (this.selection.selected.length === 1) {
+      const entryy = this.workflowEntrySVC.data.find(entry => {
+        const selected = this.selection.selected.find(key => {
+          return key === entry.$key;
+        });
+        return selected !== undefined;
       });
-      return selected !== undefined;
-    });
-    console.log(entryy);
-    this.occoSVC.buildWorkflow(entryy.descriptor);
+      console.log(entryy);
+      this.occoSVC.buildWorkflow(entryy.descriptor, entryy.$key);
+    } else {
+      window.alert('Only one workflow can be selected for build process!');
+    }
   }
 
   /**
    * Idk.
    */
-  destroyWorkflow(): void {}
+  destroyWorkflow(): void {
+    if (this.selection.selected.length === 1) {
+      this.occoSVC.destroyWorkflow();
+    } else {
+      window.alert('Only one workflow can be selected for delete process!');
+    }
+  }
+
+  infraInfo(): void {
+    if (this.selection.selected.length === 1) {
+      this.occoSVC.getWorkflowInformation();
+    } else {
+      window.alert('Only one workflow can be selected for information process!');
+    }
+  }
 
   /**
    *Idk.
    */
-  startProcessing(): void {}
-
-  /**
-   *Idk.
-   */
-  stopProcessing(): void {}
+  startProcessing(): void {
+  }
 
   /**
    * Gets the selected entries and creates a clone of them to the database.
    */
   copyEntries(): void {
+    this.SelectionEmptyProcess();
     const copyEntries = this.workflowEntrySVC.data.filter(entry => {
       const selected = this.selection.selected.find(key => {
         return key === entry.$key;
@@ -220,10 +235,19 @@ export class WorkflowMaintComponent implements OnInit {
    * Deletes every selected workflow from the database.
    */
   deleteWorkflow(): void {
+    this.SelectionEmptyProcess();
+
     this.selection.selected.forEach(key =>
       this.workflowEntrySVC.deleteEntry(key)
     );
     this.selection.clear();
+  }
+
+  private SelectionEmptyProcess(): void {
+    if (this.selection.isEmpty()) {
+      window.alert('You need to select an entry to start with!');
+      return;
+    }
   }
 
   /**
