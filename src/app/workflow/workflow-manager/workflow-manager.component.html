@@ -1,11 +1,17 @@
-<div *ngFor="let entry of workflowEntries">
-  {{entry.name}}
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+  <input #gb type="text" pInputText size="50" placeholder="Global Filter">
 </div>
 
-<p-dataTable [value]="workflowEntries" expandableRows="true">
+
+<p-dataTable [value]="workflowEntries" selectionMode="multiple" [(selection)]="selectedWorkflowEntries" [headerCheckboxToggleAllPages]="true" dataKey="$key"
+  (onContextMenuSelect)="onContextMenuSelect($event)" expandableRows="true" [globalFilter]="gb" [rows]="10"  [paginator]="true"
+  [contextMenu]="cm" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" (onRowSelect)="onRowSelect($event)">
+  <p-header>Right Click on Rows for ContextMenu</p-header>
   <!-- <p-column expander="true" styleClass="col-icon"></p-column> -->
-  <p-column field="name" [sortable]="true" header="Name"></p-column>
-  <p-column field="description" header="Description"></p-column>
+  <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+  <p-column field="name" [sortable]="true" header="Name" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
+  <p-column field="description" header="Description" filterMatchMode="in"></p-column>
   <p-column field="edit" header="Actions">
     <ng-template let-entry="rowData" pTemplate="body">
       <button type="button" pButton (click)="editEntry(entry.$key)" icon="fa-check"></button>
@@ -43,3 +49,6 @@
   </ng-template> -->
 
 </p-dataTable>
+
+
+<p-contextMenu #cm [model]="items"></p-contextMenu>

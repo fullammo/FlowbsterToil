@@ -9,6 +9,7 @@ import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 })
 export class WorkflowManagerComponent implements OnInit {
   workflowEntries: WorkflowEntry[];
+  selectedWorkflowEntries: WorkflowEntry[];
   cols: any[];
 
   constructor(private workflowEntrySVC: WorkflowEntryService) {}
@@ -17,6 +18,14 @@ export class WorkflowManagerComponent implements OnInit {
     this.workflowEntrySVC.dataChange.subscribe(entries => {
       this.workflowEntries = entries;
     });
+  }
+
+  onRowSelect($event) {
+    console.log($event);
+  }
+
+  onContextMenuSelect($event) {
+    console.log($event);
   }
 
   editEntry(key: string) {

@@ -12,7 +12,8 @@ import {
   TabViewModule,
   CodeHighlighterModule,
   DataTableModule,
-  SharedModule
+  SharedModule,
+  ContextMenuModule
 } from 'primeng/primeng';
 
 @NgModule({
@@ -28,7 +29,8 @@ import {
     TabViewModule,
     CodeHighlighterModule,
     DataTableModule,
-    SharedModule
+    SharedModule,
+    ContextMenuModule
   ],
   exports: [
     MenuModule,
@@ -42,7 +44,8 @@ import {
     TabViewModule,
     CodeHighlighterModule,
     DataTableModule,
-    SharedModule
+    SharedModule,
+    ContextMenuModule
   ]
 })
 export class PrimeModule {}
