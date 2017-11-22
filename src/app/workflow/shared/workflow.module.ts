@@ -9,10 +9,15 @@ import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.servi
 import { SharedModule } from 'app/shared/shared.module';
 import { OccoService } from 'app/workflow/shared/occo.service';
 import { EditorModule } from 'app/editor/editor.module';
+import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],
-  declarations: [WorkflowMaintComponent, WorkflowDetailComponent],
+  declarations: [
+    WorkflowMaintComponent,
+    WorkflowDetailComponent,
+    WorkflowManagerComponent
+  ],
   providers: [WorkflowEntryService, CloudMessagingService, OccoService]
 })
 export class WorkflowModule {}
