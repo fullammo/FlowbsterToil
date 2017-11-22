@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
+import { MenuItem } from 'primeng/primeng';
 
 @Component({
   selector: 'toil-workflow-manager',
@@ -11,6 +12,7 @@ export class WorkflowManagerComponent implements OnInit {
   workflowEntries: WorkflowEntry[];
   selectedWorkflowEntries: WorkflowEntry[];
   cols: any[];
+  items: MenuItem[];
 
   constructor(private workflowEntrySVC: WorkflowEntryService) {}
 
@@ -18,14 +20,6 @@ export class WorkflowManagerComponent implements OnInit {
     this.workflowEntrySVC.dataChange.subscribe(entries => {
       this.workflowEntries = entries;
     });
-  }
-
-  onRowSelect($event) {
-    console.log($event);
-  }
-
-  onContextMenuSelect($event) {
-    console.log($event);
   }
 
   editEntry(key: string) {
