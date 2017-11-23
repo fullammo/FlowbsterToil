@@ -5,6 +5,7 @@ import { MenuItem } from 'primeng/primeng';
 import { Router } from '@angular/router';
 import { OccoService } from 'app/workflow/shared/occo.service';
 import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
+import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 
 @Component({
   selector: 'toil-workflow-manager',
@@ -20,7 +21,8 @@ export class WorkflowManagerComponent implements OnInit {
   constructor(
     private workflowEntrySVC: WorkflowEntryService,
     private router: Router,
-    private occoSVC: OccoService
+    private occoSVC: OccoService,
+    private jointSVC: JointService
   ) {}
 
   /**
@@ -88,7 +90,7 @@ export class WorkflowManagerComponent implements OnInit {
    */
   onMultiBuildClick() {
     this.IfAnyItemIsSelected(entry => {
-      // this.occoSVC.buildWorkflow(entry.descriptor, entry.$key);
+      // this.buildEntry(entry);
       console.log(entry);
     });
   }
@@ -172,11 +174,44 @@ export class WorkflowManagerComponent implements OnInit {
   }
 
   /**
+   * Sends the build information of the actual entry from the actually clicked entry.
+   * @param entry
+   */
+  onBuildClicked(entry: WorkflowEntry) {
+    // this.buildEntry(entry);
+    console.log(entry);
+  }
+
+  /**
+   * Propagates data to the Read Only editor.
+   * @param entry
+   */
+  onMagnifierClicked(entry: WorkflowEntry) {
+    this.updateViewerPaper(entry);
+  }
+
+  /**
+   * updates the Drawing area with the entry's graph definition.
+   * @param entry
+   */
+  updateViewerPaper(entry: WorkflowEntry) {
+    this.jointSVC.uploadGraph(JSON.parse(entry.graph));
+  }
+
+  /**
    * Deletes an individual record from the fireStore Database.
    * @param key
    */
   deleteEntry(key: string) {
     this.workflowEntrySVC.deleteEntry(key);
+  }
+
+  /**
+   * Sends messages to the Occopus via Http with the infrastrcute information.
+   * @param entry
+   */
+  buildEntry(entry: WorkflowEntry) {
+    this.occoSVC.buildWorkflow(entry.descriptor, entry.$key);
   }
 
   /**

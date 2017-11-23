@@ -2,16 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WorkflowManagerComponent } from './workflow-manager.component';
 
-describe('WorkflowManagerComponent', () => {
+describe('WorkflowManagerComponent Angular Tests', () => {
   let component: WorkflowManagerComponent;
   let fixture: ComponentFixture<WorkflowManagerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WorkflowManagerComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [WorkflowManagerComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WorkflowManagerComponent);
@@ -23,3 +24,5 @@ describe('WorkflowManagerComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+describe('WorkflowManagerComponent Isolated Tests', () => {});
