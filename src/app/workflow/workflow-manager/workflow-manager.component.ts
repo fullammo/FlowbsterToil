@@ -59,7 +59,7 @@ export class WorkflowManagerComponent implements OnInit {
    * If there is any entry selected it gets saved under a new id into the fireStore
    */
   onMultiCopyClick() {
-    if (this.workflowEntries.length !== 0) {
+    if (this.selectedWorkflowEntries.length !== 0) {
       this.selectedWorkflowEntries.forEach(entry => {
         const peeledEntry = this.workflowEntrySVC.peelEntry(entry);
         this.workflowEntrySVC.saveEntry(peeledEntry);
@@ -70,7 +70,13 @@ export class WorkflowManagerComponent implements OnInit {
   /**
    * If there is any entry selected it gets removed from the fireStore database.
    */
-  onMultiDeleteClick() {}
+  onMultiDeleteClick() {
+    if (this.selectedWorkflowEntries.length !== 0) {
+      this.selectedWorkflowEntries.forEach(entry => {
+        this.workflowEntrySVC.deleteEntry(entry.$key);
+      });
+    }
+  }
 
   eviii() {
     console.log('eviiii');
