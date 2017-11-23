@@ -20,6 +20,23 @@ export class WorkflowManagerComponent implements OnInit {
     this.workflowEntrySVC.dataChange.subscribe(entries => {
       this.workflowEntries = entries;
     });
+
+    this.items = [
+      {
+        label: 'View',
+        icon: 'fa-search',
+        command: event => this.eviii()
+      },
+      {
+        label: 'Delete',
+        icon: 'fa-close',
+        command: event => this.eviii()
+      }
+    ];
+  }
+
+  eviii() {
+    console.log('eviiii');
   }
 
   editEntry(key: string) {

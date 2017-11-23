@@ -4,7 +4,7 @@
 </div>
 
 
-<p-dataTable [value]="workflowEntries" [(selection)]="selectedWorkflowEntries" [headerCheckboxToggleAllPages]="true" dataKey="$key"
+<p-dataTable [value]="workflowEntries" [contextMenu]="cm" [(selection)]="selectedWorkflowEntries" [headerCheckboxToggleAllPages]="true" dataKey="$key"
   expandableRows="true" [globalFilter]="gb" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
   <p-header>Right Click on Rows for ContextMenu</p-header>
   <!-- <p-column expander="true" styleClass="col-icon"></p-column> -->
