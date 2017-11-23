@@ -6,7 +6,7 @@
 
 <p-dataTable [value]="workflowEntries" [(selection)]="selectedWorkflowEntries"
   [headerCheckboxToggleAllPages]="true" dataKey="$key" [globalFilter]="gb" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
-  <p-header>Right Click on Rows for ContextMenu</p-header>
+  <p-header>Right Click on Rows for ContextMenu (soon to be implemented)</p-header>
   <!-- <p-column expander="true" styleClass="col-icon"></p-column> -->
   <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
   <p-column field="name" [sortable]="true" header="Name" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
