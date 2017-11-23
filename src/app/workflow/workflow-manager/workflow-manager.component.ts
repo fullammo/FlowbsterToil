@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 import { MenuItem } from 'primeng/primeng';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'toil-workflow-manager',
@@ -14,7 +15,10 @@ export class WorkflowManagerComponent implements OnInit {
   cols: any[];
   items: MenuItem[];
 
-  constructor(private workflowEntrySVC: WorkflowEntryService) {}
+  constructor(
+    private workflowEntrySVC: WorkflowEntryService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.workflowEntrySVC.dataChange.subscribe(entries => {
@@ -29,10 +33,23 @@ export class WorkflowManagerComponent implements OnInit {
       },
       {
         label: 'Delete',
-        icon: 'fa-close',
+        icon: 'fa-close', // fa-trash-o
         command: event => this.eviii()
       }
     ];
+  }
+
+  onAddClick() {
+    this.workflowEntrySVC
+      .saveEntry(this.workflowEntrySVC.initEntry())
+      .then(doc => {
+        console.log(doc.id);
+        this.router.navigate([
+          '/authenticated/workflow-detail',
+          doc.id,
+          'create'
+        ]);
+      });
   }
 
   eviii() {
