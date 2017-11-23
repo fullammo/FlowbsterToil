@@ -21,16 +21,19 @@
     </ng-template>
   </p-column>
 
-  <p-footer>
-    <div class="ui-helper-clearfix" style="width:100%">
-      <button type="button" pButton icon="fa-plus" class="ui-button-success" style="float:left" (click)="onAddClick()" label="Add Template"></button>
-      <button type="button" pButton icon="fa-files-o" style="float:left" (click)="onMultiCopyClick()" label="Copy Templates"></button>
-      <button type="button" pButton icon="fa-trash-o" style="float:left" class="ui-button-danger" (click)="onMultiDeleteClick()"
-        label="Delete Templates"></button>
-      <button type="button" pButton icon="fa-cloud-upload" class="ui-button-info" style="float:right" (click)="onMultiBuildClick()"
-        label="Build Templates"></button>
-    </div>
+  <ng-template pTemplate="paginatorLeft">
+    <button type="button" pButton icon="fa-plus" class="ui-button-success" style="float:left" (click)="onAddClick()" label="Add Template"></button>
+    <button type="button" pButton icon="fa-files-o" style="float:left" (click)="onMultiCopyClick()" label="Copy Templates"></button>
+    <button type="button" pButton icon="fa-trash-o" style="float:left" class="ui-button-danger" (click)="onMultiDeleteClick()"
+      label="Delete Templates"></button>
+  </ng-template>
 
+  <ng-template pTemplate="paginatorRight">
+    <button type="button" pButton icon="fa-cloud-upload" class="ui-button-info" style="float:right" (click)="onMultiBuildClick()"
+      label="Build Templates"></button>
+  </ng-template>
+
+  <p-footer>
     <div class="ui-helper-clearfix" style="width:100%">
       <toil-editor [readOnly]="true"></toil-editor>
     </div>
