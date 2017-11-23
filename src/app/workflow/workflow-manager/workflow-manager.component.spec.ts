@@ -1,8 +1,8 @@
+import { OccoService } from 'app/workflow/shared/occo.service';
+import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkflowManagerComponent } from './workflow-manager.component';
-
-describe('WorkflowManagerComponent Angular Tests', () => {
+describe('WorkflowManagerComponent', () => {
   let component: WorkflowManagerComponent;
   let fixture: ComponentFixture<WorkflowManagerComponent>;
 
@@ -24,5 +24,3 @@ describe('WorkflowManagerComponent Angular Tests', () => {
     expect(component).toBeTruthy();
   });
 });
-
-describe('WorkflowManagerComponent Isolated Tests', () => {});
