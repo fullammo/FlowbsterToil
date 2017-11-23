@@ -13,7 +13,9 @@
   <p-column field="description" header="Description" filterMatchMode="in"></p-column>
   <p-column field="edit" header="Actions">
     <ng-template let-entry="rowData" pTemplate="body">
-      <button type="button" pButton (click)="editEntry(entry.$key)" icon="fa-check"></button>
+      <button type="button" pButton icon="fa-pencil-square-o" (click)="onEditClicked(entry)"></button>
+      <button type="button" pButton icon="fa-files-o" (click)="onCopyClicked(entry)"></button>
+      <button type="button" class="ui-button-danger" pButton (click)="onDeleteClicked(entry)" icon="fa-trash-o"></button>
     </ng-template>
   </p-column>
 
@@ -23,7 +25,8 @@
       <button type="button" pButton icon="fa-files-o" style="float:left" (click)="onMultiCopyClick()" label="Copy Templates"></button>
       <button type="button" pButton icon="fa-trash-o" style="float:left" class="ui-button-danger" (click)="onMultiDeleteClick()"
         label="Delete Templates"></button>
-      <button type="button" pButton icon="fa-building-o" class="ui-button-info" style="float:right" (click)="onMultiBuildClick()" label="Build Templates"></button>
+      <button type="button" pButton icon="fa-building-o" class="ui-button-info" style="float:right" (click)="onMultiBuildClick()"
+        label="Build Templates"></button>
     </div>
   </p-footer>
 
@@ -61,4 +64,4 @@
 </p-dataTable>
 
 
-<p-contextMenu #cm [model]="items"></p-contextMenu>
+<!-- <p-contextMenu #cm [model]="items"></p-contextMenu> -->

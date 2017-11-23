@@ -62,12 +62,11 @@ export class WorkflowManagerComponent implements OnInit {
   }
 
   /**
-   * If there is any entry selected it gets saved under a new id into the fireStore
+   * If there is any entry selected it gets saved under a new id into the fireStore database.
    */
   onMultiCopyClick() {
     this.IfAnyItemIsSelected(entry => {
-      const peeledEntry = this.workflowEntrySVC.peelEntry(entry);
-      this.workflowEntrySVC.saveEntry(peeledEntry);
+      this.copyEntry(entry);
     });
   }
 
@@ -78,21 +77,19 @@ export class WorkflowManagerComponent implements OnInit {
     const toBeDeletedFromSelection: WorkflowEntry[] = [];
 
     this.IfAnyItemIsSelected(entry => {
-      this.workflowEntrySVC.deleteEntry(entry.$key);
+      this.deleteEntry(entry.$key);
       toBeDeletedFromSelection.push(entry);
     });
 
-    toBeDeletedFromSelection.forEach(deletedEntry => {
-      this.removeByWorkflowEntryKey(this.selectedWorkflowEntries, deletedEntry);
-    });
+    this.cleanSelection(toBeDeletedFromSelection);
   }
-
   /**
    * If there is any entry selected its infrastructure data gets sent via Http to Occopus.
    */
   onMultiBuildClick() {
     this.IfAnyItemIsSelected(entry => {
-      this.occoSVC.buildWorkflow(entry.descriptor, entry.$key);
+      // this.occoSVC.buildWorkflow(entry.descriptor, entry.$key);
+      console.log(entry);
     });
   }
 
@@ -108,6 +105,16 @@ export class WorkflowManagerComponent implements OnInit {
     } else {
       console.log('No Item is selected in the Data Table');
     }
+  }
+
+  /**
+   * Deletes the given array of items from the selection.
+   * @param toBeDeletedFromSelection
+   */
+  private cleanSelection(toBeDeletedFromSelection: WorkflowEntry[]) {
+    toBeDeletedFromSelection.forEach(deletedEntry => {
+      this.removeByWorkflowEntryKey(this.selectedWorkflowEntries, deletedEntry);
+    });
   }
 
   /**
@@ -132,7 +139,52 @@ export class WorkflowManagerComponent implements OnInit {
     console.log('eviiii');
   }
 
-  editEntry(key: string) {
-    console.log(key);
+  /**
+   * Navigates by given key to that Workflow's edit page.
+   * @param key Unique Identifier of the Entry in the database.
+   */
+  navigateToEditPage(key: string) {
+    this.router.navigate(['/authenticated/workflow-detail', key, 'edit']);
+  }
+
+  /**
+   * Cleans the selection with the actual element if it was selected, then deletes the entry.
+   * @param entry
+   */
+  onDeleteClicked(entry: WorkflowEntry) {
+    this.cleanSelection([entry]);
+    this.deleteEntry(entry.$key);
+  }
+
+  /**
+   * Copies the actual entry to the database.
+   */
+  onCopyClicked(entry: WorkflowEntry) {
+    this.copyEntry(entry);
+  }
+
+  /**
+   * Navigates to the Edit Page.
+   * @param entry
+   */
+  onEditClicked(entry: WorkflowEntry) {
+    this.navigateToEditPage(entry.$key);
+  }
+
+  /**
+   * Deletes an individual record from the fireStore Database.
+   * @param key
+   */
+  deleteEntry(key: string) {
+    this.workflowEntrySVC.deleteEntry(key);
+  }
+
+  /**
+   * It peels the entry from the ID property and saves it to the FireStore database.
+   * @param entry
+   */
+  copyEntry(entry: WorkflowEntry) {
+    const peeledEntry = this.workflowEntrySVC.peelEntry(entry);
+    this.workflowEntrySVC.saveEntry(peeledEntry);
   }
 }
