@@ -92,7 +92,11 @@ export class WorkflowEntryService {
     return this.graphCollection.add(entry);
   }
 
-  cloneEntry(entry: WorkflowEntry): WorkflowEntry {
+  /**
+   * Creates and returns a new object without the key attribute of the Entry.
+   * @param entry
+   */
+  peelEntry(entry: WorkflowEntry): WorkflowEntry {
     return {
       name: entry.name + ' clone',
       description: entry.description,

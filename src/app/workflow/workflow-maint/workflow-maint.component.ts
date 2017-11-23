@@ -215,7 +215,7 @@ export class WorkflowMaintComponent implements OnInit {
 
     if (copyEntries.length !== 0) {
       copyEntries.forEach(entry => {
-        const cleanedEntry = this.workflowEntrySVC.cloneEntry(entry);
+        const cleanedEntry = this.workflowEntrySVC.peelEntry(entry);
         this.workflowEntrySVC.saveEntry(cleanedEntry);
       });
     } else {

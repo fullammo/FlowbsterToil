@@ -39,6 +39,9 @@ export class WorkflowManagerComponent implements OnInit {
     ];
   }
 
+  /**
+   * TODO Should be Modified to do not disturb visually.
+   */
   onAddClick() {
     this.workflowEntrySVC
       .saveEntry(this.workflowEntrySVC.initEntry())
@@ -51,6 +54,23 @@ export class WorkflowManagerComponent implements OnInit {
         ]);
       });
   }
+
+  /**
+   * If there is any entry selected it gets saved under a new id into the fireStore
+   */
+  onMultiCopyClick() {
+    if (this.workflowEntries.length !== 0) {
+      this.selectedWorkflowEntries.forEach(entry => {
+        const peeledEntry = this.workflowEntrySVC.peelEntry(entry);
+        this.workflowEntrySVC.saveEntry(peeledEntry);
+      });
+    }
+  }
+
+  /**
+   * If there is any entry selected it gets removed from the fireStore database.
+   */
+  onMultiDeleteClick() {}
 
   eviii() {
     console.log('eviiii');
