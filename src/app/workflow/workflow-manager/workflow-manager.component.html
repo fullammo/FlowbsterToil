@@ -24,7 +24,7 @@
   <ng-template pTemplate="paginatorLeft">
     <button type="button" pButton icon="fa-plus" class="ui-button-success" style="float:left" (click)="onAddClick()" label="Add Template"></button>
     <button type="button" pButton icon="fa-files-o" style="float:left" (click)="onMultiCopyClick()" label="Copy Templates"></button>
-    <button type="button" pButton icon="fa-trash-o" style="float:left" class="ui-button-danger" (click)="onMultiDeleteClick()"
+    <button type="button" pButton icon="fa-trash-o" style="float:left" class="ui-button-danger" (click)="confirmMultiDelete()"
       label="Delete Templates"></button>
   </ng-template>
 

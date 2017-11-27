@@ -78,6 +78,27 @@ export class WorkflowManagerComponent implements OnInit {
   }
 
   /**
+   * Brings up a confirmation dialog for multiple deletion.
+   */
+  confirmMultiDelete() {
+    if (
+      this.selectedWorkflowEntries &&
+      this.selectedWorkflowEntries.length !== 0
+    ) {
+      this.confirmSVC.confirm({
+        message: 'Do you want to delete selected records?',
+        header: 'Delete Confirmation',
+        icon: 'fa fa-trash',
+        accept: () => {
+          this.onMultiDeleteClick();
+        }
+      });
+    } else {
+      console.log('Select anything from the table');
+    }
+  }
+
+  /**
    * If there is any entry selected it gets saved under a new id into the fireStore database.
    */
   onMultiCopyClick() {
@@ -114,7 +135,10 @@ export class WorkflowManagerComponent implements OnInit {
    * @param atomicJob
    */
   private IfAnyItemIsSelected(atomicJob: (entry: WorkflowEntry) => any) {
-    if (this.selectedWorkflowEntries.length !== 0) {
+    if (
+      this.selectedWorkflowEntries &&
+      this.selectedWorkflowEntries.length !== 0
+    ) {
       this.selectedWorkflowEntries.forEach(entry => {
         atomicJob(entry);
       });
