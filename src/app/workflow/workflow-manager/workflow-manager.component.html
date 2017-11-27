@@ -41,7 +41,7 @@
 
   <ng-template let-entry pTemplate="rowexpansion">
     <!-- Here is the place for another component which will care about the functionality of the deployments grid. -->
-    <toil-deployment-manager></toil-deployment-manager>
+    <toil-deployment-manager [contextEntry]="entry"></toil-deployment-manager>
     <!-- We need to provide the actual entry for this rowexpansion to the component -->
     <!-- <p-dataTable [value]="workflowEntries" expandableRows="true">
       <p-column expander="true" styleClass="col-icon"></p-column>

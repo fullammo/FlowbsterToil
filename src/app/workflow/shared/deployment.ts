@@ -6,6 +6,8 @@ export interface Deployment {
   $key?: string;
   deploymentType?: DeploymentType;
   status?: Status;
+  starterPoint?: string;
+  endPoints?: string[];
 }
 
 export enum Status {
@@ -18,4 +20,3 @@ export enum DeploymentType {
   'sigma',
   'ec2'
 }
-// we should set the various cloud provider list here.
