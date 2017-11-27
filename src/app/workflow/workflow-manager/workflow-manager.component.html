@@ -41,8 +41,6 @@
 
   <!-- We need a dialog here to represent the Build Context for the Deployment -->
 
-  <! -->
-
 
   <ng-template let-entry pTemplate="rowexpansion">
     <!-- Here is the place for another component which will care about the functionality of the deployments grid. -->
@@ -78,6 +76,10 @@
 </p-dataTable>
 
 <p-confirmDialog></p-confirmDialog>
+<p-dialog header="Deployment Context for " [modal]="true" [(visible)]="buildContextDialogVisible">
+  <p-header> {{buildContextEntry.name}} template</p-header>
+  <toil-build-context-properties (onSubmitDialog)="onDeployContextSubmit()" [buildTemplate]="buildContextEntry"></toil-build-context-properties>
+</p-dialog>
 
 
 <!-- <p-contextMenu #cm [model]="items"></p-contextMenu> -->

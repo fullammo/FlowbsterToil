@@ -10,13 +10,15 @@ import { SharedModule } from 'app/shared/shared.module';
 import { OccoService } from 'app/workflow/shared/occo.service';
 import { EditorModule } from 'app/editor/editor.module';
 import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
+import { BuildContextPropertiesComponent } from 'app/workflow/build-context-properties/build-context-properties.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],
   declarations: [
     WorkflowMaintComponent,
     WorkflowDetailComponent,
-    WorkflowManagerComponent
+    WorkflowManagerComponent,
+    BuildContextPropertiesComponent
   ],
   providers: [WorkflowEntryService, CloudMessagingService, OccoService]
 })

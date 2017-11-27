@@ -17,8 +17,10 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 export class WorkflowManagerComponent implements OnInit {
   workflowEntries: WorkflowEntry[];
   selectedWorkflowEntries: WorkflowEntry[];
-  cols: any[];
-  items: MenuItem[];
+  buildContextDialogVisible: boolean;
+  buildContextEntry: WorkflowEntry;
+
+  // items: MenuItem[];
 
   constructor(
     private workflowEntrySVC: WorkflowEntryService,
@@ -36,18 +38,27 @@ export class WorkflowManagerComponent implements OnInit {
       this.workflowEntries = entries;
     });
 
-    this.items = [
-      {
-        label: 'View',
-        icon: 'fa-search',
-        command: event => this.eviii()
-      },
-      {
-        label: 'Delete',
-        icon: 'fa-close', // fa-trash-o
-        command: event => this.eviii()
-      }
-    ];
+    this.buildContextDialogVisible = false;
+
+    this.buildContextEntry = {
+      name: '',
+      description: '',
+      graph: '',
+      descriptor: ''
+    };
+
+    // this.items = [
+    //   {
+    //     label: 'View',
+    //     icon: 'fa-search',
+    //     command: event => this.eviii()
+    //   },
+    //   {
+    //     label: 'Delete',
+    //     icon: 'fa-close', // fa-trash-o
+    //     command: event => this.eviii()
+    //   }
+    // ];
   }
 
   /**
@@ -64,6 +75,10 @@ export class WorkflowManagerComponent implements OnInit {
           'create'
         ]);
       });
+  }
+
+  onDeployContextSubmit() {
+    this.buildContextDialogVisible = false;
   }
 
   confirmDeletion(entry: WorkflowEntry) {
@@ -216,8 +231,9 @@ export class WorkflowManagerComponent implements OnInit {
    * @param entry
    */
   onBuildClicked(entry: WorkflowEntry) {
+    this.buildContextEntry = entry;
+    this.buildContextDialogVisible = true;
     // this.buildEntry(entry);
-    console.log(entry);
   }
 
   /**

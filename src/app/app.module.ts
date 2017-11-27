@@ -13,7 +13,7 @@ import { environment } from 'environments/environment';
 import { CoreModule } from 'app/core/core.module';
 import { WorkflowModule } from 'app/workflow/shared/workflow.module';
 import { AppRoutingModule } from 'app/app-routing/app-routing.module';
-import { OccopusConfigModule } from 'app/occopus-config/occopus-config.module'
+import { OccopusConfigModule } from 'app/occopus-config/occopus-config.module';
 
 @NgModule({
   declarations: [AppComponent],
