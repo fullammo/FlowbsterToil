@@ -99,7 +99,7 @@ export class WorkflowEntryService {
    * @param entry
    */
   /**
-   * Should be sent into a utility or a helper class
+   * Should be deleted after Workflow maint is deprecated.
    */
   peelEntry(entry: WorkflowEntry): WorkflowEntry {
     return {
@@ -111,7 +111,7 @@ export class WorkflowEntryService {
   }
 
   /**
-   * Should be sent into a utility or a helper class
+   * Should be deleted after Workflow maint is deprecated.
    */
   initEntry(entry?: WorkflowEntry) {
     if (entry) {

@@ -170,7 +170,7 @@ export class WorkflowMaintComponent implements OnInit {
         return selected !== undefined;
       });
       console.log(entryy);
-      this.occoSVC.buildWorkflow(entryy.descriptor, entryy.$key);
+      this.occoSVC.buildWorkflow(entryy.descriptor);
     } else {
       window.alert('Only one workflow can be selected for build process!');
     }
@@ -181,7 +181,7 @@ export class WorkflowMaintComponent implements OnInit {
    */
   destroyWorkflow(): void {
     if (this.selection.selected.length === 1) {
-      this.occoSVC.destroyWorkflow();
+      // this.occoSVC.destroyWorkflow('');
     } else {
       window.alert('Only one workflow can be selected for delete process!');
     }
@@ -189,7 +189,7 @@ export class WorkflowMaintComponent implements OnInit {
 
   infraInfo(): void {
     if (this.selection.selected.length === 1) {
-      this.occoSVC.getWorkflowInformation();
+      // this.occoSVC.getWorkflowInformation('');
     } else {
       window.alert('Only one workflow can be selected for information process!');
     }

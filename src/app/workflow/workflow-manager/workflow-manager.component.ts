@@ -1,3 +1,4 @@
+import { DataAccessHelper } from './../shared/DataAccessHelper';
 import { Component, OnInit } from '@angular/core';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
@@ -7,6 +8,7 @@ import { OccoService } from 'app/workflow/shared/occo.service';
 import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { TemplateService } from 'app/workflow/shared/template.service';
 
 @Component({
   selector: 'toil-workflow-manager',
@@ -23,9 +25,8 @@ export class WorkflowManagerComponent implements OnInit {
   // items: MenuItem[];
 
   constructor(
-    private workflowEntrySVC: WorkflowEntryService,
+    private templateSVC: TemplateService,
     private router: Router,
-    private occoSVC: OccoService,
     private jointSVC: JointService,
     private confirmSVC: ConfirmationService
   ) {}
@@ -34,7 +35,7 @@ export class WorkflowManagerComponent implements OnInit {
    * We subscibe to any changes made to the Entry FireStore collection.
    */
   ngOnInit() {
-    this.workflowEntrySVC.dataChange.subscribe(entries => {
+    this.templateSVC.dataChange.subscribe(entries => {
       this.workflowEntries = entries;
     });
 
@@ -65,16 +66,14 @@ export class WorkflowManagerComponent implements OnInit {
    * TODO Should be Modified to do not disturb visually.
    */
   onAddClick() {
-    this.workflowEntrySVC
-      .saveEntry(this.workflowEntrySVC.initEntry())
-      .then(doc => {
-        console.log(doc.id);
-        this.router.navigate([
-          '/authenticated/workflow-detail',
-          doc.id,
-          'create'
-        ]);
-      });
+    this.templateSVC.saveEntry(DataAccessHelper.initTemplate()).then(doc => {
+      console.log(doc.id);
+      this.router.navigate([
+        '/authenticated/workflow-detail',
+        doc.id,
+        'create'
+      ]);
+    });
   }
 
   onDeployContextSubmit() {
@@ -257,15 +256,8 @@ export class WorkflowManagerComponent implements OnInit {
    * @param key
    */
   deleteEntry(key: string) {
-    this.workflowEntrySVC.deleteEntry(key);
-  }
-
-  /**
-   * Sends messages to the Occopus via Http with the infrastrcute information.
-   * @param entry
-   */
-  buildEntry(entry: WorkflowEntry) {
-    this.occoSVC.buildWorkflow(entry.descriptor, entry.$key);
+    // this.workflowEntrySVC.deleteEntry(key);
+    this.templateSVC.deleteEntry(key);
   }
 
   /**
@@ -273,7 +265,9 @@ export class WorkflowManagerComponent implements OnInit {
    * @param entry
    */
   copyEntry(entry: WorkflowEntry) {
-    const peeledEntry = this.workflowEntrySVC.peelEntry(entry);
-    this.workflowEntrySVC.saveEntry(peeledEntry);
+    // const peeledEntry = this.workflowEntrySVC.peelEntry(entry);
+    const peeledEntry = DataAccessHelper.peelTemplate(entry);
+    this.templateSVC.saveEntry(peeledEntry);
+    // this.workflowEntrySVC.saveEntry(peeledEntry);
   }
 }
