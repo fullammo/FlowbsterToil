@@ -20,12 +20,14 @@ export class WorkflowEntryService {
   dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<
     WorkflowEntry[]
   >([]);
-  entries: AngularFireList<any>;
 
   // ***AngularFireStore features ***
   graphCollection: AngularFirestoreCollection<WorkflowEntry>;
+
+  /** needed for workflowmaint still... */
   graphs: Observable<WorkflowEntry[]>;
 
+  /** needed for workflowmaint still... */
   get data(): WorkflowEntry[] {
     return this.dataChange.value;
   }
@@ -96,6 +98,9 @@ export class WorkflowEntryService {
    * Creates and returns a new object without the key attribute of the Entry.
    * @param entry
    */
+  /**
+   * Should be sent into a utility or a helper class
+   */
   peelEntry(entry: WorkflowEntry): WorkflowEntry {
     return {
       name: entry.name + ' clone',
@@ -105,6 +110,9 @@ export class WorkflowEntryService {
     };
   }
 
+  /**
+   * Should be sent into a utility or a helper class
+   */
   initEntry(entry?: WorkflowEntry) {
     if (entry) {
       return {

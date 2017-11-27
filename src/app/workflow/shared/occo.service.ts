@@ -13,17 +13,12 @@ export class OccoService {
    * The actual endpoint we want to reach with the http service.
    */
   url: string;
-  infraid: string;
 
   /**
    * We inject Angular Http Service and set a default end point.
    * @param http Angular's new HttpClient
    */
-  constructor(
-    private http: HttpClient,
-    private db: AngularFireDatabase,
-    private auth: AngularFireAuth
-  ) {
+  constructor(private http: HttpClient) {
     this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
   }
 
@@ -32,8 +27,7 @@ export class OccoService {
    * Then it sends the yaml data via http and subscribes it, waiting for response from the server.
    * @param yamldescriptor
    */
-  buildWorkflow(yamldescriptor: string, entryId: string) {
-    console.log(entryId);
+  buildWorkflow(yamldescriptor: string) {
     const endpoint = this.url + '/infrastructures/';
     const header = new HttpHeaders();
     console.log(yamldescriptor);
@@ -44,18 +38,7 @@ export class OccoService {
       .subscribe(
         (res: { infraid: string }) => {
           console.log(res);
-
-          this.infraid = res.infraid;
-          console.log(this.infraid);
-
-          this.auth.authState.take(1).subscribe(user => {
-            if (!user) {
-              return;
-            }
-
-            const data = { [user.uid]: { [entryId]: res } };
-            this.db.object('infrastructures/').update(data);
-          });
+          console.log(res.infraid);
           return this;
         },
         error => {
@@ -70,9 +53,8 @@ export class OccoService {
    * Then it sends the actual infrastructures ID back to the server with a destroy commands based URL,
    * and it subscribes to any response back from the server.
    */
-  destroyWorkflow() {
-    const infraid = 'asd';
-    const endpoint = this.url + '/infrastructures/' + this.infraid;
+  destroyWorkflow(infraid: string) {
+    const endpoint = this.url + '/infrastructures/' + infraid;
 
     return this.http.delete(endpoint, { responseType: 'text' }).subscribe(
       res => {
@@ -86,8 +68,8 @@ export class OccoService {
     );
   }
 
-  getWorkflowInformation(entryId?: string) {
-    const endpoint = this.url + '/infrastructures/' + this.infraid;
+  getWorkflowInformation(infraid: string, entryId?: string) {
+    const endpoint = this.url + '/infrastructures/' + infraid;
 
     this.http.get(endpoint, { responseType: 'text' }).subscribe(
       res => {

@@ -1,3 +1,4 @@
+import { TemplateService } from './template.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -20,6 +21,11 @@ import { BuildContextPropertiesComponent } from 'app/workflow/build-context-prop
     WorkflowManagerComponent,
     BuildContextPropertiesComponent
   ],
-  providers: [WorkflowEntryService, CloudMessagingService, OccoService]
+  providers: [
+    WorkflowEntryService,
+    CloudMessagingService,
+    OccoService,
+    TemplateService
+  ]
 })
 export class WorkflowModule {}
