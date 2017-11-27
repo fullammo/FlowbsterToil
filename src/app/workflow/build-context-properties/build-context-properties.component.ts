@@ -51,9 +51,7 @@ export class BuildContextPropertiesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.occoSVC.buildWorkflow(
-      this.buildTemplate.descriptor
-    );
+    this.occoSVC.buildWorkflow(this.buildTemplate.descriptor).subscribe()
 
     this.onSubmitDialog.emit();
 

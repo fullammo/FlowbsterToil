@@ -1,13 +1,17 @@
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Injectable } from '@angular/core';
+import { Deployment } from './deployment';
 import { DataAccessService } from 'app/workflow/shared/data-access.service';
-import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
+import { Injectable } from '@angular/core';
 import { AuthService } from 'app/core/auth.service';
 
 @Injectable()
-export class TemplateService extends DataAccessService<WorkflowEntry> {
+export class DeploymentService extends DataAccessService<Deployment> {
   constructor(protected afs: AngularFirestore, protected authSVC: AuthService) {
     super(afs, authSVC);
-    super.subscribeToDataChanges();
+  }
+
+  subscribeToDataChanges(entryKey: string) {
+    const additionPath = `/${entryKey}/deployments`;
+    super.subscribeToDataChanges(additionPath);
   }
 }

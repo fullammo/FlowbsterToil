@@ -12,6 +12,7 @@ import { OccoService } from 'app/workflow/shared/occo.service';
 import { EditorModule } from 'app/editor/editor.module';
 import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
 import { BuildContextPropertiesComponent } from 'app/workflow/build-context-properties/build-context-properties.component';
+import { DeploymentManagerComponent } from 'app/workflow/deployment-manager/deployment-manager.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],
@@ -19,7 +20,8 @@ import { BuildContextPropertiesComponent } from 'app/workflow/build-context-prop
     WorkflowMaintComponent,
     WorkflowDetailComponent,
     WorkflowManagerComponent,
-    BuildContextPropertiesComponent
+    BuildContextPropertiesComponent,
+    DeploymentManagerComponent
   ],
   providers: [
     WorkflowEntryService,

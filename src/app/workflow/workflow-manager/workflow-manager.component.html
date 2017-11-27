@@ -39,14 +39,11 @@
     </div>
   </p-footer>
 
-  <!-- We need a dialog here to represent the Build Context for the Deployment -->
-
-
   <ng-template let-entry pTemplate="rowexpansion">
     <!-- Here is the place for another component which will care about the functionality of the deployments grid. -->
-
+    <toil-deployment-manager></toil-deployment-manager>
     <!-- We need to provide the actual entry for this rowexpansion to the component -->
-    <p-dataTable [value]="workflowEntries" expandableRows="true">
+    <!-- <p-dataTable [value]="workflowEntries" expandableRows="true">
       <p-column expander="true" styleClass="col-icon"></p-column>
       <p-column field="name" [sortable]="true" header="Name"></p-column>
       <p-column field="description" header="Description"></p-column>
@@ -70,7 +67,7 @@
           </ng-template>
         </p-dataTable>
       </ng-template>
-    </p-dataTable>
+    </p-dataTable> -->
   </ng-template>
 
 </p-dataTable>

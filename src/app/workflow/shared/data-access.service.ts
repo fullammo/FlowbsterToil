@@ -16,13 +16,10 @@ export abstract class DataAccessService<T extends DataEntry> {
 
   constructor(
     protected afs: AngularFirestore,
-    protected authSVC: AuthService,
-    protected additionalPath?: string
-  ) {
-    this.subscribeToDataChanges(additionalPath);
-  }
+    protected authSVC: AuthService
+  ) {}
 
-  private subscribeToDataChanges(additionalPath: string = '') {
+  protected subscribeToDataChanges(additionalPath: string = '') {
     this.authSVC.user.subscribe(user => {
       if (user) {
         this.collection = this.afs.collection<T>(

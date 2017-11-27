@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
@@ -33,19 +34,22 @@ export class OccoService {
     console.log(yamldescriptor);
     header.append('Content-Type', 'application/x-yaml');
 
-    return this.http
-      .post(endpoint, yamldescriptor, { headers: header })
-      .subscribe(
-        (res: { infraid: string }) => {
-          console.log(res);
-          console.log(res.infraid);
-          return this;
-        },
-        error => {
-          console.log('error occured', error);
-        },
-        () => {}
-      );
+    const obs = this.http.post(endpoint, yamldescriptor, { headers: header });
+
+    obs.subscribe(
+      (res: { infraid: string }) => {
+        console.log(res);
+        console.log(res.infraid);
+        return res.infraid;
+      },
+      error => {
+        console.log('error occured', error);
+        return error;
+      },
+      () => {}
+    );
+
+    return obs;
   }
 
   /**
