@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { OccoService } from 'app/workflow/shared/occo.service';
 import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'toil-workflow-manager',
   templateUrl: './workflow-manager.component.html',
-  styleUrls: ['./workflow-manager.component.scss']
+  styleUrls: ['./workflow-manager.component.scss'],
+  providers: [ConfirmationService]
 })
 export class WorkflowManagerComponent implements OnInit {
   workflowEntries: WorkflowEntry[];
@@ -22,7 +24,8 @@ export class WorkflowManagerComponent implements OnInit {
     private workflowEntrySVC: WorkflowEntryService,
     private router: Router,
     private occoSVC: OccoService,
-    private jointSVC: JointService
+    private jointSVC: JointService,
+    private confirmSVC: ConfirmationService
   ) {}
 
   /**
@@ -61,6 +64,17 @@ export class WorkflowManagerComponent implements OnInit {
           'create'
         ]);
       });
+  }
+
+  confirmDeletion(entry: WorkflowEntry) {
+    this.confirmSVC.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.deleteEntry(entry.$key);
+      }
+    });
   }
 
   /**

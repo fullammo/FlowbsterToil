@@ -18,7 +18,6 @@ export class InputPropertiesComponent implements OnInit {
   inputProps: InputPort;
 
   @Output() onSubmitDialog = new EventEmitter<InputPort>();
-  @Output() InputPropsChange = new EventEmitter<InputPort>(); // not neccessary
 
   @ViewChild('f') myNgForm; // check issue#4190 on Angular material2 github site.
 
@@ -29,7 +28,6 @@ export class InputPropertiesComponent implements OnInit {
 
   set InputProps(val: InputPort) {
     this.inputProps = val;
-    this.InputPropsChange.emit(this.inputProps);
   }
 
   constructor(private fb: FormBuilder, private jointSVC: JointService) { }
