@@ -19,7 +19,7 @@ export abstract class DataAccessService<T extends DataEntry> {
     this.subscription = new Subscription();
   }
 
-  protected subscribeToDataChanges(additionalPath: string = '') {
+  subscribeToDataChanges(additionalPath: string = '') {
     const subscription: Subscription = this.authSVC.user.subscribe(user => {
       if (user) {
         console.log(additionalPath);

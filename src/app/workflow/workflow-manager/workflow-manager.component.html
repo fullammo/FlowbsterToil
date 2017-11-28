@@ -40,34 +40,7 @@
   </p-footer>
 
   <ng-template let-entry pTemplate="rowexpansion">
-    <!-- Here is the place for another component which will care about the functionality of the deployments grid. -->
     <toil-deployment-manager [contextEntry]="entry"></toil-deployment-manager>
-    <!-- We need to provide the actual entry for this rowexpansion to the component -->
-    <!-- <p-dataTable [value]="workflowEntries" expandableRows="true">
-      <p-column expander="true" styleClass="col-icon"></p-column>
-      <p-column field="name" [sortable]="true" header="Name"></p-column>
-      <p-column field="description" header="Description"></p-column>
-      <p-column field="edit">
-        <ng-template let-entry="rowData" pTemplate="body">
-          <button type="button" pButton (click)="onEditClicked(entry)" icon="fa-check"></button>
-        </ng-template>
-      </p-column>
-      <ng-template let-entry pTemplate="rowexpansion">
-        <p-dataTable [value]="workflowEntries" expandableRows="true">
-          <p-column expander="true" styleClass="col-icon"></p-column>
-          <p-column field="name" [sortable]="true" header="Name"></p-column>
-          <p-column field="description" header="Description"></p-column>
-          <p-column field="edit">
-            <ng-template let-entry="rowData" pTemplate="body">
-              <button type="button" pButton (click)="onEditClicked(entry)" icon="fa-check"></button>
-            </ng-template>
-          </p-column>
-          <ng-template let-entry pTemplate="rowexpansion">
-            {{entry}}
-          </ng-template>
-        </p-dataTable>
-      </ng-template>
-    </p-dataTable> -->
   </ng-template>
 
 </p-dataTable>

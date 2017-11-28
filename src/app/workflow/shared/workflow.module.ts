@@ -14,6 +14,8 @@ import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow
 import { BuildContextPropertiesComponent } from 'app/workflow/build-context-properties/build-context-properties.component';
 import { DeploymentManagerComponent } from 'app/workflow/deployment-manager/deployment-manager.component';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
+import { ExperimentContextPropertiesComponent } from 'app/workflow/experiment-context-properties/experiment-context-properties.component';
+import { ExperimentManagerComponent } from 'app/workflow/experiment-manager/experiment-manager.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],
@@ -22,7 +24,9 @@ import { DeploymentService } from 'app/workflow/shared/deployment.service';
     WorkflowDetailComponent,
     WorkflowManagerComponent,
     BuildContextPropertiesComponent,
-    DeploymentManagerComponent
+    DeploymentManagerComponent,
+    ExperimentContextPropertiesComponent,
+    ExperimentManagerComponent
   ],
   providers: [
     WorkflowEntryService,

@@ -16,13 +16,27 @@ export class DeploymentManagerComponent implements OnInit, OnDestroy {
   deployments: Deployment[];
   selectedDeployments: Deployment[];
 
+  experimentContextModalVisible: boolean;
+
+  experimentContextEntry: Deployment;
+
   constructor(private deploymentSVC: DeploymentService) {}
 
   ngOnInit() {
+    this.experimentContextModalVisible = false;
     this.deploymentSVC.subscribeToDataChanges(this.contextEntry.$key);
     this.deploymentSVC.dataChange.subscribe(deployments => {
       this.deployments = deployments;
     });
+
+    this.experimentContextEntry = {
+      name: ''
+    };
+  }
+
+  onStartClick(entry: Deployment) {
+    this.experimentContextEntry = entry;
+    this.experimentContextModalVisible = true;
   }
 
   ngOnDestroy() {
