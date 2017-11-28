@@ -9,12 +9,13 @@ import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-d
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { TemplateService } from 'app/workflow/shared/template.service';
+import { DeploymentService } from 'app/workflow/shared/deployment.service';
 
 @Component({
   selector: 'toil-workflow-manager',
   templateUrl: './workflow-manager.component.html',
   styleUrls: ['./workflow-manager.component.scss'],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, DeploymentService]
 })
 export class WorkflowManagerComponent implements OnInit {
   workflowEntries: WorkflowEntry[];
@@ -28,7 +29,8 @@ export class WorkflowManagerComponent implements OnInit {
     private templateSVC: TemplateService,
     private router: Router,
     private jointSVC: JointService,
-    private confirmSVC: ConfirmationService
+    private confirmSVC: ConfirmationService,
+    private deploymentSVC: DeploymentService
   ) {}
 
   /**

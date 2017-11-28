@@ -14,4 +14,9 @@ export class DeploymentService extends DataAccessService<Deployment> {
     const additionPath = `/${entryKey}/deployments`;
     super.subscribeToDataChanges(additionPath);
   }
+
+  resetSubscriptions(entryKey: string) {
+    this.subscription.unsubscribe();
+    this.subscribeToDataChanges(entryKey);
+  }
 }
