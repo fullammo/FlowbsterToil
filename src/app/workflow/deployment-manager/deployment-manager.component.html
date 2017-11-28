@@ -1,1 +1,72 @@
-{{contextEntry | json}}
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+  <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+</div>
+
+
+<p-dataTable [value]="deployments" [(selection)]="selectedDeployments" [headerCheckboxToggleAllPages]="true" dataKey="$key"
+  [globalFilter]="gb" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" expandableRows="true">
+  <p-header>Right Click on Rows for ContextMenu (soon to be implemented)</p-header>
+  <p-column [style]="{'width':'34px'}" selectionMode="multiple"></p-column>
+  <p-column [style]="{'width':'34px'}" expander="true" styleClass="col-icon"></p-column>
+  <p-column field="name" [sortable]="true" header="Name" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
+  <!-- <p-column field="edit" header="Actions">
+    <ng-template let-entry="rowData" pTemplate="body">
+      <button type="button" pButton icon="fa-pencil-square-o" (click)="onEditClicked(entry)"></button>
+      <button type="button" pButton icon="fa-files-o" (click)="onCopyClicked(entry)"></button>
+      <button type="button" class="ui-button-danger" pButton (click)="confirmDeletion(entry)" icon="fa-trash-o"></button>
+      <button type="button" class="ui-button-success" style="float:right" pButton (click)="onBuildClicked(entry)" icon="fa-cloud-upload"></button>
+      <button type="button" style="float:right" pButton (click)="onMagnifierClicked(entry)" icon="fa-eye"></button>
+    </ng-template>
+  </p-column> -->
+
+  <!-- <ng-template pTemplate="paginatorLeft">
+    <button type="button" pButton icon="fa-plus" class="ui-button-success" style="float:left" (click)="onAddClick()" label="Add Template"></button>
+    <button type="button" pButton icon="fa-files-o" style="float:left" (click)="onMultiCopyClick()" label="Copy Templates"></button>
+    <button type="button" pButton icon="fa-trash-o" style="float:left" class="ui-button-danger" (click)="confirmMultiDelete()"
+      label="Delete Templates"></button>
+  </ng-template>
+
+  <ng-template pTemplate="paginatorRight">
+    <button type="button" pButton icon="fa-cloud-upload" class="ui-button-info" style="float:right" (click)="onMultiBuildClick()"
+      label="Build Templates"></button>
+  </ng-template> -->
+
+  <!-- <p-footer>
+    <div class="ui-helper-clearfix" style="width:100%">
+      <toil-editor [readOnly]="true"></toil-editor>
+    </div>
+  </p-footer> -->
+
+  <!-- <ng-template let-entry pTemplate="rowexpansion">
+    <!-- Here is the place for another component which will care about the functionality of the deployments grid. -->
+    <!-- <toil-deployment-manager [contextEntry]="entry"></toil-deployment-manager> -->
+    <!-- We need to provide the actual entry for this rowexpansion to the component -->
+    <!-- <p-dataTable [value]="workflowEntries" expandableRows="true">
+      <p-column expander="true" styleClass="col-icon"></p-column>
+      <p-column field="name" [sortable]="true" header="Name"></p-column>
+      <p-column field="description" header="Description"></p-column>
+      <p-column field="edit">
+        <ng-template let-entry="rowData" pTemplate="body">
+          <button type="button" pButton (click)="onEditClicked(entry)" icon="fa-check"></button>
+        </ng-template>
+      </p-column>
+      <ng-template let-entry pTemplate="rowexpansion">
+        <p-dataTable [value]="workflowEntries" expandableRows="true">
+          <p-column expander="true" styleClass="col-icon"></p-column>
+          <p-column field="name" [sortable]="true" header="Name"></p-column>
+          <p-column field="description" header="Description"></p-column>
+          <p-column field="edit">
+            <ng-template let-entry="rowData" pTemplate="body">
+              <button type="button" pButton (click)="onEditClicked(entry)" icon="fa-check"></button>
+            </ng-template>
+          </p-column>
+          <ng-template let-entry pTemplate="rowexpansion">
+            {{entry}}
+          </ng-template>
+        </p-dataTable>
+      </ng-template>
+    </p-dataTable> -->
+  <!-- </ng-template> -->
+
+</p-dataTable>

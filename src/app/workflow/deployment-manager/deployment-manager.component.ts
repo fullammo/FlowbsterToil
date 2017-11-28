@@ -1,7 +1,8 @@
 import { WorkflowEntry } from './../shared/workflowEntry';
 import { Component, OnInit, Input } from '@angular/core';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Deployment } from 'app/workflow/shared/deployment';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'toil-deployment-manager',
@@ -9,16 +10,21 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./deployment-manager.component.scss'],
   providers: [DeploymentService]
 })
-export class DeploymentManagerComponent implements OnInit, AfterViewInit {
+export class DeploymentManagerComponent implements OnInit, OnDestroy {
   @Input() contextEntry: WorkflowEntry;
+
+  deployments: Deployment[];
 
   constructor(private deploymentSVC: DeploymentService) {}
 
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    console.log(this.contextEntry);
+  ngOnInit() {
     this.deploymentSVC.subscribeToDataChanges(this.contextEntry.$key);
-    console.log(this.deploymentSVC.collection);
+    this.deploymentSVC.dataChange.subscribe(deployments => {
+      this.deployments = deployments;
+    });
+  }
+
+  ngOnDestroy() {
+    this.deploymentSVC.subscription.unsubscribe();
   }
 }
