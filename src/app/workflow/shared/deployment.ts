@@ -4,7 +4,7 @@ export interface Deployment {
   infraid?: string;
   tempalteKey?: string;
   $key?: string;
-  deploymentType?: DeploymentType;
+  deployType?: DeploymentType;
   status?: Status;
   starterPoint?: string;
   endPoints?: string[];

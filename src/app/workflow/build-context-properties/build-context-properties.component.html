@@ -1,30 +1,30 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
 
-      <div class="ui-grid-row">
-          <mat-input-container>
-            <input matInput type="text" placeholder="Deployment Name" [formControl]="form.controls['name']" [(ngModel)]="deployment.name">
-            <mat-error *ngIf="!form.controls['name'].valid&&form.controls['name'].dirty">
-              Input name is <strong>required</strong>
-            </mat-error>
-          </mat-input-container>
-        </div>
+    <div class="ui-grid-row">
+      <mat-input-container>
+        <input matInput type="text" placeholder="Deployment Name" [formControl]="form.controls['name']">
+        <mat-error *ngIf="!form.controls['name'].valid&&form.controls['name'].dirty">
+          Input name is
+          <strong>required</strong>
+        </mat-error>
+      </mat-input-container>
+    </div>
 
 
-        <div class="ui-grid-row">
-          <mat-select placeholder="Distribution" [formControl]="form.controls['deployType']" [(ngModel)]="deployment.deploymentType"
-            floatPLaceholder="never">
-            <mat-option *ngFor="let deployment of DeploymentTypes | keys" [value]="deployment.value">
-              {{deployment.value}}
-            </mat-option>
-          </mat-select>
-        </div>
+    <div class="ui-grid-row">
+      <mat-select placeholder="Distribution" [formControl]="form.controls['deployType']" floatPLaceholder="never">
+        <mat-option *ngFor="let deployment of DeploymentTypes | keys" [value]="deployment.value">
+          {{deployment.value}}
+        </mat-option>
+      </mat-select>
+    </div>
 
-        <div class="ui-grid-row">
-          <button pButton type="submit" label="Submit" [disabled]="!form.valid"></button>
-        </div>
+    <div class="ui-grid-row">
+      <button pButton type="submit" label="Submit" [disabled]="!form.valid"></button>
+    </div>
 
-        <!-- <div class="ui-grid-row">
+    <!-- <div class="ui-grid-row">
           <mat-input-container>
             <input matInput type="text" placeholder="displayName" [formControl]="form.controls['name']" [(ngModel)]="inputProps.displayName">
             <mat-error *ngIf="!form.controls['name'].valid&&form.controls['name'].dirty">

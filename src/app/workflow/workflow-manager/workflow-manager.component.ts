@@ -10,12 +10,13 @@ import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { TemplateService } from 'app/workflow/shared/template.service';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
+import { Deployment } from 'app/workflow/shared/deployment';
 
 @Component({
   selector: 'toil-workflow-manager',
   templateUrl: './workflow-manager.component.html',
   styleUrls: ['./workflow-manager.component.scss'],
-  providers: [ConfirmationService, DeploymentService]
+  providers: [ConfirmationService]
 })
 export class WorkflowManagerComponent implements OnInit {
   workflowEntries: WorkflowEntry[];
@@ -42,26 +43,7 @@ export class WorkflowManagerComponent implements OnInit {
     });
 
     this.buildContextDialogVisible = false;
-
-    this.buildContextEntry = {
-      name: '',
-      description: '',
-      graph: '',
-      descriptor: ''
-    };
-
-    // this.items = [
-    //   {
-    //     label: 'View',
-    //     icon: 'fa-search',
-    //     command: event => this.eviii()
-    //   },
-    //   {
-    //     label: 'Delete',
-    //     icon: 'fa-close', // fa-trash-o
-    //     command: event => this.eviii()
-    //   }
-    // ];
+    this.buildContextEntry = DataAccessHelper.initTemplate();
   }
 
   /**
@@ -78,8 +60,9 @@ export class WorkflowManagerComponent implements OnInit {
     });
   }
 
-  onDeployContextSubmit() {
+  onDeployContextSubmit(deployment: Deployment) {
     this.buildContextDialogVisible = false;
+    this.deploymentSVC.saveEntry(deployment);
   }
 
   confirmDeletion(entry: WorkflowEntry) {
@@ -232,9 +215,9 @@ export class WorkflowManagerComponent implements OnInit {
    * @param entry
    */
   onBuildClicked(entry: WorkflowEntry) {
+    this.deploymentSVC.subscribeToDataChanges(entry.$key);
     this.buildContextEntry = entry;
     this.buildContextDialogVisible = true;
-    // this.buildEntry(entry);
   }
 
   /**

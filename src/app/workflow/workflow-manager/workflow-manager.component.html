@@ -75,7 +75,7 @@
 <p-confirmDialog></p-confirmDialog>
 <p-dialog header="Deployment Context for " [modal]="true" [(visible)]="buildContextDialogVisible">
   <p-header> {{buildContextEntry.name}} template</p-header>
-  <toil-build-context-properties (onSubmitDialog)="onDeployContextSubmit()" [buildTemplate]="buildContextEntry"></toil-build-context-properties>
+  <toil-build-context-properties (onSubmitDialog)="onDeployContextSubmit($event)" [buildTemplate]="buildContextEntry"></toil-build-context-properties>
 </p-dialog>
 
 

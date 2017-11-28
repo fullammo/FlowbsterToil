@@ -13,6 +13,7 @@ import { EditorModule } from 'app/editor/editor.module';
 import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
 import { BuildContextPropertiesComponent } from 'app/workflow/build-context-properties/build-context-properties.component';
 import { DeploymentManagerComponent } from 'app/workflow/deployment-manager/deployment-manager.component';
+import { DeploymentService } from 'app/workflow/shared/deployment.service';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],
@@ -27,7 +28,8 @@ import { DeploymentManagerComponent } from 'app/workflow/deployment-manager/depl
     WorkflowEntryService,
     CloudMessagingService,
     OccoService,
-    TemplateService
+    TemplateService,
+    DeploymentService
   ]
 })
 export class WorkflowModule {}

@@ -14,6 +14,7 @@ export class DeploymentManagerComponent implements OnInit, OnDestroy {
   @Input() contextEntry: WorkflowEntry;
 
   deployments: Deployment[];
+  selectedDeployments: Deployment[];
 
   constructor(private deploymentSVC: DeploymentService) {}
 

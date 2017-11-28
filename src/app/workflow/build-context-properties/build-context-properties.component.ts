@@ -31,12 +31,11 @@ export class BuildContextPropertiesComponent implements OnInit {
 
   @ViewChild('f') myNgForm;
 
-  @Output() onSubmitDialog = new EventEmitter();
+  @Output() onSubmitDialog = new EventEmitter<Deployment>();
 
   constructor(
     private fb: FormBuilder,
-    private occoSVC: OccoService,
-    private afs: AngularFirestore
+    private occoSVC: OccoService
   ) {}
 
   ngOnInit() {
@@ -51,9 +50,21 @@ export class BuildContextPropertiesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.occoSVC.buildWorkflow(this.buildTemplate.descriptor).subscribe()
-
-    this.onSubmitDialog.emit();
+    this.deployment = this.form.value;
+    this.occoSVC.buildWorkflow(this.buildTemplate.descriptor).subscribe(
+      (res: any) => {
+        this.deployment.infraid = res.infraid;
+        this.deployment.tempalteKey = this.buildTemplate.$key;
+        this.onSubmitDialog.emit(this.deployment);
+      },
+      error => {
+        console.log(this.deployment);
+        this.deployment.infraid = 'kamuid';
+        this.deployment.tempalteKey = this.buildTemplate.$key;
+        this.onSubmitDialog.emit(this.deployment);
+        console.log(error);
+      }
+    );
 
     this.myNgForm.resetForm();
   }
