@@ -24,8 +24,6 @@ export class WorkflowManagerComponent implements OnInit {
   buildContextDialogVisible: boolean;
   buildContextEntry: WorkflowEntry;
 
-  // items: MenuItem[];
-
   constructor(
     private templateSVC: TemplateService,
     private router: Router,

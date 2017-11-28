@@ -4,7 +4,7 @@
 </div>
 
 
-<p-dataTable [value]="deployments" [(selection)]="selectedDeployments" [headerCheckboxToggleAllPages]="true" dataKey="$key"
+<p-dataTable [value]="dataTableEntries" [(selection)]="selectedEntries" [headerCheckboxToggleAllPages]="true" dataKey="$key"
   [globalFilter]="gb" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" expandableRows="true">
   <p-header>Deployment dataTable</p-header>
   <p-column [style]="{'width':'34px'}" selectionMode="multiple"></p-column>
@@ -18,7 +18,7 @@
       <button type="button" class="ui-button-danger" pButton (click)="confirmDeletion(entry)" icon="fa-trash-o"></button>
       <button type="button" class="ui-button-success" style="float:right" pButton (click)="onBuildClicked(entry)" icon="fa-cloud-upload"></button>
       <button type="button" style="float:right" pButton (click)="onMagnifierClicked(entry)" icon="fa-eye"></button> -->
-      <button type="button" class="ui-button-success" style="float:right" pButton (click)="onStartClick(entry)" icon="fa-play"></button>
+      <button type="button" class="ui-button-success" style="float:right" pButton (click)="onModalButtonClick(entry)" icon="fa-play"></button>
     </ng-template>
   </p-column>
 
@@ -46,7 +46,7 @@
   </ng-template>
 </p-dataTable>
 
-<p-dialog header="Experiment Context for " [modal]="true" [(visible)]="experimentContextModalVisible">
-  <p-header> {{experimentContextEntry.name}} deployment</p-header>
+<p-dialog header="Experiment Context for " [modal]="true" [(visible)]="modalVisible">
+  <p-header> {{contextEntry.name}} deployment</p-header>
   <toil-experiment-context-properties></toil-experiment-context-properties>
 </p-dialog>

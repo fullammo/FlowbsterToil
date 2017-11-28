@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
 import { Deployment } from 'app/workflow/shared/deployment';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { ManagerComponent } from 'app/workflow/shared/manager.component';
 
 @Component({
   selector: 'toil-deployment-manager',
@@ -10,36 +11,11 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./deployment-manager.component.scss'],
   providers: [DeploymentService]
 })
-export class DeploymentManagerComponent implements OnInit, OnDestroy {
-  @Input() contextEntry: WorkflowEntry;
-
-  deployments: Deployment[];
-  selectedDeployments: Deployment[];
-
-  experimentContextModalVisible: boolean;
-
-  experimentContextEntry: Deployment;
-
-  constructor(private deploymentSVC: DeploymentService) {}
-
-  ngOnInit() {
-    this.experimentContextModalVisible = false;
-    this.deploymentSVC.subscribeToDataChanges(this.contextEntry.$key);
-    this.deploymentSVC.dataChange.subscribe(deployments => {
-      this.deployments = deployments;
-    });
-
-    this.experimentContextEntry = {
-      name: ''
-    };
-  }
-
-  onStartClick(entry: Deployment) {
-    this.experimentContextEntry = entry;
-    this.experimentContextModalVisible = true;
-  }
-
-  ngOnDestroy() {
-    this.deploymentSVC.subscription.unsubscribe();
+export class DeploymentManagerComponent extends ManagerComponent<
+  Deployment,
+  WorkflowEntry
+> {
+  constructor(private deploymentSVC: DeploymentService) {
+    super(deploymentSVC);
   }
 }

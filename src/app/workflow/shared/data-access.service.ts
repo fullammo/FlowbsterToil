@@ -6,7 +6,8 @@ import {
 } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs/Subscription';
 
-interface DataEntry {
+export interface DataEntry {
+  name?: string;
   $key?: string;
 }
 
