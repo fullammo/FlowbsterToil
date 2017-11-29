@@ -1,15 +1,14 @@
-import { PortValidator } from 'app/editor/flowbster-forms/shared/customValidators';
-import { Observable } from 'rxjs/Observable';
 import { InputPort } from 'app/editor/flowbster-forms/input-properties/inputPort';
-import { FormBuilder, NgForm } from '@angular/forms';
+import {
+  FormBuilder,
+  NgForm,
+  AbstractControl,
+  FormGroup
+} from '@angular/forms';
 import { InputPropertiesComponent } from 'app/editor/flowbster-forms/input-properties/input-properties.component';
-
-import 'rxjs/add/observable/of';
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { JointService } from 'app/editor/flowbster-forms/shared/joint.service';
-import { componentFactoryName } from '@angular/compiler';
-import { AbstractControl, FormGroup } from '@angular/forms/src/model';
 
 // xdescribe('InputPropertiesComponent', () => {
 //   let component: InputPropertiesComponent;
@@ -37,8 +36,6 @@ import { AbstractControl, FormGroup } from '@angular/forms/src/model';
 describe('InputPropertiesComponent Isolated', () => {
   let component: InputPropertiesComponent;
   let form: FormGroup;
-  let jointSVC: JointService;
-  let jointSpy: jasmine.Spy;
 
   const fileControlName = 'name';
   const displayControlName = 'displayName';
@@ -53,11 +50,8 @@ describe('InputPropertiesComponent Isolated', () => {
   };
 
   beforeEach(() => {
-    jointSVC = new JointService();
+    const jointSVC = new JointService();
     component = new InputPropertiesComponent(new FormBuilder(), jointSVC);
-    jointSpy = spyOn(jointSVC, 'isPortNameUniqueObservable').and.returnValue(
-      Observable.of(['testMatchingName', 'testMatchingName2'])
-    );
     component.ngOnInit();
     form = component.userform;
   });
