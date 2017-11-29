@@ -33,15 +33,12 @@ export class BuildContextPropertiesComponent implements OnInit {
 
   @Output() onSubmitDialog = new EventEmitter<Deployment>();
 
-  constructor(
-    private fb: FormBuilder,
-    private occoSVC: OccoService
-  ) {}
+  constructor(private fb: FormBuilder, private occoSVC: OccoService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      name: new FormControl(null, Validators.required),
-      deployType: new FormControl(null, Validators.required)
+      name: new FormControl('', Validators.required),
+      deployType: new FormControl('', Validators.required)
     });
 
     this.deployment = {
