@@ -14,7 +14,8 @@ import {
   DataTableModule,
   SharedModule,
   ContextMenuModule,
-  ConfirmDialogModule
+  ConfirmDialogModule,
+  DataListModule
 } from 'primeng/primeng';
 
 @NgModule({
@@ -32,7 +33,8 @@ import {
     DataTableModule,
     SharedModule,
     ContextMenuModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DataListModule
   ],
   exports: [
     MenuModule,
@@ -48,7 +50,8 @@ import {
     DataTableModule,
     SharedModule,
     ContextMenuModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DataListModule
   ]
 })
 export class PrimeModule {}

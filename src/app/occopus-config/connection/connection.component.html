@@ -5,3 +5,51 @@
 <br> http://192.168.248.129:5000/infrastructures/
 <br>
 <button (click)="onClick()" color="primary" mat-raised-button>Update Service Address</button>
+<br>
+
+<br>
+<p-dataList [value]="occoSVC.successLog" [paginator]="true" [rows]="5">
+  <p-header>
+    List of Success Logs
+  </p-header>
+  <ng-template let-log pTemplate="item">
+    <div class="ui-g ui-fluid car-item">
+      <div class="ui-g-12 ui-md-9 car-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Message: </div>
+          <div class="ui-g-10 ui-sm-6">{{log.message}}</div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-9 car-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Date: </div>
+          <div class="ui-g-10 ui-sm-6">{{log.date | date :'yyyy/MM/dd hh:mm'}}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataList>
+
+<br>
+
+<p-dataList [value]="occoSVC.errorLog" [paginator]="true" [rows]="5">
+  <p-header>
+    List of Error Logs
+  </p-header>
+  <ng-template let-log pTemplate="item">
+    <div class="ui-g ui-fluid car-item">
+      <div class="ui-g-12 ui-md-9 car-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Message: </div>
+          <div class="ui-g-10 ui-sm-6">{{log.message}}</div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-9 car-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Date: </div>
+          <div class="ui-g-10 ui-sm-6">{{log.date | date :'yyyy/MM/dd hh:mm'}}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataList>

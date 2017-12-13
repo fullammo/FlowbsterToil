@@ -9,7 +9,7 @@ import { OccoService } from 'app/workflow/shared/occo.service';
 export class ConnectionComponent implements OnInit {
   url: string;
 
-  constructor(private occoSVC: OccoService) {}
+  constructor(public occoSVC: OccoService) {}
 
   ngOnInit() {}
 

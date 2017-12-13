@@ -14,6 +14,8 @@ export class OccoService {
    * The actual endpoint we want to reach with the http service.
    */
   url: string;
+  errorLog: { message: string; date: number }[];
+  successLog: { message: string; date: number }[];
 
   /**
    * We inject Angular Http Service and set a default end point.
@@ -21,6 +23,8 @@ export class OccoService {
    */
   constructor(private http: HttpClient) {
     this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
+    this.errorLog = [];
+    this.successLog = [];
   }
 
   /**
@@ -40,10 +44,18 @@ export class OccoService {
       (res: { infraid: string }) => {
         console.log(res);
         console.log(res.infraid);
+        this.successLog.push({
+          message: JSON.stringify(res),
+          date: Date.now()
+        });
         return res.infraid;
       },
       error => {
         console.log('error occured', error);
+        this.errorLog.push({
+          message: JSON.stringify(error),
+          date: Date.now()
+        });
         return error;
       },
       () => {}
@@ -63,10 +75,19 @@ export class OccoService {
     return this.http.delete(endpoint, { responseType: 'text' }).subscribe(
       res => {
         console.log(res);
+        this.successLog.push({
+          message: JSON.stringify(res),
+          date: Date.now()
+        });
+
         return this;
       },
       error => {
         console.log('error occured', error);
+        this.errorLog.push({
+          message: JSON.stringify(error),
+          date: Date.now()
+        });
       },
       () => {}
     );
