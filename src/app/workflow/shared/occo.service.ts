@@ -38,30 +38,46 @@ export class OccoService {
     console.log(yamldescriptor);
     header.append('Content-Type', 'application/x-yaml');
 
-    const obs = this.http.post(endpoint, yamldescriptor, { headers: header });
+    // return this.http
+    //   .post(endpoint, yamldescriptor, { headers: header })
+    //   .map((res: { infraid: string }) => {
+    //     console.log(res);
+    //     console.log(res.infraid);
+    //     this.successLog.push({
+    //       message: JSON.stringify(res),
+    //       date: Date.now()
+    //     });
+    //   }).toPromise()
+    //   .catch(error => {
+    //     console.log('error occured', error);
+    //     this.errorLog.push({
+    //       message: JSON.stringify(error),
+    //       date: Date.now()
+    //     });
+    //     return error;
+    //   });
 
-    obs.subscribe(
-      (res: { infraid: string }) => {
-        console.log(res);
-        console.log(res.infraid);
-        this.successLog.push({
-          message: JSON.stringify(res),
-          date: Date.now()
-        });
-        return res.infraid;
-      },
-      error => {
-        console.log('error occured', error);
-        this.errorLog.push({
-          message: JSON.stringify(error),
-          date: Date.now()
-        });
-        return error;
-      },
-      () => {}
-    );
-
-    return obs;
+    return this.http
+      .post(endpoint, yamldescriptor, { headers: header }).do(
+        (res: { infraid: string }) => {
+          console.log(res);
+          console.log(res.infraid);
+          this.successLog.push({
+            message: JSON.stringify(res),
+            date: Date.now()
+          });
+          return res.infraid;
+        },
+        error => {
+          console.log('error occured', error);
+          this.errorLog.push({
+            message: JSON.stringify(error),
+            date: Date.now()
+          });
+          return error;
+        },
+        () => {}
+      );
   }
 
   /**

@@ -48,8 +48,10 @@ export class BuildContextPropertiesComponent implements OnInit {
 
   onSubmit() {
     this.deployment = this.form.value;
+
     this.occoSVC.buildWorkflow(this.buildTemplate.descriptor).subscribe(
       (res: any) => {
+        console.log(res);
         this.deployment.infraid = res.infraid;
         this.deployment.templateKey = this.buildTemplate.$key;
         this.deployment.graph = this.buildTemplate.graph;
