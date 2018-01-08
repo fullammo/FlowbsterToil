@@ -12,17 +12,31 @@ import 'rxjs/add/operator/take';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+/**
+ * Handles the notification of Occopusses inner events for the user.
+ */
 @Injectable()
 export class CloudMessagingService {
+
+  /**Instance to hold the firebase messaging utilities */
   messaging = firebase.messaging();
+
+  /**A subscribable stream for the current message */
   currentMessage = new BehaviorSubject(null);
 
+  /**
+   * Initializes the needed AngularFire services.
+   */
   constructor(
     private db: AngularFireDatabase,
     private afs: AngularFirestore,
     private afAuth: AngularFireAuth
   ) {}
 
+  /**
+   * Proposes a permission to the user, about accepting to receive push notifications.
+   * If the user accepts it, we get a messaging Token from firebase and save it to our FireStore database.
+   */
   getPermission(): void {
     this.messaging
       .requestPermission()
@@ -39,6 +53,9 @@ export class CloudMessagingService {
       });
   }
 
+  /**
+   * Whenever we receive a message it feeds the datastream.
+   */
   receiveMessage() {
     this.messaging.onMessage(payload => {
       console.log('Message received. ', payload);
@@ -46,6 +63,10 @@ export class CloudMessagingService {
     });
   }
 
+  /**
+   * Updated the messaging token of the actually logged in user by saving the token under its workspace.
+   * @param token The new messaging token.
+   */
   private updateToken(token) {
     this.afAuth.authState.take(1).subscribe(user => {
       if (!user) {

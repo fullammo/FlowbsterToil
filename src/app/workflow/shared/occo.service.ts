@@ -14,7 +14,15 @@ export class OccoService {
    * The actual endpoint we want to reach with the http service.
    */
   url: string;
+
+  /**
+   * Stores data of the error logs.
+   */
   errorLog: { message: string; date: number }[];
+
+  /**
+   * Stores data of the successfull logs.
+   */
   successLog: { message: string; date: number }[];
 
   /**
@@ -109,7 +117,12 @@ export class OccoService {
     );
   }
 
-  getWorkflowInformation(infraid: string, entryId?: string) {
+  /**
+   * Gets detailed JSON information about the given infrastructure.
+   * @param infraid
+   * @param entryId
+   */
+  getWorkflowInformation(infraid: string) {
     const endpoint = this.url + '/infrastructures/' + infraid;
 
     this.http.get(endpoint, { responseType: 'text' }).subscribe(

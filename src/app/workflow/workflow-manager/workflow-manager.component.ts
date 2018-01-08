@@ -58,15 +58,30 @@ export class WorkflowManagerComponent implements OnInit {
     });
   }
 
+  /**
+   * When the deployment components 'Watch' button is clicked,
+   * it sets the Joint Graph for the clicked deployments graph.
+   * @param graph
+   */
   onDeploymentWatchClicked(graph: string) {
     this.updateViewerPaper(graph);
   }
 
+  /**
+   * When the Deployments build context dialog is submitted, the dialog gets shut,
+   * and the deployment gets saved to the database under the buildContext.
+   * @param deployment
+   */
   onDeployContextSubmit(deployment: Deployment) {
     this.buildContextDialogVisible = false;
     this.deploymentSVC.saveEntry(deployment);
   }
 
+  /**
+   * When a record delete button is clicked, it asks for a confirmation. If it succeeds,
+   * then it gets deleted.
+   * @param entry
+   */
   confirmDeletion(entry: WorkflowEntry) {
     this.confirmSVC.confirm({
       message: 'Do you want to delete this record?',
