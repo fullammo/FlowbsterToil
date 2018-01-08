@@ -58,6 +58,10 @@ export class WorkflowManagerComponent implements OnInit {
     });
   }
 
+  onDeploymentWatchClicked(graph: string) {
+    this.updateViewerPaper(graph);
+  }
+
   onDeployContextSubmit(deployment: Deployment) {
     this.buildContextDialogVisible = false;
     this.deploymentSVC.saveEntry(deployment);
@@ -223,15 +227,15 @@ export class WorkflowManagerComponent implements OnInit {
    * @param entry
    */
   onMagnifierClicked(entry: WorkflowEntry) {
-    this.updateViewerPaper(entry);
+    this.updateViewerPaper(entry.graph);
   }
 
   /**
    * updates the Drawing area with the entry's graph definition.
    * @param entry
    */
-  updateViewerPaper(entry: WorkflowEntry) {
-    this.jointSVC.uploadGraph(JSON.parse(entry.graph));
+  updateViewerPaper(graph: string) {
+    this.jointSVC.uploadGraph(JSON.parse(graph));
   }
 
   /**

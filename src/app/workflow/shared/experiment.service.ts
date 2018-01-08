@@ -12,7 +12,7 @@ export class ExperimentService extends DataAccessService<Experiment> {
   }
 
   subscribeToDeploymentChanges(deployment: Deployment) {
-    const additionPath = `/${deployment.tempalteKey}/deployments/${
+    const additionPath = `/${deployment.templateKey}/deployments/${
       deployment.$key}/experiments`;
     super.subscribeToDataChanges(additionPath);
   }

@@ -40,7 +40,7 @@
   </p-footer>
 
   <ng-template let-entry pTemplate="rowexpansion">
-    <toil-deployment-manager [contextEntry]="entry"></toil-deployment-manager>
+    <toil-deployment-manager [contextEntry]="entry" (onWatchClicked)="onDeploymentWatchClicked($event)"></toil-deployment-manager>
   </ng-template>
 
 </p-dataTable>

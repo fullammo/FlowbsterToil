@@ -1,8 +1,9 @@
 export interface Deployment {
   name: string;
+  graph?: string;
   date?: Date;
   infraid?: string;
-  tempalteKey?: string;
+  templateKey?: string;
   $key?: string;
   deployType?: DeploymentType;
   status?: Status;

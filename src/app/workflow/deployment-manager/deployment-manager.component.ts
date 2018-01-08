@@ -1,5 +1,5 @@
 import { WorkflowEntry } from './../shared/workflowEntry';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
 import { Deployment } from 'app/workflow/shared/deployment';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -15,7 +15,22 @@ export class DeploymentManagerComponent extends ManagerComponent<
   Deployment,
   WorkflowEntry
 > {
+
+  @Output() onWatchClicked = new EventEmitter<string>();
+
   constructor(private deploymentSVC: DeploymentService) {
     super(deploymentSVC);
+  }
+
+  /**
+   * To be decided how do we wanna edit a node.
+   * @param entry
+   */
+  onEditClicked(entry: Deployment) {
+    console.log(entry);
+  }
+
+  onMagnifierClicked(entry: Deployment) {
+    this.onWatchClicked.emit(entry.graph);
   }
 }

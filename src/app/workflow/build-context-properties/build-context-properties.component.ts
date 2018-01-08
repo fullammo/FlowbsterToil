@@ -51,13 +51,15 @@ export class BuildContextPropertiesComponent implements OnInit {
     this.occoSVC.buildWorkflow(this.buildTemplate.descriptor).subscribe(
       (res: any) => {
         this.deployment.infraid = res.infraid;
-        this.deployment.tempalteKey = this.buildTemplate.$key;
+        this.deployment.templateKey = this.buildTemplate.$key;
+        this.deployment.graph = this.buildTemplate.graph;
         this.onSubmitDialog.emit(this.deployment);
       },
       error => {
         console.log(this.deployment);
         this.deployment.infraid = 'kamuid';
-        this.deployment.tempalteKey = this.buildTemplate.$key;
+        this.deployment.templateKey = this.buildTemplate.$key;
+        this.deployment.graph = this.buildTemplate.graph;
         this.onSubmitDialog.emit(this.deployment);
         console.log(error);
       }
