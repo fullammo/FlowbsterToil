@@ -899,6 +899,13 @@
             <code>src/app/workflow/shared/DataAccessHelper.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Utility methods collection for Data Access</p>
+
+            </p>
 
 
 
@@ -952,12 +959,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/workflow/shared/DataAccessHelper.ts:13</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/workflow/shared/DataAccessHelper.ts:26</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Creates an initial workflow entry without the database information.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -979,7 +988,8 @@
                                                               <td>
                                                                   true
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Optional workflowEntry to be reinitialized to initial values without the key.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1015,12 +1025,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/app/workflow/shared/DataAccessHelper.ts:4</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/workflow/shared/DataAccessHelper.ts:13</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Peels the unneccessary information from the workflow entry, and adds &#39;clone&#39; at the end of
+            its name for saving purposes.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1041,7 +1054,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>A fully qualified workflow entry.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1068,7 +1082,16 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { WorkflowEntry } from &#x27;./workflowEntry&#x27;;
 
+/**
+ * Utility methods collection for Data Access
+ */
 export class DataAccessHelper {
+
+  /**
+   * Peels the unneccessary information from the workflow entry, and adds &#x27;clone&#x27; at the end of
+   * its name for saving purposes.
+   * @param entry A fully qualified workflow entry.
+   */
   static peelTemplate(entry: WorkflowEntry): WorkflowEntry {
     return {
       name: entry.name + &#x27; clone&#x27;,
@@ -1078,6 +1101,10 @@ export class DataAccessHelper {
     };
   }
 
+  /**
+   * Creates an initial workflow entry without the database information.
+   * @param entry Optional workflowEntry to be reinitialized to initial values without the key.
+   */
   static initTemplate(entry?: WorkflowEntry): WorkflowEntry {
     if (entry) {
       return {

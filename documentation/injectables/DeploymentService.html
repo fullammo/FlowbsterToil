@@ -897,6 +897,13 @@
             <code>src/app/workflow/shared/deployment.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Holds the logic for the database communication in context of a Templates deployments.</p>
+
+            </p>
 
 
             <section>
@@ -911,9 +918,6 @@
                         <tr>
                             <td class="col-md-4">
                                 <ul class="index-list">
-                                    <li>
-                                         <a href="#resetSubscriptions">resetSubscriptions</a>
-                                    </li>
                                     <li>
                                          <a href="#subscribeToDataChanges">subscribeToDataChanges</a>
                                     </li>
@@ -935,12 +939,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/workflow/shared/deployment.service.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/workflow/shared/deployment.service.ts:11</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes the needed services and passes them to the parent constructor.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -989,67 +995,6 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="resetSubscriptions"></a>
-                                    <span class="name"><b> resetSubscriptions</b><a href="#resetSubscriptions"><span class="fa fa-link"></span></a></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-4">
-            <code>resetSubscriptions(entryKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                                </td>
-                            </tr>
-            
-            
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/workflow/shared/deployment.service.ts:18</a></div>
-                                        </td>
-                                    </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-            
-                                        <div class="io-description">
-                                                <b>Parameters :</b>
-                                                <table class="params">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>Type</td>
-                                                            <td>Optional</td>
-                                                            <td>Description</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            <tr>
-                                                              <td>entryKey</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                              </td>
-                                                              <td>
-                                                              </td>
-                                                              <td></td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div>
-                                        </div>
-                                        <div class="io-description">
-                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-            
-                                        </div>
-                                            <div class="io-description">
-                                                
-                                            </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
                                     <a name="subscribeToDataChanges"></a>
                                     <span class="name"><b> subscribeToDataChanges</b><a href="#subscribeToDataChanges"><span class="fa fa-link"></span></a></span>
                                 </td>
@@ -1063,12 +1008,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/workflow/shared/deployment.service.ts:13</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/workflow/shared/deployment.service.ts:24</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Changes the data path based on the template&#39;s key and subscribes to its data changing events.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1089,7 +1036,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The unique identifier key of the parent Template.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1119,20 +1067,26 @@ import { DataAccessService } from &#x27;app/workflow/shared/data-access.service&
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { AuthService } from &#x27;app/core/auth.service&#x27;;
 
+/**
+ * Holds the logic for the database communication in context of a Templates deployments.
+ */
 @Injectable()
 export class DeploymentService extends DataAccessService&lt;Deployment&gt; {
+
+  /**
+   * Initializes the needed services and passes them to the parent constructor.
+   */
   constructor(protected afs: AngularFirestore, protected authSVC: AuthService) {
     super(afs, authSVC);
   }
 
+  /**
+   * Changes the data path based on the template&#x27;s key and subscribes to its data changing events.
+   * @param entryKey The unique identifier key of the parent Template.
+   */
   subscribeToDataChanges(entryKey: string) {
     const additionPath &#x3D; &#x60;/${entryKey}/deployments&#x60;;
     super.subscribeToDataChanges(additionPath);
-  }
-
-  resetSubscriptions(entryKey: string) {
-    this.subscription.unsubscribe();
-    this.subscribeToDataChanges(entryKey);
   }
 }
 </code></pre>

@@ -897,6 +897,13 @@
             <code>src/app/workflow/shared/template.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Holds the logic to serve the communication needs with the WorkflowEntry database records.</p>
+
+            </p>
 
 
 
@@ -911,12 +918,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/workflow/shared/template.service.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/workflow/shared/template.service.ts:11</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes the need services, calls the parent constructor and listens on data changes.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -967,8 +976,15 @@ import { DataAccessService } from &#x27;app/workflow/shared/data-access.service&
 import { WorkflowEntry } from &#x27;app/workflow/shared/workflowEntry&#x27;;
 import { AuthService } from &#x27;app/core/auth.service&#x27;;
 
+/**
+ * Holds the logic to serve the communication needs with the WorkflowEntry database records.
+ */
 @Injectable()
 export class TemplateService extends DataAccessService&lt;WorkflowEntry&gt; {
+
+  /**
+   * Initializes the need services, calls the parent constructor and listens on data changes.
+   */
   constructor(protected afs: AngularFirestore, protected authSVC: AuthService) {
     super(afs, authSVC);
     super.subscribeToDataChanges();

@@ -900,6 +900,14 @@
             <code>src/app/workflow/shared/data-access.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Defines a simple Data entry that can be saved to the database.
+(For typechecking purposes)</p>
+
+            </p>
 
 
         <section>
@@ -958,10 +966,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/workflow/shared/data-access.service.ts:11</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/workflow/shared/data-access.service.ts:23</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The unique identifier in the FireStore database.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -991,10 +1005,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/workflow/shared/data-access.service.ts:10</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/workflow/shared/data-access.service.ts:18</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The name how the entry is located.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -1010,20 +1030,51 @@ import {
 } from &#x27;angularfire2/firestore&#x27;;
 import { Subscription } from &#x27;rxjs/Subscription&#x27;;
 
+/**
+ * Defines a simple Data entry that can be saved to the database.
+ * (For typechecking purposes)
+ */
 export interface DataEntry {
+
+  /**
+   * The name how the entry is located.
+   */
   name?: string;
+
+  /**
+   * The unique identifier in the FireStore database.
+   */
   $key?: string;
 }
 
+/** Holds the parent logic for the FireStore database communication for generic data entries */
 export abstract class DataAccessService&lt;T extends DataEntry&gt; {
+
+  /**
+   * A subscribable data stream, that informs us about any data changes in the database.
+   */
   dataChange: BehaviorSubject&lt;T[]&gt; &#x3D; new BehaviorSubject&lt;T[]&gt;([]);
+
+  /**
+   * Holds every subscription made in the service class.
+   */
   subscription: Subscription;
+
+  /**
+   * A FireStore database reference for a generic collection.
+   */
   collection: AngularFirestoreCollection&lt;T&gt;;
 
+  /**
+   * Initializes the needed services and instantiates a subscription.
+   */
   constructor(protected afs: AngularFirestore, protected authSVC: AuthService) {
     this.subscription &#x3D; new Subscription();
   }
 
+  /**
+   * Subscribes to the logged in users workspace and its collections.
+   */
   subscribeToDataChanges(additionalPath: string &#x3D; &#x27;&#x27;) {
     const subscription: Subscription &#x3D; this.authSVC.user.subscribe(user &#x3D;&gt; {
       if (user) {
@@ -1038,6 +1089,10 @@ export abstract class DataAccessService&lt;T extends DataEntry&gt; {
     this.subscription.add(subscription);
   }
 
+  /**
+   * Subscribes to whenever the snapshot changes, the data stream is fed with clean entity data.
+   * @param collection The reference to the given FireStore documents.
+   */
   private subscribeToSnapShotChanges(collection) {
     const subscription: Subscription &#x3D; collection
       .snapshotChanges()
@@ -1052,14 +1107,26 @@ export abstract class DataAccessService&lt;T extends DataEntry&gt; {
     this.subscription.add(subscription);
   }
 
+  /**
+   * Deletes an entry from the document reference of the database.
+   * @param key The need to be deleted entity&#x27;s key.
+   */
   deleteEntry(key: string) {
     return this.collection.doc(key).delete();
   }
 
+  /**
+   * Saves the actual entry to the reference collection.
+   * @param entry Entry to be saved.
+   */
   saveEntry(entry: T) {
     return this.collection.add(entry);
   }
 
+  /**
+   * Get the specific entry from the database.
+   * @param key Needed Entry&#x27;s database identifier.
+   */
   getEntry(key: string) {
     return this.collection
       .doc(key)
@@ -1069,6 +1136,11 @@ export abstract class DataAccessService&lt;T extends DataEntry&gt; {
       });
   }
 
+   /**
+   * Creates an initial generic entry based on the action, that happened to the snapshot.
+   * It matters if the entry is newly created.
+   * @param action The event that happened to the snapshot
+   */
   private createInitialEntry(action): T {
     let entry: T;
 
@@ -1083,6 +1155,10 @@ export abstract class DataAccessService&lt;T extends DataEntry&gt; {
     return entry;
   }
 
+  /**
+   * Updates the generic entry in the database reference collection.
+   * @param entry The Updated generic values.
+   */
   updateEntry(entry: T) {
     const key &#x3D; entry.$key;
     delete entry.$key;

@@ -160,6 +160,10 @@
 <title>cluster_WorkflowModule_DeploymentManagerComponent_providers</title>
 <polygon fill="none" stroke="#000000" points="4962,-222 4962,-274 5154,-274 5154,-222 4962,-222"/>
 </g>
+<g id="clust100" class="cluster">
+<title>cluster_WorkflowModule_ExperimentManagerComponent_providers</title>
+<polygon fill="none" stroke="#000000" points="3841,-222 3841,-274 4027,-274 4027,-222 3841,-222"/>
+</g>
 <g id="clust104" class="cluster">
 <title>cluster_WorkflowModule_providers</title>
 <polygon fill="none" stroke="#000000" points="4197,-222 4197,-274 4954,-274 4954,-222 4197,-222"/>
@@ -323,8 +327,8 @@
 <!-- AuthGuard&#45;&gt;AppRoutingModule -->
 <g id="edge8" class="edge">
 <title>AuthGuard&#45;&gt;AppRoutingModule</title>
-<path fill="none" stroke="#000000" d="M5947,-342.1243C5947,-356.7832 5947,-375 5947,-375 5947,-375 3702.2791,-375 3702.2791,-375 3702.2791,-375 3702.2791,-375.6831 3702.2791,-375.6831"/>
-<polygon fill="#000000" stroke="#000000" points="3698.7793,-371.8313 3702.2791,-381.8314 3705.7793,-371.8314 3698.7793,-371.8313"/>
+<path fill="none" stroke="#000000" d="M5947,-342.1871C5947,-357.1824 5947,-376 5947,-376 5947,-376 3702.2791,-376 3702.2791,-376 3702.2791,-376 3702.2791,-376.581 3702.2791,-376.581"/>
+<polygon fill="#000000" stroke="#000000" points="3698.7793,-371.8097 3702.2791,-381.8097 3705.7793,-371.8098 3698.7793,-371.8097"/>
 </g>
 <!-- WorkflowDetailResolver -->
 <g id="node10" class="node">
@@ -335,8 +339,8 @@
 <!-- WorkflowDetailResolver&#45;&gt;AppRoutingModule -->
 <g id="edge9" class="edge">
 <title>WorkflowDetailResolver&#45;&gt;AppRoutingModule</title>
-<path fill="none" stroke="#000000" d="M5766,-342.2458C5766,-356.1772 5766,-373 5766,-373 5766,-373 3688.1711,-373 3688.1711,-373 3688.1711,-373 3688.1711,-373.8841 3688.1711,-373.8841"/>
-<polygon fill="#000000" stroke="#000000" points="3684.6712,-371.8408 3688.1711,-381.8408 3691.6712,-371.8409 3684.6712,-371.8408"/>
+<path fill="none" stroke="#000000" d="M5766,-342.0511C5766,-356.373 5766,-374 5766,-374 5766,-374 3688.1711,-374 3688.1711,-374 3688.1711,-374 3688.1711,-374.7942 3688.1711,-374.7942"/>
+<polygon fill="#000000" stroke="#000000" points="3684.6712,-371.9421 3688.1711,-381.9421 3691.6712,-371.9422 3684.6712,-371.9421"/>
 </g>
 <!-- WorkflowDetailDeactivateGuard -->
 <g id="node11" class="node">
@@ -381,10 +385,10 @@
 <polygon fill="#000000" stroke="#000000" points="7305.3576,-320.5001 7295.3575,-324 7305.3575,-327.5001 7305.3576,-320.5001"/>
 </g>
 <!-- EditorModule&#45;&gt;WorkflowModule -->
-<g id="edge75" class="edge">
+<g id="edge76" class="edge">
 <title>EditorModule&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M7232.2426,-342.1505C7232.2426,-354.2708 7232.2426,-368 7232.2426,-368 7232.2426,-368 3562.2423,-368 3562.2423,-368 3562.2423,-368 3562.2423,-371.7566 3562.2423,-371.7566"/>
-<polygon fill="#000000" stroke="#000000" points="3558.7423,-371.7566 3562.2423,-381.7566 3565.7423,-371.7566 3558.7423,-371.7566"/>
+<path fill="none" stroke="#000000" d="M7232.2426,-342.0439C7232.2426,-354.5633 7232.2426,-369 7232.2426,-369 7232.2426,-369 3562.8037,-369 3562.8037,-369 3562.8037,-369 3562.8037,-371.9672 3562.8037,-371.9672"/>
+<polygon fill="#000000" stroke="#000000" points="3559.3038,-371.9671 3562.8037,-381.9672 3566.3038,-371.9672 3559.3038,-371.9671"/>
 </g>
 <!-- EditorComponent  -->
 <g id="node17" class="node">
@@ -405,10 +409,10 @@
 <text text-anchor="middle" x="7234" y="-167.8" font-family="Times,serif" font-size="14.00" fill="#000000">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;WorkflowModule -->
-<g id="edge74" class="edge">
+<g id="edge75" class="edge">
 <title>SharedModule&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M7184.6526,-158C6741.7915,-158 3467.4972,-158 3467.4972,-158 3467.4972,-158 3467.4972,-371.8107 3467.4972,-371.8107"/>
-<polygon fill="#000000" stroke="#000000" points="3463.9973,-371.8106 3467.4972,-381.8107 3470.9973,-371.8107 3463.9973,-371.8106"/>
+<path fill="none" stroke="#000000" d="M7184.6645,-158C6741.9096,-158 3468.4006,-158 3468.4006,-158 3468.4006,-158 3468.4006,-371.8107 3468.4006,-371.8107"/>
+<polygon fill="#000000" stroke="#000000" points="3464.9007,-371.8106 3468.4006,-381.8107 3471.9007,-371.8107 3464.9007,-371.8106"/>
 </g>
 <!-- SharedModule&#45;&gt;OccopusConfigModule -->
 <g id="edge57" class="edge">
@@ -683,7 +687,7 @@
 <!-- TopBarComponent&#45;&gt;FwModule -->
 <g id="edge29" class="edge">
 <title>TopBarComponent&#45;&gt;FwModule</title>
-<path fill="none" stroke="#000000" d="M3489.2508,-342.08C3489.2508,-343.8464 3489.2508,-345 3489.2508,-345 3489.2508,-345 3408.9065,-345 3408.9065,-345 3408.9065,-345 3408.9065,-371.9909 3408.9065,-371.9909"/>
+<path fill="none" stroke="#000000" d="M3488.6893,-342.08C3488.6893,-343.8464 3488.6893,-345 3488.6893,-345 3488.6893,-345 3408.9065,-345 3408.9065,-345 3408.9065,-345 3408.9065,-371.9909 3408.9065,-371.9909"/>
 <polygon fill="#000000" stroke="#000000" points="3405.4066,-371.9909 3408.9065,-381.9909 3412.4066,-371.991 3405.4066,-371.9909"/>
 </g>
 <!-- StatusBarComponent -->
@@ -953,8 +957,8 @@
 <!-- WorkflowMaintComponent&#45;&gt;WorkflowModule -->
 <g id="edge66" class="edge">
 <title>WorkflowMaintComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M3659.9551,-342.1223C3659.9551,-344.9729 3659.9551,-347 3659.9551,-347 3659.9551,-347 3496.5499,-347 3496.5499,-347 3496.5499,-347 3496.5499,-371.7604 3496.5499,-371.7604"/>
-<polygon fill="#000000" stroke="#000000" points="3493.05,-371.7604 3496.5499,-381.7604 3500.05,-371.7604 3493.05,-371.7604"/>
+<path fill="none" stroke="#000000" d="M3659.9551,-342.1223C3659.9551,-344.9729 3659.9551,-347 3659.9551,-347 3659.9551,-347 3495.427,-347 3495.427,-347 3495.427,-347 3495.427,-371.7604 3495.427,-371.7604"/>
+<polygon fill="#000000" stroke="#000000" points="3491.9271,-371.7604 3495.427,-381.7604 3498.9271,-371.7604 3491.9271,-371.7604"/>
 </g>
 <!-- WorkflowDetailComponent -->
 <g id="node65" class="node">
@@ -965,8 +969,8 @@
 <!-- WorkflowDetailComponent&#45;&gt;WorkflowModule -->
 <g id="edge67" class="edge">
 <title>WorkflowDetailComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M5059,-342.0555C5059,-353.439 5059,-366 5059,-366 5059,-366 3554.9431,-366 3554.9431,-366 3554.9431,-366 3554.9431,-371.8056 3554.9431,-371.8056"/>
-<polygon fill="#000000" stroke="#000000" points="3551.4432,-371.8055 3554.9431,-381.8056 3558.4432,-371.8056 3551.4432,-371.8055"/>
+<path fill="none" stroke="#000000" d="M5059,-342.4854C5059,-354.1399 5059,-367 5059,-367 5059,-367 3556.066,-367 3556.066,-367 3556.066,-367 3556.066,-371.9551 3556.066,-371.9551"/>
+<polygon fill="#000000" stroke="#000000" points="3552.5661,-371.9551 3556.066,-381.9551 3559.5661,-371.9552 3552.5661,-371.9551"/>
 </g>
 <!-- WorkflowManagerComponent -->
 <g id="node66" class="node">
@@ -977,8 +981,8 @@
 <!-- WorkflowManagerComponent&#45;&gt;WorkflowModule -->
 <g id="edge68" class="edge">
 <title>WorkflowManagerComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4860,-342.1274C4860,-352.7109 4860,-364 4860,-364 4860,-364 3547.644,-364 3547.644,-364 3547.644,-364 3547.644,-371.5782 3547.644,-371.5782"/>
-<polygon fill="#000000" stroke="#000000" points="3544.144,-371.5781 3547.644,-381.5782 3551.144,-371.5782 3544.144,-371.5781"/>
+<path fill="none" stroke="#000000" d="M4860,-342.1025C4860,-353.0859 4860,-365 4860,-365 4860,-365 3549.3284,-365 3549.3284,-365 3549.3284,-365 3549.3284,-371.68 3549.3284,-371.68"/>
+<polygon fill="#000000" stroke="#000000" points="3545.8285,-371.6799 3549.3284,-381.68 3552.8285,-371.68 3545.8285,-371.6799"/>
 </g>
 <!-- BuildContextPropertiesComponent -->
 <g id="node67" class="node">
@@ -989,8 +993,8 @@
 <!-- BuildContextPropertiesComponent&#45;&gt;WorkflowModule -->
 <g id="edge69" class="edge">
 <title>BuildContextPropertiesComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4641,-342.32C4641,-350.7883 4641,-359 4641,-359 4641,-359 3533.0457,-359 3533.0457,-359 3533.0457,-359 3533.0457,-371.8975 3533.0457,-371.8975"/>
-<polygon fill="#000000" stroke="#000000" points="3529.5457,-371.8974 3533.0457,-381.8975 3536.5457,-371.8975 3529.5457,-371.8974"/>
+<path fill="none" stroke="#000000" d="M4641,-342.4218C4641,-351.2791 4641,-360 4641,-360 4641,-360 3535.853,-360 3535.853,-360 3535.853,-360 3535.853,-371.8726 3535.853,-371.8726"/>
+<polygon fill="#000000" stroke="#000000" points="3532.3531,-371.8725 3535.853,-381.8726 3539.3531,-371.8726 3532.3531,-371.8725"/>
 </g>
 <!-- DeploymentManagerComponent -->
 <g id="node68" class="node">
@@ -1001,8 +1005,8 @@
 <!-- DeploymentManagerComponent&#45;&gt;WorkflowModule -->
 <g id="edge70" class="edge">
 <title>DeploymentManagerComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4416,-342.1432C4416,-348.4611 4416,-354 4416,-354 4416,-354 3518.4474,-354 3518.4474,-354 3518.4474,-354 3518.4474,-371.8196 3518.4474,-371.8196"/>
-<polygon fill="#000000" stroke="#000000" points="3514.9474,-371.8195 3518.4474,-381.8196 3521.9474,-371.8196 3514.9474,-371.8195"/>
+<path fill="none" stroke="#000000" d="M4416,-342.2434C4416,-349.4297 4416,-356 4416,-356 4416,-356 3522.3777,-356 3522.3777,-356 3522.3777,-356 3522.3777,-371.8495 3522.3777,-371.8495"/>
+<polygon fill="#000000" stroke="#000000" points="3518.8778,-371.8494 3522.3777,-381.8495 3525.8778,-371.8495 3518.8778,-371.8494"/>
 </g>
 <!-- ExperimentContextPropertiesComponent -->
 <g id="node69" class="node">
@@ -1013,8 +1017,8 @@
 <!-- ExperimentContextPropertiesComponent&#45;&gt;WorkflowModule -->
 <g id="edge72" class="edge">
 <title>ExperimentContextPropertiesComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4083.4253,-342.207C4083.4253,-347.5549 4083.4253,-352 4083.4253,-352 4083.4253,-352 3511.1482,-352 3511.1482,-352 3511.1482,-352 3511.1482,-371.8533 3511.1482,-371.8533"/>
-<polygon fill="#000000" stroke="#000000" points="3507.6483,-371.8532 3511.1482,-381.8533 3514.6483,-371.8533 3507.6483,-371.8532"/>
+<path fill="none" stroke="#000000" d="M4083.4253,-342.1592C4083.4253,-347.0433 4083.4253,-351 4083.4253,-351 4083.4253,-351 3508.9023,-351 3508.9023,-351 3508.9023,-351 3508.9023,-371.7542 3508.9023,-371.7542"/>
+<polygon fill="#000000" stroke="#000000" points="3505.4024,-371.7542 3508.9023,-381.7542 3512.4024,-371.7542 3505.4024,-371.7542"/>
 </g>
 <!-- ExperimentManagerComponent -->
 <g id="node70" class="node">
@@ -1025,8 +1029,8 @@
 <!-- ExperimentManagerComponent&#45;&gt;WorkflowModule -->
 <g id="edge73" class="edge">
 <title>ExperimentManagerComponent&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M3888.4303,-342.0579C3888.4303,-346.4945 3888.4303,-350 3888.4303,-350 3888.4303,-350 3503.8491,-350 3503.8491,-350 3503.8491,-350 3503.8491,-371.9489 3503.8491,-371.9489"/>
-<polygon fill="#000000" stroke="#000000" points="3500.3491,-371.9488 3503.8491,-381.9489 3507.3491,-371.9489 3500.3491,-371.9488"/>
+<path fill="none" stroke="#000000" d="M3888.4303,-342.1686C3888.4303,-346.0459 3888.4303,-349 3888.4303,-349 3888.4303,-349 3502.1646,-349 3502.1646,-349 3502.1646,-349 3502.1646,-371.8757 3502.1646,-371.8757"/>
+<polygon fill="#000000" stroke="#000000" points="3498.6647,-371.8757 3502.1646,-381.8757 3505.6647,-371.8757 3498.6647,-371.8757"/>
 </g>
 <!-- DeploymentService -->
 <g id="node71" class="node">
@@ -1035,10 +1039,10 @@
 <text text-anchor="middle" x="5058" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">DeploymentService</text>
 </g>
 <!-- DeploymentService&#45;&gt;WorkflowModule -->
-<g id="edge80" class="edge">
+<g id="edge81" class="edge">
 <title>DeploymentService&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M5030.1545,-265.2211C5030.1545,-275.2754 5030.1545,-286 5030.1545,-286 5030.1545,-286 3478.338,-286 3478.338,-286 3478.338,-286 3478.338,-371.9364 3478.338,-371.9364"/>
-<polygon fill="#000000" stroke="#000000" points="3474.8381,-371.9363 3478.338,-381.9364 3481.8381,-371.9364 3474.8381,-371.9363"/>
+<path fill="none" stroke="#000000" d="M5030.1545,-265.2211C5030.1545,-275.2754 5030.1545,-286 5030.1545,-286 5030.1545,-286 3477.4346,-286 3477.4346,-286 3477.4346,-286 3477.4346,-371.9364 3477.4346,-371.9364"/>
+<polygon fill="#000000" stroke="#000000" points="3473.9347,-371.9363 3477.4346,-381.9364 3480.9347,-371.9364 3473.9347,-371.9363"/>
 </g>
 <!-- DeploymentService&#45;&gt;DeploymentManagerComponent -->
 <g id="edge71" class="edge">
@@ -1046,53 +1050,65 @@
 <path fill="none" stroke="#000000" d="M5087.8455,-265.0582C5087.8455,-278.8547 5087.8455,-296 5087.8455,-296 5087.8455,-296 4470.8528,-296 4470.8528,-296 4470.8528,-296 4470.8528,-296.9793 4470.8528,-296.9793"/>
 <polygon fill="#000000" stroke="#000000" points="4467.3529,-295.793 4470.8528,-305.793 4474.3529,-295.7931 4467.3529,-295.793"/>
 </g>
-<!-- WorkflowEntryService -->
+<!-- ExperimentService -->
 <g id="node72" class="node">
+<title>ExperimentService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="3934" cy="-248" rx="85.0889" ry="18"/>
+<text text-anchor="middle" x="3934" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">ExperimentService</text>
+</g>
+<!-- ExperimentService&#45;&gt;ExperimentManagerComponent -->
+<g id="edge74" class="edge">
+<title>ExperimentService&#45;&gt;ExperimentManagerComponent</title>
+<path fill="none" stroke="#000000" d="M3934,-266.0109C3934,-266.0109 3934,-295.855 3934,-295.855"/>
+<polygon fill="#000000" stroke="#000000" points="3930.5001,-295.8549 3934,-305.855 3937.5001,-295.855 3930.5001,-295.8549"/>
+</g>
+<!-- WorkflowEntryService -->
+<g id="node73" class="node">
 <title>WorkflowEntryService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="4306" cy="-248" rx="101.264" ry="18"/>
 <text text-anchor="middle" x="4306" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowEntryService</text>
 </g>
 <!-- WorkflowEntryService&#45;&gt;WorkflowModule -->
-<g id="edge76" class="edge">
+<g id="edge77" class="edge">
 <title>WorkflowEntryService&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4204.4609,-248C3981.9615,-248 3471.1108,-248 3471.1108,-248 3471.1108,-248 3471.1108,-371.9667 3471.1108,-371.9667"/>
-<polygon fill="#000000" stroke="#000000" points="3467.6109,-371.9667 3471.1108,-381.9667 3474.6109,-371.9667 3467.6109,-371.9667"/>
+<path fill="none" stroke="#000000" d="M4306.8622,-266.4638C4306.8622,-296.8335 4306.8622,-354 4306.8622,-354 4306.8622,-354 3515.64,-354 3515.64,-354 3515.64,-354 3515.64,-371.8196 3515.64,-371.8196"/>
+<polygon fill="#000000" stroke="#000000" points="3512.1401,-371.8195 3515.64,-381.8196 3519.1401,-371.8196 3512.1401,-371.8195"/>
 </g>
 <!-- CloudMessagingService -->
-<g id="node73" class="node">
+<g id="node74" class="node">
 <title>CloudMessagingService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="4531" cy="-248" rx="105.3779" ry="18"/>
 <text text-anchor="middle" x="4531" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">CloudMessagingService</text>
 </g>
 <!-- CloudMessagingService&#45;&gt;WorkflowModule -->
-<g id="edge77" class="edge">
+<g id="edge78" class="edge">
 <title>CloudMessagingService&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4525.1869,-265.9991C4525.1869,-296.9582 4525.1869,-357 4525.1869,-357 4525.1869,-357 3525.7465,-357 3525.7465,-357 3525.7465,-357 3525.7465,-371.5146 3525.7465,-371.5146"/>
-<polygon fill="#000000" stroke="#000000" points="3522.2466,-371.5145 3525.7465,-381.5146 3529.2466,-371.5146 3522.2466,-371.5145"/>
+<path fill="none" stroke="#000000" d="M4525.1869,-266.1643C4525.1869,-297.4073 4525.1869,-358 4525.1869,-358 4525.1869,-358 3529.1153,-358 3529.1153,-358 3529.1153,-358 3529.1153,-371.9445 3529.1153,-371.9445"/>
+<polygon fill="#000000" stroke="#000000" points="3525.6154,-371.9444 3529.1153,-381.9445 3532.6154,-371.9445 3525.6154,-371.9444"/>
 </g>
 <!-- OccoService -->
-<g id="node74" class="node">
+<g id="node75" class="node">
 <title>OccoService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="4715" cy="-248" rx="60.2306" ry="18"/>
 <text text-anchor="middle" x="4715" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">OccoService</text>
 </g>
 <!-- OccoService&#45;&gt;WorkflowModule -->
-<g id="edge78" class="edge">
+<g id="edge79" class="edge">
 <title>OccoService&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4756.7318,-261.4063C4756.7318,-291.3389 4756.7318,-361 4756.7318,-361 4756.7318,-361 3540.3448,-361 3540.3448,-361 3540.3448,-361 3540.3448,-371.8701 3540.3448,-371.8701"/>
-<polygon fill="#000000" stroke="#000000" points="3536.8449,-371.8701 3540.3448,-381.8701 3543.8449,-371.8701 3536.8449,-371.8701"/>
+<path fill="none" stroke="#000000" d="M4756.7318,-261.0772C4756.7318,-291.0214 4756.7318,-362 4756.7318,-362 4756.7318,-362 3542.5907,-362 3542.5907,-362 3542.5907,-362 3542.5907,-371.8903 3542.5907,-371.8903"/>
+<polygon fill="#000000" stroke="#000000" points="3539.0908,-371.8903 3542.5907,-381.8903 3546.0908,-371.8904 3539.0908,-371.8903"/>
 </g>
 <!-- TemplateService -->
-<g id="node75" class="node">
+<g id="node76" class="node">
 <title>TemplateService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="4870" cy="-248" rx="76.4188" ry="18"/>
 <text text-anchor="middle" x="4870" y="-243.8" font-family="Times,serif" font-size="14.00" fill="#000000">TemplateService</text>
 </g>
 <!-- TemplateService&#45;&gt;WorkflowModule -->
-<g id="edge79" class="edge">
+<g id="edge80" class="edge">
 <title>TemplateService&#45;&gt;WorkflowModule</title>
-<path fill="none" stroke="#000000" d="M4870,-266.207C4870,-271.5549 4870,-276 4870,-276 4870,-276 3474.7244,-276 3474.7244,-276 3474.7244,-276 3474.7244,-371.9693 3474.7244,-371.9693"/>
-<polygon fill="#000000" stroke="#000000" points="3471.2245,-371.9693 3474.7244,-381.9693 3478.2245,-371.9694 3471.2245,-371.9693"/>
+<path fill="none" stroke="#000000" d="M4870,-266.207C4870,-271.5549 4870,-276 4870,-276 4870,-276 3472.9176,-276 3472.9176,-276 3472.9176,-276 3472.9176,-371.9693 3472.9176,-371.9693"/>
+<polygon fill="#000000" stroke="#000000" points="3469.4177,-371.9693 3472.9176,-381.9693 3476.4177,-371.9694 3469.4177,-371.9693"/>
 </g>
 </g>
 </svg>

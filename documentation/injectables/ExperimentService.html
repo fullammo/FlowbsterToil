@@ -897,6 +897,13 @@
             <code>src/app/workflow/shared/experiment.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Holds the logic to serve the communication needs with an Experiment database record.</p>
+
+            </p>
 
 
             <section>
@@ -932,12 +939,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/workflow/shared/experiment.service.ts:9</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/workflow/shared/experiment.service.ts:12</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initialize the needed services and passes them to the parent constructor.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -999,12 +1008,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/workflow/shared/experiment.service.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/workflow/shared/experiment.service.ts:25</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Changes the subscriptions and record path based on the parent deployment.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1025,7 +1036,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The parent deployment.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1056,12 +1068,23 @@ import { AngularFirestore } from &#x27;angularfire2/firestore&#x27;;
 import { AuthService } from &#x27;app/core/auth.service&#x27;;
 import { Deployment } from &#x27;app/workflow/shared/deployment&#x27;;
 
+/**
+ * Holds the logic to serve the communication needs with an Experiment database record.
+ */
 @Injectable()
 export class ExperimentService extends DataAccessService&lt;Experiment&gt; {
+
+  /**
+   * Initialize the needed services and passes them to the parent constructor.
+   */
   constructor(protected afs: AngularFirestore, protected authSVC: AuthService) {
     super(afs, authSVC);
   }
 
+  /**
+   * Changes the subscriptions and record path based on the parent deployment.
+   * @param deployment The parent deployment.
+   */
   subscribeToDeploymentChanges(deployment: Deployment) {
     const additionPath &#x3D; &#x60;/${deployment.templateKey}/deployments/${
       deployment.$key}/experiments&#x60;;
