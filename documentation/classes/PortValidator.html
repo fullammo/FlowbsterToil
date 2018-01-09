@@ -899,6 +899,13 @@
             <code>src/app/editor/flowbster-forms/shared/customValidators.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Holds the neccessary methods to validate a Port.</p>
+
+            </p>
 
 
 
@@ -949,12 +956,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/editor/flowbster-forms/shared/customValidators.ts:109</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/editor/flowbster-forms/shared/customValidators.ts:118</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Checks reactivly, that a Port name is unique through the entire workflow.
+            And feeds it to Validator control.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -975,7 +985,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The singleton Joint Service to be provided.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1107,7 +1118,16 @@ export class NodeValidator {
   }
 }
 
+/**
+ * Holds the neccessary methods to validate a Port.
+ */
 export class PortValidator {
+
+  /**
+   * Checks reactivly, that a Port name is unique through the entire workflow.
+   * And feeds it to Validator control.
+   * @param jointSVC The singleton Joint Service to be provided.
+   */
   static isPortUnique(jointSVC: JointService) {
     return (control: AbstractControl) &#x3D;&gt; {
       return new Observable((obs: any) &#x3D;&gt; {

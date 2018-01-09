@@ -900,14 +900,15 @@
     <code>src/app/occopus-config/connection/connection.component.ts</code>
 </p>
 
-
-
     <p class="comment">
-        <h3>Implements</h3>
+        <h3>Description</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
+        <p>Renders the view to manipulate the Occopus tool configuration settings.</p>
+
     </p>
+
+
 
 
 <section>
@@ -978,9 +979,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
                                  <a href="#onClick">onClick</a>
                             </li>
                         </ul>
@@ -1001,12 +999,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:17</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initializes the needed services.</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1050,38 +1050,6 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="ngOnInit"></a>
-                            <span class="name"><b> ngOnInit</b><a href="#ngOnInit"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>ngOnInit()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:14</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="onClick"></a>
                             <span class="name"><b> onClick</b><a href="#onClick"><span class="fa fa-link"></span></a></span>
                         </td>
@@ -1095,12 +1063,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:28</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>When the update button is clicked, the Occopus based http service gets the url.</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1139,10 +1109,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:23</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The main service to handle http communications made to Occopus.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1168,10 +1144,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/occopus-config/connection/connection.component.ts:17</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url endpoint of the Occopus tool.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1180,21 +1162,33 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 import { OccoService } from &#x27;app/workflow/shared/occo.service&#x27;;
 
+/**
+ * Renders the view to manipulate the Occopus tool configuration settings.
+ */
 @Component({
   selector: &#x27;toil-connection&#x27;,
   templateUrl: &#x27;./connection.component.html&#x27;,
   styleUrls: [&#x27;./connection.component.scss&#x27;]
 })
-export class ConnectionComponent implements OnInit {
+export class ConnectionComponent {
+
+  /**
+   * The url endpoint of the Occopus tool.
+   */
   url: string;
 
+  /**
+   * Initializes the needed services.
+   * @param occoSVC The main service to handle http communications made to Occopus.
+   */
   constructor(public occoSVC: OccoService) {}
 
-  ngOnInit() {}
-
+  /**
+   * When the update button is clicked, the Occopus based http service gets the url.
+   */
   onClick() {
     this.occoSVC.url &#x3D; this.url;
     console.log(this.occoSVC.url);

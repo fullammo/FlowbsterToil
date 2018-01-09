@@ -897,6 +897,13 @@
             <code>src/app/app-routing/workflow-detail-resolver.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Helps to resolve individual workflow data on the workflow detail&#39;s view before the route view gets rendered.</p>
+
+            </p>
 
 
             <section>
@@ -932,12 +939,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/app-routing/workflow-detail-resolver.service.ts:15</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/app-routing/workflow-detail-resolver.service.ts:18</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes the needed services.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -999,12 +1008,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/app-routing/workflow-detail-resolver.service.ts:21</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/app-routing/workflow-detail-resolver.service.ts:32</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>The database communication service gets the Workflow Entry from the route params nad navigates to the correct view
+            based on the information.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1071,13 +1083,24 @@ import {
 import { WorkflowEntry } from &#x27;app/workflow/shared/workflowEntry&#x27;;
 import { WorkflowEntryService } from &#x27;app/workflow/shared/workflow-entry.service&#x27;;
 
+/**
+ * Helps to resolve individual workflow data on the workflow detail&#x27;s view before the route view gets rendered.
+ */
 @Injectable()
 export class WorkflowDetailResolver implements Resolve&lt;WorkflowEntry&gt; {
+
+  /**
+   * Initializes the needed services.
+   */
   constructor(
     private workflowEntrySVC: WorkflowEntryService,
     private router: Router
   ) {}
 
+  /**
+   * The database communication service gets the Workflow Entry from the route params nad navigates to the correct view
+   * based on the information.
+   */
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

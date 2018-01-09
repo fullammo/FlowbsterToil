@@ -897,6 +897,13 @@
             <code>src/app/core/auth.guard.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Defends those routes, where the log in is required.</p>
+
+            </p>
 
 
             <section>
@@ -935,12 +942,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/auth.guard.ts:18</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/core/auth.guard.ts:21</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes the need services.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -1002,12 +1011,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/core/auth.guard.ts:21</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/core/auth.guard.ts:32</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Decides wether the user is logged in to the Authentication service or not.
+            If the user is not authenticated, it gets redirected to the sign in page.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1072,12 +1084,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/core/auth.guard.ts:36</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/core/auth.guard.ts:50</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Child routes are also guarded by calling the parent guard method.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1147,10 +1161,21 @@ import &#x27;rxjs/add/operator/take&#x27;;
 
 import { AuthService } from &#x27;app/core/auth.service&#x27;;
 
+/**
+ * Defends those routes, where the log in is required.
+ */
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
+
+  /**
+   *Initializes the need services.
+   */
   constructor(private authSVC: AuthService, private router: Router) {}
 
+  /**
+   * Decides wether the user is logged in to the Authentication service or not.
+   * If the user is not authenticated, it gets redirected to the sign in page.
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -1166,6 +1191,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       });
   }
 
+  /**
+   * Child routes are also guarded by calling the parent guard method.
+   */
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

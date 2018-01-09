@@ -900,6 +900,13 @@
             <code>src/app/editor/graph-interaction/shared/nodeDescriptor.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Describes information about a Node in YAML parsable and Occopus understandable fashion.</p>
+
+            </p>
 
 
         <section>
@@ -964,10 +971,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:5</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:12</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The name of the actual node.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -997,10 +1010,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:7</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:22</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The scalability parammeters of the node.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1030,10 +1049,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:6</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:17</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Type of the node. (Mainly flowbsternode)</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1063,10 +1088,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:11</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/editor/graph-interaction/shared/nodeDescriptor.ts:37</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Entity for custom variables that can be used in the YAMl descriptor.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -1077,14 +1108,44 @@
         <pre class="line-numbers"><code class="language-typescript">import { InputPort } from &#x27;app/editor/flowbster-forms/input-properties/inputPort&#x27;;
 import { OutputPort } from &#x27;app/editor/flowbster-forms/output-properties/outputPort&#x27;;
 
+/**
+ * Describes information about a Node in YAML parsable and Occopus understandable fashion.
+ */
 export interface NodeDescriptor {
+
+  /**
+   * The name of the actual node.
+   */
   name: string;
+
+  /**
+   * Type of the node. (Mainly flowbsternode)
+   */
   type: string;
+
+  /**
+   * The scalability parammeters of the node.
+   */
   scaling: {
+    /**
+     * Minimum number to scale.
+     */
     min: number;
+
+    /**
+     * Maximum number to scale.
+     */
     max: number;
   };
+
+  /**
+   * Entity for custom variables that can be used in the YAMl descriptor.
+   */
   variables: {
+
+    /**
+     * Entity for declaring a flowbster workflow.
+     */
     flowbster: {
       app: {
         exe: {

@@ -900,6 +900,14 @@
             <code>src/app/editor/graph-interaction/shared/occopusDescriptor.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Describes information about the whole infrastructure
+process, that is YAMl parsable for the Occopus tool</p>
+
+            </p>
 
 
         <section>
@@ -967,10 +975,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:16</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:56</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Array for holding the Dependency graph of the nodes.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1000,10 +1014,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:7</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:19</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The infrastructure qualified name.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1033,10 +1053,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:15</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:51</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Array of holding Flowbster Node Descriptors.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1066,10 +1092,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:6</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:14</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The user unique identifier in the Occopus system.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1099,10 +1131,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/editor/graph-interaction/shared/occopusDescriptor.ts:24</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The identity for global variables</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -1113,18 +1151,58 @@
         <pre class="line-numbers"><code class="language-typescript">import { NodeDescriptor } from &#x27;./nodeDescriptor&#x27;;
 
 // could match the workflow attributes like this.
+/**
+ * Describes information about the whole infrastructure
+ * process, that is YAMl parsable for the Occopus tool
+ */
 export interface OccopusDescriptor {
     // infra_id: number // we used this property in 0.14 version.
+
+    /**
+     * The user unique identifier in the Occopus system.
+     */
     user_id: string,
+
+    /**
+     * The infrastructure qualified name.
+     */
     infra_name: string,
+
+    /**
+     * The identity for global variables
+     */
     variables: {
+
+      /**
+       * Flowbster Workflow System based options.
+       */
         flowbster_global: {
+
+            /**
+             * Gather components IP address.
+             */
             collector_ip: string,
+
+            /**
+             * Gather components Port address.
+             */
             collector_port: string,
+
+            /**
+             * Feeder component Port address.
+             */
             receiver_port: string
         }
     },
+
+    /**
+     * Array of holding Flowbster Node Descriptors.
+     */
     nodes?: NodeDescriptor[],
+
+    /**
+     * Array for holding the Dependency graph of the nodes.
+     */
     dependencies?: Array&lt;string&gt;
 }
 </code></pre>

@@ -14,10 +14,21 @@ import 'rxjs/add/operator/take';
 
 import { AuthService } from 'app/core/auth.service';
 
+/**
+ * Defends those routes, where the log in is required.
+ */
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
+
+  /**
+   *Initializes the need services.
+   */
   constructor(private authSVC: AuthService, private router: Router) {}
 
+  /**
+   * Decides wether the user is logged in to the Authentication service or not.
+   * If the user is not authenticated, it gets redirected to the sign in page.
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -33,6 +44,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       });
   }
 
+  /**
+   * Child routes are also guarded by calling the parent guard method.
+   */
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

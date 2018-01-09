@@ -105,7 +105,16 @@ export class NodeValidator {
   }
 }
 
+/**
+ * Holds the neccessary methods to validate a Port.
+ */
 export class PortValidator {
+
+  /**
+   * Checks reactivly, that a Port name is unique through the entire workflow.
+   * And feeds it to Validator control.
+   * @param jointSVC The singleton Joint Service to be provided.
+   */
   static isPortUnique(jointSVC: JointService) {
     return (control: AbstractControl) => {
       return new Observable((obs: any) => {
