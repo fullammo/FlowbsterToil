@@ -20,5 +20,8 @@ export interface InputPort {
    */
   format?: string;
 
+  /**
+   * The name that is displayed visually on the paper.
+   */
   displayName?: string;
 }

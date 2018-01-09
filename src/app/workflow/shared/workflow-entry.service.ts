@@ -14,14 +14,23 @@ import { AuthService } from 'app/core/auth.service';
 
 // AngularFireStore function are not good enough at the moment.
 // The json parsing doesnt work very well. also the pushing has some limitations.
-
+/**
+ * Interacts with the WorkflowEntry database collection.
+ */
 @Injectable()
 export class WorkflowEntryService {
+
+  /**
+   * An event stream that informs the subscribers about that the data in the database has been changed.
+   */
   dataChange: BehaviorSubject<WorkflowEntry[]> = new BehaviorSubject<
     WorkflowEntry[]
   >([]);
 
   // ***AngularFireStore features ***
+  /**
+   * The FireStore Collection reference for the database entries.
+   */
   graphCollection: AngularFirestoreCollection<WorkflowEntry>;
 
   /** needed for workflowmaint still... */
@@ -32,6 +41,9 @@ export class WorkflowEntryService {
     return this.dataChange.value;
   }
 
+  /**
+   * Initializes the needed services.
+   */
   constructor(
     // ***AngularFireStore features ***
     private afs: AngularFirestore,
@@ -52,6 +64,10 @@ export class WorkflowEntryService {
   }
 
   // ***AngularFireStore features ***
+  /**
+   * Parses the snapshot entries into actual WorkflowEntries and feeds a subscribable datastream.
+   * @param collection
+   */
   private subscribeToSnapShotChanges(collection) {
     collection.snapshotChanges().subscribe(actions => {
       const workflowEntries: WorkflowEntry[] = [];
@@ -63,6 +79,9 @@ export class WorkflowEntryService {
   }
 
   // ***AngularFireStore features ***
+  /**
+   * If the user changes we subscribe to its database events.
+   */
   private subscribeToUserChanges() {
     this.authSVC.user.subscribe(user => {
       if (user) {
@@ -80,6 +99,10 @@ export class WorkflowEntryService {
     });
   }
 
+  /**
+   * Deletes the actual entry from the Graphs collection.
+   * @param key The unique ID of the Entry
+   */
   deleteEntry(key: string) {
     // this.entries.remove(key);
 
@@ -87,6 +110,10 @@ export class WorkflowEntryService {
     this.graphCollection.doc(key).delete();
   }
 
+  /**
+   * Saves the actual workflow entry to the users collection.
+   * @param entry The to be saved Workflow Entry
+   */
   saveEntry(entry: WorkflowEntry) {
     // return this.entries.push(entry).key;
 
@@ -96,10 +123,8 @@ export class WorkflowEntryService {
 
   /**
    * Creates and returns a new object without the key attribute of the Entry.
+   * (Should be deleted after Workflow maint is deprecated.)
    * @param entry
-   */
-  /**
-   * Should be deleted after Workflow maint is deprecated.
    */
   peelEntry(entry: WorkflowEntry): WorkflowEntry {
     return {
@@ -125,6 +150,10 @@ export class WorkflowEntryService {
     return { name: '', description: '', descriptor: '', graph: '' };
   }
 
+  /**
+   * Returns the actual WorkflowEntry entity from a FireStore snapshot
+   * @param id Unique ID of the needed Entry.
+   */
   getEntry(id: string) {
     // return this.db
     //   .object(`/entries/${id}`)
@@ -143,6 +172,11 @@ export class WorkflowEntryService {
       });
   }
 
+  /**
+   * Creates an initial WorkflowEntry based on the action, that happened to the snapshot.
+   * It matters if the entry is newly created.
+   * @param action The event that happened to the snapshot
+   */
   private createInitialEntry(action): WorkflowEntry {
     console.log(action);
     // const entry: WorkflowEntry = action.payload.val();
@@ -161,6 +195,10 @@ export class WorkflowEntryService {
     return entry;
   }
 
+  /**
+   * Updates the actual entry of the database without the database ID.
+   * @param entry The actual entry with updated properties.
+   */
   updateEntry(entry: WorkflowEntry) {
     const key = entry.$key;
     delete entry.$key;

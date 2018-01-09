@@ -130,6 +130,10 @@ export class JointService {
     this.workflowChange = new Subject<void>();
   }
 
+  /**
+   * Decides wether the given port name is already in use and returns a subscribable stream of the indication.
+   * @param portName The name you want to get checked against the list of names.
+   */
   isPortNameUniqueObservable(portName: string): Observable<boolean> {
     return new Observable(observer => {
       console.log('validate name against ports on the actual FlowbsterNode');
@@ -525,6 +529,11 @@ export class JointService {
     return true;
   }
 
+  /**
+   * ReRenders the old ports links and multicast links with the newly generated port and deletes the old port from the cell.
+   * @param oldId The legacy name of the Outport
+   * @param newId The new name to be added to the Outport
+   */
   private reRenderOutPortAndLink(oldId: string, newId: string) {
     const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
@@ -565,6 +574,11 @@ export class JointService {
   }
 
   // multiple linking problems.
+   /**
+   * ReRenders the old ports links and multicast links with the newly generated port and deletes the old port from the cell.
+   * @param oldId The legacy name of the Outport
+   * @param newId The new name to be added to the Outport
+   */
   private reRenderInPortAndLink(oldId: string, newId: string) {
     const element = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
 
@@ -597,6 +611,11 @@ export class JointService {
     }
   }
 
+  /**
+   * Changes the ports 'id' property to the added ID.
+   * @param oldId To be changed port name.
+   * @param newId To be used port name.
+   */
   private changeIdOfPort(oldId: string, newId: string): void {
     const flowsbterNodeModel = this.getElementById(this.selectedCellView.model.id) as joint.shapes.devs.Model;
     flowsbterNodeModel.portProp(oldId, 'id', newId);
@@ -685,6 +704,11 @@ export class JointService {
     }
   }
 
+  /**
+   * Resets the actual ports properties.
+   * @param type The to be setted ports type (inPorts or outPorts)
+   * @param portName  The to be changed ports name.
+   */
   private setPortProperties(type: string, portName: string) {
     const portGroup = (type === 'inPorts' ? 'inPortsProps' : 'outPortsProps');
     const portsProps = this.selectedCellView.model.get(portGroup);

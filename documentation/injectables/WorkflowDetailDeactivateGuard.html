@@ -945,7 +945,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:81</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:85</a></div>
                                         </td>
                                     </tr>
             
@@ -1099,12 +1099,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:55</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:59</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Creates and returns an Observable from the native confirmation dialog&#39;s result.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1126,7 +1128,8 @@
                                                               <td>
                                                                   true
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The confirm dialogs displayed message</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1162,7 +1165,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:65</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/app-routing/workflow-detail-deactivate-guard.service.ts:69</a></div>
                                         </td>
                                     </tr>
             
@@ -1280,6 +1283,10 @@ export class WorkflowDetailDeactivateGuard
     return confirmObservable;
   }
 
+  /**
+   * Creates and returns an Observable from the native confirmation dialog&#x27;s result.
+   * @param message The confirm dialogs displayed message
+   */
   private confirm(message?: string) {
     return Observable.of(window.confirm(message || &#x27;Is it Ok?&#x27;));
   }

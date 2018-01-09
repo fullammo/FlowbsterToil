@@ -897,6 +897,13 @@
             <code>src/app/workflow/shared/workflow-entry.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Interacts with the WorkflowEntry database collection.</p>
+
+            </p>
 
 
             <section>
@@ -979,12 +986,14 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:33</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:42</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Initializes the needed services.</p>
+            </div>
                                         <div>
                                                 <b>Parameters :</b>
                                                 <table class="params">
@@ -1047,12 +1056,15 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:146</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:180</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Creates an initial WorkflowEntry based on the action, that happened to the snapshot.
+            It matters if the entry is newly created.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1072,7 +1084,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The event that happened to the snapshot</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1107,12 +1120,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:83</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:106</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Deletes the actual entry from the Graphs collection.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1133,7 +1148,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The unique ID of the Entry</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1168,12 +1184,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:128</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:157</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Returns the actual WorkflowEntry entity from a FireStore snapshot</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1194,7 +1212,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Unique ID of the needed Entry.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1229,7 +1248,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:116</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:141</a></div>
                                         </td>
                                     </tr>
             
@@ -1293,14 +1312,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:104</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:129</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
                                         <div class="io-description"><p>Creates and returns a new object without the key attribute of the Entry.
-            Should be deleted after Workflow maint is deprecated.</p>
+            (Should be deleted after Workflow maint is deprecated.)</p>
             </div>
             
                                         <div class="io-description">
@@ -1357,12 +1376,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:90</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:117</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Saves the actual workflow entry to the users collection.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1383,7 +1404,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The to be saved Workflow Entry</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1419,12 +1441,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:55</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:71</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Parses the snapshot entries into actual WorkflowEntries and feeds a subscribable datastream.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1480,12 +1504,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:66</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:85</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>If the user changes we subscribe to its database events.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1512,12 +1538,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:164</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:202</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Updates the actual entry of the database without the database ID.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -1538,7 +1566,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The actual entry with updated properties.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1585,7 +1614,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:31</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:40</a></div>
                                         </td>
                                     </tr>
             
@@ -1620,10 +1649,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:20</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:26</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>An event stream that informs the subscribers about that the data in the database has been changed.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1649,10 +1684,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:25</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:34</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The FireStore Collection reference for the database entries.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1678,7 +1719,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:28</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/workflow/shared/workflow-entry.service.ts:37</a></div>
                                         </td>
                                     </tr>
             
@@ -1712,14 +1753,23 @@ import { AuthService } from &#x27;app/core/auth.service&#x27;;
 
 // AngularFireStore function are not good enough at the moment.
 // The json parsing doesnt work very well. also the pushing has some limitations.
-
+/**
+ * Interacts with the WorkflowEntry database collection.
+ */
 @Injectable()
 export class WorkflowEntryService {
+
+  /**
+   * An event stream that informs the subscribers about that the data in the database has been changed.
+   */
   dataChange: BehaviorSubject&lt;WorkflowEntry[]&gt; &#x3D; new BehaviorSubject&lt;
     WorkflowEntry[]
   &gt;([]);
 
   // ***AngularFireStore features ***
+  /**
+   * The FireStore Collection reference for the database entries.
+   */
   graphCollection: AngularFirestoreCollection&lt;WorkflowEntry&gt;;
 
   /** needed for workflowmaint still... */
@@ -1730,6 +1780,9 @@ export class WorkflowEntryService {
     return this.dataChange.value;
   }
 
+  /**
+   * Initializes the needed services.
+   */
   constructor(
     // ***AngularFireStore features ***
     private afs: AngularFirestore,
@@ -1750,6 +1803,10 @@ export class WorkflowEntryService {
   }
 
   // ***AngularFireStore features ***
+  /**
+   * Parses the snapshot entries into actual WorkflowEntries and feeds a subscribable datastream.
+   * @param collection
+   */
   private subscribeToSnapShotChanges(collection) {
     collection.snapshotChanges().subscribe(actions &#x3D;&gt; {
       const workflowEntries: WorkflowEntry[] &#x3D; [];
@@ -1761,6 +1818,9 @@ export class WorkflowEntryService {
   }
 
   // ***AngularFireStore features ***
+  /**
+   * If the user changes we subscribe to its database events.
+   */
   private subscribeToUserChanges() {
     this.authSVC.user.subscribe(user &#x3D;&gt; {
       if (user) {
@@ -1778,6 +1838,10 @@ export class WorkflowEntryService {
     });
   }
 
+  /**
+   * Deletes the actual entry from the Graphs collection.
+   * @param key The unique ID of the Entry
+   */
   deleteEntry(key: string) {
     // this.entries.remove(key);
 
@@ -1785,6 +1849,10 @@ export class WorkflowEntryService {
     this.graphCollection.doc(key).delete();
   }
 
+  /**
+   * Saves the actual workflow entry to the users collection.
+   * @param entry The to be saved Workflow Entry
+   */
   saveEntry(entry: WorkflowEntry) {
     // return this.entries.push(entry).key;
 
@@ -1794,10 +1862,8 @@ export class WorkflowEntryService {
 
   /**
    * Creates and returns a new object without the key attribute of the Entry.
+   * (Should be deleted after Workflow maint is deprecated.)
    * @param entry
-   */
-  /**
-   * Should be deleted after Workflow maint is deprecated.
    */
   peelEntry(entry: WorkflowEntry): WorkflowEntry {
     return {
@@ -1823,6 +1889,10 @@ export class WorkflowEntryService {
     return { name: &#x27;&#x27;, description: &#x27;&#x27;, descriptor: &#x27;&#x27;, graph: &#x27;&#x27; };
   }
 
+  /**
+   * Returns the actual WorkflowEntry entity from a FireStore snapshot
+   * @param id Unique ID of the needed Entry.
+   */
   getEntry(id: string) {
     // return this.db
     //   .object(&#x60;/entries/${id}&#x60;)
@@ -1841,6 +1911,11 @@ export class WorkflowEntryService {
       });
   }
 
+  /**
+   * Creates an initial WorkflowEntry based on the action, that happened to the snapshot.
+   * It matters if the entry is newly created.
+   * @param action The event that happened to the snapshot
+   */
   private createInitialEntry(action): WorkflowEntry {
     console.log(action);
     // const entry: WorkflowEntry &#x3D; action.payload.val();
@@ -1859,6 +1934,10 @@ export class WorkflowEntryService {
     return entry;
   }
 
+  /**
+   * Updates the actual entry of the database without the database ID.
+   * @param entry The actual entry with updated properties.
+   */
   updateEntry(entry: WorkflowEntry) {
     const key &#x3D; entry.$key;
     delete entry.$key;

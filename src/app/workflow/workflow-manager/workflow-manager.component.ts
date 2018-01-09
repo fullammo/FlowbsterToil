@@ -12,6 +12,9 @@ import { TemplateService } from 'app/workflow/shared/template.service';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
 import { Deployment } from 'app/workflow/shared/deployment';
 
+/**
+ * Holds the logic for the whole Workflow Manager datatable.
+ */
 @Component({
   selector: 'toil-workflow-manager',
   templateUrl: './workflow-manager.component.html',
@@ -19,11 +22,30 @@ import { Deployment } from 'app/workflow/shared/deployment';
   providers: [ConfirmationService]
 })
 export class WorkflowManagerComponent implements OnInit {
+
+  /**
+   * The holder array of the database records that is shown in the datatable.
+   */
   workflowEntries: WorkflowEntry[];
+
+  /**
+   *The holder array of the datatable's selected records.
+   */
   selectedWorkflowEntries: WorkflowEntry[];
+
+  /**
+   * The indicator for popping up and shutting down the build Context modal.
+   */
   buildContextDialogVisible: boolean;
+
+  /**
+   * The settable WorkflowEntry entity for the build contextualization.
+   */
   buildContextEntry: WorkflowEntry;
 
+  /**
+   * Initializes the needed services
+   */
   constructor(
     private templateSVC: TemplateService,
     private router: Router,
@@ -189,10 +211,6 @@ export class WorkflowManagerComponent implements OnInit {
           : false;
       });
     }
-  }
-
-  eviii() {
-    console.log('eviiii');
   }
 
   /**
