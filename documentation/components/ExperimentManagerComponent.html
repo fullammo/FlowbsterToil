@@ -900,6 +900,13 @@
     <code>src/app/workflow/experiment-manager/experiment-manager.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Holds the logic for interacting with the experiment child data table.</p>
+
+    </p>
 
     <p class="comment">
         <h3>Extends</h3>
@@ -968,12 +975,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/workflow/experiment-manager/experiment-manager.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/workflow/experiment-manager/experiment-manager.component.ts:21</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initializes the needed services and calls the parent constructor.</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1021,6 +1030,9 @@ import { OnDestroy } from &#x27;@angular/core/src/metadata/lifecycle_hooks&#x27;
 import { ManagerComponent } from &#x27;app/workflow/shared/manager.component&#x27;;
 import { WorkflowEntry } from &#x27;app/workflow/shared/workflowEntry&#x27;;
 
+/**
+ * Holds the logic for interacting with the experiment child data table.
+ */
 @Component({
   selector: &#x27;toil-experiment-manager&#x27;,
   templateUrl: &#x27;./experiment-manager.component.html&#x27;,
@@ -1031,6 +1043,9 @@ export class ExperimentManagerComponent extends ManagerComponent&lt;
   Experiment,
   WorkflowEntry
 &gt; {
+  /**
+   * Initializes the needed services and calls the parent constructor.
+   */
   constructor(private experimentSVC: ExperimentService) {
     super(experimentSVC);
   }
