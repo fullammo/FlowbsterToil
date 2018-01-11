@@ -4,6 +4,9 @@ import { NgForm } from '@angular/forms';
 
 import { UserApi } from '../user-api';
 
+/**
+ * Holds the logic for the sign in page view.
+ */
 @Component({
   selector: 'fw-sign-in',
   templateUrl: './sign-in.component.html',
@@ -13,6 +16,10 @@ export class SignInComponent {
   // formError: string;
   // submitting = false;
 
+  /**
+   * Initializes the needed services.
+   * @param userApi Service provided for user sign in functionalities.
+   */
   constructor(public userApi: UserApi) {}
 
   // onSubmit(signInForm: NgForm) {

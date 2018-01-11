@@ -897,6 +897,13 @@
             <code>src/fw/services/framework-config.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Holds data and editation capabilities for the layout configuration settings.</p>
+
+            </p>
 
 
             <section>
@@ -970,12 +977,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/fw/services/framework-config.service.ts:27</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/fw/services/framework-config.service.ts:88</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Reconfigures the actual settings of the layout.</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -996,7 +1005,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>The demanded Framework configuration settings object.</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1042,10 +1052,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/fw/services/framework-config.service.ts:21</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/fw/services/framework-config.service.ts:62</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The language selection settings. In default its visible.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1070,10 +1086,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/fw/services/framework-config.service.ts:23</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/fw/services/framework-config.service.ts:72</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The status bar visibility settings. In default its visible.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1098,10 +1120,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/fw/services/framework-config.service.ts:24</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/fw/services/framework-config.service.ts:77</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The actual status bar mobile breakpoint value. In default its zero.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1126,10 +1154,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/fw/services/framework-config.service.ts:22</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/fw/services/framework-config.service.ts:67</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The User Form group visibility settings. In default its visible.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1149,10 +1183,16 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/fw/services/framework-config.service.ts:25</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/fw/services/framework-config.service.ts:82</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The used social media icons that is used in an <img> tag.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1163,30 +1203,91 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Information of the &lt;img&gt; tag for social media icons.
+ */
 export interface IconFiles {
+
+    /**
+     * The path, where the image is located.
+     */
     imageFile: string,
+
+    /**
+     * Represents the description for the image.
+     */
     alt: string,
+
+    /**
+     * Represents the URL link for the actual img tag.
+     */
     link: string
 }
 
+/** The basic configuration options of the layout */
 export interface FrameworkConfigSettings {
+    /**
+     * Indicator for language selector visibility.
+     */
     showLanguageSelector?: boolean,
+
+    /**
+     * Indicates wether the User based informations are shown in the layout.
+     */
     showUserControls?: boolean,
+
+    /**
+     * Indicates wether the staus bar is visible.
+     */
     showStatusBar?: boolean,
+
+    /**
+     * Decides at which point the status bar gets rerendered on mobile devices.
+     */
     showStatusBarBreakpoint?: number,
+
+    /**
+     * A collection of social media handles (Twitter,Google etc).
+     */
     socialIcons?: Array&lt;IconFiles&gt;
 }
 
 
+/**
+ * Holds data and editation capabilities for the layout configuration settings.
+ */
 @Injectable()
 export class FrameworkConfigService {
 
+    /**
+     * The language selection settings. In default its visible.
+     */
     showLanguageSelector &#x3D; true;
+
+    /**
+     *The User Form group visibility settings. In default its visible.
+     */
     showUserControls &#x3D; true;
+
+    /**
+     * The status bar visibility settings. In default its visible.
+     */
     showStatusBar &#x3D; true;
+
+    /**
+     * The actual status bar mobile breakpoint value. In default its zero.
+     */
     showStatusBarBreakpoint &#x3D; 0;
+
+    /**
+     * The used social media icons that is used in an &lt;img&gt; tag.
+     */
     socialIcons &#x3D; new Array&lt;IconFiles&gt;();
 
+    /**
+     * Reconfigures the actual settings of the layout.
+     * @param settings The demanded Framework configuration settings object.
+     */
     configure(settings: FrameworkConfigSettings) : void {
         Object.assign(this, settings);
     }

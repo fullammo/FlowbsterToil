@@ -900,6 +900,13 @@
             <code>src/fw/services/menu.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents a navigation menu Item.</p>
+
+            </p>
 
 
         <section>
@@ -964,10 +971,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/fw/services/menu.service.ts:5</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/fw/services/menu.service.ts:15</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The icon that is represented besides the navigation item&#39;s text.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -997,10 +1010,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/fw/services/menu.service.ts:6</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/fw/services/menu.service.ts:20</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The route where the navigation menu item&#39;s click event will navigate the user on the website.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1030,10 +1049,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/fw/services/menu.service.ts:7</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/fw/services/menu.service.ts:25</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>A collection for nested child menu items.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1063,10 +1088,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/fw/services/menu.service.ts:4</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/fw/services/menu.service.ts:10</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The text shown to the user in the navigation menu.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -1076,29 +1107,65 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Represents a navigation menu Item.
+ */
 export interface MenuItem {
-    text: string,
-    icon: string,
-    route: string,
-    submenu: Array&lt;MenuItem&gt;
+  /**
+   * The text shown to the user in the navigation menu.
+   */
+  text: string;
+
+  /**
+   * The icon that is represented besides the navigation item&#x27;s text.
+   */
+  icon: string;
+
+  /**
+   * The route where the navigation menu item&#x27;s click event will navigate the user on the website.
+   */
+  route: string;
+
+  /**
+   * A collection for nested child menu items.
+   */
+  submenu: Array&lt;MenuItem&gt;;
 }
 
+/**
+ * The basic logic needed for nagivation menu functionalities and related data.
+ */
 @Injectable()
 export class MenuService {
-
+  /**
+   * The shown navigation menu items.
+   */
   items: Array&lt;MenuItem&gt;;
+
+  /**
+   * Indicates wether the navigation menu is in vertial fashion. In default its vertical.
+   */
   isVertical &#x3D; true;
+
+  /**
+   * Indicates wether the left side navigation menu is rendered. In default its false.
+   */
   showingLeftSideMenu &#x3D; false;
 
-  toggleLeftSideMenu() : void {
+  /**
+   * Sets the alligment of the navigation menu to vertical and toggles the visibility of the Left side menu.
+   */
+  toggleLeftSideMenu(): void {
     this.isVertical &#x3D; true;
     this.showingLeftSideMenu &#x3D; !this.showingLeftSideMenu;
   }
 
+  /**
+   * Changes the alligment of the navigation bar to its opposite.
+   */
   toggleMenuOrientation() {
     this.isVertical &#x3D; !this.isVertical;
   }
-  
 }
 </code></pre>
     </div>

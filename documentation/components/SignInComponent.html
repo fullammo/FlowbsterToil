@@ -900,6 +900,13 @@
     <code>src/fw/users/sign-in/sign-in.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Holds the logic for the sign in page view.</p>
+
+    </p>
 
 
 
@@ -975,12 +982,14 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/fw/users/sign-in/sign-in.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/fw/users/sign-in/sign-in.component.ts:15</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Initializes the needed services.</p>
+    </div>
                                 <div>
                                         <b>Parameters :</b>
                                         <table class="params">
@@ -1043,10 +1052,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/fw/users/sign-in/sign-in.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/fw/users/sign-in/sign-in.component.ts:23</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Service provided for user sign in functionalities.</p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -1061,6 +1076,9 @@ import { NgForm } from &#x27;@angular/forms&#x27;;
 
 import { UserApi } from &#x27;../user-api&#x27;;
 
+/**
+ * Holds the logic for the sign in page view.
+ */
 @Component({
   selector: &#x27;fw-sign-in&#x27;,
   templateUrl: &#x27;./sign-in.component.html&#x27;,
@@ -1070,6 +1088,10 @@ export class SignInComponent {
   // formError: string;
   // submitting &#x3D; false;
 
+  /**
+   * Initializes the needed services.
+   * @param userApi Service provided for user sign in functionalities.
+   */
   constructor(public userApi: UserApi) {}
 
   // onSubmit(signInForm: NgForm) {

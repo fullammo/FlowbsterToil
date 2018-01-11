@@ -899,6 +899,13 @@
             <code>src/fw/users/user-api.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A signature class for providing a user authentication service interface.</p>
+
+            </p>
 
 
 
@@ -961,10 +968,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/fw/users/user-api.ts:13</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/fw/users/user-api.ts:28</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The UserAPI must provide a Promise based method for google based authentication.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -990,10 +1003,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/fw/users/user-api.ts:11</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/fw/users/user-api.ts:22</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>A signature method for signing out of the platform.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1019,10 +1038,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/fw/users/user-api.ts:10</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/fw/users/user-api.ts:17</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The User provided as a subscribable data stream.</p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -1034,15 +1059,30 @@
         <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { User } from &#x27;app/core/models/user&#x27;;
 
+/**
+ * A signature class for providing a user authentication service interface.
+ */
 export abstract class UserApi {
   // signIn: (
   //   username: string,
   //   password: string,
   //   rememberMe: boolean
   // ) &#x3D;&gt; Observable&lt;any&gt;;
+
+  /**
+   * The User provided as a subscribable data stream.
+   */
   user: Observable&lt;User&gt;;
+
+  /**
+   * A signature method for signing out of the platform.
+   */
   signOut: () &#x3D;&gt; void;
   // changePassword :
+
+  /**
+   * The UserAPI must provide a Promise based method for google based authentication.
+   */
   googleLogin: () &#x3D;&gt; Promise&lt;void&gt;;
 }
 </code></pre>

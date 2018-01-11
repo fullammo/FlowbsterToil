@@ -900,6 +900,13 @@
             <code>src/fw/services/framework-config.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Information of the <img> tag for social media icons.</p>
+
+            </p>
 
 
         <section>
@@ -961,10 +968,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/fw/services/framework-config.service.ts:5</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/fw/services/framework-config.service.ts:16</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Represents the description for the image.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -994,10 +1007,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/fw/services/framework-config.service.ts:4</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/fw/services/framework-config.service.ts:11</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The path, where the image is located.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -1027,10 +1046,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/fw/services/framework-config.service.ts:6</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/fw/services/framework-config.service.ts:21</a></div>
                                         </td>
                                     </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Represents the URL link for the actual img tag.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -1040,30 +1065,91 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Information of the &lt;img&gt; tag for social media icons.
+ */
 export interface IconFiles {
+
+    /**
+     * The path, where the image is located.
+     */
     imageFile: string,
+
+    /**
+     * Represents the description for the image.
+     */
     alt: string,
+
+    /**
+     * Represents the URL link for the actual img tag.
+     */
     link: string
 }
 
+/** The basic configuration options of the layout */
 export interface FrameworkConfigSettings {
+    /**
+     * Indicator for language selector visibility.
+     */
     showLanguageSelector?: boolean,
+
+    /**
+     * Indicates wether the User based informations are shown in the layout.
+     */
     showUserControls?: boolean,
+
+    /**
+     * Indicates wether the staus bar is visible.
+     */
     showStatusBar?: boolean,
+
+    /**
+     * Decides at which point the status bar gets rerendered on mobile devices.
+     */
     showStatusBarBreakpoint?: number,
+
+    /**
+     * A collection of social media handles (Twitter,Google etc).
+     */
     socialIcons?: Array&lt;IconFiles&gt;
 }
 
 
+/**
+ * Holds data and editation capabilities for the layout configuration settings.
+ */
 @Injectable()
 export class FrameworkConfigService {
 
+    /**
+     * The language selection settings. In default its visible.
+     */
     showLanguageSelector &#x3D; true;
+
+    /**
+     *The User Form group visibility settings. In default its visible.
+     */
     showUserControls &#x3D; true;
+
+    /**
+     * The status bar visibility settings. In default its visible.
+     */
     showStatusBar &#x3D; true;
+
+    /**
+     * The actual status bar mobile breakpoint value. In default its zero.
+     */
     showStatusBarBreakpoint &#x3D; 0;
+
+    /**
+     * The used social media icons that is used in an &lt;img&gt; tag.
+     */
     socialIcons &#x3D; new Array&lt;IconFiles&gt;();
 
+    /**
+     * Reconfigures the actual settings of the layout.
+     * @param settings The demanded Framework configuration settings object.
+     */
     configure(settings: FrameworkConfigSettings) : void {
         Object.assign(this, settings);
     }
