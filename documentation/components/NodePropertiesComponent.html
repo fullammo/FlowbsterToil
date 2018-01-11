@@ -130,12 +130,6 @@
                                     <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/EditorComponent.html" >EditorComponent</a>
                                 </li>
                                 <li class="link">
@@ -345,9 +339,6 @@
                                     <a href="../interfaces/Experiment.html" >Experiment</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
                                 </li>
                                 <li class="link">
@@ -553,12 +544,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/EditorComponent.html" >EditorComponent</a>
@@ -768,9 +753,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/Experiment.html" >Experiment</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
@@ -2020,7 +2002,7 @@ export class NodePropertiesComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><form [formGroup]="userform" #f="ngForm">  <div class="ui-grid ui-grid-responsive ui-grid-pad" style="margin: 10px 0px">    <!-- {{isExistingNode}} -->    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Name" [formControl]="userform.controls[\'name\']" [(ngModel)]="nodeProps.name">        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty && !userform.controls[\'name\'].hasError(\'nodeNameExist\')">          Name is <strong>required</strong>        </mat-error>        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty&&userform.controls[\'name\'].hasError(\'nodeNameExist\')">          Entered name is already <strong>taken</strong>          </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Executable Name" [formControl]="userform.controls[\'execname\']" [(ngModel)]="nodeProps.execname">        <mat-error *ngIf="!userform.controls[\'execname\'].valid&&userform.controls[\'execname\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Arguments" [formControl]="userform.controls[\'args\']" [(ngModel)]="nodeProps.args">        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Executable URL" [formControl]="userform.controls[\'execurl\']" [(ngModel)]="nodeProps.execurl">      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="number" placeholder="MinScale" min="1" [formControl]="userform.controls[\'scalingmin\']" [(ngModel)]="nodeProps.scalingmin">      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="number" placeholder="MaxScale" min="1" [formControl]="userform.controls[\'scalingmax\']" [(ngModel)]="nodeProps.scalingmax">      </mat-input-container>    </div>    <div class="ui-grid-row">      <button *ngIf=" !readOnly && isExistingNode" pButton type="submit" label="Update Node" (click)="onUpdate()" [disabled]="!userform.valid"></button>      <button *ngIf=" !readOnly && isExistingNode" pButton type="submit" label="Clone Node" (click)="onClone()" [disabled]="!userform.valid"></button>      <button *ngIf="!isExistingNode" pButton type="submit" label="Create Node" (click)="onCreate()" [disabled]="!userform.valid"></button>    </div>  </div></form></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuildContextPropertiesComponent', 'selector': 'toil-build-context-properties'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DeploymentManagerComponent', 'selector': 'toil-deployment-manager'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'ExperimentContextPropertiesComponent', 'selector': 'toil-experiment-context-properties'},{'name': 'ExperimentManagerComponent', 'selector': 'toil-experiment-manager'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowManagerComponent', 'selector': 'toil-workflow-manager'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuildContextPropertiesComponent', 'selector': 'toil-build-context-properties'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DeploymentManagerComponent', 'selector': 'toil-deployment-manager'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'ExperimentContextPropertiesComponent', 'selector': 'toil-experiment-context-properties'},{'name': 'ExperimentManagerComponent', 'selector': 'toil-experiment-manager'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowManagerComponent', 'selector': 'toil-workflow-manager'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'NodePropertiesComponent'};
 </script>

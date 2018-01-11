@@ -130,12 +130,6 @@
                                     <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/EditorComponent.html" >EditorComponent</a>
                                 </li>
                                 <li class="link">
@@ -345,9 +339,6 @@
                                     <a href="../interfaces/Experiment.html" >Experiment</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
                                 </li>
                                 <li class="link">
@@ -553,12 +544,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/EditorComponent.html" >EditorComponent</a>
@@ -770,9 +755,6 @@
                                            <a href="../interfaces/Experiment.html" >Experiment</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
                                        </li>
                                        <li class="link">
@@ -899,6 +881,13 @@
             <code>e2e/app.po.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents the Flowbster Toil platform page in Selenium environment.</p>
+
+            </p>
 
 
 
@@ -951,12 +940,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">e2e/app.po.ts:8</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">e2e/app.po.ts:18</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Gets the text from the main components selector.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -983,12 +974,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">e2e/app.po.ts:4</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">e2e/app.po.ts:11</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Navigates to the index page of the platform.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -1007,11 +1000,21 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { browser, by, element } from &#x27;protractor&#x27;;
 
+/**
+ * Represents the Flowbster Toil platform page in Selenium environment.
+ */
 export class FlowbsterToilPage {
+
+  /**
+   * Navigates to the index page of the platform.
+   */
   navigateTo() {
     return browser.get(&#x27;/&#x27;);
   }
 
+  /**
+   * Gets the text from the main components selector.
+   */
   getParagraphText() {
     return element(by.css(&#x27;toil-root h1&#x27;)).getText();
   }

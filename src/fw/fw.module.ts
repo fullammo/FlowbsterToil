@@ -19,8 +19,6 @@ import { MenuItemComponent } from './menus/menu-item/menu-item.component';
 import { PopupMenuComponent } from './menus/popup-menu/popup-menu.component';
 import { SignInComponent } from './users/sign-in/sign-in.component';
 import { RegisterUserComponent } from './users/register-user/register-user.component';
-import { DynamicFormComponent } from './dynamic-forms/dynamic-form/dynamic-form.component';
-import { DynamicFieldComponent } from './dynamic-forms/dynamic-field/dynamic-field.component';
 import { PanelComponent } from './panels/panel/panel.component';
 
 @NgModule({
@@ -44,8 +42,6 @@ import { PanelComponent } from './panels/panel/panel.component';
     PopupMenuComponent,
     SignInComponent,
     RegisterUserComponent,
-    DynamicFormComponent,
-    DynamicFieldComponent,
     PanelComponent
   ],
   providers: [
@@ -55,7 +51,6 @@ import { PanelComponent } from './panels/panel/panel.component';
   ],
   exports: [
     FrameworkBodyComponent,
-    DynamicFormComponent,
     PanelComponent,
     ScreenLarge,
     ScreenBelowLarge

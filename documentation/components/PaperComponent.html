@@ -130,12 +130,6 @@
                                     <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/EditorComponent.html" >EditorComponent</a>
                                 </li>
                                 <li class="link">
@@ -345,9 +339,6 @@
                                     <a href="../interfaces/Experiment.html" >Experiment</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
                                 </li>
                                 <li class="link">
@@ -553,12 +544,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/EditorComponent.html" >EditorComponent</a>
@@ -768,9 +753,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/Experiment.html" >Experiment</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
                                        </li>
                                        <li class="link">
                                            <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
@@ -2483,7 +2465,7 @@ export class PaperComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><mat-slider (input)="onSliderChanged($event)" [min]="minSliderValue" [value]="sliderValue"></mat-slider><div *ngIf="readOnly">{{ jointSVC.workflow | json}}</div><div id="paper" class="paper drawing-area" [ngClass]="{\'readOnlyEditor\': readOnly}"></div><!-- <p>{{jointSVC.actualNode |json}}</p> --><p-growl [(value)]="msgs" sticky="sticky"></p-growl><p-dialog header="Node Properties" [(visible)]="nodeModalVisible" modal="true">  <toil-editor-node-properties (onCreateDialog)="nodeCreateDialogChanged($event)" (onUpdateDialog)="nodeUpdateDialogChanged($event)"    (onCloneDialog)="nodeCloneDialogChanged($event)" [NodeProps]="jointSVC.actualNode" [readOnly]="readOnly">    <!-- [isExistingNode]="jointSVC.isExistingNode" -->  </toil-editor-node-properties></p-dialog><p-dialog header="Input Properties" [(visible)]="inputModalVisible" modal="true">  <toil-editor-input-properties [readOnly]="readOnly" (onSubmitDialog)="inputDialogChanged($event)" [InputProps]="jointSVC.actualPort"></toil-editor-input-properties></p-dialog><p-dialog header="Output Properties" [(visible)]="outputModalVisible" modal="true">  <toil-editor-output-properties [readOnly]="readOnly" (onSubmitDialog)="outputDialogChanged($event)" [OutputProps]="jointSVC.actualPort"></toil-editor-output-properties></p-dialog></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuildContextPropertiesComponent', 'selector': 'toil-build-context-properties'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DeploymentManagerComponent', 'selector': 'toil-deployment-manager'},{'name': 'DynamicFieldComponent', 'selector': 'fw-dynamic-field'},{'name': 'DynamicFormComponent', 'selector': 'fw-dynamic-form'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'ExperimentContextPropertiesComponent', 'selector': 'toil-experiment-context-properties'},{'name': 'ExperimentManagerComponent', 'selector': 'toil-experiment-manager'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowManagerComponent', 'selector': 'toil-workflow-manager'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuildContextPropertiesComponent', 'selector': 'toil-build-context-properties'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DeploymentManagerComponent', 'selector': 'toil-deployment-manager'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'ExperimentContextPropertiesComponent', 'selector': 'toil-experiment-context-properties'},{'name': 'ExperimentManagerComponent', 'selector': 'toil-experiment-manager'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowManagerComponent', 'selector': 'toil-workflow-manager'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'PaperComponent'};
 </script>

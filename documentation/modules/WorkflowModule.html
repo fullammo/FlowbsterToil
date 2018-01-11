@@ -130,12 +130,6 @@
                                     <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/EditorComponent.html" >EditorComponent</a>
                                 </li>
                                 <li class="link">
@@ -345,9 +339,6 @@
                                     <a href="../interfaces/Experiment.html" >Experiment</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
-                                </li>
-                                <li class="link">
                                     <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
                                 </li>
                                 <li class="link">
@@ -553,12 +544,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/DeploymentManagerComponent.html" >DeploymentManagerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFieldComponent.html" >DynamicFieldComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/DynamicFormComponent.html" >DynamicFormComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/EditorComponent.html" >EditorComponent</a>
@@ -770,9 +755,6 @@
                                            <a href="../interfaces/Experiment.html" >Experiment</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../interfaces/FieldDefinition.html" >FieldDefinition</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../interfaces/FlowbsterNode.html" >FlowbsterNode</a>
                                        </li>
                                        <li class="link">
@@ -910,6 +892,10 @@
 <title>cluster_WorkflowModule_DeploymentManagerComponent_providers</title>
 <polygon fill="none" stroke="#000000" points="1929,-78 1929,-130 2121,-130 2121,-78 1929,-78"/>
 </g>
+<g id="clust9" class="cluster">
+<title>cluster_WorkflowModule_ExperimentManagerComponent_providers</title>
+<polygon fill="none" stroke="#000000" points="1028,-78 1028,-130 1214,-130 1214,-78 1028,-78"/>
+</g>
 <g id="clust10" class="cluster">
 <title>cluster_WorkflowModule_imports</title>
 <polygon fill="none" stroke="#000000" points="781,-143 781,-195 1007,-195 1007,-143 781,-143"/>
@@ -1021,79 +1007,91 @@
 <polygon fill="#000000" stroke="#000000" points="1599.5001,-140.8938 1603,-150.8939 1606.5001,-140.8939 1599.5001,-140.8938"/>
 </g>
 <!-- DeploymentService&#45;&gt;WorkflowModule -->
-<g id="edge15" class="edge">
+<g id="edge16" class="edge">
 <title>DeploymentService&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M1944.9814,-111.6237C1944.9814,-139.1797 1944.9814,-232 1944.9814,-232 1944.9814,-232 1309.8102,-232 1309.8102,-232"/>
 <polygon fill="#000000" stroke="#000000" points="1309.8102,-228.5001 1299.8102,-232 1309.8102,-235.5001 1309.8102,-228.5001"/>
 </g>
-<!-- SharedModule -->
+<!-- ExperimentService -->
 <g id="node10" class="node">
+<title>ExperimentService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="1121" cy="-104" rx="85.0889" ry="18"/>
+<text text-anchor="middle" x="1121" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ExperimentService</text>
+</g>
+<!-- ExperimentService&#45;&gt;ExperimentManagerComponent -->
+<g id="edge9" class="edge">
+<title>ExperimentService&#45;&gt;ExperimentManagerComponent</title>
+<path fill="none" stroke="#000000" d="M1121,-122.1061C1121,-122.1061 1121,-140.991 1121,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="1117.5001,-140.9909 1121,-150.991 1124.5001,-140.991 1117.5001,-140.9909"/>
+</g>
+<!-- SharedModule -->
+<g id="node11" class="node">
 <title>SharedModule</title>
 <polygon fill="#8dd3c7" stroke="#000000" points="999.4231,-187 996.4231,-191 975.4231,-191 972.4231,-187 900.5769,-187 900.5769,-151 999.4231,-151 999.4231,-187"/>
 <text text-anchor="middle" x="950" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;WorkflowModule -->
-<g id="edge9" class="edge">
+<g id="edge10" class="edge">
 <title>SharedModule&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M950,-187.2396C950,-202.5706 950,-222 950,-222 950,-222 1172.1118,-222 1172.1118,-222"/>
 <polygon fill="#000000" stroke="#000000" points="1172.1118,-225.5001 1182.1118,-222 1172.1118,-218.5001 1172.1118,-225.5001"/>
 </g>
 <!-- EditorModule -->
-<g id="node11" class="node">
+<g id="node12" class="node">
 <title>EditorModule</title>
 <polygon fill="#8dd3c7" stroke="#000000" points="883.0453,-187 880.0453,-191 859.0453,-191 856.0453,-187 788.9547,-187 788.9547,-151 883.0453,-151 883.0453,-187"/>
 <text text-anchor="middle" x="836" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">EditorModule</text>
 </g>
 <!-- EditorModule&#45;&gt;WorkflowModule -->
-<g id="edge10" class="edge">
+<g id="edge11" class="edge">
 <title>EditorModule&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M836,-187.0336C836,-204.0597 836,-227 836,-227 836,-227 1172.1095,-227 1172.1095,-227"/>
 <polygon fill="#000000" stroke="#000000" points="1172.1096,-230.5001 1182.1095,-227 1172.1095,-223.5001 1172.1096,-230.5001"/>
 </g>
 <!-- WorkflowEntryService -->
-<g id="node12" class="node">
+<g id="node13" class="node">
 <title>WorkflowEntryService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="664" cy="-169" rx="101.264" ry="18"/>
 <text text-anchor="middle" x="664" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowEntryService</text>
 </g>
 <!-- WorkflowEntryService&#45;&gt;WorkflowModule -->
-<g id="edge11" class="edge">
+<g id="edge12" class="edge">
 <title>WorkflowEntryService&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M664,-187.2222C664,-205.8285 664,-232 664,-232 664,-232 1172.2309,-232 1172.2309,-232"/>
 <polygon fill="#000000" stroke="#000000" points="1172.2309,-235.5001 1182.2309,-232 1172.2309,-228.5001 1172.2309,-235.5001"/>
 </g>
 <!-- CloudMessagingService -->
-<g id="node13" class="node">
+<g id="node14" class="node">
 <title>CloudMessagingService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="439" cy="-169" rx="105.3779" ry="18"/>
 <text text-anchor="middle" x="439" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">CloudMessagingService</text>
 </g>
 <!-- CloudMessagingService&#45;&gt;WorkflowModule -->
-<g id="edge12" class="edge">
+<g id="edge13" class="edge">
 <title>CloudMessagingService&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M439,-187.2228C439,-207.3652 439,-237 439,-237 439,-237 1172.352,-237 1172.352,-237"/>
 <polygon fill="#000000" stroke="#000000" points="1172.352,-240.5001 1182.352,-237 1172.3519,-233.5001 1172.352,-240.5001"/>
 </g>
 <!-- OccoService -->
-<g id="node14" class="node">
+<g id="node15" class="node">
 <title>OccoService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="255" cy="-169" rx="60.2306" ry="18"/>
 <text text-anchor="middle" x="255" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">OccoService</text>
 </g>
 <!-- OccoService&#45;&gt;WorkflowModule -->
-<g id="edge13" class="edge">
+<g id="edge14" class="edge">
 <title>OccoService&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M255,-187.0449C255,-208.6623 255,-242 255,-242 255,-242 1172.274,-242 1172.274,-242"/>
 <polygon fill="#000000" stroke="#000000" points="1172.2741,-245.5001 1182.274,-242 1172.274,-238.5001 1172.2741,-245.5001"/>
 </g>
 <!-- TemplateService -->
-<g id="node15" class="node">
+<g id="node16" class="node">
 <title>TemplateService</title>
 <ellipse fill="#fdb462" stroke="#000000" cx="100" cy="-169" rx="76.4188" ry="18"/>
 <text text-anchor="middle" x="100" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">TemplateService</text>
 </g>
 <!-- TemplateService&#45;&gt;WorkflowModule -->
-<g id="edge14" class="edge">
+<g id="edge15" class="edge">
 <title>TemplateService&#45;&gt;WorkflowModule</title>
 <path fill="none" stroke="#000000" d="M100,-187.0908C100,-210.1328 100,-247 100,-247 100,-247 1172.4539,-247 1172.4539,-247"/>
 <polygon fill="#000000" stroke="#000000" points="1172.4539,-250.5001 1182.4539,-247 1172.4538,-243.5001 1172.4539,-250.5001"/>
