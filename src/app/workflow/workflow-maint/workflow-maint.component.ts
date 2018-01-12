@@ -182,7 +182,9 @@ export class WorkflowMaintComponent implements OnInit {
         return selected !== undefined;
       });
       console.log(entryy);
-      this.occoSVC.buildWorkflow(entryy.descriptor).subscribe(res=> console.log(res));
+      this.occoSVC
+        .buildWorkflow(entryy.descriptor)
+        .subscribe(res => console.log(res));
     } else {
       window.alert('Only one workflow can be selected for build process!');
     }
@@ -202,8 +204,7 @@ export class WorkflowMaintComponent implements OnInit {
   /**
    *Idk.
    */
-  startProcessing(): void {
-  }
+  startProcessing(): void {}
 
   /**
    * Gets the selected entries and creates a clone of them to the database.
