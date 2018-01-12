@@ -182,7 +182,7 @@ export class WorkflowMaintComponent implements OnInit {
         return selected !== undefined;
       });
       console.log(entryy);
-      this.occoSVC.buildWorkflow(entryy.descriptor);
+      this.occoSVC.buildWorkflow(entryy.descriptor).subscribe(res=> console.log(res));
     } else {
       window.alert('Only one workflow can be selected for build process!');
     }

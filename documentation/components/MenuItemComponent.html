@@ -985,6 +985,12 @@ Taking into consideration the layout preference of the user.</p>
                             <li>
                                  <a href="#ngOnInit">ngOnInit</a>
                             </li>
+                            <li>
+                                 <a href="#onPopupMouseEnter">onPopupMouseEnter</a>
+                            </li>
+                            <li>
+                                 <a href="#onPopupMouseLeave">onPopupMouseLeave</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -1335,6 +1341,130 @@ On Default the parent component is a popup menu item.</p>
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="onPopupMouseEnter"></a>
+                            <span class="name"><b> onPopupMouseEnter</b><a href="#onPopupMouseEnter"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>onPopupMouseEnter(event: )</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/fw/menus/menu-item/menu-item.component.ts:144</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Handles the Popup mouse enter event by setting the related indicator to true</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>event</td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="onPopupMouseLeave"></a>
+                            <span class="name"><b> onPopupMouseLeave</b><a href="#onPopupMouseLeave"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>onPopupMouseLeave(event: )</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/fw/menus/menu-item/menu-item.component.ts:154</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Handles the Popup mouse leave event by setting the related indicator to false when the menu is horizontal.</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>event</td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1695,25 +1825,25 @@ export class MenuItemComponent implements OnInit {
     }
   }
 
-  // /**
-  //  * Whenever the
-  //  * @param event
-  //  */
-  // onPopupMouseEnter(event): void {
-  //   if (!this.menuService.isVertical) {
-  //     this.mouseInPopup &#x3D; true;
-  //   }
-  // }
+  /**
+   * Handles the Popup mouse enter event by setting the related indicator to true
+   * @param event
+   */
+  onPopupMouseEnter(event): void {
+    if (!this.menuService.isVertical) {
+      this.mouseInPopup &#x3D; true;
+    }
+  }
 
-  // /**
-  //  *
-  //  * @param event
-  //  */
-  // onPopupMouseLeave(event): void {
-  //   if (!this.menuService.isVertical) {
-  //     this.mouseInPopup &#x3D; false;
-  //   }
-  // }
+  /**
+   * Handles the Popup mouse leave event by setting the related indicator to false when the menu is horizontal.
+   * @param event
+   */
+  onPopupMouseLeave(event): void {
+    if (!this.menuService.isVertical) {
+      this.mouseInPopup &#x3D; false;
+    }
+  }
 
   /**
    *Catches the mouseleave event from the parent HTML element and changes the related indicator to false when the menu is vertical.

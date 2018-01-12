@@ -137,25 +137,25 @@ export class MenuItemComponent implements OnInit {
     }
   }
 
-  // /**
-  //  * Whenever the
-  //  * @param event
-  //  */
-  // onPopupMouseEnter(event): void {
-  //   if (!this.menuService.isVertical) {
-  //     this.mouseInPopup = true;
-  //   }
-  // }
+  /**
+   * Handles the Popup mouse enter event by setting the related indicator to true
+   * @param event
+   */
+  onPopupMouseEnter(event): void {
+    if (!this.menuService.isVertical) {
+      this.mouseInPopup = true;
+    }
+  }
 
-  // /**
-  //  *
-  //  * @param event
-  //  */
-  // onPopupMouseLeave(event): void {
-  //   if (!this.menuService.isVertical) {
-  //     this.mouseInPopup = false;
-  //   }
-  // }
+  /**
+   * Handles the Popup mouse leave event by setting the related indicator to false when the menu is horizontal.
+   * @param event
+   */
+  onPopupMouseLeave(event): void {
+    if (!this.menuService.isVertical) {
+      this.mouseInPopup = false;
+    }
+  }
 
   /**
    *Catches the mouseleave event from the parent HTML element and changes the related indicator to false when the menu is vertical.
