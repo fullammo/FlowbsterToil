@@ -11,13 +11,24 @@ import {
 import { WorkflowEntry } from 'app/workflow/shared/workflowEntry';
 import { WorkflowEntryService } from 'app/workflow/shared/workflow-entry.service';
 
+/**
+ * Helps to resolve individual workflow data on the workflow detail's view before the route view gets rendered.
+ */
 @Injectable()
 export class WorkflowDetailResolver implements Resolve<WorkflowEntry> {
+
+  /**
+   * Initializes the needed services.
+   */
   constructor(
     private workflowEntrySVC: WorkflowEntryService,
     private router: Router
   ) {}
 
+  /**
+   * The database communication service gets the Workflow Entry from the route params nad navigates to the correct view
+   * based on the information.
+   */
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

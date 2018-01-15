@@ -1,8 +1,5 @@
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
 
 import { WorkflowDetailComponent } from 'app/workflow/workflow-detail/workflow-detail.component';
 import { WorkflowMaintComponent } from 'app/workflow/workflow-maint/workflow-maint.component';
@@ -14,6 +11,7 @@ import { AuthGuard } from 'app/core/auth.guard';
 import { WorkflowDetailResolver } from 'app/app-routing/workflow-detail-resolver.service';
 import { WorkflowDetailDeactivateGuard } from 'app/app-routing/workflow-detail-deactivate-guard.service';
 import { ConnectionComponent } from 'app/occopus-config/connection/connection.component';
+import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
 
 export const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },
@@ -35,6 +33,7 @@ export const appRoutes: Routes = [
             canDeactivate: [WorkflowDetailDeactivateGuard]
           },
           { path: 'workflow-maint', component: WorkflowMaintComponent },
+          { path: 'workflow-man', component: WorkflowManagerComponent },
           { path: 'editor', component: EditorComponent },
           { path: 'connection', component: ConnectionComponent }
         ]

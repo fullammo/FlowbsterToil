@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {
   FrameworkConfigService,
@@ -9,12 +9,18 @@ import { MenuService } from '../fw/services/menu.service';
 import * as jsyaml from 'js-yaml';
 import { initialMenuItems } from 'app/core/models/app.menu';
 
+/**
+ * The Main component for the application.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  /**
+   * Initialize the needed services and sets the layout configuration and menu items.
+   */
   constructor(
     private frameworkConfigService: FrameworkConfigService,
     private menuService: MenuService
@@ -47,6 +53,4 @@ export class AppComponent implements OnInit {
 
     menuService.items = initialMenuItems;
   }
-
-  ngOnInit() {}
 }

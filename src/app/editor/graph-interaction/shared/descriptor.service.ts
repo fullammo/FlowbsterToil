@@ -170,6 +170,10 @@ export class DescriptorService {
     return this.createFinalDependencies(dependencies, dependencySet);
   }
 
+  /**
+   * Corrects the multicast linkCollection for matching the multicast scalability, and populates the outputDescriptor's array.
+   * @param linksCollection The need to be fixed linkCollection.
+   */
   correctMulticastLinks(linksCollection: joint.dia.Link[][]): void {
     for (const links of linksCollection) {
       const node: NodeDescriptor = this.occopusDescriptor.nodes.find(nodeEl =>
@@ -188,6 +192,10 @@ export class DescriptorService {
     }
   }
 
+  /**
+   * Gets every link that is part of a multicast communication pattern.
+   * @param links Links that you want to get sorted
+   */
   getMulticastLinks(links: joint.dia.Link[]): joint.dia.Link[][] {
     const nodes = this.jointSVC.graph.getCells().filter(cell => {
       return cell.get('type') === 'devs.Model';

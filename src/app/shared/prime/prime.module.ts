@@ -10,7 +10,13 @@ import {
   ButtonModule,
   FileUploadModule,
   TabViewModule,
-  CodeHighlighterModule
+  CodeHighlighterModule,
+  DataTableModule,
+  SharedModule,
+  ContextMenuModule,
+  ConfirmDialogModule,
+  DataListModule,
+  TooltipModule
 } from 'primeng/primeng';
 
 @NgModule({
@@ -24,7 +30,13 @@ import {
     ButtonModule,
     FileUploadModule,
     TabViewModule,
-    CodeHighlighterModule
+    CodeHighlighterModule,
+    DataTableModule,
+    SharedModule,
+    ContextMenuModule,
+    ConfirmDialogModule,
+    DataListModule,
+    TooltipModule
   ],
   exports: [
     MenuModule,
@@ -36,7 +48,13 @@ import {
     ButtonModule,
     FileUploadModule,
     TabViewModule,
-    CodeHighlighterModule
+    CodeHighlighterModule,
+    DataTableModule,
+    SharedModule,
+    ContextMenuModule,
+    ConfirmDialogModule,
+    DataListModule,
+    TooltipModule
   ]
 })
 export class PrimeModule {}

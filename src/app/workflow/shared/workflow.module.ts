@@ -1,3 +1,4 @@
+import { TemplateService } from './template.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,10 +10,30 @@ import { CloudMessagingService } from 'app/workflow/shared/cloud-messaging.servi
 import { SharedModule } from 'app/shared/shared.module';
 import { OccoService } from 'app/workflow/shared/occo.service';
 import { EditorModule } from 'app/editor/editor.module';
+import { WorkflowManagerComponent } from 'app/workflow/workflow-manager/workflow-manager.component';
+import { BuildContextPropertiesComponent } from 'app/workflow/build-context-properties/build-context-properties.component';
+import { DeploymentManagerComponent } from 'app/workflow/deployment-manager/deployment-manager.component';
+import { DeploymentService } from 'app/workflow/shared/deployment.service';
+import { ExperimentContextPropertiesComponent } from 'app/workflow/experiment-context-properties/experiment-context-properties.component';
+import { ExperimentManagerComponent } from 'app/workflow/experiment-manager/experiment-manager.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, EditorModule],
-  declarations: [WorkflowMaintComponent, WorkflowDetailComponent],
-  providers: [WorkflowEntryService, CloudMessagingService, OccoService]
+  declarations: [
+    WorkflowMaintComponent,
+    WorkflowDetailComponent,
+    WorkflowManagerComponent,
+    BuildContextPropertiesComponent,
+    DeploymentManagerComponent,
+    ExperimentContextPropertiesComponent,
+    ExperimentManagerComponent
+  ],
+  providers: [
+    WorkflowEntryService,
+    CloudMessagingService,
+    OccoService,
+    TemplateService,
+    DeploymentService
+  ]
 })
 export class WorkflowModule {}

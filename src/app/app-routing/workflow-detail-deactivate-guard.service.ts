@@ -52,6 +52,10 @@ export class WorkflowDetailDeactivateGuard
     return confirmObservable;
   }
 
+  /**
+   * Creates and returns an Observable from the native confirmation dialog's result.
+   * @param message The confirm dialogs displayed message
+   */
   private confirm(message?: string) {
     return Observable.of(window.confirm(message || 'Is it Ok?'));
   }

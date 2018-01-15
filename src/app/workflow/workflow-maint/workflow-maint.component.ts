@@ -22,12 +22,18 @@ import { OccoService } from 'app/workflow/shared/occo.service';
   styleUrls: ['./workflow-maint.component.scss']
 })
 export class WorkflowMaintComponent implements OnInit {
+  /**
+   * The Occopus's message from events.
+   */
   message;
 
+  /**
+   * The holder array of the graphs.
+   */
   graphs;
 
   /**
-   * the displayed Columns in the data grid.
+   * The displayed Columns in the data grid.
    */
   displayedColumns = ['select', 'name', 'description', 'edit'];
 
@@ -90,11 +96,17 @@ export class WorkflowMaintComponent implements OnInit {
     this.initGraphs();
   }
 
+  /**
+   * The Messaging service subscribes to the messaging feed.
+   */
   private initializeCloudMessaging(): void {
     this.cloudMessagingSVC.receiveMessage();
     this.message = this.cloudMessagingSVC.currentMessage;
   }
 
+  /**
+   * Initializes the visualized graph from the service.
+   */
   private initGraphs(): void {
     this.graphs = this.workflowEntrySVC.graphs;
   }
@@ -170,7 +182,9 @@ export class WorkflowMaintComponent implements OnInit {
         return selected !== undefined;
       });
       console.log(entryy);
-      this.occoSVC.buildWorkflow(entryy.descriptor, entryy.$key);
+      this.occoSVC
+        .buildWorkflow(entryy.descriptor)
+        .subscribe(res => console.log(res));
     } else {
       window.alert('Only one workflow can be selected for build process!');
     }
@@ -181,25 +195,16 @@ export class WorkflowMaintComponent implements OnInit {
    */
   destroyWorkflow(): void {
     if (this.selection.selected.length === 1) {
-      this.occoSVC.destroyWorkflow();
+      // this.occoSVC.destroyWorkflow('');
     } else {
       window.alert('Only one workflow can be selected for delete process!');
-    }
-  }
-
-  infraInfo(): void {
-    if (this.selection.selected.length === 1) {
-      this.occoSVC.getWorkflowInformation();
-    } else {
-      window.alert('Only one workflow can be selected for information process!');
     }
   }
 
   /**
    *Idk.
    */
-  startProcessing(): void {
-  }
+  startProcessing(): void {}
 
   /**
    * Gets the selected entries and creates a clone of them to the database.
@@ -215,7 +220,7 @@ export class WorkflowMaintComponent implements OnInit {
 
     if (copyEntries.length !== 0) {
       copyEntries.forEach(entry => {
-        const cleanedEntry = this.workflowEntrySVC.cloneEntry(entry);
+        const cleanedEntry = this.workflowEntrySVC.peelEntry(entry);
         this.workflowEntrySVC.saveEntry(cleanedEntry);
       });
     } else {
@@ -243,6 +248,9 @@ export class WorkflowMaintComponent implements OnInit {
     this.selection.clear();
   }
 
+  /**
+   * Checks wether there is an entry selected.
+   */
   private SelectionEmptyProcess(): void {
     if (this.selection.isEmpty()) {
       window.alert('You need to select an entry to start with!');

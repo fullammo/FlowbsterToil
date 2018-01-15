@@ -44,6 +44,12 @@ export let initialMenuItems: Array<MenuItem> = [
         submenu: null
       },
       {
+        text: 'Manager',
+        icon: 'glyphicon-th-list',
+        route: 'authenticated/workflow-man',
+        submenu: null
+      },
+      {
         text: 'Editor',
         icon: 'glyphicon-pushpin',
         route: 'authenticated/editor',

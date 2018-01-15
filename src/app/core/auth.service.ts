@@ -15,10 +15,20 @@ import 'rxjs/add/operator/switchMap';
 import { UserApi } from 'fw/users/user-api';
 import { User } from 'app/core/models/user';
 
+
+/**
+ * Holds the logic for user authentication via AngularFire.
+ */
 @Injectable()
 export class AuthService implements UserApi {
+  /**
+   * Holds the User entity as an event stream.
+   */
   user: Observable<User>;
 
+  /**
+   * Initializes the needed services.
+   */
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -35,10 +45,18 @@ export class AuthService implements UserApi {
     });
   }
 
+  /**
+   * Logs the user in using the Google Authentication Provider.
+   */
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
   }
+
+  /**
+   * Signs the user in, asks for push notification permissions and navigates to the guarded routes.
+   * @param provider The chosen authentication provider
+   */
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider).then(credential => {
       this.updateUserData(credential.user);
@@ -47,6 +65,9 @@ export class AuthService implements UserApi {
     });
   }
 
+  /**
+   * Updates user data in the FireStore database based on the providers information.
+   */
   private updateUserData(user) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
@@ -61,6 +82,9 @@ export class AuthService implements UserApi {
     return userRef.set(data);
   }
 
+  /**
+   * Sings the user out from the Authentication service and navigates to the index page.
+   */
   signOut() {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/']);
