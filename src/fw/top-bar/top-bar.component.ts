@@ -16,9 +16,10 @@ export class TopBarComponent{
   /**
    *Initializes the needed services.
    * @param frameworkConfigService Holds data for the layout configuration options.
+   * @param userApi Holds data related to the user.
    */
   constructor(public frameworkConfigService: FrameworkConfigService,
-              private userApi: UserApi) { }
+              public userApi: UserApi) { }
 
   /**
    * Signs the user out using the authentication api.
