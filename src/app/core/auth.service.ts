@@ -15,7 +15,6 @@ import 'rxjs/add/operator/switchMap';
 import { UserApi } from 'fw/users/user-api';
 import { User } from 'app/core/models/user';
 
-
 /**
  * Holds the logic for user authentication via AngularFire.
  */
@@ -61,8 +60,12 @@ export class AuthService implements UserApi {
     return this.afAuth.auth.signInWithPopup(provider).then(credential => {
       this.updateUserData(credential.user);
       this.cloudMessagingSVC.getPermission();
-      this.router.navigate(['/authenticated']);
+      this.navigate();
     });
+  }
+
+  navigate(): void {
+    this.router.navigate(['/authenticated']);
   }
 
   /**

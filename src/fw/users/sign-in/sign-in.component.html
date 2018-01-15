@@ -37,10 +37,10 @@
 </div>
 <!-- User NOT logged in -->
 <ng-template #guest>
-  <h3>Howdy, GUEST</h3>
-  <p>Login to get started...</p>
+  <!-- <h3>Howdy, GUEST</h3>
+  <p>Login to get started...</p> -->
 
-  <button (click)="userApi.googleLogin()">
+  <button class="btn btn-info" (click)="userApi.googleLogin()">
     <i class="fa fa-google"></i> Connect Google
   </button>
 </ng-template>
@@ -49,8 +49,8 @@
   <div *ngIf="userApi.user | async as user">
     <h3>Howdy, {{ user.displayName }}</h3>
     <img [src]="user.photoURL">
-    <p>UID: {{ user.uid }}</p>
-    <p>Favorite Color: {{ user?.favoriteColor }} </p>
-    <button (click)="userApi.signOut()">Logout</button>
+    <!-- <p>UID: {{ user.uid }}</p> -->
+    <button (click)="userApi.navigate()" class="btn btn-success"> Navigate to the Platform</button>
+    <button (click)="userApi.signOut()" class="btn btn-danger">Logout</button>
   </div>
 </ng-template>
