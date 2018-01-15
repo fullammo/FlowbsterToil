@@ -1,5 +1,6 @@
-<button mat-raised-button color="primary" (click)="onBack()">Back</button> {{entry.name | json }} {{starterEntry.name | json}}
-{{isSubmitted}}
+<button mat-raised-button color="primary" (click)="onBack()">Back</button>
+<!-- {{entry.name | json }} {{starterEntry.name | json}}
+{{isSubmitted}} -->
 <form [formGroup]="workflowEditform" (ngSubmit)="onSubmit()" #f="ngForm">
 
   <mat-form-field>
