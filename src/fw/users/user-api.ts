@@ -31,4 +31,5 @@ export abstract class UserApi {
    * Signature method to navigate to the authenticated platform URL-s.
    */
   navigate: () => void;
+
 }
