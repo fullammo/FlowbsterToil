@@ -26,4 +26,9 @@ export abstract class UserApi {
    * The UserAPI must provide a Promise based method for google based authentication.
    */
   googleLogin: () => Promise<void>;
+
+  /**
+   * Signature method to navigate to the authenticated platform URL-s.
+   */
+  navigate: () => void;
 }

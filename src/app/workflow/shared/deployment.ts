@@ -67,6 +67,5 @@ export enum Status {
  * Basic Cloud provider entities that are supported by Occopus.
  */
 export enum DeploymentType {
-  'sigma',
-  'ec2'
+  'CloudSigma'
 }

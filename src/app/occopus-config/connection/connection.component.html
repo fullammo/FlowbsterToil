@@ -1,13 +1,16 @@
+<h2>Occopus Configuration settings</h2>
+<br>
+
+<p>The actual Occopus endpoint is : {{occoSVC.url}}</p>
+
+<p>Update the URL endpoint by the value in the input field!</p>
 <mat-input-container>
   <input required matInput placeholder="Occo Service Url endpoint" [(ngModel)]="url">
 </mat-input-container>
+<button (click)="onClick()" color="primary" mat-raised-button>Update Service Address</button>
 
 <!-- <br> http://192.168.248.129:5000/infrastructures/ -->
-<br>
-<button (click)="onClick()" color="primary" mat-raised-button>Update Service Address</button>
-<br>
 
-<br>
 <p-dataList [value]="occoSVC.successLog" [paginator]="true" [rows]="5">
   <p-header>
     List of Success Logs

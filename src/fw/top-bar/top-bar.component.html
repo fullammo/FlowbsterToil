@@ -1,8 +1,8 @@
 
-<a *ngFor="let icon of frameworkConfigService.socialIcons" 
+<a *ngFor="let icon of frameworkConfigService.socialIcons"
     [href]="icon.link"
     [title]="icon.alt">
-    <img 
+    <img
         class="top-image"
         [src]="icon.imageFile"
         [alt]="icon.alt">
@@ -14,6 +14,6 @@
 </div>
 
 <div *ngIf="frameworkConfigService.showUserControls">
-    <span>Gulyas Bendeguz</span>
+    <span>{{(userApi.user | async)?.displayName}}</span>
     <span class="sign-out" (click)="signOut()">SIGN OUT</span>
 </div>

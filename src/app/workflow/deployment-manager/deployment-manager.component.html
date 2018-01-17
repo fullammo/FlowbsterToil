@@ -36,12 +36,13 @@
   </p-footer> -->
 
   <ng-template let-entry pTemplate="rowexpansion">
-    <toil-experiment-manager [contextEntry]="entry">
-    </toil-experiment-manager>
+    <!-- <toil-experiment-manager [contextEntry]="entry">
+    </toil-experiment-manager> -->
+    Place for experiment datatable!
   </ng-template>
 </p-dataTable>
 
 <p-dialog header="Experiment Context for " [modal]="true" [(visible)]="modalVisible">
   <p-header> {{contextEntry.name}} deployment</p-header>
-  <toil-experiment-context-properties></toil-experiment-context-properties>
+  <!-- <toil-experiment-context-properties></toil-experiment-context-properties> -->
 </p-dialog>

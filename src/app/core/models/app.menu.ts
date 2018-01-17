@@ -37,12 +37,12 @@ export let initialMenuItems: Array<MenuItem> = [
     icon: 'glyphicon-wrench',
     route: null,
     submenu: [
-      {
-        text: 'Workflow',
-        icon: 'glyphicon-th-list',
-        route: 'authenticated/workflow-maint',
-        submenu: null
-      },
+      // {
+      //   text: 'Workflow',
+      //   icon: 'glyphicon-th-list',
+      //   route: 'authenticated/workflow-maint',
+      //   submenu: null
+      // },
       {
         text: 'Manager',
         icon: 'glyphicon-th-list',

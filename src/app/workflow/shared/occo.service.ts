@@ -30,7 +30,8 @@ export class OccoService {
    * @param http Angular's new HttpClient
    */
   constructor(private http: HttpClient) {
-    this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
+    // this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
+    this.url = 'Not specified'
     this.errorLog = [];
     this.successLog = [];
   }

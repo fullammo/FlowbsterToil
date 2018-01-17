@@ -25,14 +25,14 @@ export const appRoutes: Routes = [
         path: '',
         canActivateChild: [AuthGuard],
         children: [
-          { path: '', redirectTo: 'workflow-maint', pathMatch: 'full' },
+          { path: '', redirectTo: 'workflow-man', pathMatch: 'full' },
           {
             path: 'workflow-detail/:id/:operation',
             component: WorkflowDetailComponent,
             resolve: { detail: WorkflowDetailResolver },
             canDeactivate: [WorkflowDetailDeactivateGuard]
           },
-          { path: 'workflow-maint', component: WorkflowMaintComponent },
+          // { path: 'workflow-maint', component: WorkflowMaintComponent },
           { path: 'workflow-man', component: WorkflowManagerComponent },
           { path: 'editor', component: EditorComponent },
           { path: 'connection', component: ConnectionComponent }

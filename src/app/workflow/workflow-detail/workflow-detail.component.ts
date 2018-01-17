@@ -146,7 +146,7 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
    * Navigates us back to the maintenance page.
    */
   onBack() {
-    this.router.navigate(['/authenticated/workflow-maint']);
+    this.router.navigate(['/authenticated/workflow-man']);
   }
 
   /**
@@ -164,6 +164,6 @@ export class WorkflowDetailComponent implements OnInit, AfterViewInit {
       this.workflowEntrySVC.updateEntry(this.entry);
     }
 
-    this.router.navigate(['/authenticated/workflow-maint']);
+    this.router.navigate(['/authenticated/workflow-man']);
   }
 }

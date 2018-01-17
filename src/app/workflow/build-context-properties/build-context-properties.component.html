@@ -13,11 +13,13 @@
 
 
     <div class="ui-grid-row">
-      <mat-select placeholder="Distribution" [formControl]="form.controls['deployType']" floatPLaceholder="never">
-        <mat-option *ngFor="let deployment of DeploymentTypes | keys" [value]="deployment.value">
-          {{deployment.value}}
-        </mat-option>
-      </mat-select>
+      <mat-form-field>
+        <mat-select placeholder="Deploy Type" [formControl]="form.controls['deployType']" floatPLaceholder="never">
+          <mat-option *ngFor="let deployment of DeploymentTypes | keys" [value]="deployment.value">
+            {{deployment.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <div class="ui-grid-row">
