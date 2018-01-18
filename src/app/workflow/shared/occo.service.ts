@@ -20,9 +20,6 @@ export class OccoService {
    */
   url: string;
 
-  /**The database reference for the occopus endpoint url*/
-  urlDoc: AngularFirestoreDocument<string>;
-
   /**
    * Stores data of the error logs.
    */
@@ -38,21 +35,12 @@ export class OccoService {
    * @param http Angular's new HttpClient
    */
   constructor(
-    private http: HttpClient,
-    private afs: AngularFirestore,
-    private authSVC: AuthService
+    private http: HttpClient
   ) {
     // this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
-    this.urlDoc = this.afs.doc<string>('config');
-    this.urlDoc.valueChanges().subscribe((newUrl: string) => {
-      this.url = newUrl;
-    });
+    this.url = 'Not Specified';
     this.errorLog = [];
     this.successLog = [];
-  }
-
-  updateOccopusURL(url: string) {
-    this.urlDoc.update(url);
   }
 
   /**
