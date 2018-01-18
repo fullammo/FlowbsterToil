@@ -1,3 +1,4 @@
+import { WorkflowEntryService } from './workflow/shared/workflow-entry.service';
 import { Component } from '@angular/core';
 
 import {
@@ -23,7 +24,8 @@ export class AppComponent {
    */
   constructor(
     private frameworkConfigService: FrameworkConfigService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private workflowEntrySVC: WorkflowEntryService // black magic for data resolving.
   ) {
     const config: FrameworkConfigSettings = {
       socialIcons: [

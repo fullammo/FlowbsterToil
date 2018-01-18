@@ -51,7 +51,7 @@ export class WorkflowManagerComponent implements OnInit {
     private jointSVC: JointService,
     private confirmSVC: ConfirmationService,
     private deploymentSVC: DeploymentService,
-    private workflowEntrySVC: WorkflowEntryService
+    // private workflowEntrySVC: WorkflowEntryService
   ) {}
 
   /**
