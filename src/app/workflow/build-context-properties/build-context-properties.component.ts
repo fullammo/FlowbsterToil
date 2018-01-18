@@ -70,7 +70,7 @@ export class BuildContextPropertiesComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       name: new FormControl('', Validators.required),
-      deployType: new FormControl('', Validators.required)
+      // deployType: new FormControl('', Validators.required)
     });
 
     this.deployment = {

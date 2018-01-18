@@ -65,6 +65,7 @@ export class DescriptorService {
   getYamlDescriptor(): string {
 
     if (this.jointSVC.workflow) {
+      this.updateDescriptorProperties(this.jointSVC.workflow);
       this.updateOccopusDescriptor();
 
       console.log(this.occopusDescriptor);
