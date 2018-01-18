@@ -10,7 +10,6 @@ import { OccoService } from 'app/workflow/shared/occo.service';
   styleUrls: ['./connection.component.scss']
 })
 export class ConnectionComponent {
-
   /**
    * The url endpoint of the Occopus tool.
    */

@@ -1605,7 +1605,8 @@ export class OutputPropertiesComponent implements OnInit {
       &lt;mat-input-container&gt;
         &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;DisplayName&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;displayName&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.displayName&quot;&gt;
         &lt;mat-error *ngIf&#x3D;&quot;!userform.controls[&#x27;displayName&#x27;].valid&amp;&amp;userform.controls[&#x27;displayName&#x27;].dirty&quot;&gt;
-          Name is &lt;strong&gt;required&lt;/strong&gt;
+          Name is
+          &lt;strong&gt;required&lt;/strong&gt;
         &lt;/mat-error&gt;
       &lt;/mat-input-container&gt;
     &lt;/div&gt;
@@ -1614,7 +1615,8 @@ export class OutputPropertiesComponent implements OnInit {
       &lt;mat-input-container&gt;
         &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;name&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;name&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.name&quot;&gt;
         &lt;mat-error *ngIf&#x3D;&quot;!userform.controls[&#x27;name&#x27;].valid&amp;&amp;userform.controls[&#x27;name&#x27;].dirty&quot;&gt;
-          Name is &lt;strong&gt;required&lt;/strong&gt;
+          Name is
+          &lt;strong&gt;required&lt;/strong&gt;
         &lt;/mat-error&gt;
       &lt;/mat-input-container&gt;
     &lt;/div&gt;
@@ -1623,7 +1625,8 @@ export class OutputPropertiesComponent implements OnInit {
       &lt;mat-input-container&gt;
         &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Target Name&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;targetname&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.targetname&quot;&gt;
         &lt;mat-error *ngIf&#x3D;&quot;!userform.controls[&#x27;targetname&#x27;].valid&amp;&amp;userform.controls[&#x27;targetname&#x27;].dirty&quot;&gt;
-          Executable name is &lt;strong&gt;required&lt;/strong&gt;
+          Executable name is
+          &lt;strong&gt;required&lt;/strong&gt;
         &lt;/mat-error&gt;
         &lt;!-- &lt;mat-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/mat-hint&gt; --&gt;
       &lt;/mat-input-container&gt;
@@ -1633,7 +1636,8 @@ export class OutputPropertiesComponent implements OnInit {
       &lt;mat-input-container&gt;
         &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Target IP&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;targetip&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.targetip&quot;&gt;
         &lt;mat-error *ngIf&#x3D;&quot;!userform.controls[&#x27;targetip&#x27;].valid&amp;&amp;userform.controls[&#x27;targetip&#x27;].dirty&quot;&gt;
-          Executable name is &lt;strong&gt;required&lt;/strong&gt;
+          Executable name is
+          &lt;strong&gt;required&lt;/strong&gt;
         &lt;/mat-error&gt;
         &lt;!-- &lt;mat-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/mat-hint&gt; --&gt;
       &lt;/mat-input-container&gt;
@@ -1643,7 +1647,8 @@ export class OutputPropertiesComponent implements OnInit {
       &lt;mat-input-container&gt;
         &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Target Port&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;targetport&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.targetport&quot;&gt;
         &lt;mat-error *ngIf&#x3D;&quot;!userform.controls[&#x27;targetport&#x27;].valid&amp;&amp;userform.controls[&#x27;targetport&#x27;].dirty&quot;&gt;
-          Executable name is &lt;strong&gt;required&lt;/strong&gt;
+          Executable name is
+          &lt;strong&gt;required&lt;/strong&gt;
         &lt;/mat-error&gt;
         &lt;!-- &lt;mat-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/mat-hint&gt; --&gt;
       &lt;/mat-input-container&gt;
@@ -1664,12 +1669,14 @@ export class OutputPropertiesComponent implements OnInit {
     &lt;br&gt;
 
     &lt;div class&#x3D;&quot;ui-grid-row&quot;&gt;
-      &lt;mat-select placeholder&#x3D;&quot;Distribution&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;distribution&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.distribution&quot;
-        floatPLaceholder&#x3D;&quot;never&quot;&gt;
-        &lt;mat-option *ngFor&#x3D;&quot;let dist of distributionTypes | keys&quot; [value]&#x3D;&quot;dist.value&quot;&gt;
-          {{dist.value}}
-        &lt;/mat-option&gt;
-      &lt;/mat-select&gt;
+      &lt;mat-form-field&gt;
+        &lt;mat-select placeholder&#x3D;&quot;Distribution&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;distribution&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.distribution&quot;
+          floatPLaceholder&#x3D;&quot;never&quot;&gt;
+          &lt;mat-option *ngFor&#x3D;&quot;let dist of distributionTypes | keys&quot; [value]&#x3D;&quot;dist.value&quot;&gt;
+            {{dist.value}}
+          &lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
     &lt;/div&gt;
     &lt;br&gt;
 
@@ -1677,7 +1684,8 @@ export class OutputPropertiesComponent implements OnInit {
       &lt;mat-input-container&gt;
         &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Filter RegExp&quot; [formControl]&#x3D;&quot;userform.controls[&#x27;filter&#x27;]&quot; [(ngModel)]&#x3D;&quot;outputProps.filter&quot;&gt;
         &lt;mat-error *ngIf&#x3D;&quot;!userform.controls[&#x27;filter&#x27;].valid&amp;&amp;userform.controls[&#x27;filter&#x27;].dirty&quot;&gt;
-          Executable name is &lt;strong&gt;required&lt;/strong&gt;
+          Executable name is
+          &lt;strong&gt;required&lt;/strong&gt;
         &lt;/mat-error&gt;
         &lt;!-- &lt;mat-hint align&#x3D;&quot;start&quot;&gt;&lt;strong&gt;something&lt;/strong&gt;&lt;/mat-hint&gt; --&gt;
       &lt;/mat-input-container&gt;
@@ -1722,7 +1730,7 @@ export class OutputPropertiesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">  <div class="ui-grid ui-grid-responsive ui-grid-pad" style="margin: 10px 0px">    <!-- {{OutputProps | json}} -->    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="DisplayName" [formControl]="userform.controls[\'displayName\']" [(ngModel)]="outputProps.displayName">        <mat-error *ngIf="!userform.controls[\'displayName\'].valid&&userform.controls[\'displayName\'].dirty">          Name is <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="name" [formControl]="userform.controls[\'name\']" [(ngModel)]="outputProps.name">        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty">          Name is <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Target Name" [formControl]="userform.controls[\'targetname\']" [(ngModel)]="outputProps.targetname">        <mat-error *ngIf="!userform.controls[\'targetname\'].valid&&userform.controls[\'targetname\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Target IP" [formControl]="userform.controls[\'targetip\']" [(ngModel)]="outputProps.targetip">        <mat-error *ngIf="!userform.controls[\'targetip\'].valid&&userform.controls[\'targetip\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Target Port" [formControl]="userform.controls[\'targetport\']" [(ngModel)]="outputProps.targetport">        <mat-error *ngIf="!userform.controls[\'targetport\'].valid&&userform.controls[\'targetport\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-checkbox [formControl]="userform.controls[\'isGenerator\']" (change)="onCheckboxToggle()" [(ngModel)]="outputProps.isGenerator">Generator port</mat-checkbox>      <!-- <mat-input-container>        <input matInput type="text" placeholder="Generator port" [formControl]="userform.controls[\'isGenerator\']" [(ngModel)]="outputProps.isGenerator">        <mat-error *ngIf="!userform.controls[\'isGenerator\'].valid&&userform.controls[\'isGenerator\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <! <mat-hint align="start"><strong>something</strong></mat-hint> >      </mat-input-container> -->    </div>    <br>    <div class="ui-grid-row">      <mat-select placeholder="Distribution" [formControl]="userform.controls[\'distribution\']" [(ngModel)]="outputProps.distribution"        floatPLaceholder="never">        <mat-option *ngFor="let dist of distributionTypes | keys" [value]="dist.value">          {{dist.value}}        </mat-option>      </mat-select>    </div>    <br>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Filter RegExp" [formControl]="userform.controls[\'filter\']" [(ngModel)]="outputProps.filter">        <mat-error *ngIf="!userform.controls[\'filter\'].valid&&userform.controls[\'filter\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <!-- {{distributions | keys | json }} -->    <br>    <div class="ui-grid-row" *ngIf="!readOnly">      <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>    </div>  </div></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="userform" (ngSubmit)="onSubmit()" #f="ngForm">  <div class="ui-grid ui-grid-responsive ui-grid-pad" style="margin: 10px 0px">    <!-- {{OutputProps | json}} -->    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="DisplayName" [formControl]="userform.controls[\'displayName\']" [(ngModel)]="outputProps.displayName">        <mat-error *ngIf="!userform.controls[\'displayName\'].valid&&userform.controls[\'displayName\'].dirty">          Name is          <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="name" [formControl]="userform.controls[\'name\']" [(ngModel)]="outputProps.name">        <mat-error *ngIf="!userform.controls[\'name\'].valid&&userform.controls[\'name\'].dirty">          Name is          <strong>required</strong>        </mat-error>      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Target Name" [formControl]="userform.controls[\'targetname\']" [(ngModel)]="outputProps.targetname">        <mat-error *ngIf="!userform.controls[\'targetname\'].valid&&userform.controls[\'targetname\'].dirty">          Executable name is          <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Target IP" [formControl]="userform.controls[\'targetip\']" [(ngModel)]="outputProps.targetip">        <mat-error *ngIf="!userform.controls[\'targetip\'].valid&&userform.controls[\'targetip\'].dirty">          Executable name is          <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Target Port" [formControl]="userform.controls[\'targetport\']" [(ngModel)]="outputProps.targetport">        <mat-error *ngIf="!userform.controls[\'targetport\'].valid&&userform.controls[\'targetport\'].dirty">          Executable name is          <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <div class="ui-grid-row">      <mat-checkbox [formControl]="userform.controls[\'isGenerator\']" (change)="onCheckboxToggle()" [(ngModel)]="outputProps.isGenerator">Generator port</mat-checkbox>      <!-- <mat-input-container>        <input matInput type="text" placeholder="Generator port" [formControl]="userform.controls[\'isGenerator\']" [(ngModel)]="outputProps.isGenerator">        <mat-error *ngIf="!userform.controls[\'isGenerator\'].valid&&userform.controls[\'isGenerator\'].dirty">          Executable name is <strong>required</strong>        </mat-error>        <! <mat-hint align="start"><strong>something</strong></mat-hint> >      </mat-input-container> -->    </div>    <br>    <div class="ui-grid-row">      <mat-form-field>        <mat-select placeholder="Distribution" [formControl]="userform.controls[\'distribution\']" [(ngModel)]="outputProps.distribution"          floatPLaceholder="never">          <mat-option *ngFor="let dist of distributionTypes | keys" [value]="dist.value">            {{dist.value}}          </mat-option>        </mat-select>      </mat-form-field>    </div>    <br>    <div class="ui-grid-row">      <mat-input-container>        <input matInput type="text" placeholder="Filter RegExp" [formControl]="userform.controls[\'filter\']" [(ngModel)]="outputProps.filter">        <mat-error *ngIf="!userform.controls[\'filter\'].valid&&userform.controls[\'filter\'].dirty">          Executable name is          <strong>required</strong>        </mat-error>        <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->      </mat-input-container>    </div>    <!-- {{distributions | keys | json }} -->    <br>    <div class="ui-grid-row" *ngIf="!readOnly">      <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>    </div>  </div></form></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuildContextPropertiesComponent', 'selector': 'toil-build-context-properties'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DeploymentManagerComponent', 'selector': 'toil-deployment-manager'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'ExperimentContextPropertiesComponent', 'selector': 'toil-experiment-context-properties'},{'name': 'ExperimentManagerComponent', 'selector': 'toil-experiment-manager'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowManagerComponent', 'selector': 'toil-workflow-manager'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'OutputPropertiesComponent'};

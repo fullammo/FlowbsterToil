@@ -22,7 +22,6 @@ import { Deployment } from 'app/workflow/shared/deployment';
   providers: [ConfirmationService]
 })
 export class WorkflowManagerComponent implements OnInit {
-
   /**
    * The holder array of the database records that is shown in the datatable.
    */
@@ -51,7 +50,8 @@ export class WorkflowManagerComponent implements OnInit {
     private router: Router,
     private jointSVC: JointService,
     private confirmSVC: ConfirmationService,
-    private deploymentSVC: DeploymentService
+    private deploymentSVC: DeploymentService,
+    private workflowEntrySVC: WorkflowEntryService
   ) {}
 
   /**

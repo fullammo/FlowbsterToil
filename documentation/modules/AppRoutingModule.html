@@ -1014,14 +1014,14 @@ export const appRoutes: Routes &#x3D; [
         path: &#x27;&#x27;,
         canActivateChild: [AuthGuard],
         children: [
-          { path: &#x27;&#x27;, redirectTo: &#x27;workflow-maint&#x27;, pathMatch: &#x27;full&#x27; },
+          { path: &#x27;&#x27;, redirectTo: &#x27;workflow-man&#x27;, pathMatch: &#x27;full&#x27; },
           {
             path: &#x27;workflow-detail/:id/:operation&#x27;,
             component: WorkflowDetailComponent,
             resolve: { detail: WorkflowDetailResolver },
             canDeactivate: [WorkflowDetailDeactivateGuard]
           },
-          { path: &#x27;workflow-maint&#x27;, component: WorkflowMaintComponent },
+          // { path: &#x27;workflow-maint&#x27;, component: WorkflowMaintComponent },
           { path: &#x27;workflow-man&#x27;, component: WorkflowManagerComponent },
           { path: &#x27;editor&#x27;, component: EditorComponent },
           { path: &#x27;connection&#x27;, component: ConnectionComponent }

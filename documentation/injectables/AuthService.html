@@ -918,6 +918,9 @@
                                          <a href="#googleLogin">googleLogin</a>
                                     </li>
                                     <li>
+                                         <a href="#navigate">navigate</a>
+                                    </li>
+                                    <li>
                                         <span class="modifier">Private</span> <a href="#oAuthLogin">oAuthLogin</a>
                                     </li>
                                     <li>
@@ -944,7 +947,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/auth.service.ts:27</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/auth.service.ts:26</a></div>
                                         </td>
                                     </tr>
             
@@ -1031,7 +1034,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/core/auth.service.ts:51</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/core/auth.service.ts:50</a></div>
                                         </td>
                                     </tr>
             
@@ -1042,6 +1045,38 @@
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="navigate"></a>
+                                    <span class="name"><b> navigate</b><a href="#navigate"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>navigate()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/core/auth.service.ts:67</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
             
                                         </div>
                                 </td>
@@ -1066,7 +1101,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/core/auth.service.ts:60</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/core/auth.service.ts:59</a></div>
                                         </td>
                                     </tr>
             
@@ -1129,7 +1164,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/core/auth.service.ts:88</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/core/auth.service.ts:91</a></div>
                                         </td>
                                     </tr>
             
@@ -1164,7 +1199,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/core/auth.service.ts:71</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/core/auth.service.ts:74</a></div>
                                         </td>
                                     </tr>
             
@@ -1238,7 +1273,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/auth.service.ts:27</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/auth.service.ts:26</a></div>
                                         </td>
                                     </tr>
             
@@ -1272,7 +1307,6 @@ import &#x27;rxjs/add/operator/switchMap&#x27;;
 
 import { UserApi } from &#x27;fw/users/user-api&#x27;;
 import { User } from &#x27;app/core/models/user&#x27;;
-
 
 /**
  * Holds the logic for user authentication via AngularFire.
@@ -1319,8 +1353,12 @@ export class AuthService implements UserApi {
     return this.afAuth.auth.signInWithPopup(provider).then(credential &#x3D;&gt; {
       this.updateUserData(credential.user);
       this.cloudMessagingSVC.getPermission();
-      this.router.navigate([&#x27;/authenticated&#x27;]);
+      this.navigate();
     });
+  }
+
+  navigate(): void {
+    this.router.navigate([&#x27;/authenticated&#x27;]);
   }
 
   /**

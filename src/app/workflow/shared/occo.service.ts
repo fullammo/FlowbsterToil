@@ -1,9 +1,14 @@
+import { AuthService } from 'app/core/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
 
 /**
  * A service that holds the logic for communication with the Occopuses Rest interface.
@@ -14,6 +19,9 @@ export class OccoService {
    * The actual endpoint we want to reach with the http service.
    */
   url: string;
+
+  /**The database reference for the occopus endpoint url*/
+  urlDoc: AngularFirestoreDocument<string>;
 
   /**
    * Stores data of the error logs.
@@ -29,11 +37,22 @@ export class OccoService {
    * We inject Angular Http Service and set a default end point.
    * @param http Angular's new HttpClient
    */
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private afs: AngularFirestore,
+    private authSVC: AuthService
+  ) {
     // this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
-    this.url = 'Not specified'
+    this.urlDoc = this.afs.doc<string>('config');
+    this.urlDoc.valueChanges().subscribe((newUrl: string) => {
+      this.url = newUrl;
+    });
     this.errorLog = [];
     this.successLog = [];
+  }
+
+  updateOccopusURL(url: string) {
+    this.urlDoc.update(url);
   }
 
   /**
@@ -66,27 +85,26 @@ export class OccoService {
     //     return error;
     //   });
 
-    return this.http
-      .post(endpoint, yamldescriptor, { headers: header }).do(
-        (res: { infraid: string }) => {
-          console.log(res);
-          console.log(res.infraid);
-          this.successLog.push({
-            message: JSON.stringify(res),
-            date: Date.now()
-          });
-          return res.infraid;
-        },
-        error => {
-          console.log('error occured', error);
-          this.errorLog.push({
-            message: JSON.stringify(error),
-            date: Date.now()
-          });
-          return error;
-        },
-        () => {}
-      );
+    return this.http.post(endpoint, yamldescriptor, { headers: header }).do(
+      (res: { infraid: string }) => {
+        console.log(res);
+        console.log(res.infraid);
+        this.successLog.push({
+          message: JSON.stringify(res),
+          date: Date.now()
+        });
+        return res.infraid;
+      },
+      error => {
+        console.log('error occured', error);
+        this.errorLog.push({
+          message: JSON.stringify(error),
+          date: Date.now()
+        });
+        return error;
+      },
+      () => {}
+    );
   }
 
   /**

@@ -19,7 +19,6 @@ import { AuthService } from 'app/core/auth.service';
  */
 @Injectable()
 export class WorkflowEntryService {
-
   /**
    * An event stream that informs the subscribers about that the data in the database has been changed.
    */

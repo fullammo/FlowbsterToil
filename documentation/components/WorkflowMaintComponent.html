@@ -1178,7 +1178,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:212</a></div>
                                 </td>
                             </tr>
     
@@ -1212,7 +1212,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:263</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:264</a></div>
                                 </td>
                             </tr>
     
@@ -1246,7 +1246,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:241</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:242</a></div>
                                 </td>
                             </tr>
     
@@ -1280,7 +1280,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:196</a></div>
                                 </td>
                             </tr>
     
@@ -1314,7 +1314,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:234</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:235</a></div>
                                 </td>
                             </tr>
     
@@ -1622,7 +1622,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:253</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:254</a></div>
                                 </td>
                             </tr>
     
@@ -1656,7 +1656,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:205</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/app/workflow/workflow-maint/workflow-maint.component.ts:207</a></div>
                                 </td>
                             </tr>
     
@@ -2140,7 +2140,9 @@ export class WorkflowMaintComponent implements OnInit {
         return selected !&#x3D;&#x3D; undefined;
       });
       console.log(entryy);
-      this.occoSVC.buildWorkflow(entryy.descriptor).subscribe(res&#x3D;&gt; console.log(res));
+      this.occoSVC
+        .buildWorkflow(entryy.descriptor)
+        .subscribe(res &#x3D;&gt; console.log(res));
     } else {
       window.alert(&#x27;Only one workflow can be selected for build process!&#x27;);
     }
@@ -2160,8 +2162,7 @@ export class WorkflowMaintComponent implements OnInit {
   /**
    *Idk.
    */
-  startProcessing(): void {
-  }
+  startProcessing(): void {}
 
   /**
    * Gets the selected entries and creates a clone of them to the database.
