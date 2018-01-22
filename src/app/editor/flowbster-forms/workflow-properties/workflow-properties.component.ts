@@ -75,8 +75,8 @@ export class WorkflowPropertiesComponent implements OnInit {
         Validators.required,
         NodeValidator.isWorkflowUnique(this.jointSVC)
       ),
-      collectorip: new FormControl('', Validators.required),
-      collectorport: new FormControl('', Validators.required),
+      gatherip: new FormControl('', Validators.required),
+      gatherport: new FormControl('', Validators.required),
       receiverport: new FormControl('', Validators.required)
     });
   }

@@ -36,8 +36,8 @@ export class DescriptorService {
     this.occopusDescriptor.user_id = newWorkflow.userid;
     this.occopusDescriptor.infra_name = newWorkflow.infraname;
     // this.occopusDescriptor.infra_id = newWorkflow.infraid;
-    this.occopusDescriptor.variables.flowbster_global.collector_ip = '&collectorip ' + newWorkflow.collectorip;
-    this.occopusDescriptor.variables.flowbster_global.collector_port = '&collectorport ' + newWorkflow.collectorport;
+    this.occopusDescriptor.variables.flowbster_global.gather_ip = '&gatherip ' + newWorkflow.gatherip;
+    this.occopusDescriptor.variables.flowbster_global.gather_port = '&gatherport ' + newWorkflow.gatherport;
     this.occopusDescriptor.variables.flowbster_global.receiver_port = '&receiverport ' + newWorkflow.receiverport;
   }
 
@@ -51,8 +51,8 @@ export class DescriptorService {
       infra_name: '',
       variables: {
         flowbster_global: {
-          collector_ip: '',
-          collector_port: null,
+          gather_ip: '',
+          gather_port: null,
           receiver_port: null
         }
       }
@@ -351,15 +351,15 @@ export class DescriptorService {
 
     const inport: InputPort = { name: inportName };
 
-    const hasProperties = inportProperties[inportName]['isCollector']; // change this with the InputPort
+    const hasProperties = inportProperties[inportName]['collector']; // change this with the InputPort
 
     if (hasProperties) {
       inport.collector = hasProperties;
-      inport.format = '\\' + inportProperties[inportName]['storagePattern'] + '\\'; // "" needed
+      inport.format = '\\' + inportProperties[inportName]['format'] + '\\'; // "" needed
     } else {
       console.log(`No properties in this given input port ${inportName}`);
     }
-
+    console.log('this is an input: ' + JSON.stringify(inport));
     return inport;
   }
 
@@ -381,9 +381,9 @@ export class DescriptorService {
       const outport: OutputPort = {
         name: actualProperties['name'],
         displayName: actualProperties['displayName'],
-        targetip: actualProperties['targetip'] === undefined ? this.jointSVC.workflow.collectorip : actualProperties['targetip'],
+        targetip: actualProperties['targetip'] === undefined ? this.jointSVC.workflow.gatherip : actualProperties['targetip'],
         targetname: actualProperties['targetname'],
-        targetport: actualProperties['targetport'] === undefined ? this.jointSVC.workflow.collectorport : actualProperties['targetport']
+        targetport: actualProperties['targetport'] === undefined ? this.jointSVC.workflow.gatherport : actualProperties['targetport']
       };
 
       if (actualProperties.isGenerator) {

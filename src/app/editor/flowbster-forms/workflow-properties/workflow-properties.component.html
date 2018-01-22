@@ -35,8 +35,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="text" placeholder="Gather IP" [formControl]="workflowForm.controls['collectorip']" [(ngModel)]="workflowProps.collectorip">
-        <mat-error *ngIf="!workflowForm.controls['collectorip'].valid&&workflowForm.controls['collectorip'].dirty">
+        <input matInput type="text" placeholder="Gather IP" [formControl]="workflowForm.controls['gatherip']" [(ngModel)]="workflowProps.gatherip">
+        <mat-error *ngIf="!workflowForm.controls['gatherip'].valid&&workflowForm.controls['gatherip'].dirty">
           Gather IP is <strong>required</strong>
         </mat-error>
         <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
@@ -45,8 +45,8 @@
 
     <div class="ui-grid-row">
       <mat-input-container>
-        <input matInput type="number" placeholder="Gather port" [formControl]="workflowForm.controls['collectorport']" [(ngModel)]="workflowProps.collectorport">
-        <mat-error *ngIf="!workflowForm.controls['collectorport'].valid&&workflowForm.controls['collectorport'].dirty">
+        <input matInput type="number" placeholder="Gather port" [formControl]="workflowForm.controls['gatherport']" [(ngModel)]="workflowProps.gatherport">
+        <mat-error *ngIf="!workflowForm.controls['gatherport'].valid&&workflowForm.controls['gatherport'].dirty">
           Gather port is <strong>required</strong>
         </mat-error>
         <!-- <mat-hint align="start"><strong>something</strong></mat-hint> -->
@@ -64,7 +64,7 @@
     </div>
 
     <div class="ui-grid-row">
-      <button pButton type="submit" label="Submit" [disabled]="!workflowForm.valid"></button>
+      <button pButton type="submit" label="Save" [disabled]="!workflowForm.valid"></button>
     </div>
 
 

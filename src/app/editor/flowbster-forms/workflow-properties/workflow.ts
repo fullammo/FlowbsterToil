@@ -19,14 +19,14 @@ export interface Workflow {
     infraname: string,
 
     /**
-     * The running collector service's IP address.
+     * The running gather service's IP address.
      */
-    collectorip: string,
+    gatherip: string,
 
     /**
-     * The running collector service's Port address.
+     * The running gather service's Port address.
      */
-    collectorport: number,
+    gatherport: number,
 
     /**
      * The starter port to start the flow in the workflow.

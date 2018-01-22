@@ -31,12 +31,12 @@ export interface OccopusDescriptor {
             /**
              * Gather components IP address.
              */
-            collector_ip: string,
+            gather_ip: string,
 
             /**
              * Gather components Port address.
              */
-            collector_port: string,
+            gather_port: string,
 
             /**
              * Feeder component Port address.
