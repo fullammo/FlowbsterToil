@@ -257,8 +257,8 @@ export class JointService {
       infraid: null,
       userid: '',
       infraname: '',
-      collectorip: null,
-      collectorport: null,
+      gatherip: null,
+      gatherport: null,
       receiverport: null,
     };
   }
@@ -273,8 +273,8 @@ export class JointService {
     this.graph.set('infra_id', newWorkflow.infraid);
     this.graph.set('user_id', newWorkflow.userid);
     this.graph.set('wf_name', newWorkflow.infraname);
-    this.graph.set('coll_ip', newWorkflow.collectorip);
-    this.graph.set('coll_port', newWorkflow.collectorport);
+    this.graph.set('coll_ip', newWorkflow.gatherip);
+    this.graph.set('coll_port', newWorkflow.gatherport);
     this.graph.set('recv_port', newWorkflow.receiverport);
     this.isWorkflowInitialized.next(true);
     this.emitWorkflowChange();
@@ -313,8 +313,8 @@ export class JointService {
       infraid: this.graph.get('infra_id'),
       infraname: this.graph.get('wf_name'),
       userid: this.graph.get('user_id'),
-      collectorip: this.graph.get('coll_ip'),
-      collectorport: this.graph.get('coll_port'),
+      gatherip: this.graph.get('coll_ip'),
+      gatherport: this.graph.get('coll_port'),
       receiverport: this.graph.get('recv_port')
     };
   }
