@@ -17,12 +17,12 @@
     </mat-error>
   </mat-form-field>
 
-  <div *ngIf="operation === 'create'" matTooltip="Before saving an entry, you have to enter the basic workflow properties" [matTooltipPosition]="'below'">
-    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid && isGraphValid)" mat-raised-button>Save Workflow Entry</button>
+  <div *ngIf="operation === 'create'" matTooltip="Before saving a workflow template, you have to enter the basic workflow properties" [matTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid && isGraphValid)" mat-raised-button>Create Workflow Template</button>
   </div>
 
-  <div *ngIf="operation !== 'create'" matTooltip="Before saving an entry, you have to enter the basic workflow properties" [matTooltipPosition]="'below'">
-    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid)" mat-raised-button>Update Workflow Entry</button>
+  <div *ngIf="operation !== 'create'" matTooltip="Before saving a workflow template, you have to enter the basic workflow properties" [matTooltipPosition]="'below'">
+    <button type="submit" color="primary" [disabled]="!(workflowEditform.valid)" mat-raised-button>Update Workflow Template</button>
   </div>
 
   <toil-editor [readOnly]="false"></toil-editor>
