@@ -351,15 +351,15 @@ export class DescriptorService {
 
     const inport: InputPort = { name: inportName };
 
-    const hasProperties = inportProperties[inportName]['isCollector']; // change this with the InputPort
+    const hasProperties = inportProperties[inportName]['collector']; // change this with the InputPort
 
     if (hasProperties) {
       inport.collector = hasProperties;
-      inport.format = '\\' + inportProperties[inportName]['storagePattern'] + '\\'; // "" needed
+      inport.format = '\\' + inportProperties[inportName]['format'] + '\\'; // "" needed
     } else {
       console.log(`No properties in this given input port ${inportName}`);
     }
-
+    console.log('this is an input: ' + JSON.stringify(inport));
     return inport;
   }
 
