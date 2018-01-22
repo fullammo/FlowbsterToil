@@ -7,7 +7,6 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ManagerComponent } from 'app/workflow/shared/manager.component';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
-
 /**
  * Holds logic of the datatable of the deployment records and its interactions.
  */
@@ -68,9 +67,23 @@ export class DeploymentManagerComponent extends ManagerComponent<
       header: 'Delete Confirmation',
       icon: 'fa fa-trash',
       accept: () => {
-        this.occoSVC.destroyWorkflow(entry.infraid);
+        this.occoSVC.destroyWorkflow(entry.infraid).subscribe(
+          succes => {
+            console.log('The Occopus deletion was successfull, deletes database entry...');
+            this.deploymentSVC.deleteEntry(entry.$key);
+          },
+          error => {
+            console.log(
+              'Some error happened, the deletion on the Occopus side failed!',
+              error
+            );
+            window.alert(
+              'Some error happened, the deletion on the Occopus side failed!'
+            );
+          }
+        );
         // only delete the entry when the workflow is actually destroyed
-        this.deploymentSVC.deleteEntry(entry.$key);
+
       }
     });
   }

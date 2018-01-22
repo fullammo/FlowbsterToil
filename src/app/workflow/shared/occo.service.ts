@@ -34,9 +34,7 @@ export class OccoService {
    * We inject Angular Http Service and set a default end point.
    * @param http Angular's new HttpClient
    */
-  constructor(
-    private http: HttpClient
-  ) {
+  constructor(private http: HttpClient) {
     // this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
     this.url = 'Not Specified';
     this.errorLog = [];
@@ -103,7 +101,7 @@ export class OccoService {
   destroyWorkflow(infraid: string) {
     const endpoint = this.url + '/infrastructures/' + infraid;
 
-    return this.http.delete(endpoint, { responseType: 'text' }).subscribe(
+    return this.http.delete(endpoint, { responseType: 'text' }).do(
       res => {
         console.log(res);
         this.successLog.push({
@@ -111,7 +109,7 @@ export class OccoService {
           date: Date.now()
         });
 
-        return this;
+        return res;
       },
       error => {
         console.log('error occured', error);
@@ -119,6 +117,7 @@ export class OccoService {
           message: JSON.stringify(error),
           date: Date.now()
         });
+        return error;
       },
       () => {}
     );
