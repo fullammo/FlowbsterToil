@@ -938,12 +938,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(frameworkConfigService: <a href="../injectables/FrameworkConfigService.html">FrameworkConfigService</a>, menuService: <a href="../injectables/MenuService.html">MenuService</a>)</code>
+                            <code>constructor(frameworkConfigService: <a href="../injectables/FrameworkConfigService.html">FrameworkConfigService</a>, menuService: <a href="../injectables/MenuService.html">MenuService</a>, workflowEntrySVC: <a href="../injectables/WorkflowEntryService.html">WorkflowEntryService</a>)</code>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/app.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/app.component.ts:21</a></div>
                                 </td>
                             </tr>
     
@@ -981,6 +981,15 @@
                                                       </td>
                                                       <td></td>
                                                     </tr>
+                                                    <tr>
+                                                      <td>workflowEntrySVC</td>
+                                                      <td>
+                                                                <code><a href="../injectables/WorkflowEntryService.html" target="_self" >WorkflowEntryService</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
                                             </tbody>
                                         </table>
                                 </div>
@@ -999,7 +1008,8 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { WorkflowEntryService } from &#x27;./workflow/shared/workflow-entry.service&#x27;;
+import { Component } from &#x27;@angular/core&#x27;;
 
 import {
   FrameworkConfigService,
@@ -1024,7 +1034,8 @@ export class AppComponent {
    */
   constructor(
     private frameworkConfigService: FrameworkConfigService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private workflowEntrySVC: WorkflowEntryService // black magic for data resolving.
   ) {
     const config: FrameworkConfigSettings &#x3D; {
       socialIcons: [

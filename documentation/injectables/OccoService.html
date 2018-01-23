@@ -947,7 +947,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/workflow/shared/occo.service.ts:26</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/workflow/shared/occo.service.ts:31</a></div>
                                         </td>
                                     </tr>
             
@@ -1008,7 +1008,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/workflow/shared/occo.service.ts:44</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/workflow/shared/occo.service.ts:49</a></div>
                                         </td>
                                     </tr>
             
@@ -1072,7 +1072,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/workflow/shared/occo.service.ts:97</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/workflow/shared/occo.service.ts:101</a></div>
                                         </td>
                                     </tr>
             
@@ -1137,7 +1137,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/workflow/shared/occo.service.ts:126</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/workflow/shared/occo.service.ts:131</a></div>
                                         </td>
                                     </tr>
             
@@ -1212,7 +1212,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/workflow/shared/occo.service.ts:21</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/workflow/shared/occo.service.ts:26</a></div>
                                         </td>
                                     </tr>
             
@@ -1247,7 +1247,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/workflow/shared/occo.service.ts:26</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/workflow/shared/occo.service.ts:31</a></div>
                                         </td>
                                     </tr>
             
@@ -1282,7 +1282,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/workflow/shared/occo.service.ts:16</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/workflow/shared/occo.service.ts:21</a></div>
                                         </td>
                                     </tr>
             
@@ -1300,12 +1300,17 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Observable } from &#x27;rxjs/Observable&#x27;;
+        <pre class="line-numbers"><code class="language-typescript">import { AuthService } from &#x27;app/core/auth.service&#x27;;
+import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { AngularFireAuth } from &#x27;angularfire2/auth&#x27;;
 import { AngularFireDatabase } from &#x27;angularfire2/database&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { HttpHeaders } from &#x27;@angular/common/http&#x27;;
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from &#x27;angularfire2/firestore&#x27;;
 
 /**
  * A service that holds the logic for communication with the Occopuses Rest interface.
@@ -1333,7 +1338,7 @@ export class OccoService {
    */
   constructor(private http: HttpClient) {
     // this.url &#x3D; &#x27;http://192.168.248.129:5000&#x27;; // provide a URL that has an occopus running on it.
-    this.url &#x3D; &#x27;Not specified&#x27;
+    this.url &#x3D; &#x27;Not Specified&#x27;;
     this.errorLog &#x3D; [];
     this.successLog &#x3D; [];
   }
@@ -1368,27 +1373,26 @@ export class OccoService {
     //     return error;
     //   });
 
-    return this.http
-      .post(endpoint, yamldescriptor, { headers: header }).do(
-        (res: { infraid: string }) &#x3D;&gt; {
-          console.log(res);
-          console.log(res.infraid);
-          this.successLog.push({
-            message: JSON.stringify(res),
-            date: Date.now()
-          });
-          return res.infraid;
-        },
-        error &#x3D;&gt; {
-          console.log(&#x27;error occured&#x27;, error);
-          this.errorLog.push({
-            message: JSON.stringify(error),
-            date: Date.now()
-          });
-          return error;
-        },
-        () &#x3D;&gt; {}
-      );
+    return this.http.post(endpoint, yamldescriptor, { headers: header }).do(
+      (res: { infraid: string }) &#x3D;&gt; {
+        console.log(res);
+        console.log(res.infraid);
+        this.successLog.push({
+          message: JSON.stringify(res),
+          date: Date.now()
+        });
+        return res.infraid;
+      },
+      error &#x3D;&gt; {
+        console.log(&#x27;error occured&#x27;, error);
+        this.errorLog.push({
+          message: JSON.stringify(error),
+          date: Date.now()
+        });
+        return error;
+      },
+      () &#x3D;&gt; {}
+    );
   }
 
   /**
@@ -1399,7 +1403,7 @@ export class OccoService {
   destroyWorkflow(infraid: string) {
     const endpoint &#x3D; this.url + &#x27;/infrastructures/&#x27; + infraid;
 
-    return this.http.delete(endpoint, { responseType: &#x27;text&#x27; }).subscribe(
+    return this.http.delete(endpoint, { responseType: &#x27;text&#x27; }).do(
       res &#x3D;&gt; {
         console.log(res);
         this.successLog.push({
@@ -1407,7 +1411,7 @@ export class OccoService {
           date: Date.now()
         });
 
-        return this;
+        return res;
       },
       error &#x3D;&gt; {
         console.log(&#x27;error occured&#x27;, error);
@@ -1415,6 +1419,7 @@ export class OccoService {
           message: JSON.stringify(error),
           date: Date.now()
         });
+        return error;
       },
       () &#x3D;&gt; {}
     );

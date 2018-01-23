@@ -5061,8 +5061,8 @@ export class JointService {
       infraid: null,
       userid: &#x27;&#x27;,
       infraname: &#x27;&#x27;,
-      collectorip: null,
-      collectorport: null,
+      gatherip: null,
+      gatherport: null,
       receiverport: null,
     };
   }
@@ -5077,8 +5077,8 @@ export class JointService {
     this.graph.set(&#x27;infra_id&#x27;, newWorkflow.infraid);
     this.graph.set(&#x27;user_id&#x27;, newWorkflow.userid);
     this.graph.set(&#x27;wf_name&#x27;, newWorkflow.infraname);
-    this.graph.set(&#x27;coll_ip&#x27;, newWorkflow.collectorip);
-    this.graph.set(&#x27;coll_port&#x27;, newWorkflow.collectorport);
+    this.graph.set(&#x27;coll_ip&#x27;, newWorkflow.gatherip);
+    this.graph.set(&#x27;coll_port&#x27;, newWorkflow.gatherport);
     this.graph.set(&#x27;recv_port&#x27;, newWorkflow.receiverport);
     this.isWorkflowInitialized.next(true);
     this.emitWorkflowChange();
@@ -5117,8 +5117,8 @@ export class JointService {
       infraid: this.graph.get(&#x27;infra_id&#x27;),
       infraname: this.graph.get(&#x27;wf_name&#x27;),
       userid: this.graph.get(&#x27;user_id&#x27;),
-      collectorip: this.graph.get(&#x27;coll_ip&#x27;),
-      collectorport: this.graph.get(&#x27;coll_port&#x27;),
+      gatherip: this.graph.get(&#x27;coll_ip&#x27;),
+      gatherport: this.graph.get(&#x27;coll_port&#x27;),
       receiverport: this.graph.get(&#x27;recv_port&#x27;)
     };
   }

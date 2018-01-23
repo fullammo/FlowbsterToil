@@ -904,10 +904,10 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#collectorip">collectorip</a>
+                                        <a href="#gatherip">gatherip</a>
                                 </li>
                                 <li>
-                                        <a href="#collectorport">collectorport</a>
+                                        <a href="#gatherport">gatherport</a>
                                 </li>
                                 <li>
                                         <a href="#infraid">infraid</a>
@@ -936,13 +936,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="collectorip"></a>
-                                        <span class="name"><b>collectorip</b><a href="#collectorip"><span class="fa fa-link"></span></a></span>
+                                        <a name="gatherip"></a>
+                                        <span class="name"><b>gatherip</b><a href="#gatherip"><span class="fa fa-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>collectorip:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>gatherip:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -965,7 +965,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The running collector service&#39;s IP address.</p>
+                                    <div class="io-description"><p>The running gather service&#39;s IP address.</p>
 </div>
                                 </td>
                             </tr>
@@ -975,13 +975,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="collectorport"></a>
-                                        <span class="name"><b>collectorport</b><a href="#collectorport"><span class="fa fa-link"></span></a></span>
+                                        <a name="gatherport"></a>
+                                        <span class="name"><b>gatherport</b><a href="#gatherport"><span class="fa fa-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>collectorport:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>gatherport:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -1004,7 +1004,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The running collector service&#39;s Port address.</p>
+                                    <div class="io-description"><p>The running gather service&#39;s Port address.</p>
 </div>
                                 </td>
                             </tr>
@@ -1189,14 +1189,14 @@
     infraname: string,
 
     /**
-     * The running collector service&#x27;s IP address.
+     * The running gather service&#x27;s IP address.
      */
-    collectorip: string,
+    gatherip: string,
 
     /**
-     * The running collector service&#x27;s Port address.
+     * The running gather service&#x27;s Port address.
      */
-    collectorport: number,
+    gatherport: number,
 
     /**
      * The starter port to start the flow in the workflow.

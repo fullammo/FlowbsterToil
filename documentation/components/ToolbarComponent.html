@@ -1634,7 +1634,11 @@ export class ToolbarComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade" id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p-menu [model]&#x3D;&quot;items&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;p-dialog header&#x3D;&quot;Workflow Properties&quot; [(visible)]&#x3D;&quot;editClicked&quot; modal&#x3D;&quot;true&quot;&gt;
+  &lt;toil-editor-workflow-properties (onSubmitDialog)&#x3D;&quot;workflowDialogChange($event)&quot; [WorkflowProps]&#x3D;&quot;jointSVC.workflow&quot;&gt;&lt;/toil-editor-workflow-properties&gt;
+&lt;/p-dialog&gt;
+
+&lt;p-menu [model]&#x3D;&quot;items&quot;&gt;
 &lt;/p-menu&gt;
 
 &lt;p-fileUpload mode&#x3D;&quot;basic&quot; customUpload&#x3D;&quot;true&quot; accept&#x3D;&quot;.json&quot; maxFileSize&#x3D;&quot;1000000&quot; (uploadHandler)&#x3D;&quot;myUploader($event)&quot; #fileupload chooseLabel&#x3D;&quot;Upload Graph&quot;&gt;&lt;/p-fileUpload&gt;
@@ -1642,9 +1646,8 @@ export class ToolbarComponent implements OnInit {
 
 &lt;p-growl [(value)]&#x3D;&quot;msgs&quot; sticky&#x3D;&quot;sticky&quot;&gt;&lt;/p-growl&gt;
 
-&lt;p-dialog header&#x3D;&quot;Workflow Properties&quot; [(visible)]&#x3D;&quot;editClicked&quot; modal&#x3D;&quot;true&quot;&gt;
-    &lt;toil-editor-workflow-properties (onSubmitDialog)&#x3D;&quot;workflowDialogChange($event)&quot; [WorkflowProps]&#x3D;&quot;jointSVC.workflow&quot;&gt;&lt;/toil-editor-workflow-properties&gt;
-&lt;/p-dialog&gt;</code></pre>
+
+</code></pre>
     </div>
 
     <div class="tab-pane fade" id="tree">
@@ -1670,7 +1673,7 @@ export class ToolbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p-menu [model]="items"></p-menu><p-fileUpload mode="basic" customUpload="true" accept=".json" maxFileSize="1000000" (uploadHandler)="myUploader($event)" #fileupload chooseLabel="Upload Graph"></p-fileUpload><button pButton type="button" label="Clear Upload" (click)="fileupload.clear()"><p-growl [(value)]="msgs" sticky="sticky"></p-growl><p-dialog header="Workflow Properties" [(visible)]="editClicked" modal="true">    <toil-editor-workflow-properties (onSubmitDialog)="workflowDialogChange($event)" [WorkflowProps]="jointSVC.workflow"></toil-editor-workflow-properties></p-dialog></div>'
+        var COMPONENT_TEMPLATE = '<div><p-dialog header="Workflow Properties" [(visible)]="editClicked" modal="true">  <toil-editor-workflow-properties (onSubmitDialog)="workflowDialogChange($event)" [WorkflowProps]="jointSVC.workflow"></toil-editor-workflow-properties></p-dialog><p-menu [model]="items"></p-menu><p-fileUpload mode="basic" customUpload="true" accept=".json" maxFileSize="1000000" (uploadHandler)="myUploader($event)" #fileupload chooseLabel="Upload Graph"></p-fileUpload><button pButton type="button" label="Clear Upload" (click)="fileupload.clear()"><p-growl [(value)]="msgs" sticky="sticky"></p-growl></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuildContextPropertiesComponent', 'selector': 'toil-build-context-properties'},{'name': 'ConnectionComponent', 'selector': 'toil-connection'},{'name': 'ContentComponent', 'selector': 'fw-content'},{'name': 'DeploymentManagerComponent', 'selector': 'toil-deployment-manager'},{'name': 'EditorComponent', 'selector': 'toil-editor'},{'name': 'ExperimentContextPropertiesComponent', 'selector': 'toil-experiment-context-properties'},{'name': 'ExperimentManagerComponent', 'selector': 'toil-experiment-manager'},{'name': 'FrameworkBodyComponent', 'selector': 'fw-framework-body'},{'name': 'InputPropertiesComponent', 'selector': 'toil-editor-input-properties'},{'name': 'MenuComponent', 'selector': 'fw-menu'},{'name': 'MenuItemComponent', 'selector': 'fw-menu-item'},{'name': 'NodePropertiesComponent', 'selector': 'toil-editor-node-properties'},{'name': 'OutputPropertiesComponent', 'selector': 'toil-editor-output-properties'},{'name': 'PanelComponent', 'selector': 'fw-panel'},{'name': 'PaperComponent', 'selector': 'toil-editor-paper'},{'name': 'PopupMenuComponent', 'selector': 'fw-popup-menu'},{'name': 'RegisterUserComponent', 'selector': 'fw-register-user'},{'name': 'SignInComponent', 'selector': 'fw-sign-in'},{'name': 'StatusBarComponent', 'selector': 'fw-status-bar'},{'name': 'TitleBarComponent', 'selector': 'fw-title-bar'},{'name': 'ToolbarComponent', 'selector': 'toil-editor-toolbar'},{'name': 'TopBarComponent', 'selector': 'fw-top-bar'},{'name': 'WorkflowDetailComponent', 'selector': 'toil-workflow-detail'},{'name': 'WorkflowMaintComponent', 'selector': 'toil-workflow-maint'},{'name': 'WorkflowManagerComponent', 'selector': 'toil-workflow-manager'},{'name': 'WorkflowPropertiesComponent', 'selector': 'toil-editor-workflow-properties'}];
     var DIRECTIVES = [{'name': 'ScreenBelowLarge', 'selector': '[screenBelowLarge]'},{'name': 'ScreenLarge', 'selector': '[screenLarge]'}];
     var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};
