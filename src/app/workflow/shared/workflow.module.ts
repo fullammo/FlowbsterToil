@@ -1,3 +1,4 @@
+import { InfraDetailsComponent } from './../infra-details/infra-details.component';
 import { TemplateService } from './template.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -26,7 +27,8 @@ import { ExperimentManagerComponent } from 'app/workflow/experiment-manager/expe
     BuildContextPropertiesComponent,
     DeploymentManagerComponent,
     ExperimentContextPropertiesComponent,
-    ExperimentManagerComponent
+    ExperimentManagerComponent,
+    InfraDetailsComponent
   ],
   providers: [
     WorkflowEntryService,

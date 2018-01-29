@@ -1,8 +1,8 @@
+import { Deployment } from './../shared/deployment';
 import { OccoService } from './../shared/occo.service';
 import { WorkflowEntry } from './../shared/workflowEntry';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DeploymentService } from 'app/workflow/shared/deployment.service';
-import { Deployment } from 'app/workflow/shared/deployment';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ManagerComponent } from 'app/workflow/shared/manager.component';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
@@ -20,6 +20,8 @@ export class DeploymentManagerComponent extends ManagerComponent<
   Deployment,
   WorkflowEntry
 > {
+  infoModelVisible: boolean;
+
   /**
    * Emits informations outside of the component whenever the 'Eye' icon is clicked.
    */
@@ -37,14 +39,17 @@ export class DeploymentManagerComponent extends ManagerComponent<
     private occoSVC: OccoService
   ) {
     super(deploymentSVC);
+    this.infoModelVisible = false;
   }
 
   /**
    * To be decided how do we wanna edit a node.
    * @param entry
    */
-  onEditClicked(entry: Deployment) {
-    console.log(entry);
+  onInfoClicked(entry: Deployment) {
+    this.occoSVC.getWorkflowInformation(entry.infraid).subscribe(res => {
+      console.log(res);
+    });
   }
 
   /**
@@ -69,7 +74,9 @@ export class DeploymentManagerComponent extends ManagerComponent<
       accept: () => {
         this.occoSVC.destroyWorkflow(entry.infraid).subscribe(
           succes => {
-            console.log('The Occopus deletion was successfull, deletes database entry...');
+            console.log(
+              'The Occopus deletion was successfull, deletes database entry...'
+            );
             this.deploymentSVC.deleteEntry(entry.$key);
           },
           error => {
@@ -83,7 +90,6 @@ export class DeploymentManagerComponent extends ManagerComponent<
           }
         );
         // only delete the entry when the workflow is actually destroyed
-
       }
     });
   }

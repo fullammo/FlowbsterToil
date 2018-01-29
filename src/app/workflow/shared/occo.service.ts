@@ -35,8 +35,8 @@ export class OccoService {
    * @param http Angular's new HttpClient
    */
   constructor(private http: HttpClient) {
-    // this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
-    this.url = 'Not Specified';
+    this.url = 'http://192.168.248.129:5000'; // provide a URL that has an occopus running on it.
+    // this.url = 'Not Specified';
     this.errorLog = [];
     this.successLog = [];
   }
@@ -128,10 +128,10 @@ export class OccoService {
    * @param infraid
    * @param entryId
    */
-  getWorkflowInformation(infraid: string) {
+  getWorkflowInformation(infraid: string): Observable<string> {
     const endpoint = this.url + '/infrastructures/' + infraid;
 
-    this.http.get(endpoint, { responseType: 'text' }).subscribe(
+    return this.http.get(endpoint, { responseType: 'text' }).do(
       res => {
         console.log(res);
       },
