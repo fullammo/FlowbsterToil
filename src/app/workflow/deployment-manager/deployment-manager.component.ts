@@ -39,7 +39,7 @@ export class DeploymentManagerComponent extends ManagerComponent<
     private occoSVC: OccoService
   ) {
     super(deploymentSVC);
-    this.infoModelVisible = false;
+    this.infoModalVisible = false;
   }
 
   /**
