@@ -20,7 +20,7 @@ export class DeploymentManagerComponent extends ManagerComponent<
   Deployment,
   WorkflowEntry
 > {
-  infoModelVisible: boolean;
+  infoModalVisible: boolean;
 
   /**
    * Emits informations outside of the component whenever the 'Eye' icon is clicked.
